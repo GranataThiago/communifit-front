@@ -1,9 +1,8 @@
 import "./output.css";
-
 interface RootLayout {
   children: React.ReactNode;
 }
-export default function RootLayout({ children }:RootLayout) {
+export default function RootLayout({ children }: RootLayout) {
     return (
       <html lang="en">
         <head />
