@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export const ChatCard = () => {
   return (
-    <div className='flex justify-between'>
+    <Link className='flex justify-between' href={'/chat/pantone'}>
         <Image className="rounded-full w-16 h-16" src="https://pbs.twimg.com/profile_images/1610648722542661635/Pcps1_zG_400x400.jpg" alt="fortys" width={32} height={32}/>
 
         <div className='my-auto w-2/3'>
@@ -15,6 +16,6 @@ export const ChatCard = () => {
             <p className='text-gray-400'>12:39</p>
         </div>
 
-    </div>
+    </Link>
   )
 }
