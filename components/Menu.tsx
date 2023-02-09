@@ -7,6 +7,7 @@ import { BsHouseDoor, BsChat, BsSearch, BsPerson } from 'react-icons/bs'
 export const Menu = () => {
 
     const pathname = usePathname();
+    
     return (
         <nav className='w-full py-4 px-6 fixed bottom-0 right-0 bg-white'>
             <ul className='w-full flex justify-between text-xl'>

@@ -18,7 +18,7 @@ export const CommunityScreen = () => {
                             <p className='text-md font-light text-gray-400'>Community</p>
                         </div>
                     </div>
-                    <div>
+                    <div className='flex gap-2'>
                         <BsEnvelope className='text-gray-400 text-lg'/>
                         <BsPencil className='text-gray-400 text-lg'></BsPencil>
                     </div>
