@@ -619,6 +619,14 @@ video {
   height: 24rem;
 }
 
+.h-9 {
+  height: 2.25rem;
+}
+
+.h-11 {
+  height: 2.75rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -641,6 +649,14 @@ video {
 
 .w-32 {
   width: 8rem;
+}
+
+.w-9 {
+  width: 2.25rem;
+}
+
+.w-11 {
+  width: 2.75rem;
 }
 
 .grid-cols-2 {

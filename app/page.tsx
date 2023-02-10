@@ -2,7 +2,7 @@ import Image from "next/image";
 import { TrainerScreen } from '../components/screens';
 import { ClientScreen } from '../components/screens/ClientScreen';
 
-const HARDCODED_ROLE = 'trainer';
+const HARDCODED_ROLE: string = 'member';
 
 export default function Page() {
 
