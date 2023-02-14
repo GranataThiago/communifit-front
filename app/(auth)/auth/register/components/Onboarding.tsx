@@ -34,7 +34,21 @@ export const Onboarding = () => {
   const router = useRouter();
   const [ currentStep, setCurrentStep ] = useState<number>(0);
 
-  const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>();
+  const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>({
+    defaultValues: {
+      email: '',
+      fullName: '',
+      password: '',
+      objective: '',
+      birthdate: {
+        day: 1,
+        month: 1,
+        year: 2023
+      },
+      gender: '',
+      type: ''
+    }
+  });
 
   const onNextStep = () => {
     setCurrentStep(prevStep => prevStep + 1);

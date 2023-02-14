@@ -1,7 +1,7 @@
 import React from 'react'
 import { CommunityScreen, NonCommunityScreen } from './components/screens'
 
-const HARDCODED_COMMUNITY = 'gorillas';
+const HARDCODED_COMMUNITY = null;
 
 export default function CommunityPage() {
   return (

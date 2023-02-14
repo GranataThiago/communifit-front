@@ -1,10 +1,11 @@
 import React from 'react'
+import { Input } from '../../../../components/Input';
 import { CommunityCard } from '../CommunityCard';
 
 export const NonCommunityScreen = () => {
   return (
     <section className='p-6'>
-        <input type="text" placeholder='Search Trainers...' className='bg-gray-100 p-1 rounded-lg w-full'/>
+        <Input variant='filled' type="text" placeholder='Search Trainers...'  />
 
         <p className='mt-6 text-3xl font-bold'>Recommended for you</p>
 

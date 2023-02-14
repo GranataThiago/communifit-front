@@ -1,8 +1,10 @@
 'use client'
 
 import React from 'react'
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
+import { Button } from '../../../../components';
+import { LabeledInput } from '../../../../components/Input';
 
 type LoginForm = {
     email: string;
@@ -12,7 +14,12 @@ type LoginForm = {
 
 export const LoginForm = () => {
 
-    const { handleSubmit, formState: { errors }, register } = useForm<LoginForm>();
+    const { handleSubmit, formState: { errors }, register, control } = useForm<LoginForm>({
+        defaultValues: {
+            email: '',
+            password: ''
+        }
+    });
 
     const onLogin = (formData: LoginForm) => {
         console.log({formData})
@@ -20,17 +27,35 @@ export const LoginForm = () => {
 
   return (
     <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(onLogin)}>
-        <div className='flex flex-col w-full'>
-            <label htmlFor="email">Email address</label>
-            <input {...register('email')} className='border rounded-full p-2' type="text" name='email' />
-        </div>
+        <Controller
+            control={control}
+            name='email'
+            render={({field}) => (
+                <LabeledInput
+                    {...field}
+                    ref={null}
+                    label='Email address'
+                    type='email'
+                    variant='outlined'
+                ></LabeledInput>
+            )}
+        />
 
-        <div className='flex flex-col w-full'>
-            <label htmlFor="password">Password</label>
-            <input {...register('password')} className='border rounded-full p-2' type="password" name='password' />
-        </div>
+        <Controller
+            control={control}
+            name='password'
+            render={({field}) => (
+                <LabeledInput
+                    {...field}
+                    ref={null}
+                    label='Password'
+                    type='password'
+                    variant='outlined'
+                ></LabeledInput>
+            )}
+        />
 
-        <button type='submit' className='bg-primary text-white rounded-full w-full py-3'>Continue</button>
+        <Button type='submit' variant='filled'>Login</Button>
         <Link className='text-right w-full mt-0' href={'/auth/forgot-password'}><p>Forgot password?</p></Link>
     </form>
   )

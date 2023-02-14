@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react'
+import React, { InputHTMLAttributes, Ref } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     variant: InputVariant
@@ -19,10 +19,19 @@ export const Input = ({ variant, className, ...props }: InputProps) => {
   )
 }
 
-const Label = () => {
-    return(
-        <label></label>
-    )
+interface LabeledInputProps{
+  variant: InputVariant;
+  label: string;
+  name: string;
+  type: string;
+  ref?: null;
 }
 
-Input.Label = Label;
+export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
+    return(
+      <div className='flex flex-col w-full'>
+        <label htmlFor={props.name}>{label}</label>
+        <Input {...props}/>
+      </div>
+    )
+}

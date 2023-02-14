@@ -1,25 +1,57 @@
 
 import { SocialMediaForm } from '../../components/SocialMediaForm';
 import { RegisterFormStep } from './Onboarding';
+import { LabeledInput } from '../../../../components/Input';
+import { Controller } from 'react-hook-form';
 
-export const RegisterForm = ({ register }: RegisterFormStep) => {
+export const RegisterForm = ({ register, control }: RegisterFormStep) => {
 
   return (
     <div className='flex-1 flex flex-col justify-center gap-8'>
-        <div className='flex flex-col w-full'>
-            <label htmlFor="fullName">Full name</label>
-            <input {...register('fullName')} className='border rounded-full p-2' type="text" name='fullName' />
-        </div>
+        <Controller 
+          name='fullName'
+          control={control}
+          defaultValue=''
+          render={({field}) => (
+            <LabeledInput 
+              {...field}
+              ref={null}
+              label='Full name'
+              type='text'
+              variant='outlined'
+            />
+          )}
+        />
 
-        <div className='flex flex-col w-full'>
-            <label htmlFor="email">Email address</label>
-            <input {...register('email')} className='border rounded-full p-2' type="text" name='email' />
-        </div>
+        <Controller 
+          name='email'
+          control={control}
+          defaultValue=''
+          render={({field}) => (
+            <LabeledInput 
+              {...field}
+              ref={null}
+              label='Email'
+              type='email'
+              variant='outlined'
+            />
+          )}
+        />
 
-        <div className='flex flex-col w-full'>
-            <label htmlFor="password">Password</label>
-            <input {...register('password')} className='border rounded-full p-2' type="password" name='password' />
-        </div>
+        <Controller 
+          name='password'
+          control={control}
+          defaultValue=''
+          render={({field}) => (
+            <LabeledInput 
+              {...field}
+              ref={null}
+              label='Password'
+              type='password'
+              variant='outlined'
+            />
+          )}
+        />
 
         <SocialMediaForm />
     </div>
