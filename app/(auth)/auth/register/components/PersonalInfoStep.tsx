@@ -1,26 +1,52 @@
 import React from 'react'
+import { Controller } from 'react-hook-form';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import { RadioCard } from '../../../../components/RadioCard';
 import { RegisterFormStep } from './Onboarding';
 
-export const PersonalInfoStep = ({ register }: RegisterFormStep) => {
+const gendersOptions = [
+  {
+    label: 'Men',
+    value: 'men',
+    icon: <BsGenderMale className='text-5xl'/>
+  },
+  {
+    label: 'Women',
+    value: 'Women',
+    icon: <BsGenderFemale className='text-5xl'/>
+  }
+]
+
+export const PersonalInfoStep = ({ register, control }: RegisterFormStep) => {
   return (
     <div className='flex-1'>
         <p className='font-bold text-xl'>Gender</p>
         <p className='font-medium text-lg'>Select an <span className="text-primary">option</span></p>
 
-        <div className='flex gap-2'>
-          <div className='border border-gray-400 w-full h-60 flex flex-col items-center justify-center relative rounded-lg'>
-              <BsGenderMale className='text-5xl'/>
-              <input {...register('gender')}  className='absolute top-2 right-2' type="radio" name='gender' id='men' value='men'/>
-              <label className='font-semibold text-xl text-center' htmlFor="men">Men</label>
-          </div>
+        <Controller
+            name='gender'
+            control={control}
+            render={({ field }) => (
+              <div className='flex gap-2'>
+              {
+                gendersOptions.map((gender) => (
+                  <RadioCard
+                    {...field}
+                    icon={gender.icon}
+                    key={gender.value}
+                    ref={null}
+                    id={gender.value}
+                    value={gender.value}
+                    label={gender.label}
+                    height={60}
+                  ></RadioCard>
+                ))
+                }
+              </div>
+            )}
+          />
 
-          <div className='border border-gray-400 w-full h-60 flex flex-col items-center justify-center relative rounded-lg'>
-              <BsGenderFemale className='text-5xl'/>
-              <input {...register('gender')}  className='absolute top-2 right-2' type="radio" name='gender' id='women' value='women'/>
-              <label className='font-semibold text-xl text-center' htmlFor="women">Women</label>
-          </div>
-        </div>
+
 
         <div className='w-full mt-6'>
             <p className='font-bold text-xl mb-2'>Birthday</p>

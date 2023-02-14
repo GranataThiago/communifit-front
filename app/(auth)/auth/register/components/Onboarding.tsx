@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { RegisterForm } from './RegisterForm';
-import { useForm, UseFormRegister } from 'react-hook-form';
+import { Control, useForm, UseFormRegister } from 'react-hook-form';
 import { AccountTypeStep } from './AccountTypeStep';
 import { GoalStep } from './GoalStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
@@ -25,7 +25,8 @@ export type RegisterForm = {
 }
 
 export interface RegisterFormStep{
-    register: UseFormRegister<RegisterForm> 
+    register: UseFormRegister<RegisterForm>,
+    control: Control<RegisterForm, any>
 }
 
 export const Onboarding = () => {
@@ -33,7 +34,7 @@ export const Onboarding = () => {
   const router = useRouter();
   const [ currentStep, setCurrentStep ] = useState<number>(0);
 
-  const { handleSubmit, formState: { errors }, register, getValues } = useForm<RegisterForm>();
+  const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>();
 
   const onNextStep = () => {
     setCurrentStep(prevStep => prevStep + 1);
@@ -43,7 +44,8 @@ export const Onboarding = () => {
 
   const displayCurrentStep = () => {
     const baseProps = {
-        register
+        register,
+        control
     }
 
     switch(currentStep){
