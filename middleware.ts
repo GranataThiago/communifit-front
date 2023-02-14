@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    const session = null;
+    const session = 'Thiago';
 
     if(!session){
         const requestedPage = pathname;

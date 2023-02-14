@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChatCard } from '../../components/ChatCard';
+import { ChatCard } from './components/ChatCard';
 
 export default function ChatListPage() {
   return (

@@ -1,5 +1,4 @@
-import { TrainerScreen } from '../components/screens';
-import { ClientScreen } from '../components/screens/ClientScreen';
+import { TrainerScreen, ClientScreen } from './components/screens';
 
 const HARDCODED_ROLE: string = 'member';
 
