@@ -7,7 +7,7 @@ interface MessageProps{
 
 const Message = ({ message, sender }: MessageProps) => {
   return (
-    <div className={`rounded-t-lg p-2 ${sender ? 'bg-primary text-white ml-auto rounded-bl-md' : 'bg-gray-300 text-black mr-auto rounded-br-md'}`}>
+    <div className={`rounded-lg p-2 ${sender ? 'bg-primary text-white ml-auto rounded-br-none' : 'bg-gray-300 text-black mr-auto rounded-bl-none'}`}>
         <p>{message}</p>
     </div>
   )
