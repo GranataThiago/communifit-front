@@ -1,16 +1,16 @@
+
 import Image from 'next/image'
 import { ProgressChart } from '../ProgressChart'
 import { Workout } from '../Workout'
+import { UserGreeting } from '../UserGreeting';
+
 
 export const ClientScreen = () => {
+
   return (
     <main className="bg-secondary flex flex-col gap-8">
         <header className="flex justify-between p-6">
-            <div className="greetings">
-                <p className="font-bold text-3xl">Hi Nacho,</p>
-                <p className="font-semibold text-xl">Monday 12, December</p>
-            </div>
-            <Image className="rounded-full" src="https://i.pravatar.cc/300" alt="fortys" width={64} height={64}/>
+            <UserGreeting />
         </header>
 
         <section className="workout flex flex-col gap-2 p-6">
