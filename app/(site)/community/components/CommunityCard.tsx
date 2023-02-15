@@ -15,7 +15,7 @@ const getStars = (amount: number) => {
 
 export const CommunityCard = ({ name, stars, members }: CommunityCardProps) => {
   return (
-    <div className='flex gap-2'>
+    <div className='flex gap-2 hover:cursor-pointer hover:bg-gray-100 transition-colors'>
         <Image className="rounded-full w-20 h-20" src="https://i.pravatar.cc/300" alt="fortys" width={32} height={32}/>
     
         <div className='my-auto'>

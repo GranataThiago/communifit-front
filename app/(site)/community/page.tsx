@@ -9,6 +9,7 @@ export default function CommunityPage() {
       {
         HARDCODED_COMMUNITY
         ? <CommunityScreen/>
+        /* @ts-expect-error Server Component */
         : <NonCommunityScreen />
       }
     </>
