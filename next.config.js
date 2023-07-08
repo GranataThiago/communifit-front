@@ -5,6 +5,19 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ["pbs.twimg.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.tmgranata.com'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig
