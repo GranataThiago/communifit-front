@@ -4,6 +4,7 @@ import React, { FC, useReducer } from 'react'
 import { UserContext, userReducer } from '.';
 import { RegisterUser, User } from '../../interfaces/user';
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 export interface UserState{
     isLogged: boolean;
@@ -18,17 +19,13 @@ const USER_INITIAL_STATE: UserState = {
         image: 'https://www.tmgranata.com/assets/profile-picture.jfif'
     }
 }
-const API_URL = 'https://communifit-back.vercel.app/api/v1';
-
 export default function UserProvider ({ children }: { children: React.ReactNode }) {
 
-   const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
+    const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
-   const register = async(user: RegisterUser) => {
+    const register = async(user: RegisterUser) => {
 
-    // Register Logic Here
-    const { data } = await axios.post(`${API_URL}/users`, user, { headers: {'api-key': '123'} });
-    console.log({data})
+    const { data } = await axios.post(`${API_URL}/users`, user, { headers: {'api-key': 'C0mmunityF1tB4ck3nd2023'} });
 
     dispatch({
         type: '[USER] Login',
