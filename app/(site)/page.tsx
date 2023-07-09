@@ -1,6 +1,6 @@
 import { TrainerScreen, ClientScreen } from './components/screens';
 
-const HARDCODED_ROLE: string = 'member';
+const HARDCODED_ROLE: string = 'trainer';
 
 export default function Page() {
 

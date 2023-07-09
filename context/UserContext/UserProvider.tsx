@@ -22,9 +22,33 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
 
    const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
+   const register = (user: User) => {
+
+    // Register Logic Here
+
+    dispatch({
+        type: '[USER] Login',
+        payload: user
+    });
+   }
+
+   const login = (user: User) => {
+
+    // Login Logic Here
+
+    dispatch({
+        type: '[USER] Login',
+        payload: user
+    });
+   }
+
+
+
    return (
        <UserContext.Provider value={{
-        ...state
+        ...state,
+        login,
+        register
        }}>
            {children}
        </UserContext.Provider>

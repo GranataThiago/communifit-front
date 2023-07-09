@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { RegisterForm } from './RegisterForm';
 import { Control, useForm, UseFormRegister } from 'react-hook-form';
 import { AccountTypeStep } from './AccountTypeStep';
@@ -10,6 +10,8 @@ import { FinalStep } from './FinalStep';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
+import { UserContext } from '../../../../../context/UserContext';
+import { User } from '../../../../../interfaces/user';
 
 export type RegisterForm = {
     fullName: string;
@@ -34,6 +36,7 @@ export const Onboarding = () => {
 
   const router = useRouter();
   const [ currentStep, setCurrentStep ] = useState<number>(0);
+  const { register: registerUser } = useContext(UserContext);
 
   const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>({
     defaultValues: {
@@ -79,8 +82,13 @@ export const Onboarding = () => {
 
 
   const onRegister = (formData: RegisterForm) => {
-      console.log('He, ', formData)
+      const { email, fullName } = formData;
       
+      registerUser({
+        email,
+        fullName,
+        image: 'https://www.tmgranata.com/assets/profile-picture.jfif',
+      });
   }
 
 

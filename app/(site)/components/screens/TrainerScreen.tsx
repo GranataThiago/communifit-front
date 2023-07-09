@@ -30,7 +30,26 @@ export const TrainerScreen = () => {
 
         <section className="chart p-6">
             <p className="text-3xl font-bold">Your Clients</p>
-            <div className="border w-full h-96 mx-auto"></div>
+            <div className="border w-full h-96 mx-auto">
+                <table className="table-auto text-center w-full">
+                    <thead className='w-full'>
+                        <tr>
+                            <th >Member</th>
+                            <th >Status</th>
+                            <th >Progress</th>
+                            <th >Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className='w-full'>
+                        <tr>
+                            <td>Thiago</td>
+                            <td>Paid</td>
+                            <td>-</td>
+                            <td>Edit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
   )
