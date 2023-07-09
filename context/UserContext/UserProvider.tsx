@@ -28,9 +28,10 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
 
     const register = async(user: RegisterUser) => {
         try{
-            const {objective, ...newUser} = user;
-
+            const { objective, ...newUser } = user;
+            console.log({newUser});
             const { data, status, request } = await axios.post(`${API_URL}/users`, newUser, { headers: {'api-key': API_KEY} });
+            console.log({data})
             dispatch({
                 type: '[USER] Login',
                 payload: {...user, image: USER_INITIAL_STATE.user.image}

@@ -16,6 +16,7 @@ import { format } from 'date-fns';
 
 export type RegisterForm = {
     fullName: string;
+    username: string;
     email: string;
     password: string;
     type: string;
@@ -42,6 +43,7 @@ export const Onboarding = () => {
     defaultValues: {
       email: '',
       fullName: '',
+      username: '',
       password: '',
       objective: '',
       birthdate: {
@@ -68,10 +70,8 @@ export const Onboarding = () => {
         case 0: 
           return <AccountTypeStep {...baseProps}/>
         case 1: 
-          return <GoalStep {...baseProps} />
-        case 2: 
           return <PersonalInfoStep {...baseProps} />
-        case 3:
+        case 2:
           return <RegisterForm {...baseProps} />
         default:
           return <FinalStep />
@@ -87,7 +87,6 @@ export const Onboarding = () => {
       registerUser({
         ...formData,
         birthdate,
-        username: formData.fullName,
       });
   }
 
@@ -97,7 +96,7 @@ export const Onboarding = () => {
         <h1 className={`text-4xl font-bold mb-10 text-center ${montserrat.className}`}>Communi<span className={`${montserrat.className} text-primary`}>fit</span>.</h1>
         
         { displayCurrentStep() }
-        <button type={currentStep === 5 ? 'submit' : 'button'} className='bg-primary text-white rounded-full w-full py-3' onClick={onNextStep}>Continue</button>
+        <button type={currentStep === 4 ? 'submit' : 'button'} className='bg-primary text-white rounded-full w-full py-3' onClick={onNextStep}>Continue</button>
         {
           currentStep === 0 
           ? <p className='text-center'>Already have an account? <Link href={'/auth/login'}><strong>Sign In</strong></Link></p> 

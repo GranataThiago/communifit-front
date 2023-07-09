@@ -24,6 +24,21 @@ export const RegisterForm = ({ register, control }: RegisterFormStep) => {
         />
 
         <Controller 
+          name='username'
+          control={control}
+          defaultValue=''
+          render={({field}) => (
+            <LabeledInput 
+              {...field}
+              ref={null}
+              label='Username'
+              type='text'
+              variant='outlined'
+            />
+          )}
+        />
+
+        <Controller 
           name='email'
           control={control}
           defaultValue=''
