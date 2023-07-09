@@ -19,16 +19,16 @@ const nextConfig = {
     ]
   },
   publicRuntimeConfig: {
-    API_URL_LOCAL: "http://localhost:8000/api",
-    API_URL_DEV: "https://communifit-back-git-main-peaky-devs.vercel.app/api",
-    API_URL_PROD: "https://communifit-back-git-main-peaky-devs.vercel.app/api",
-    API_KEY: "C0mmunityF1tB4ck3nd2023",
-    DEVELOPMENT: process.env.NODE_ENV === "development",
-    LOCAL: process.env.NODE_ENV === "local",
-    PRODUCTION: process.env.NODE_ENV === "production",
-    DOMAIN_LOCAL: "http://localhost:3000/",
-    DOMAIN_DEVELOPMENT: "http://localhost:3000/",
-    DOMAIN_PRODUCTION: "https://communifit-front.vercel.app/",
+    // API_URL_LOCAL: "http://localhost:8000/api",
+    // API_URL_DEV: "https://communifit-back-git-main-peaky-devs.vercel.app/api",
+    // API_URL_PROD: "https://communifit-back-git-main-peaky-devs.vercel.app/api",
+    // API_KEY: "C0mmunityF1tB4ck3nd2023",
+    // DEVELOPMENT: process.env.NODE_ENV === "development",
+    // LOCAL: process.env.NODE_ENV === "local",
+    // PRODUCTION: process.env.NODE_ENV === "production",
+    // DOMAIN_LOCAL: "http://localhost:3000/",
+    // DOMAIN_DEVELOPMENT: "http://localhost:3000/",
+    // DOMAIN_PRODUCTION: "https://communifit-front.vercel.app/",
   }
 }
 

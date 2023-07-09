@@ -4,7 +4,6 @@ import React, { FC, useReducer } from 'react'
 import { UserContext, userReducer } from '.';
 import { RegisterUser, User } from '../../interfaces/user';
 import axios from 'axios';
-import { API_KEY, API_URL } from '../../config';
 
 export interface UserState{
     isLogged: boolean;
@@ -24,25 +23,24 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
     const register = async(user: RegisterUser) => {
+        const { data } = await axios.post(`${process.env.API_URL}/users`, user, { headers: {'api-key': process.env.API_KEY} });
 
-    const { data } = await axios.post(`${API_URL}/users`, user, { headers: {'api-key': API_KEY} });
-
-    dispatch({
-        type: '[USER] Login',
-        payload: {...user, image: USER_INITIAL_STATE.user.image}
-    });
+        dispatch({
+            type: '[USER] Login',
+            payload: {...user, image: USER_INITIAL_STATE.user.image}
+        });
    }
 
    const login = async(email: string, password: string) => {
 
-    // Login Logic Here
-    const { data } = await axios.post(`${API_URL}/users`, { email, password });
-    const { user } = data;
+        // Login Logic Here
+        const { data } = await axios.post(`${process.env.API_KEY}/users`, { email, password });
+        const { user } = data;
 
-    dispatch({
-        type: '[USER] Login',
-        payload: user
-    });
+        dispatch({
+            type: '[USER] Login',
+            payload: user
+        });
    }
 
 
