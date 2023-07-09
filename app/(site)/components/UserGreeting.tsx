@@ -17,7 +17,7 @@ export const UserGreeting = () => {
         flex-col-reverse
         xs:flex-row
         justify-between
-        
+
         
       '
     >
@@ -29,7 +29,7 @@ export const UserGreeting = () => {
                 className=''
             >
               <ImageWithFallback 
-                className="object-contain w-24" 
+                className="object-contain rounded-full w-24" 
                 src={user && user.image || 'https://i.pravatar.cc/300'} 
                 alt="fortys" 
                         width={0}
