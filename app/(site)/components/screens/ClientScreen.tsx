@@ -9,7 +9,7 @@ export const ClientScreen = () => {
 
   return (
     <main className="bg-secondary flex flex-col gap-8">
-        <header className="flex justify-between p-6">
+        <header className="flex flex-col justify-between items-center w-full p-6">
             <UserGreeting />
         </header>
 

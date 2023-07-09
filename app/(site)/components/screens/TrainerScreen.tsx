@@ -1,25 +1,11 @@
 import Image from 'next/image'
+import { UserGreeting } from '../UserGreeting'
 
 export const TrainerScreen = () => {
   return (
     <main className="bg-secondary flex flex-col gap-8">
-        <header className="flex flex-col xs:flex-row flex-wrap justify-between p-6 relative">
-            <div className="greetings">
-                <p className="font-bold text-3xl">Hi Tyler,</p>
-                <p className="font-semibold text-xl">Monday 12, December</p>
-            </div>
-            <div
-                className='absolute right-6 top-1/2 -translate-y-1/2'
-            >
-                <Image 
-                        className="object-contain w-24" 
-                        src="https://i.pravatar.cc/300" 
-                        alt="fortys" 
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                    />
-            </div>
+        <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative">
+            <UserGreeting/>
         </header>
 
         <section className="resume flex justify-between bg-primary text-secondary px-6 py-8 text-lg">

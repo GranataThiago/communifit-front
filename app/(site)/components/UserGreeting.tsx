@@ -10,12 +10,35 @@ export const UserGreeting = () => {
   const { user } = useUserContext();
 
   return (
-    <>
+    <div
+      className='
+        w-full
+        flex
+        flex-col-reverse
+        xs:flex-row
+        justify-between
+        
+        
+      '
+    >
         <div className="greetings">
-            <p className="font-bold text-3xl">Hi {user.fullName},</p>
-            <p className="font-semibold text-xl">{format(new Date(), 'EEEE dd, MMMM')}</p>
+            <p className="font-bold text-xl xxs:text-3xl">Hi {user && user.fullName || 'Anonymous'},</p>
+            <p className="font-semibold text-base xxs:text-xl">{format(new Date(), 'EEEE dd, MMMM')}</p>
         </div>
-        <ImageWithFallback className="rounded-full" src={user.image} alt="fortys" width={64} height={64}/>
-    </>
+        <div
+                className=''
+            >
+              <ImageWithFallback 
+                className="object-contain w-24" 
+                src={user && user.image || 'https://i.pravatar.cc/300'} 
+                alt="fortys" 
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+              />
+                
+            </div>
+        
+    </div>
   )
 }
