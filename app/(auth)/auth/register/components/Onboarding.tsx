@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
 import { User } from '../../../../../interfaces/user';
+import { format } from 'date-fns';
 
 export type RegisterForm = {
     fullName: string;
@@ -82,12 +83,14 @@ export const Onboarding = () => {
 
 
   const onRegister = (formData: RegisterForm) => {
-      const { email, fullName } = formData;
+      const { birthdate: { day, month, year } } = formData;
+      
+      const birthdate = new Date(year, month, day);
       
       registerUser({
-        email,
-        fullName,
-        image: 'https://www.tmgranata.com/assets/profile-picture.jfif',
+        ...formData,
+        birthdate,
+        username: formData.fullName,
       });
   }
 

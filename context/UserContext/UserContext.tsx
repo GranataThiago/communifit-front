@@ -1,13 +1,13 @@
 'use client'
 
 import { createContext, useContext } from 'react';
-import { User } from '../../interfaces/user';
+import { RegisterUser, User } from '../../interfaces/user';
 
 interface ContextProps{
     isLogged: boolean;
     user: User,
-    register: (user: User) => void
-    login: (user: User) => void
+    register: (user: RegisterUser) => void
+    login: (email: string, password: string) => void
 }
 
 export const UserContext = createContext<ContextProps>({} as ContextProps);
