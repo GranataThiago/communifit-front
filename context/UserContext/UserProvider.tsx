@@ -32,7 +32,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
 
     dispatch({
         type: '[USER] Login',
-        payload: user
+        payload: {...user, image: USER_INITIAL_STATE.user.image}
     });
    }
 
@@ -41,7 +41,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     // Login Logic Here
     const { data } = await axios.post(`${API_URL}/users`, { email, password });
     const { user } = data;
-    
+
     dispatch({
         type: '[USER] Login',
         payload: user
