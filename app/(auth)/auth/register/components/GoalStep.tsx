@@ -2,6 +2,7 @@ import React from 'react'
 import { Controller } from 'react-hook-form'
 import { RadioCard } from '../../../../components/RadioCard'
 import { RegisterFormStep } from './Onboarding'
+import { montserrat } from '../../../../components/fonts'
 
 const goalsOptions = [
     {
@@ -24,7 +25,7 @@ const goalsOptions = [
 
 export const GoalStep = ({ register, control }: RegisterFormStep) => {
   return (
-    <div className='flex-1'>
+    <div className={`flex-1 ${montserrat.className}`}>
         <p className='font-bold text-xl'>Objective</p>
         <p className='font-medium text-lg'>What is your <span className="text-primary">goal</span>?</p>
 

@@ -3,6 +3,7 @@ import React from 'react'
 import { RegisterFormStep } from './Onboarding'
 import { RadioCard } from '../../../../components/RadioCard';
 import { Controller } from 'react-hook-form';
+import { montserrat } from '../../../../components/fonts';
 
 const accountTypeOptions = [
   {
@@ -17,7 +18,7 @@ const accountTypeOptions = [
 
 export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
   return (
-    <div className='flex-1'>
+    <div className={`flex-1 ${montserrat.className}`}>
         <p className='font-bold text-xl'>Hi stranger!</p>
         <p className='font-medium text-lg'>Join as <span className="text-primary">trainer</span> or <span className="text-primary">member</span>?</p>
 

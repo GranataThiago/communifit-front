@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import { montserrat } from '../../../components/fonts'
 
 export const TrainerScreen = () => {
   return (
-    <main className="bg-secondary flex flex-col gap-8">
+    <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
         <header className="flex justify-between p-6">
             <div className="greetings">
                 <p className="font-bold text-3xl">Hi Tyler,</p>

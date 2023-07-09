@@ -3,6 +3,7 @@ import { Controller } from 'react-hook-form';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 import { RadioCard } from '../../../../components/RadioCard';
 import { RegisterFormStep } from './Onboarding';
+import { montserrat } from '../../../../components/fonts';
 
 const gendersOptions = [
   {
@@ -19,7 +20,7 @@ const gendersOptions = [
 
 export const PersonalInfoStep = ({ register, control }: RegisterFormStep) => {
   return (
-    <div className='flex-1'>
+    <div className={`flex-1 ${montserrat.className}`}>
         <p className='font-bold text-xl'>Gender</p>
         <p className='font-medium text-lg'>Select an <span className="text-primary">option</span></p>
 

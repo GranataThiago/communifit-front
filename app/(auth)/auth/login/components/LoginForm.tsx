@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
 import { Button } from '../../../../components';
 import { LabeledInput } from '../../../../components/Input';
+import { montserrat } from '../../../../components/fonts';
 
 type LoginForm = {
     email: string;
@@ -26,7 +27,7 @@ export const LoginForm = () => {
     }
 
   return (
-    <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit(onLogin)}>
+    <form className={`w-full flex flex-col gap-4 ${montserrat.className}`} onSubmit={handleSubmit(onLogin)}>
         <Controller
             control={control}
             name='email'

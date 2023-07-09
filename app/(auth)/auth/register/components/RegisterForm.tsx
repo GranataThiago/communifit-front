@@ -3,11 +3,12 @@ import { SocialMediaForm } from '../../components/SocialMediaForm';
 import { RegisterFormStep } from './Onboarding';
 import { LabeledInput } from '../../../../components/Input';
 import { Controller } from 'react-hook-form';
+import { montserrat } from '../../../../components/fonts';
 
 export const RegisterForm = ({ register, control }: RegisterFormStep) => {
 
   return (
-    <div className='flex-1 flex flex-col justify-center gap-8'>
+    <div className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}>
         <Controller 
           name='fullName'
           control={control}
