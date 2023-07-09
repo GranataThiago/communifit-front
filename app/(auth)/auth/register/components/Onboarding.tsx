@@ -34,7 +34,6 @@ export interface RegisterFormStep{
 }
 
 export const Onboarding = () => {
-  console.log(process.env.NEXT_PUBLIC_API_URL)
   const router = useRouter();
   const [ currentStep, setCurrentStep ] = useState<number>(0);
   const { register: registerUser } = useContext(UserContext);

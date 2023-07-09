@@ -18,12 +18,16 @@ const USER_INITIAL_STATE: UserState = {
         image: 'https://www.tmgranata.com/assets/profile-picture.jfif'
     }
 }
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
 export default function UserProvider ({ children }: { children: React.ReactNode }) {
 
     const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
     const register = async(user: RegisterUser) => {
-        const { data } = await axios.post(`${process.env.API_URL}/users`, user, { headers: {'api-key': process.env.API_KEY} });
+        const { data } = await axios.post(`${API_URL}/users`, user, { headers: {'api-key': API_KEY} });
 
         dispatch({
             type: '[USER] Login',
@@ -34,7 +38,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
    const login = async(email: string, password: string) => {
 
         // Login Logic Here
-        const { data } = await axios.post(`${process.env.API_KEY}/users`, { email, password });
+        const { data } = await axios.post(`${API_URL}/users`, { email, password });
         const { user } = data;
 
         dispatch({
