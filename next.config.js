@@ -29,7 +29,25 @@ const nextConfig = {
     // DOMAIN_LOCAL: "http://localhost:3000/",
     // DOMAIN_DEVELOPMENT: "http://localhost:3000/",
     // DOMAIN_PRODUCTION: "https://communifit-front.vercel.app/",
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/site"
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/site",
+        destination: "/",
+        permanent: true
+      }
+    ]
   }
+
 }
 
 module.exports = nextConfig
