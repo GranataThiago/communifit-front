@@ -3,12 +3,13 @@ import Image from 'next/image'
 import { ProgressChart } from '../ProgressChart'
 import { Workout } from '../Workout'
 import { UserGreeting } from '../UserGreeting';
+import { montserrat } from '../../../components/fonts';
 
 
 export const ClientScreen = () => {
 
   return (
-    <main className="bg-secondary flex flex-col gap-8">
+    <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
         <header className="flex justify-between p-6">
             <UserGreeting />
         </header>

@@ -1,8 +1,9 @@
 import React from 'react'
+import { montserrat } from '../../components/fonts'
 
 export const Workout = () => {
   return (
-    <section className="workout flex flex-col gap-2">
+    <section className={`workout flex flex-col gap-2 ${montserrat.className}`}>
         <ul className="flex gap-3">
             <li className="font-normal text-black">Monday</li>
             <li className="font-normal text-gray-300">Tuesday</li>
