@@ -5,7 +5,7 @@ import { UserGreeting } from '../UserGreeting';
 export const TrainerScreen = () => {
   return (
     <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
-        <header className="flex justify-between p-6">
+        <header className="flex flex-col xs:flex-row flex-wrap justify-between p-6 relative">
             <UserGreeting />
         </header>
 

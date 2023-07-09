@@ -4,15 +4,12 @@ import { useContext, useState } from 'react'
 import { RegisterForm } from './RegisterForm';
 import { Control, useForm, UseFormRegister } from 'react-hook-form';
 import { AccountTypeStep } from './AccountTypeStep';
-import { GoalStep } from './GoalStep';
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinalStep } from './FinalStep';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
-import { User } from '../../../../../interfaces/user';
-import { format } from 'date-fns';
 
 export type RegisterForm = {
     fullName: string;
