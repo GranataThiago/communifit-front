@@ -1,12 +1,11 @@
 import Image from 'next/image'
-import { montserrat } from '../../../components/fonts'
-import { UserGreeting } from '../UserGreeting';
+import { UserGreeting } from '../UserGreeting'
 
 export const TrainerScreen = () => {
   return (
-    <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
-        <header className="flex flex-col xs:flex-row flex-wrap justify-between p-6 relative">
-            <UserGreeting />
+    <main className="bg-secondary flex flex-col gap-8">
+        <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative">
+            <UserGreeting/>
         </header>
 
         <section className="resume flex justify-between bg-primary text-secondary px-6 py-8 text-lg">

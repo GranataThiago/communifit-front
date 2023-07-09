@@ -9,8 +9,8 @@ import { montserrat } from '../../../components/fonts';
 export const ClientScreen = () => {
 
   return (
-    <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
-        <header className="flex justify-between p-6">
+    <main className="bg-secondary flex flex-col gap-8">
+        <header className="flex flex-col justify-between items-center w-full p-6">
             <UserGreeting />
         </header>
 
