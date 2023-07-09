@@ -12,4 +12,5 @@ export interface RegisterUser{
     type: string;
     fullName: string;
     email: string;
+    objective?: string,
 }

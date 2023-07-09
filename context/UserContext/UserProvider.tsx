@@ -27,12 +27,17 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
     const register = async(user: RegisterUser) => {
-        const { data } = await axios.post(`${API_URL}/users`, user, { headers: {'api-key': API_KEY} });
+        try{
+            const {objective, ...newUser} = user;
 
-        dispatch({
-            type: '[USER] Login',
-            payload: {...user, image: USER_INITIAL_STATE.user.image}
-        });
+            const { data, status, request } = await axios.post(`${API_URL}/users`, newUser, { headers: {'api-key': API_KEY} });
+            dispatch({
+                type: '[USER] Login',
+                payload: {...user, image: USER_INITIAL_STATE.user.image}
+            });
+        }catch(err){
+            console.log(err)
+        }
    }
 
    const login = async(email: string, password: string) => {

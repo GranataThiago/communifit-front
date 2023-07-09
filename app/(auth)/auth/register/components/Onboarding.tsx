@@ -56,8 +56,6 @@ export const Onboarding = () => {
 
   const onNextStep = () => {
     setCurrentStep(prevStep => prevStep + 1);
-
-    console.log(getValues())
   }
 
   const displayCurrentStep = () => {
