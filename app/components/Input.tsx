@@ -35,3 +35,19 @@ export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
       </div>
     )
 }
+
+interface LabeledTextareaProps{
+  variant: InputVariant;
+  label: string;
+  name: string;
+  ref?: null;
+}
+
+export const LabeledTextarea = ({ label, ...props }: LabeledTextareaProps) => {
+  return(
+    <div className='flex flex-col w-full'>
+      <label htmlFor={props.name}>{label}</label>
+      <textarea {...props} className={`${inputVariants[props.variant]}`}></textarea>
+    </div>
+  )
+}
