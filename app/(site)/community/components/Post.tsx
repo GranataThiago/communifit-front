@@ -8,7 +8,7 @@ export const Post = () => {
             <div className="flex gap-2">
                 <Image className="rounded-full w-12 h-12" src="https://i.pravatar.cc/300" alt="fortys" width={32} height={32}/>
                 <p className='font-bold text-lg flex flex-col'>
-                    Santiago Citric
+                    Esteban Fernandez
                     <span className='text-gray-400 text-sm font-medium'>11:20</span>
                 </p>
             </div>

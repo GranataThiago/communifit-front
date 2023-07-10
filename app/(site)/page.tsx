@@ -8,7 +8,7 @@ export default function Page() {
     return (
         <>
             {
-                HARDCODED_ROLE === 'trainer'
+                HARDCODED_ROLE === 'member'
                 ? <TrainerScreen />
                 : <ClientScreen />
             }

@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import React from 'react'
 import { useUserContext } from '../../../context/UserContext';
 import { ImageWithFallback } from '../../components/ImageWithFallback';
+import { montserrat } from '../../components/fonts';
 
 export const UserGreeting = () => {
 
@@ -11,15 +12,14 @@ export const UserGreeting = () => {
 
   return (
     <div
-      className='
+      className={`
         w-full
         flex
         flex-col-reverse
         xs:flex-row
         justify-between
-
-        
-      '
+        ${montserrat.className}
+      `}
     >
         <div className="greetings">
             <p className="font-bold text-xl xxs:text-3xl">Hi {user && user.fullName || 'Anonymous'},</p>
