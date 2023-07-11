@@ -1,3 +1,5 @@
+"use client"
+
 import Head from 'next/head'
 import '../globals.css'
 import { useUserContext } from '../../context/UserContext'
