@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import '../globals.css'
+import { useUserContext } from '../../context/UserContext'
+import { useRouter } from 'next/navigation'
 
 
 export const metadata = {
@@ -25,6 +27,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  const router = useRouter();
+  const { token } = useUserContext();
+
+  if(!token){
+    router.replace('/auth/login')
+  }
 
   return (
     <>
