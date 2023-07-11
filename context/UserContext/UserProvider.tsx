@@ -32,6 +32,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
             dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
         }catch(err){
             console.log(err)
+            return;
         }
    }
 
@@ -51,27 +52,38 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         }catch(err)
         {
             console.log(err)
+            localStorage.removeItem('token');
             return false;
         }
    }
 
    const validateUser = async() => {
-    const token = localStorage.getItem('token');
+        try{
+            const token = localStorage.getItem('token');
 
-    if(!token) return;
-
-    const { data } = await instance.get(`/auth/decrypt`, { 
-        headers: {
-            token
+            if(!token) return;
+        
+            const { data } = await instance.get(`/auth/decrypt`, { 
+                headers: {
+                    token
+                }
+            });
+        
+            console.log(data)
+        
+            dispatch({
+                type: '[USER] Login',
+                payload: { token, user: data.user }
+            });
+        }catch(err){
+            console.log(err);
+            localStorage.removeItem('token');
+            return;
         }
-    });
+   }
 
-    console.log(data)
-
-    dispatch({
-        type: '[USER] Login',
-        payload: { token, user: data.user }
-    });
+   const logout = () => {
+    dispatch({type: '[USER] Logout'});
    }
 
    return (
@@ -79,7 +91,8 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         ...state,
         login,
         register,
-        validateUser
+        validateUser,
+        logout
        }}>
            {children}
        </UserContext.Provider>
