@@ -4,7 +4,6 @@ const HARDCODED_ROLE: string = 'trainer';
 
 export default function Page() {
 
-
     return (
         <>
             {

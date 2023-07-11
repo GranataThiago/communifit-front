@@ -4,10 +4,11 @@ import { createContext, useContext } from 'react';
 import { RegisterUser, User } from '../../interfaces/user';
 
 interface ContextProps{
-    isLogged: boolean;
-    user: User,
+    token: string | null,
+    user: User | null,
     register: (user: RegisterUser) => void
-    login: (email: string, password: string) => void
+    login: (email: string, password: string) => Promise<boolean>,
+    validateUser: (token: string) => void,
 }
 
 export const UserContext = createContext<ContextProps>({} as ContextProps);

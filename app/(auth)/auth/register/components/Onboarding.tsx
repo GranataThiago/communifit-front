@@ -12,7 +12,7 @@ import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
 
 export type RegisterForm = {
-    fullName: string;
+    fullname: string;
     username: string;
     email: string;
     password: string;
@@ -39,7 +39,7 @@ export const Onboarding = () => {
   const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>({
     defaultValues: {
       email: '',
-      fullName: '',
+      fullname: '',
       username: '',
       password: '',
       objective: '',

@@ -1,5 +1,6 @@
 export interface User{
-    fullName: string;
+    fullname: string;
+    username: string;
     email: string;
     image: string;
 }
@@ -10,7 +11,7 @@ export interface RegisterUser{
     gender: string;
     password: string;
     type: string;
-    fullName: string;
+    fullname: string;
     email: string;
     objective?: string,
 }

@@ -1,65 +1,85 @@
 'use client'
 
-import React, { FC, useReducer } from 'react'
+import React, { FC, useEffect, useReducer } from 'react'
 import { UserContext, userReducer } from '.';
 import { RegisterUser, User } from '../../interfaces/user';
-import axios from 'axios';
+import instance from '../../app/api';
 
 export interface UserState{
-    isLogged: boolean;
-    user: User
+    token: string | null;
+    user: User | null
 }
 
 const USER_INITIAL_STATE: UserState = {
-    isLogged: false,
-    user: {
-        fullName: 'Thiago Granata',
-        email: 'granatathiago@gmail.com',
-        image: 'https://www.tmgranata.com/assets/profile-picture.jfif'
-    }
+    token: null,
+    user: null,
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 export default function UserProvider ({ children }: { children: React.ReactNode }) {
 
     const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
 
+    useEffect(() => {
+        validateUser();
+    }, [])
+
     const register = async(user: RegisterUser) => {
         try{
             const { objective, ...newUser } = user;
-            console.log({newUser});
-            const { data, status, request } = await axios.post(`${API_URL}/users`, newUser, { headers: {'api-key': API_KEY} });
-            console.log({data})
-            dispatch({
-                type: '[USER] Login',
-                payload: {...user, image: USER_INITIAL_STATE.user.image}
-            });
+            const { data } = await instance.post(`/users`, newUser);
+
+            dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
         }catch(err){
             console.log(err)
         }
    }
 
-   const login = async(email: string, password: string) => {
+   const login = async(email: string, password: string): Promise<boolean> => {
+        try{
+            const { data: { token } } = await instance.post(`/auth/login`, { email, password });
 
-        // Login Logic Here
-        const { data } = await axios.post(`${API_URL}/users`, { email, password });
-        const { user } = data;
+            if(!token) return false;
 
-        dispatch({
-            type: '[USER] Login',
-            payload: user
-        });
+            localStorage.setItem('token', token);
+
+            const { data: { user } } = await instance.get(`/auth/decrypt`, { headers: { token }});
+
+            dispatch({ type: '[USER] Login', payload: {user, token} });
+
+            return true;
+        }catch(err)
+        {
+            console.log(err)
+            return false;
+        }
    }
 
+   const validateUser = async() => {
+    const token = localStorage.getItem('token');
 
+    if(!token) return;
+
+    const { data } = await instance.get(`/auth/decrypt`, { 
+        headers: {
+            token
+        }
+    });
+
+    console.log(data)
+
+    dispatch({
+        type: '[USER] Login',
+        payload: { token, user: data.user }
+    });
+   }
 
    return (
        <UserContext.Provider value={{
         ...state,
         login,
-        register
+        register,
+        validateUser
        }}>
            {children}
        </UserContext.Provider>

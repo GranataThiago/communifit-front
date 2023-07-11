@@ -22,7 +22,7 @@ export const UserGreeting = () => {
       `}
     >
         <div className="greetings">
-            <p className="font-bold text-xl xxs:text-3xl">Hi {user && user.fullName || 'Anonymous'},</p>
+            <p className="font-bold text-xl xxs:text-3xl">Hi {user && user.username || 'Anonymous'},</p>
             <p className="font-semibold text-base xxs:text-xl">{format(new Date(), 'EEEE dd, MMMM')}</p>
         </div>
         <div
