@@ -1,4 +1,3 @@
-"use client"
 
 import Head from 'next/head'
 import { useRouter } from 'next/navigation';
@@ -28,13 +27,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
-    const router = useRouter();
-    const { token, user } = useUserContext();
-
-    if (token) {
-        router.replace('/');
-    }
 
     return (
         <>

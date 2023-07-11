@@ -1,4 +1,3 @@
-"use client"
 
 import Head from 'next/head'
 import '../globals.css'
@@ -16,9 +15,7 @@ export const metadata = {
       sizes: '64x64',
       url: '/app/icon.svg',
     },
-    
   ],
-  
 }
 
 
@@ -28,13 +25,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
-  const router = useRouter();
-  const { token } = useUserContext();
-
-  if(!token){
-    router.replace('/auth/login')
-  }
 
   return (
     <>
