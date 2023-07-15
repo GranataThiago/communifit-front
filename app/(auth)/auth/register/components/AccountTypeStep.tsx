@@ -38,7 +38,7 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
                     value={type.value}
                     label={type.label}
                     height={60}
-                  ></RadioCard>
+                  />
                 ))
                 }
               </>

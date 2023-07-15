@@ -5,6 +5,8 @@ import { Material } from '../Material';
 import instance from '../../../../api';
 import { useEffect, useState } from 'react';
 import { Community } from '../../../../../interfaces/community';
+import useInviteModal from '../../../../hooks/modals/useInviteModal';
+import CommunityActions from '../CommunityActions';
 
 const getCommunity = async(): Promise<Community> => {
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -26,7 +28,6 @@ const getCommunity = async(): Promise<Community> => {
 export const CommunityScreen = async() => {
 
     const community: Community = await getCommunity();
-    
 
     return (
         <section className='bg-primary h-screen'>
@@ -42,10 +43,7 @@ export const CommunityScreen = async() => {
                                 <p className='text-md font-light text-gray-400'>Community</p>
                             </div>
                         </div>
-                        <div className='flex gap-2'>
-                            <BsEnvelope className='text-gray-400 text-lg'/>
-                            <BsPencil className='text-gray-400 text-lg'></BsPencil>
-                        </div>
+                        <CommunityActions />
                     </div>
                     <div className='mt-4 leading-5'>
                         {community.description}

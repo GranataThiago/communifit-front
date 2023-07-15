@@ -1,8 +1,7 @@
 
 import Head from 'next/head'
 import '../globals.css'
-import { useUserContext } from '../../context/UserContext'
-import { useRouter } from 'next/navigation'
+import InviteModal from '../components/modals/InviteModal'
 
 
 export const metadata = {
@@ -33,7 +32,7 @@ export default function RootLayout({
         <meta content="We provide professional on and off page SEO and Web Design services. We also help companies with their advertising campaigns ensuring their money is not wasted." name="description"/>
         <meta name="robots" content="index,follow"/>
       </Head>
-     
+      <InviteModal />
         
             {children}
     </>
