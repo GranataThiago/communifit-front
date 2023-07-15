@@ -2,26 +2,25 @@ import Image from 'next/image'
 import { BsEnvelope, BsPencil } from 'react-icons/bs';
 import { Post } from '../Post'
 import { Material } from '../Material';
-import instance from '../../../../api';
+import apiInstance from '../../../../api';
 import { useEffect, useState } from 'react';
 import { Community } from '../../../../../interfaces/community';
 import useInviteModal from '../../../../hooks/modals/useInviteModal';
 import CommunityActions from '../CommunityActions';
+import { cookies } from 'next/headers';
 
 const getCommunity = async(): Promise<Community> => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const cookieStore = cookies();
+    const { data: { community } } = await apiInstance.get('/communities/gorillas', { headers: { token: cookieStore.get('token')?.value }});
+    const { data, request } = await apiInstance.get('/communities/gorillas/posts?page=1', { headers: { token: cookieStore.get('token')?.value }});
+    const { posts, totalPages, totalResults } = data;
     return {
         posts: [
-            {
-                fullname: "Tomás Hernández",
-                username: "tomihq",
-                body: "Hello Gorillas 2.0!",
-                datepublished: "2023-07-11T03:00:00.000Z"
-            }
+            ...posts
         ],
         image: '',
-        name: 'Gorillas',
-        description: 'Lorem Ipsum Dolor sit amet. www.youtube.com/@MichayDev'
+        name: community.displayname,
+        description: community.description
     };
 }
 

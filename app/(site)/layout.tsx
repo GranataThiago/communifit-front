@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import '../globals.css'
 import InviteModal from '../components/modals/InviteModal'
+import WorkoutModal from '../components/modals/WorkoutModal'
 
 
 export const metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
         <meta name="robots" content="index,follow"/>
       </Head>
       <InviteModal />
+      <WorkoutModal />
         
             {children}
     </>

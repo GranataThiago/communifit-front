@@ -9,8 +9,8 @@ type InputVariant = 'outlined'|'filled'|'text';
 type InputStyles = { [key: string]: string };
 
 const inputVariants: InputStyles = {
-    filled: 'w-full bg-gray-100 p-2 rounded-full',
-    outlined: 'w-full border rounded-full p-2',
+    filled: 'w-full bg-gray-100 p-2 rounded-xl',
+    outlined: 'w-full border rounded-xl p-2',
 }
 
 export const Input = ({ variant, className, ...props }: InputProps) => {
@@ -30,7 +30,7 @@ interface LabeledInputProps{
 export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
     return(
       <div className='flex flex-col w-full'>
-        <label htmlFor={props.name}>{label}</label>
+        <label htmlFor={props.name} className='pb-1'>{label}</label>
         <Input {...props}/>
       </div>
     )
@@ -46,7 +46,7 @@ interface LabeledTextareaProps{
 export const LabeledTextarea = ({ label, ...props }: LabeledTextareaProps) => {
   return(
     <div className='flex flex-col w-full'>
-      <label htmlFor={props.name}>{label}</label>
+      <label htmlFor={props.name} className='pl-2'>{label}</label>
       <textarea {...props} className={`${inputVariants[props.variant]}`}></textarea>
     </div>
   )

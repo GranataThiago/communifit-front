@@ -3,7 +3,9 @@
 import React, { FC, useEffect, useReducer } from 'react'
 import { UserContext, userReducer } from '.';
 import { RegisterUser, User } from '../../interfaces/user';
-import instance from '../../app/api';
+import { useCookies } from 'react-cookie';
+import apiInstance from '../../app/api';
+import { addDays } from 'date-fns';
 
 export interface UserState{
     token: string | null;
@@ -19,6 +21,7 @@ const USER_INITIAL_STATE: UserState = {
 export default function UserProvider ({ children }: { children: React.ReactNode }) {
 
     const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     useEffect(() => {
         validateUser();
@@ -27,7 +30,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     const register = async(user: RegisterUser) => {
         try{
             const { objective, ...newUser } = user;
-            const { data } = await instance.post(`/users`, newUser);
+            const { data } = await apiInstance.post(`/users`, newUser);
 
             dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
         }catch(err){
@@ -38,46 +41,49 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
 
    const login = async(email: string, password: string): Promise<boolean> => {
         try{
-            const { data: { token } } = await instance.post(`/auth/login`, { email, password });
+            const { data: { token } } = await apiInstance.post(`/auth/login`, { email, password });
 
             if(!token) return false;
 
-            localStorage.setItem('token', token);
+            // localStorage.setItem('token', token);
+            setCookie('token', token, {
+                path: '/'
+            });
+            
 
-            const { data: { user } } = await instance.get(`/auth/decrypt`, { headers: { token }});
+            const { data: { user } } = await apiInstance.get(`/auth/decrypt`, { headers: { token }});
 
             dispatch({ type: '[USER] Login', payload: {user, token} });
 
             return true;
         }catch(err)
         {
-            console.log(err)
-            localStorage.removeItem('token');
+            // localStorage.removeItem('token');
+            removeCookie('token');
             return false;
         }
    }
 
    const validateUser = async() => {
         try{
-            const token = localStorage.getItem('token');
+            const { token } = cookies;
 
             if(!token) return;
         
-            const { data } = await instance.get(`/auth/decrypt`, { 
+            const { data } = await apiInstance.get(`/auth/decrypt`, { 
                 headers: {
                     token
                 }
             });
-        
-            console.log(data)
-        
+                
             dispatch({
                 type: '[USER] Login',
                 payload: { token, user: data.user }
             });
         }catch(err){
             console.log(err);
-            localStorage.removeItem('token');
+            // localStorage.removeItem('token');
+            removeCookie('token');
             return;
         }
    }
