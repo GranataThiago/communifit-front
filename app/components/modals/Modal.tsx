@@ -92,7 +92,6 @@ const Modal: React.FC<ModalProps> = ({
                     xl:w-2/5
                     my-6
                     mx-auto
-                    h-full
                     lg:h-auto
                     md:h-auto
                 "
@@ -179,7 +178,7 @@ const Modal: React.FC<ModalProps> = ({
                                 <Button 
                                     variant="filled"
                                 >
-                                    Chau
+                                    {actionLabel}
                                 </Button>
                             </div>
                             {footer}
