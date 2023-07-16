@@ -12,7 +12,6 @@ export default function RootLayout ({ children }: LoggedLayout) {
     <html>
       <body>
         <UserProvider>
-          <Menu />
           {children}
         </UserProvider>
       </body>

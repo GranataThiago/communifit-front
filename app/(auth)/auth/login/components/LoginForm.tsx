@@ -36,7 +36,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <form className={`w-full flex flex-col gap-4 ${montserrat.className}`} onSubmit={handleSubmit(onLogin)}>
+        <form className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`} onSubmit={handleSubmit(onLogin)}>
             <Controller
                 control={control}
                 name='email'

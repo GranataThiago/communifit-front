@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
+import { Button } from '../../../../components';
 
 export type RegisterForm = {
     fullname: string;
@@ -89,14 +90,14 @@ export const Onboarding = () => {
 
 
   return (
-    <form  className='w-full flex flex-col justify-center gap-4 flex-1' onSubmit={handleSubmit(onRegister)}>
+    <form  className='w-full flex flex-col justify-center gap-4 flex-1 py-4' onSubmit={handleSubmit(onRegister)}>
         <h1 className={`text-4xl font-bold mb-10 text-center ${montserrat.className}`}>Communi<span className={`${montserrat.className} text-primary`}>fit</span>.</h1>
         
         { displayCurrentStep() }
-        <button type={currentStep === 4 ? 'submit' : 'button'} className='bg-primary text-white rounded-full w-full py-3' onClick={onNextStep}>Continue</button>
+        <Button variant='filled' type={currentStep === 4 ? 'submit' : 'button'} onClick={onNextStep}>Continue</Button>
         {
           currentStep === 0 
-          ? <p className='text-center'>Already have an account? <Link href={'/auth/login'}><strong>Sign In</strong></Link></p> 
+          ? <p className='text-center py-4'>Already have an account? <Link href={'/auth/login'}><strong>Sign In</strong></Link></p> 
           : null
         }
     </form>
