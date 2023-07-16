@@ -1,8 +1,5 @@
 
 import Head from 'next/head'
-import { useRouter } from 'next/navigation';
-import { useUserContext } from '../../../context/UserContext';
-import { useEffect } from 'react';
 
 
 export const metadata = {
@@ -27,7 +24,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
     return (
         <>
         <Head>

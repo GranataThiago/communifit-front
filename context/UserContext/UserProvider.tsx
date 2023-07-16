@@ -82,7 +82,6 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
             });
         }catch(err){
             console.log(err);
-            // localStorage.removeItem('token');
             removeCookie('token');
             return;
         }
