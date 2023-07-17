@@ -1,7 +1,16 @@
 import React from 'react'
+import { Button } from '../../components/Button';
+import { BiLogOut } from 'react-icons/bi'
+import { ProfileHeading } from './components/ProfileHeading';
 
 export default function ProfilePage(){
+  
+  
+
   return (
-    <div>ProfilePage</div>
+    <div>
+      <ProfileHeading />
+
+    </div>
   )
 }

@@ -9,7 +9,7 @@ interface ContextProps{
     register: (user: RegisterUser) => void
     login: (email: string, password: string) => Promise<boolean>,
     validateUser: (token: string) => void,
-    logout: () => void,
+    logout: () => boolean,
 }
 
 export const UserContext = createContext<ContextProps>({} as ContextProps);

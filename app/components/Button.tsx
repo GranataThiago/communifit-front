@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes, ReactNode } from 'react'
+import { AiOutlineLoading } from 'react-icons/ai';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     children: ReactNode,
@@ -17,6 +18,8 @@ const buttonVariants: ButtonStyles = {
 
 export const Button = ({ children, variant, className = '', ...props}: ButtonProps) => {
   return (
-    <button className={`${buttonVariants[variant]} ${className}`} {...props}>{children}</button>
+    <button className={`${buttonVariants[variant]} ${className}`} {...props}>
+          {children}
+    </button>
   )
 }

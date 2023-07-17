@@ -88,7 +88,13 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
    }
 
    const logout = () => {
-    dispatch({type: '[USER] Logout'});
+    try{
+        dispatch({type: '[USER] Logout'});
+        removeCookie('token');
+        return true;
+    }catch(err){
+        return false;
+    }
    }
 
    return (
