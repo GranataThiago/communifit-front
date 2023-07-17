@@ -1,39 +1,20 @@
 'use client';
 
-import axios from 'axios';
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
+import { AiFillCheckCircle } from 'react-icons/ai';
 import { useCallback, useState } from 'react';
 import {
     FieldValues,
     SubmitHandler,
-    useForm
 } from 'react-hook-form';
 
 import useInviteModal from '../../hooks/modals/useInviteModal';
 import Modal from './Modal';
-import { useRouter } from 'next/navigation';
-import { Button } from '../Button';
-import { LabeledInput } from '../Input';
 import Heading from '../Heading';
+import { renderToast } from '../../providers/ToasterProvider';
 
 const InviteModal = () => {
-  const router = useRouter();
   const inviteModal = useInviteModal();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: {
-        errors,
-    }
-  } = useForm<FieldValues>({
-    defaultValues: {
-        email: '',
-        password: ''
-    }
-  })
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -50,15 +31,16 @@ const InviteModal = () => {
         title='Invite someone to Gorillas'
         subtitle='Link is valid for one person only'
       />
-      <LabeledInput
-        label="Community Link"
-        variant='outlined'
-        name='link'
-        type='text'
-      />
+
+      <input type="text" aria-label='Copied to clipboard' value={inviteModal.link} disabled />
 
     </div>
   );
+
+  const onLinkCopied = () => {
+    renderToast('Copied to clipboard', <AiFillCheckCircle />)
+    navigator.clipboard.writeText(inviteModal.link);
+  }
 
   return (
     <Modal 
@@ -67,7 +49,7 @@ const InviteModal = () => {
         title="Invite"
         actionLabel='Copy'
         onClose={inviteModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={onLinkCopied}
         body={bodyContent}
     />
   )

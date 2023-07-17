@@ -14,10 +14,34 @@ module.exports = {
       screens: {
         'xxs': '260px',
         'xs': '350px', 
-      }
-
+      },
+      animation: {        
+        popIn: "popIn 200ms ease-in",
+        popOut: "popOut 200ms ease-out"
+      },
+      keyframes: {        
+        popIn: {
+          "0%": {
+            transform: "scale(.9)"
+          },
+          "70%": {
+            transform: "scale(1.1)"
+          },
+          "100%": {
+            transform: "scale(1)"
+          }
+        },
+        popOut: {
+          "0%": {
+            transform: "scale(1)"
+          },
+          "100%": {
+            transform: "scale(0)"
+          }
+        }
+      },
     
     },
   },
-  plugins: [],
+  plugins: []
 }

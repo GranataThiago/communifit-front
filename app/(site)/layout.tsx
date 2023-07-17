@@ -4,6 +4,7 @@ import '../globals.css'
 import InviteModal from '../components/modals/InviteModal'
 import WorkoutModal from '../components/modals/WorkoutModal'
 import { Menu } from './components/Menu'
+import ToasterProvider from '../providers/ToasterProvider'
 
 
 export const metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
       <Menu />
       <InviteModal />
       <WorkoutModal />
+      <ToasterProvider />
         
             {children}
     </>

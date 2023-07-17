@@ -177,6 +177,7 @@ const Modal: React.FC<ModalProps> = ({
                                
                                 <Button 
                                     variant="filled"
+                                    onClick={onSubmit}
                                 >
                                     {actionLabel}
                                 </Button>

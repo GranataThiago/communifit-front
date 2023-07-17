@@ -1,32 +1,9 @@
 import Image from 'next/image'
-import { BsEnvelope, BsPencil } from 'react-icons/bs';
 import { Post } from '../Post'
-import { Material } from '../Material';
-import apiInstance from '../../../../api';
-import { useEffect, useState } from 'react';
-import { Community } from '../../../../../interfaces/community';
-import useInviteModal from '../../../../hooks/modals/useInviteModal';
 import CommunityActions from '../CommunityActions';
-import { cookies } from 'next/headers';
+import { Community } from '../../../../../interfaces/community';
 
-const getCommunity = async(): Promise<Community> => {
-    const cookieStore = cookies();
-    const { data: { community } } = await apiInstance.get('/communities/gorillas', { headers: { token: cookieStore.get('token')?.value }});
-    const { data, request } = await apiInstance.get('/communities/gorillas/posts?page=1', { headers: { token: cookieStore.get('token')?.value }});
-    const { posts, totalPages, totalResults } = data;
-    return {
-        posts: [
-            ...posts
-        ],
-        image: '',
-        name: community.displayname,
-        description: community.description
-    };
-}
-
-export const CommunityScreen = async() => {
-
-    const community: Community = await getCommunity();
+export const CommunityScreen = async({ name, description, posts }: { name: string, description: string, posts: any[] }) => {
 
     return (
         <section className='bg-primary h-screen'>
@@ -38,14 +15,14 @@ export const CommunityScreen = async() => {
                         <div className="flex gap-4 relative">
                             <Image className="absolute -top-7 rounded-full border-4 border-white" src="https://i.pravatar.cc/300" alt="fortys" width={96} height={96}/>
                             <div className="ml-28">
-                                <p className='text-2xl font-bold'>{community.name}</p>
+                                <p className='text-2xl font-bold'>{name}</p>
                                 <p className='text-md font-light text-gray-400'>Community</p>
                             </div>
                         </div>
-                        <CommunityActions />
+                        <CommunityActions name={name}/>
                     </div>
                     <div className='mt-4 leading-5'>
-                        {community.description}
+                        {description}
                     </div>
                 </header>
 
@@ -58,7 +35,7 @@ export const CommunityScreen = async() => {
 
                 <div className='flex flex-col gap-4'>
                     {
-                        community.posts.map((post, index) => (<Post key={index} {...post} />))
+                        posts.map((post, index) => (<Post key={index} {...post} />))
                     }
                 </div>
             </div>

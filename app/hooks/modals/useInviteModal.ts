@@ -4,14 +4,22 @@ import { create } from 'zustand';
 
 interface InviteModalStore {
     isOpen: boolean;
+    name: string;
+    link: string;
     onOpen: () => void; 
-    onClose: () => void; 
+    onClose: () => void;
+    setName: (newName: string) => void; 
+    setLink: (newLink: string) => void;
 }
 
 const useInviteModal = create<InviteModalStore>((set) => ({
     isOpen: false,
+    name: '',
+    link: '',
     onOpen: () => set({isOpen: true}),
     onClose: () => set({isOpen: false}),
+    setName: (newName: string) => set({name: newName}),
+    setLink: (newLink: string) => set({link: `${process.env.NEXT_PUBLIC_DOMAIN}join/${newLink}`})
 }))
 
 export default useInviteModal;
