@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from 'react'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal'
 import { useCallback } from 'react';
 import Heading from '../Heading';
-import { LabeledInput } from '../Input';
+import { LabeledInput, LabeledTextarea } from '../Input';
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
 
 const WorkoutModal = () => {
@@ -16,11 +16,13 @@ const WorkoutModal = () => {
       handleSubmit,
       formState: {
           errors,
-      }
+      },
+      control
     } = useForm<FieldValues>({
       defaultValues: {
-          email: '',
-          password: ''
+          name: '',
+          sets: '',
+          observations: '',
       }
     })
   
@@ -39,38 +41,59 @@ const WorkoutModal = () => {
           title='Exercise Details'
           subtitle=''
         />
-        <LabeledInput
-          label="Name"
-          variant='outlined'
+        
+        <Controller 
           name='name'
-          type='text'
+          control={control}
+          render={({field}) => (
+            <LabeledInput
+              {...field}
+              ref={null}
+              label="Name"
+              variant='outlined'
+              type='text'
+            />
+          )}
         />
-  
-        <LabeledInput 
-          name="quantity"
-          type="text"
-          label="Sets/Reps"
-          variant='outlined'
+
+        <Controller 
+          name='quantity'
+          control={control}
+          render={({field}) => (
+            <LabeledInput
+              {...field}
+              ref={null}
+              label="Sets/Reps"
+              variant='outlined'
+              type='text'
+            />
+          )}
+        />
+        
+        <Controller 
+          name='observations'
+          control={control}
+          render={({field}) => (
+            <LabeledTextarea 
+            {...field}
+            ref={null}
+            label='Observations'
+            variant='outlined'
+          />
+          )}
         />
       </div>
     );
-  
-    const footerContent = (
-      <div>
-        No habria
-      </div>
-    )
 
   return (
     <Modal 
     disabled={isLoading}
     isOpen={workoutModal.isOpen}
     title="Workout"
-    actionLabel='Continuar'
+    actionLabel='Add'
     onClose={workoutModal.onClose}
     onSubmit={handleSubmit(onSubmit)}
     body={bodyContent}
-    footer={footerContent}
     />
   )
 }

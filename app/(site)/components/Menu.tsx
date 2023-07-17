@@ -22,7 +22,7 @@ export const Menu = () => {
                     </Link>
                 </li>
                 <li className={`hover:text-gray-700 hover:cursor-pointer ${(pathname === '/community' ? 'text-primary' : 'text-black')}`}>
-                    <Link href={'/community'}>
+                    <Link href={'/community/' + 'gorillas'}>
                         <BsSearch></BsSearch> {/* TODO: Si tiene una comunidad, BsPeople, sino BsSearch */  }
                     </Link>
                 </li>

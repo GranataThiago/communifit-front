@@ -10,7 +10,7 @@ export const Workout = () => {
 
     return (
         <section className={`workout flex flex-col gap-2 ${montserrat.className}`}>
-            <ul className="flex gap-3">
+            <ul className="flex gap-3 overflow-x-scroll no-scrollbar">
                 <li className="font-normal text-black">Monday</li>
                 <li className="font-normal text-gray-300">Tuesday</li>
                 <li className="font-normal text-gray-300">Wednesday</li>
