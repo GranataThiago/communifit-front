@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
 import { Button } from '../../../../components';
@@ -17,6 +17,7 @@ type LoginForm = {
 
 export const LoginForm = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const { login } = useUserContext();
 
@@ -28,6 +29,7 @@ export const LoginForm = () => {
     });
 
     const onLogin = async(formData: LoginForm) => {
+        setIsLoading(true);
         const { email, password } = formData;
         const success = await login(email, password);
         if(success){
@@ -65,7 +67,7 @@ export const LoginForm = () => {
                 )}
             />
 
-            <Button type='submit' variant='filled'>Login</Button>
+            <Button type='submit' variant='filled' isLoading={isLoading}>Login</Button>
             <Link className='text-right w-full mt-0' href={'/auth/forgot-password'}><p>Forgot password?</p></Link>
         </form>
     )

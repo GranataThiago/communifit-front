@@ -5,7 +5,6 @@ export default async function CommunityPage() {
       <>
         <h1>Community</h1>
       </>
-      
     )
   }
   
