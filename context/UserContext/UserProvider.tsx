@@ -45,7 +45,6 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
 
             if(!token) return false;
 
-            // localStorage.setItem('token', token);
             setCookie('token', token, {
                 path: '/'
             });
@@ -58,7 +57,6 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
             return true;
         }catch(err)
         {
-            // localStorage.removeItem('token');
             removeCookie('token');
             return false;
         }

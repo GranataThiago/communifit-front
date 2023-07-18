@@ -1,5 +1,6 @@
 export interface Community{
     name: string;
+    displayname: string;
     image: string;
     description: string;
     posts: Post[]

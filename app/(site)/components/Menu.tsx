@@ -2,11 +2,13 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link'
-import { BsHouseDoor, BsChat, BsSearch, BsPerson } from 'react-icons/bs'
+import { BsHouseDoor, BsChat, BsSearch, BsPerson, BsPeople } from 'react-icons/bs'
+import { useUserContext } from '../../../context/UserContext';
 
 export const Menu = () => {
 
     const pathname = usePathname();
+    const { user } = useUserContext();
 
     return (
         <nav className='w-full py-4 px-6 fixed bottom-0 right-0 bg-white z-50'>
@@ -22,8 +24,8 @@ export const Menu = () => {
                     </Link>
                 </li>
                 <li className={`hover:text-gray-700 hover:cursor-pointer ${(pathname === '/community' ? 'text-primary' : 'text-black')}`}>
-                    <Link href={'/community/' + 'gorillas'}>
-                        <BsSearch></BsSearch> {/* TODO: Si tiene una comunidad, BsPeople, sino BsSearch */  }
+                    <Link href={user?.community?.name ? `/community/${user.community.name}` : '/community'}>
+                        {user?.community?.name ? <BsPeople /> : <BsSearch />}
                     </Link>
                 </li>
                 <li className={`hover:text-gray-700 hover:cursor-pointer ${(pathname === '/profile' ? 'text-primary' : 'text-black')}`}>

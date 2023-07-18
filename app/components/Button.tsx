@@ -20,7 +20,7 @@ const buttonVariants: ButtonStyles = {
 export const Button = ({ children, variant, isLoading = false, className = '', ...props}: ButtonProps) => {
   return (
     <button className={`${buttonVariants[variant]} ${className}`} {...props} disabled={isLoading}>
-        {children}
+        { children }
     </button>
   )
 }
