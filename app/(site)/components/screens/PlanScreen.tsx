@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import { Workout } from '../Workout';
+import { WorkoutActions } from '../WorkoutActions';
 import { montserrat } from '../../../components/fonts';
 
 export const PlanScreen = () => {
+
   return (
     <main className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}>
         <header className="flex justify-between p-6">
@@ -64,10 +66,14 @@ export const PlanScreen = () => {
             </div>
         </section>
 
-        <section className="p-6">
+        <section  className="p-6">
             <p className="font-bold text-3xl">Workout</p>
             <Workout />
         </section>
+
+        <footer  className="p-6 mb-8">
+            <WorkoutActions />
+        </footer>
     </main>
   )
 }

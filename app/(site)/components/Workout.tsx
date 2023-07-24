@@ -1,39 +1,74 @@
 "use client"
-import React from 'react'
+import React, { LiHTMLAttributes, useEffect, useReducer, useState } from 'react'
 import { montserrat } from '../../components/fonts'
 import { Button } from '../../components/Button';
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
 import { useUserContext } from '../../../context/UserContext';
 
-export const Workout = () => {
+type WorkoutState = {[day: string]: Exercise[]};
 
-    const workoutModal = useWorkoutModal();
+const WEEK_DAYS = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+]
+
+export const Workout = () => {    
+    const [day, setDay] = useState('Monday');
+    const [exercises, setExercises] = useState<WorkoutState>({
+        'Monday': [],
+        'Tuesday': [],
+        'Wednesday': [],
+        'Thursday': [],
+        'Friday': [],
+        'Saturday': [],
+        'Sunday': [],
+    });
+
     const { user } = useUserContext();
+    const workoutModal = useWorkoutModal();
+
+    useEffect(() => {
+        if(!workoutModal.exercise) return;
+        setExercises(prevState => ({
+            ...prevState,
+            [day]: [...prevState[day], workoutModal.exercise]
+        }))
+    }, [workoutModal.exercise])
+
+    const onDayChanged = (selectedDay: string) => {
+        setDay(selectedDay);
+    }
 
     return (
-        <section className={`workout flex flex-col gap-2 ${montserrat.className}`}>
+        <section className={`workout flex flex-col gap-2 pb-6 ${montserrat.className}`}>
             <ul className="flex gap-3 overflow-x-scroll no-scrollbar">
-                <li className="font-normal text-black">Monday</li>
-                <li className="font-normal text-gray-300">Tuesday</li>
-                <li className="font-normal text-gray-300">Wednesday</li>
-                <li className="font-normal text-gray-300">Thursday</li>
-                <li className="font-normal text-gray-300">Friday</li>
-                <li className="font-normal text-gray-300">Saturday</li>
-                <li className="font-normal text-gray-300">Sunday</li>
+                {
+                    WEEK_DAYS.map((weekDay, index) => (
+                        <li key={index} onClick={() => onDayChanged(weekDay)} className={`font-normal ${day === weekDay ? 'text-black' : 'text-gray-300'}`}>{weekDay}</li>
+                    ))
+                }
             </ul>
 
             {user?.type == 'trainer' && <Button variant='filled' className='py-2 w-1/3 ml-auto' onClick={workoutModal.onOpen}>Add</Button> /* TODO: Check if its owner or authorized trainer from community */ } 
 
-            <ul className="">
-                <li className="border border-gray-300 rounded-md p-2 flex justify-between items-center">
-                    <p className="flex flex-col">
-                        Squat
-                        <span>4x4</span>
-                    </p>
+            <ul>
+                {
+                    exercises[day].map((ex, index) => (
+                        <li key={index} className="border border-gray-300 rounded-md p-2 flex justify-between items-center">
+                            <p className="flex flex-col">
+                                {ex.name}
+                                <span>{ex.quantity}</span>
+                            </p>
 
-                    <p>180lbs</p>
-                </li>
-
+                            <p>{ex.weight}</p>
+                        </li>
+                    ))
+                }
             </ul>
         </section>
     )

@@ -17,18 +17,22 @@ const WorkoutModal = () => {
       formState: {
           errors,
       },
-      control
-    } = useForm<FieldValues>({
+      control,
+      reset
+    } = useForm<Exercise>({
       defaultValues: {
           name: '',
-          sets: '',
+          quantity: '',
+          weight: '50lbs',
           observations: '',
       }
     })
   
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit: SubmitHandler<Exercise> = (data) => {
       setIsLoading(true);
-  
+      workoutModal.exercise = {...data};
+      workoutModal.onClose();
+      reset();
     }
   
     const toggle = useCallback(() => {
