@@ -71,7 +71,7 @@ export const PlanScreen = () => {
             <Workout />
         </section>
 
-        <footer  className="p-6 mb-8">
+        <footer className="p-6 mb-8">
             <WorkoutActions />
         </footer>
     </main>

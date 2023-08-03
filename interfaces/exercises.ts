@@ -1,4 +1,4 @@
-interface Exercise{
+export interface Exercise{
     name: string;
     quantity: string;
     weight: string;
@@ -9,3 +9,5 @@ interface Workout{
     day: string;
     exercises: Exercise[];
 }
+
+export type WorkoutState = {[day: string]: Exercise[]};

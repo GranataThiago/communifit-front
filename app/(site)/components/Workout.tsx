@@ -4,40 +4,27 @@ import { montserrat } from '../../components/fonts'
 import { Button } from '../../components/Button';
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
 import { useUserContext } from '../../../context/UserContext';
+import { WEEK_DAYS } from '../../../helpers/week-days';
+import { usePlanContext } from '../../../context/CreatePlanContext/PlanContext';
+import { WorkoutState } from '../../../interfaces/exercises';
 
-type WorkoutState = {[day: string]: Exercise[]};
 
-const WEEK_DAYS = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-]
+
 
 export const Workout = () => {    
-    const [day, setDay] = useState('Monday');
-    const [exercises, setExercises] = useState<WorkoutState>({
-        'Monday': [],
-        'Tuesday': [],
-        'Wednesday': [],
-        'Thursday': [],
-        'Friday': [],
-        'Saturday': [],
-        'Sunday': [],
-    });
-
     const { user } = useUserContext();
+    
+    const [day, setDay] = useState('Monday');
+    const { workout, addExerciseToPlan } = usePlanContext();
     const workoutModal = useWorkoutModal();
 
     useEffect(() => {
         if(!workoutModal.exercise) return;
-        setExercises(prevState => ({
-            ...prevState,
-            [day]: [...prevState[day], workoutModal.exercise]
-        }))
+        addExerciseToPlan(workoutModal.exercise, day)
+        // setExercises(prevState => ({
+        //     ...prevState,
+        //     [day]: [...prevState[day], workoutModal.exercise]
+        // }))
     }, [workoutModal.exercise])
 
     const onDayChanged = (selectedDay: string) => {
@@ -58,7 +45,7 @@ export const Workout = () => {
 
             <ul>
                 {
-                    exercises[day].map((ex, index) => (
+                    workout?.[day].map((ex, index) => (
                         <li key={index} className="border border-gray-300 rounded-md p-2 flex justify-between items-center">
                             <p className="flex flex-col">
                                 {ex.name}
