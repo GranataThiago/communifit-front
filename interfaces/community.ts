@@ -7,7 +7,7 @@ export interface Community{
 }
 
 export interface Post{
-    fullname: string;
+    fullName: string;
     username: string;
     body: string;
     datepublished: string;

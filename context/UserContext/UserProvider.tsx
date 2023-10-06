@@ -31,7 +31,6 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         try{
             const { objective, ...newUser } = user;
             const { data } = await apiInstance.post(`/users`, newUser);
-
             dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
         }catch(err){
             console.log(err)
@@ -57,6 +56,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
             return true;
         }catch(err)
         {
+            console.log(err)
             removeCookie('token');
             return false;
         }

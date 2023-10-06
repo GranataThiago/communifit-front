@@ -13,7 +13,7 @@ import { UserContext } from '../../../../../context/UserContext';
 import { Button } from '../../../../components';
 
 export type RegisterForm = {
-    fullname: string;
+    fullName: string;
     username: string;
     email: string;
     password: string;
@@ -40,7 +40,7 @@ export const Onboarding = () => {
   const { handleSubmit, formState: { errors }, register, control, getValues } = useForm<RegisterForm>({
     defaultValues: {
       email: '',
-      fullname: '',
+      fullName: '',
       username: '',
       password: '',
       objective: '',

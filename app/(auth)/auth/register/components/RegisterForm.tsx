@@ -10,7 +10,7 @@ export const RegisterForm = ({ register, control }: RegisterFormStep) => {
   return (
     <div className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}>
         <Controller 
-          name='fullname'
+          name='fullName'
           control={control}
           defaultValue=''
           render={({field}) => (
