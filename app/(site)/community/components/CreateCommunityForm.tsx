@@ -5,6 +5,7 @@ import { LabeledInput, LabeledTextarea } from '../../../components/Input';
 import { Button } from '../../../components/Button';
 import apiInstance from '../../../api';
 import { useUserContext } from '../../../../context/UserContext';
+import { useRouter } from 'next/navigation';
 
 interface CreateCommunity{
     name?: string;
@@ -15,6 +16,7 @@ interface CreateCommunity{
 
 const CreateCommunityForm = () => {
 
+    const router = useRouter();
     const { user } = useUserContext();
     const [ finalURL, setFinalURL ] = useState('www.communifit.com/')
     const { register, control, watch, getValues, handleSubmit } = useForm<CreateCommunity>();
@@ -25,9 +27,11 @@ const CreateCommunityForm = () => {
         if(!displayName) return;
     }, [displayName])
 
-    const onCommunityCreated = (formData: CreateCommunity) => {
+    const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
-        apiInstance.post('/communities', newCommunity)
+        const { data, status } = await apiInstance.post('/communities', newCommunity)
+        // if(succesful)
+        router.push(formData.name as string)
     }
 
     return (
