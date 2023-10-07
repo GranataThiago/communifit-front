@@ -16,7 +16,7 @@ export const ProfileHeading = () => {
   return (
     <header className='flex justify-between p-6'>
       <div>
-        <p className='font-semibold text-lg'>{user?.fullname}</p>
+        <p className='font-semibold text-lg'>{user?.fullName}</p>
         <p>{user?.username}</p>
       </div>
       <Button

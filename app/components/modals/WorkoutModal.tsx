@@ -1,11 +1,12 @@
 "use client"
 import React, { useState } from 'react'
-import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal'
 import { useCallback } from 'react';
 import Heading from '../Heading';
 import { LabeledInput, LabeledTextarea } from '../Input';
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
+import { Exercise } from '../../../interfaces/exercises';
 
 const WorkoutModal = () => {
     const workoutModal = useWorkoutModal();

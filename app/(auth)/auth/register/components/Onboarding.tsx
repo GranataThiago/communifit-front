@@ -11,13 +11,14 @@ import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
 import { Button } from '../../../../components';
+import { UserTypes } from '../../../../../interfaces/user';
 
 export type RegisterForm = {
     fullName: string;
     username: string;
     email: string;
     password: string;
-    type: string;
+    type: UserTypes;
     objective: string;
     gender: string;
     birthdate: {
@@ -50,7 +51,7 @@ export const Onboarding = () => {
         year: 2023
       },
       gender: '',
-      type: ''
+      type: 'member'
     }
   });
 

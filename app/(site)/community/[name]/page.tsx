@@ -18,12 +18,13 @@ const getCommunity = async(name: string): Promise<Community | null> => {
       ],
       image: '',
       name: community.displayname,
+      displayname: community.displayname,
       description: community.description
   };
 }
 
 
-export default async function CommunityPage({ params, searchParams }) {
+export default async function CommunityPage({ params }: { params: { name: string } }) {
   const { name } = params;
   const community: Community | null = await getCommunity(name);
 
