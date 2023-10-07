@@ -6,6 +6,7 @@ import { Button } from '../../../components/Button';
 import apiInstance from '../../../api';
 import { useUserContext } from '../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
+import { useCookies } from 'react-cookie';
 
 interface CreateCommunity{
     name?: string;
@@ -17,6 +18,7 @@ interface CreateCommunity{
 const CreateCommunityForm = () => {
 
     const router = useRouter();
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const { user } = useUserContext();
     const [ finalURL, setFinalURL ] = useState('www.communifit.com/')
     const { register, control, watch, getValues, handleSubmit } = useForm<CreateCommunity>();
@@ -29,7 +31,7 @@ const CreateCommunityForm = () => {
 
     const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
-        const { data, status } = await apiInstance.post('/communities', newCommunity)
+        const { data, status } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
         // if(succesful)
         router.push(formData.name as string)
     }

@@ -4,11 +4,14 @@ import { cookies } from 'next/headers';
 import { Community } from '../../../../interfaces/community';
 import apiInstance from '../../../api';
 
-const getCommunity = async(): Promise<Community> => {
+const getCommunity = async(name: string): Promise<Community | null> => {
   const cookieStore = cookies();
-  const { data: { community } } = await apiInstance.get('/communities/gorillas', { headers: { token: cookieStore.get('token')?.value }});
-  const { data, request } = await apiInstance.get('/communities/gorillas/posts?page=1', { headers: { token: cookieStore.get('token')?.value }});
+  const { data: { community } } = await apiInstance.get(`/communities/${name}`, { headers: { token: cookieStore.get('token')?.value }});
+  const { data, request } = await apiInstance.get(`/communities/${name}/posts?page=1`, { headers: { token: cookieStore.get('token')?.value }});
   const { posts, totalPages, totalResults } = data;
+
+  if(!community) return null;
+
   return {
       posts: [
           ...posts
@@ -21,8 +24,13 @@ const getCommunity = async(): Promise<Community> => {
 
 
 export default async function CommunityPage({ params, searchParams }) {
+  const { name } = params;
+  const community: Community | null = await getCommunity(name);
 
-  const community: Community = await getCommunity();
+  if(!community)
+  {
+    
+  }
 
   return (
     <>
