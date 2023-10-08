@@ -1,8 +1,9 @@
 import React from 'react'
-import { CommunityScreen, NonCommunityScreen } from '../components/screens'
+import { CommunityScreen } from '../components/screens'
 import { cookies } from 'next/headers';
 import { Community } from '../../../../interfaces/community';
 import apiInstance from '../../../api';
+import { redirect } from 'next/navigation';
 
 const getCommunity = async(name: string): Promise<Community | null> => {
   const cookieStore = cookies();
@@ -30,19 +31,11 @@ export default async function CommunityPage({ params }: { params: { name: string
 
   if(!community)
   {
-    
+    redirect("/community")
   }
 
   return (
-    <>
-      {
-        community
         /* @ts-expect-error Server Component */
-        ? <CommunityScreen {...community} />
-        /* @ts-expect-error Server Component */
-        : <NonCommunityScreen />
-      }
-    </>
-    
+        <CommunityScreen {...community} />    
   )
 }

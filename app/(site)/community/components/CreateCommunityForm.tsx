@@ -8,6 +8,8 @@ import { useUserContext } from '../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 import { montserrat } from '../../../components/fonts';
+import { renderToast } from '../../../providers/ToasterProvider';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 interface CreateCommunity{
     name?: string;
@@ -21,19 +23,25 @@ const CreateCommunityForm = () => {
     const router = useRouter();
     const [ cookies ] = useCookies(['token']);
     const { user } = useUserContext();
-    const [ finalURL, setFinalURL ] = useState('www.communifit.com/')
-    const { control, watch, getValues, handleSubmit } = useForm<CreateCommunity>();
+    const { control, watch, setValue, formState, handleSubmit } = useForm<CreateCommunity>();
     
     const displayName = watch('displayName')
     
     useEffect(() => {
-        if(!displayName) return;
-    }, [displayName])
+        if(!displayName || formState.touchedFields.displayName) return;
+        setValue("name", displayName)
+    }, [displayName, setValue])
 
     const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
         const { data, status } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
-        router.push(formData.name as string)
+        if(!data.ok){
+            renderToast("There has been an error while creating your community", <AiFillCloseCircle />)
+            return;
+        }
+
+        // Backend converts the name to lowercase, so we should do the same
+        router.push(formData.name?.toLowerCase() as string)
     }
 
     return (
@@ -42,7 +50,7 @@ const CreateCommunityForm = () => {
                 <h1 className='text-2xl font-bold'><span className='text-primary'>Create</span> your community</h1>
                 <Controller
                     control={control}
-                    name='name'
+                    name='displayName'
                     render={({field}) => (
                         <LabeledInput
                             {...field}
@@ -55,18 +63,17 @@ const CreateCommunityForm = () => {
                 />
 
                 <div className='flex flex-col'>
-                    <label htmlFor="displayName">Community URL</label>
+                    <label htmlFor="name">Community URL</label>
                     <div className='flex items-center justify-center'>
                         <div className='bg-gray-100 p-2'>
                             <p>www.communifit.com/</p>
                         </div>
                         <Controller
                             control={control}
-                            name='displayName'
+                            name='name'
                             render={({field}) => (
                                 <Input
                                     {...field}
-                                    ref={null}
                                     type='text'
                                     variant='outlined'
                                 ></Input>
