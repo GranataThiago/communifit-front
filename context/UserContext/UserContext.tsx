@@ -9,7 +9,6 @@ interface ContextProps{
     register: (user: RegisterUser) => void
     login: (email: string, password: string) => Promise<boolean>,
     validateUser: (token: string) => void,
-    updateUser: (updatedUser: User) => boolean,
     logout: () => boolean,
 }
 

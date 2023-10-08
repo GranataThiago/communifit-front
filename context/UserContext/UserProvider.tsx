@@ -94,22 +94,12 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         }
    }
 
-   const updateUser = (updatedUser: User) => {
-        try{
-            dispatch({type: '[USER] Update', payload: { updatedUser }});
-            return true;
-        }catch(err){
-            return false;
-        }
-   }
-
    return (
        <UserContext.Provider value={{
         ...state,
         login,
         register,
         validateUser,
-        updateUser,
         logout
        }}>
            {children}
