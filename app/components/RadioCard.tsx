@@ -1,14 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode } from 'react'
 
-// interface RadioCardProps{
-//     name: string;
-//     id: string;
-//     value: string;
-//     label: string;
-//     className?: string;
-//     children?: React.ReactNode
-// }
-
 interface RadioCardProps extends InputHTMLAttributes<HTMLInputElement>{
     label: string,
     height?: number;

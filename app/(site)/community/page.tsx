@@ -12,7 +12,7 @@ export default async function CommunityPage() {
         <main className="mt-8 flex items-center justify-center flex-col">
           <p className={`font-semibold mb-2 ${montserrat.className}`}>Start by</p>
           <a href="/community/create" className="w-full">
-            <Button variant='filled' type='button'>Creating one</Button>
+            <Button variant='filled' type='button'>Create one</Button>
           </a>
           <div className="w-full flex items-center justify-center my-2">
             <hr className="w-full border-t border-gray-300"/>

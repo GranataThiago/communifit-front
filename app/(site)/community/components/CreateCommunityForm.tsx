@@ -1,12 +1,13 @@
 "use client"
 import React, {useEffect, useState} from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { LabeledInput, LabeledTextarea } from '../../../components/Input';
+import { Input, LabeledInput, LabeledTextarea } from '../../../components/Input';
 import { Button } from '../../../components/Button';
 import apiInstance from '../../../api';
 import { useUserContext } from '../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
+import { montserrat } from '../../../components/fonts';
 
 interface CreateCommunity{
     name?: string;
@@ -18,10 +19,10 @@ interface CreateCommunity{
 const CreateCommunityForm = () => {
 
     const router = useRouter();
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [ cookies ] = useCookies(['token']);
     const { user } = useUserContext();
     const [ finalURL, setFinalURL ] = useState('www.communifit.com/')
-    const { register, control, watch, getValues, handleSubmit } = useForm<CreateCommunity>();
+    const { control, watch, getValues, handleSubmit } = useForm<CreateCommunity>();
     
     const displayName = watch('displayName')
     
@@ -32,13 +33,13 @@ const CreateCommunityForm = () => {
     const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
         const { data, status } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
-        // if(succesful)
         router.push(formData.name as string)
     }
 
     return (
         <section>
-            <form onSubmit={handleSubmit(onCommunityCreated)}>
+            <form className={`flex flex-col items-center justify-center gap-6 ${montserrat.className}`} onSubmit={handleSubmit(onCommunityCreated)}>
+                <h1 className='text-2xl font-bold'><span className='text-primary'>Create</span> your community</h1>
                 <Controller
                     control={control}
                     name='name'
@@ -46,30 +47,32 @@ const CreateCommunityForm = () => {
                         <LabeledInput
                             {...field}
                             ref={null}
-                            label='Name'
+                            label='Community Name'
                             type='text'
                             variant='outlined'
                         ></LabeledInput>
                     )}
                 />
 
-                <div className='flex items-center justify-center'>
-                    <div className='p-2 bg-gray-200 mt-6'>
-                        <p className='text-gray-700'>{finalURL}</p>
+                <div className='flex flex-col'>
+                    <label htmlFor="displayName">Community URL</label>
+                    <div className='flex items-center justify-center'>
+                        <div className='bg-gray-100 p-2'>
+                            <p>www.communifit.com/</p>
+                        </div>
+                        <Controller
+                            control={control}
+                            name='displayName'
+                            render={({field}) => (
+                                <Input
+                                    {...field}
+                                    ref={null}
+                                    type='text'
+                                    variant='outlined'
+                                ></Input>
+                            )}
+                        />
                     </div>
-                    <Controller
-                        control={control}
-                        name='displayName'
-                        render={({field}) => (
-                            <LabeledInput
-                                {...field}
-                                ref={null}
-                                label='URL'
-                                type='text'
-                                variant='outlined'
-                            ></LabeledInput>
-                        )}
-                    />
                 </div>
 
 
