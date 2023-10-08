@@ -34,14 +34,15 @@ const CreateCommunityForm = () => {
 
     const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
-        const { data, status } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
+        const { data } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
         if(!data.ok){
             renderToast("There has been an error while creating your community", <AiFillCloseCircle />)
             return;
         }
 
         // Backend converts the name to lowercase, so we should do the same
-        router.push(formData.name?.toLowerCase() as string)
+        // Ideally back would return the createdCommunity in the response object
+        window.location.href = `/community/${formData.name?.toLowerCase()}`
     }
 
     return (
