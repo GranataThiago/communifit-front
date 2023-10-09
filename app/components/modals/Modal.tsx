@@ -17,18 +17,19 @@ interface ModalProps {
 	secondaryActionLabel?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({
-	isOpen,
-	onClose,
-	onSubmit,
-	title,
-	body,
-	footer,
-	actionLabel,
-	disabled,
-	secondaryAction,
-	secondaryActionLabel,
-}) => {
+const Modal = (props: ModalProps) => {
+	const {
+		isOpen,
+		onClose,
+		onSubmit,
+		title,
+		body,
+		footer,
+		actionLabel,
+		disabled,
+		secondaryAction,
+		secondaryActionLabel,
+	} = props;
 	const [showModal, setShowModal] = useState<boolean>(isOpen);
 
 	useEffect(() => {
@@ -144,6 +145,7 @@ const Modal: React.FC<ModalProps> = ({
                                 absolute
                                 left-9
                             '
+									data-testid='close-button'
 								>
 									<IoMdClose size={18} />
 								</button>
