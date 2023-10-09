@@ -20,4 +20,4 @@ export interface RegisterUser{
     objective?: string,
 }
 
-export type UserTypes = 'member'|'trainer';
+export type UserTypes = 'member'|'trainer' | null;
