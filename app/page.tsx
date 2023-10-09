@@ -1,8 +1,5 @@
 import React from 'react'
 
-export default function Page(){
-    
-    return(
-        <h1>Communifit</h1>
-    )
+export default function Page() {
+	return <h1>Communifit</h1>;
 }
