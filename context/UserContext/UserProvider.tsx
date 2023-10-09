@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import apiInstance from '../../app/api';
 import { addDays } from 'date-fns';
 import { loginUser } from '../../services/auth/login';
+import { decryptUser } from '../../services/auth/decrypt';
 
 export interface UserState{
     token: string | null;
@@ -50,8 +51,12 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
                 path: '/'
             });
 
-            const { data: { user } } = await apiInstance.get(`/auth/decrypt`, { headers: { token }});
-
+            const userData = await decryptUser({token})
+            let user = null;
+            if(userData && userData.user){
+                user = userData.user;
+            }
+            
             dispatch({ type: '[USER] Login', payload: {user, token} });
 
             return true;
