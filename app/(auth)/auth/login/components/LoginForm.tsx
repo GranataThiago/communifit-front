@@ -3,8 +3,7 @@
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
-import { Button } from '../../../../components';
-import { LabeledInput } from '../../../../components/Input';
+import { Button, LabeledInput } from "../../../../components";
 import { montserrat } from '../../../../components/fonts';
 import { useUserContext } from '../../../../../context/UserContext/UserContext';
 import { useRouter } from 'next/navigation';

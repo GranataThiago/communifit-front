@@ -1,8 +1,8 @@
 import React from 'react'
-import { Controller } from 'react-hook-form'
-import { RadioCard } from '../../../../components/RadioCard'
-import { RegisterFormStep } from './Onboarding'
-import { montserrat } from '../../../../components/fonts'
+import { Controller } from "react-hook-form";
+import { RegisterFormStep } from "./Onboarding";
+import { montserrat } from "../../../../components/fonts";
+import { RadioCard } from "../../../../components";
 
 const goalsOptions = [
     {

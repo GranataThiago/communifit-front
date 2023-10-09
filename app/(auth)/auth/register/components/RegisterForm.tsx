@@ -1,9 +1,9 @@
 
 import { SocialMediaForm } from '../../components/SocialMediaForm';
-import { RegisterFormStep } from './Onboarding';
-import { LabeledInput } from '../../../../components/Input';
-import { Controller } from 'react-hook-form';
-import { montserrat } from '../../../../components/fonts';
+import { RegisterFormStep } from "./Onboarding";
+import { Controller } from "react-hook-form";
+import { montserrat } from "../../../../components/fonts";
+import { LabeledInput } from "../../../../components";
 
 export const RegisterForm = ({ register, control }: RegisterFormStep) => {
 

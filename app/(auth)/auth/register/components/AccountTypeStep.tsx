@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
-import { RegisterFormStep } from './Onboarding'
-import { RadioCard } from '../../../../components/RadioCard';
-import { Controller } from 'react-hook-form';
-import { montserrat } from '../../../../components/fonts';
+import { RegisterFormStep } from "./Onboarding";
+import { Controller } from "react-hook-form";
+import { montserrat } from "../../../../components/fonts";
+import { RadioCard } from "../../../../components";
 
 const accountTypeOptions = [
   {
