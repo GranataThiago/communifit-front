@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^1.4.0",
