@@ -82,6 +82,7 @@ const Modal = (props: ModalProps) => {
                 focus:outline-none
                 bg-neutral-800/70
             '
+				data-testid='modal'
 			>
 				<div
 					className='
@@ -171,7 +172,11 @@ const Modal = (props: ModalProps) => {
 										<Button variant='outlined'>Hola</Button>
 									)}
 
-									<Button variant='filled' onClick={onSubmit}>
+									<Button
+										variant='filled'
+										onClick={onSubmit}
+										data-testid='submit-button'
+									>
 										{actionLabel}
 									</Button>
 								</div>
