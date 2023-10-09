@@ -6,7 +6,6 @@ describe("RadioCard", () => {
 	it("renders RadioCard component", () => {
 		const { getByText, container } = render(
 			<RadioCard
-				ref={React.createRef<HTMLInputElement>()}
 				label='Option 1'
 				id='option1'
 				value='option1'
@@ -23,13 +22,7 @@ describe("RadioCard", () => {
 
 	it("renders RadioCard withouth icon", () => {
 		const { container } = render(
-			<RadioCard
-				ref={React.createRef<HTMLInputElement>()}
-				label='Option 1'
-				id='option1'
-				value='option1'
-				icon={null}
-			/>
+			<RadioCard label='Option 1' id='option1' value='option1' icon={null} />
 		);
 
 		const iconElement = container.querySelector("span");
