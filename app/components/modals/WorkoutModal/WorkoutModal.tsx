@@ -9,8 +9,8 @@ import {
 import Modal from "../Modal";
 import { useCallback } from "react";
 import Heading from "../../Heading/Heading";
-import { LabeledInput, LabeledTextarea } from "../../Input";
 import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
+import { LabeledInput, LabeledTextarea } from "../../Input/Input";
 
 const WorkoutModal = () => {
 	const workoutModal = useWorkoutModal();
@@ -92,10 +92,10 @@ const WorkoutModal = () => {
 	return (
 		<Modal
 			disabled={isLoading}
-			isOpen={workoutModal.isOpen}
+			isOpen={workoutModal?.isOpen}
 			title='Workout'
 			actionLabel='Add'
-			onClose={workoutModal.onClose}
+			onClose={workoutModal?.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
 		/>
