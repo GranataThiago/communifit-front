@@ -1,8 +1,8 @@
 
 import Head from 'next/head'
 import '../globals.css'
-import InviteModal from '../components/modals/InviteModal'
-import WorkoutModal from '../components/modals/WorkoutModal'
+import InviteModal from "../components/Modals/InviteModal/InviteModal";
+import WorkoutModal from "../components/Modals/WorkoutModal/WorkoutModal";
 import { Menu } from './components/Menu'
 import ToasterProvider from '../providers/ToasterProvider'
 

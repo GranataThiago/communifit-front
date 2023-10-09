@@ -2,9 +2,13 @@
 
 import React, { ChangeEvent, useEffect } from 'react'
 import { montserrat } from '../../../components/fonts'
-import { Input, LabeledInput, LabeledTextarea } from '../../../components/Input';
-import { Controller, useForm } from 'react-hook-form';
-import { Button } from '../../../components/Button';
+import {
+	Input,
+	LabeledInput,
+	LabeledTextarea,
+} from "../../../components/Input/Input";
+import { Controller, useForm } from "react-hook-form";
+import { Button } from "../../../components/Button/Button";
 
 type RevisionForm = {
     pics: File[],

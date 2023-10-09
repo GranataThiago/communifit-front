@@ -1,7 +1,7 @@
 "use client"
 import React, { LiHTMLAttributes, useEffect, useReducer, useState } from 'react'
 import { montserrat } from '../../components/fonts'
-import { Button } from '../../components/Button';
+import { Button } from "../../components/Button/Button";
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
 import { useUserContext } from '../../../context/UserContext';
 

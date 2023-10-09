@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../../components/Button';
+import { Button } from "../../components/Button/Button";
 import { BiLogOut } from 'react-icons/bi'
 import { ProfileHeading } from './components/ProfileHeading';
 
