@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import head from "./head";
+import Head from "./head";
 
 afterAll(() => {
 	cleanup();
@@ -9,7 +9,7 @@ afterAll(() => {
 
 describe("<head />", () => {
 	it("renders without errors", () => {
-		const { getByText } = render(<head />);
+		const { getByText } = render(<Head />);
 		expect(getByText("Login"));
 	});
 });
