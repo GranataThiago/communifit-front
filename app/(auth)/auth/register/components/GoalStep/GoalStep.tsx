@@ -1,6 +1,6 @@
 import React from "react";
-import { Controller } from "react-hook-form";
-import { RegisterFormStep } from "../Onboarding/Onboarding";
+import { Control, Controller, UseFormRegister } from "react-hook-form";
+import { RegisterForm, RegisterFormStep } from "../Onboarding/Onboarding";
 import { montserrat } from "../../../../../components/fonts";
 import { RadioCard } from "../../../../../components";
 
@@ -23,7 +23,13 @@ const goalsOptions = [
 	},
 ];
 
-export const GoalStep = ({ register, control }: RegisterFormStep) => {
+interface RegisterFormStepProps {
+	register?: UseFormRegister<RegisterForm>;
+	control?: Control<RegisterForm, any>;
+}
+
+export const GoalStep = (props: RegisterFormStepProps) => {
+	const { register, control } = props;
 	return (
 		<div className={`flex-1 ${montserrat.className}`}>
 			<p className='font-bold text-xl'>Objective</p>
