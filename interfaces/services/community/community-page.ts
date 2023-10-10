@@ -9,7 +9,7 @@ export type GetCommunityResponse = null | IGetCommunityFetch
 
 export interface IGetCommunityPostsFetch {
     ok: boolean;
-    posts: Post[]
+    posts: Post[] | [],
     totalPages: number,
     totalResults: number,
 }

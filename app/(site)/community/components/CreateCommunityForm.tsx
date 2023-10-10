@@ -10,13 +10,9 @@ import { useCookies } from 'react-cookie';
 import { montserrat } from '../../../components/fonts';
 import { renderToast } from '../../../providers/ToasterProvider';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { createCommunity } from '../../../../services/community/create-community';
+import { CreateCommunity } from '../../../../interfaces/services/community/create-community';
 
-interface CreateCommunity{
-    name?: string;
-    displayName: string;
-    description: string;
-    adminId?: string;
-}
 
 const CreateCommunityForm = () => {
 
@@ -34,8 +30,8 @@ const CreateCommunityForm = () => {
 
     const onCommunityCreated = async(formData: CreateCommunity) => {
         const newCommunity = {...formData, adminId: user?._id}
-        const { data } = await apiInstance.post('/communities', newCommunity, { headers: { token: cookies.token }})
-        if(!data.ok){
+        const communityData = await createCommunity({ token: cookies.token, newCommunity });
+        if(!communityData || !communityData.ok){
             renderToast("There has been an error while creating your community", <AiFillCloseCircle />)
             return;
         }
