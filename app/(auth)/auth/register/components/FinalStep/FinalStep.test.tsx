@@ -10,6 +10,6 @@ afterAll(() => {
 describe("<FinalStep />", () => {
 	it("renders without errors", () => {
 		const { getByText } = render(<FinalStep />);
-		expect(getByText(/Excellent, your account has been succesfully created!/n));
+		expect(getByText("Excellent, your account has been"));
 	});
 });
