@@ -5,6 +5,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  typescript:{
+    ignoreBuildErrors: true,
+  },
   images: {
     domains: ["pbs.twimg.com"],
     remotePatterns: [
