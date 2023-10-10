@@ -1,6 +1,6 @@
 import React from "react";
-import { render, fireEvent, act } from "@testing-library/react";
-import { Onboarding } from "./Onboarding";
+import { render, fireEvent, act, waitFor } from "@testing-library/react";
+import Onboarding from "./Onboarding";
 
 jest.mock("next/navigation", () => ({
 	useRouter() {
@@ -21,14 +21,13 @@ jest.mock("next/navigation", () => ({
 	},
 }));
 
-jest.mock("../../../../../../context/UserContext", () => ({
-	useContext: jest.fn(() => ({
-		register: jest.fn(),
-	})),
-}));
+jest.mock("../../../../../../context/UserContext");
 
 describe("Onboarding component", () => {
-	it("renders the component without errors", () => {
-		render(<Onboarding />);
+	it("renders without crashing", () => {
+		const { getByText } = render(<Onboarding />);
+
+		expect(getByText("Hi stranger!")).toBeInTheDocument();
+		expect(getByText("Continue")).toBeInTheDocument();
 	});
 });

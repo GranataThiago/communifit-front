@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { RegisterForm } from "../RegisterForm";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
 import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
@@ -9,9 +9,9 @@ import { FinalStep } from "../FinalStep/FinalStep";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { inter, montserrat } from "../../../../../components/fonts";
-import { UserContext } from "../../../../../../context/UserContext";
 import { Button } from "../../../../../components";
 import { UserTypes } from "../../../../../../interfaces/user";
+import { UserContext } from "../../../../../../context/UserContext";
 
 export type RegisterForm = {
 	fullname: string;
@@ -33,7 +33,7 @@ export interface RegisterFormStep {
 	control: Control<RegisterForm, any>;
 }
 
-export const Onboarding = () => {
+const Onboarding = () => {
 	const router = useRouter();
 	const [currentStep, setCurrentStep] = useState<number>(0);
 	const { register: registerUser } = useContext(UserContext);
@@ -127,3 +127,5 @@ export const Onboarding = () => {
 		</form>
 	);
 };
+
+export default Onboarding;
