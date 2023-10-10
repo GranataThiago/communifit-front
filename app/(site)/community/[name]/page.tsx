@@ -2,20 +2,29 @@ import React from 'react'
 import { CommunityScreen } from '../components/screens'
 import { cookies } from 'next/headers';
 import { Community } from '../../../../interfaces/community';
-import apiInstance from '../../../api';
 import { redirect } from 'next/navigation';
+import apiInstance from '../../../api';
+import { getCommunityData, getCommunityPosts } from '../../../../services/community/community-page';
+
+interface CommunityPageParams{
+  name: string
+}
+
+interface CommunityPageProps{
+  params: CommunityPageParams
+}
 
 const getCommunity = async(name: string): Promise<Community | null> => {
   const cookieStore = cookies();
-  const { data: { community } } = await apiInstance.get(`/communities/${name}`, { headers: { token: cookieStore.get('token')?.value }});
-  const { data, request } = await apiInstance.get(`/communities/${name}/posts?page=1`, { headers: { token: cookieStore.get('token')?.value }});
-  const { posts, totalPages, totalResults } = data;
-
-  if(!community) return null;
+  const token = cookieStore.get('token')?.value as string
+  
+  const communityData = await getCommunityData({ token });
+  const community = communityData?.community
+  const postsData = await getCommunityPosts({ token });
 
   return {
       posts: [
-          ...posts
+          ...postsData.posts
       ],
       image: '',
       name: community.displayname,
@@ -25,7 +34,7 @@ const getCommunity = async(name: string): Promise<Community | null> => {
 }
 
 
-export default async function CommunityPage({ params }: { params: { name: string } }) {
+export default async function CommunityPage({ params }: CommunityPageProps) {
   const { name } = params;
   const community: Community | null = await getCommunity(name);
 
