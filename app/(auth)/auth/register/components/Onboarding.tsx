@@ -5,7 +5,7 @@ import { RegisterForm } from './RegisterForm';
 import { Control, useForm, UseFormRegister } from 'react-hook-form';
 import { AccountTypeStep } from "./AccountTypeStep/AccountTypeStep";
 import { PersonalInfoStep } from './PersonalInfoStep';
-import { FinalStep } from './FinalStep';
+import { FinalStep } from "./FinalStep/FinalStep";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
