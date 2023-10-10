@@ -1,8 +1,9 @@
 import React from 'react'
-import { CommunityScreen, NonCommunityScreen } from '../components/screens'
-import { cookies } from 'next/headers';
-import { Community } from '../../../../interfaces/community';
-import apiInstance from '../../../api';
+import { NonCommunityScreen } from "../components/screens";
+import { cookies } from "next/headers";
+import { Community } from "../../../../interfaces/community";
+import apiInstance from "../../../api";
+import CommunityScreen from "../components/screens/CommunityScreen";
 
 const getCommunity = async (): Promise<Community> => {
 	const cookieStore = cookies();
@@ -31,10 +32,9 @@ export default async function CommunityPage({ params, searchParams }: any) {
 	return (
 		<>
 			{community ? (
-				/* @ts-expect-error Server Component */
 				<CommunityScreen {...community} />
 			) : (
-				/* @ts-expect-error Server Component */
+				// @ts-expect-error Server Component
 				<NonCommunityScreen />
 			)}
 		</>
