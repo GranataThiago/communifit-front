@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { SocialMediaForm } from '../components/SocialMediaForm';
-import { Onboarding } from './components/Onboarding';
+import { Onboarding } from "./components/Onboarding/Onboarding";
 import { useUserContext } from '../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
 
