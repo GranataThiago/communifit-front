@@ -1,6 +1,6 @@
 
 import { SocialMediaForm } from '../../components/SocialMediaForm';
-import { RegisterFormStep } from "./Onboarding";
+import { RegisterFormStep } from "./Onboarding/Onboarding";
 import { Controller } from "react-hook-form";
 import { montserrat } from "../../../../components/fonts";
 import { LabeledInput } from "../../../../components";

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Controller } from 'react-hook-form';
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { RegisterFormStep } from "./Onboarding";
+import { RegisterFormStep } from "./Onboarding/Onboarding";
 import { montserrat } from "../../../../components/fonts";
 import { RadioCard } from "../../../../components";
 
