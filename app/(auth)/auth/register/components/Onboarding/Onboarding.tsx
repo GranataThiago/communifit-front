@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useContext, useState } from "react";
-import { RegisterForm } from "../RegisterForm";
+import { RegisterForm } from "../RegisterForm/RegisterForm";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
 import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
-import { PersonalInfoStep } from "../PersonalInfoStep";
+import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
 import { FinalStep } from "../FinalStep/FinalStep";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
