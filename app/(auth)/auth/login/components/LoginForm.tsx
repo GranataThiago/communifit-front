@@ -15,59 +15,84 @@ type LoginForm = {
 
 
 export const LoginForm = () => {
-
-    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
-    const { login } = useUserContext();
 
-    const { handleSubmit, formState: { errors }, register, control } = useForm<LoginForm>({
-        defaultValues: {
-            email: '',
-            password: ''
-        }
-    });
+		const [isLoading, setIsLoading] = useState(false);
+		const { login } = useUserContext();
 
-    const onLogin = async(formData: LoginForm) => {
-        setIsLoading(true);
-        const { email, password } = formData;
-        const success = await login(email, password);
-        if(success){
-            router.replace('/');
-        }
-    }
+		const {
+			handleSubmit,
+			formState: { errors },
+			register,
+			control,
+		} = useForm<LoginForm>({
+			defaultValues: {
+				email: "",
+				password: "",
+			},
+		});
 
-    return (
-        <form className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`} onSubmit={handleSubmit(onLogin)}>
-            <Controller
-                control={control}
-                name='email'
-                render={({field}) => (
-                    <LabeledInput
-                        {...field}
-                        ref={null}
-                        label='Email address'
-                        type='email'
-                        variant='outlined'
-                    ></LabeledInput>
-                )}
-            />
+		const onLogin = async (formData: LoginForm) => {
+			setIsLoading(true);
+			const { email, password } = formData;
+			const success = await login(email, password);
+			if (success) {
+				router.replace("/");
+			}
+		};
 
-            <Controller
-                control={control}
-                name='password'
-                render={({field}) => (
-                    <LabeledInput
-                        {...field}
-                        ref={null}
-                        label='Password'
-                        type='password'
-                        variant='outlined'
-                    ></LabeledInput>
-                )}
-            />
+		return (
+			<form
+				className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`}
+				onSubmit={handleSubmit(onLogin)}
+			>
+				<Controller
+					control={control}
+					name='email'
+					render={({ field }) => (
+						<LabeledInput
+							{...field}
+							id='Email address'
+							ref={null}
+							name='Email address'
+							label='Email address'
+							type='email'
+							variant='outlined'
+						></LabeledInput>
+					)}
+				/>
 
-            <Button type='submit' variant='filled' isLoading={isLoading}>Login</Button>
-            <Link className='text-right w-full mt-0' href={'/auth/forgot-password'}><p>Forgot password?</p></Link>
-        </form>
-    )
+				<Controller
+					control={control}
+					name='password'
+					render={({ field }) => (
+						<LabeledInput
+							{...field}
+							id='Password'
+							ref={null}
+							name='Password'
+							label='Password'
+							type='password'
+							variant='outlined'
+						></LabeledInput>
+					)}
+				/>
+
+				<Button
+					type='submit'
+					variant='filled'
+					isLoading={isLoading}
+					data-testid='login'
+				>
+					Login
+				</Button>
+				<Link
+					className='text-right w-full mt-0'
+					href={"/auth/forgot-password"}
+					data-testid='text-footer'
+				>
+					<p>Forgot password?</p>
+				</Link>
+			</form>
+		);
 }
