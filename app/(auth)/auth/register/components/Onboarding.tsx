@@ -3,7 +3,7 @@
 import { useContext, useState } from 'react'
 import { RegisterForm } from './RegisterForm';
 import { Control, useForm, UseFormRegister } from 'react-hook-form';
-import { AccountTypeStep } from './AccountTypeStep';
+import { AccountTypeStep } from "./AccountTypeStep/AccountTypeStep";
 import { PersonalInfoStep } from './PersonalInfoStep';
 import { FinalStep } from './FinalStep';
 import Link from 'next/link';
