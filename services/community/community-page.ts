@@ -3,9 +3,10 @@ import { IGetCommunityFetch, GetCommunityResponse, GetCommunityPostsResponse, IG
 
 interface IGetCommunity{
     token: string
+    name: string
 }
 
-export const getCommunityData = async({ token }: IGetCommunity): Promise<GetCommunityResponse> => {
+export const getCommunityData = async({ token, name }: IGetCommunity): Promise<GetCommunityResponse> => {
     let community: GetCommunityResponse = null;
     try{
         const response = await apiInstance.get<IGetCommunityFetch>(`/communities/${name}`, { headers: { token }});
@@ -17,7 +18,7 @@ export const getCommunityData = async({ token }: IGetCommunity): Promise<GetComm
     return community
 }
 
-export const getCommunityPosts = async({ token }: IGetCommunity): Promise<GetCommunityPostsResponse> => {
+export const getCommunityPosts = async({ token, name }: IGetCommunity): Promise<GetCommunityPostsResponse> => {
     let posts: GetCommunityPostsResponse = null;
     try{
         const responsePosts = await apiInstance.get<IGetCommunityPostsFetch>(`/communities/${name}/posts?page=1`, { headers: { token }});
