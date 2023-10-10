@@ -20,7 +20,8 @@ const customJestConfig = {
     '!<rootDir>/.next/**',
     '!<rootDir>/app/components/index.ts', 
     '!<rootDir>/app/components/fonts.ts',
-    '!<rootDir>/app/layout.tsx'
+    '!<rootDir>/app/layout.tsx',
+    '!<rootDir>/context/**'
     ],
     coverageDirectory: "coverage",
     preset: 'ts-jest',
