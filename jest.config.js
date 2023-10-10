@@ -14,8 +14,7 @@ const customJestConfig = {
     clearMocks: true,
     collectCoverage: false,
     collectCoverageFrom: [ 
-    '<rootDir>/app/components/**',
-    '<rootDir>/app/**.tsx',
+    '<rootDir>/**.tsx',
     '!<rootDir>/node_modules/**',
     '!<rootDir>/.next/**',
     '!<rootDir>/app/components/index.ts', 
