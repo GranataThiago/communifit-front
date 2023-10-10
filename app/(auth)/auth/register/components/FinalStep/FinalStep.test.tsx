@@ -9,7 +9,7 @@ afterAll(() => {
 
 describe("<FinalStep />", () => {
 	it("renders without errors", () => {
-		const { getByText } = render(<FinalStep />);
-		expect(getByText("Excellent, your account has been"));
+		const { getByTestId } = render(<FinalStep />);
+		expect(getByTestId("text"));
 	});
 });
