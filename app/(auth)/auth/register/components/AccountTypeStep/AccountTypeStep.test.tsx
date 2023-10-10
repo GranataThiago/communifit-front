@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { RegisterForm } from "../Onboarding/Onboarding";
 
 const mockRegister = jest.fn();
+// eslint-disable-next-line
 const mockControl = useForm<RegisterForm>().control;
 
 describe("<AccountTypeStep />", () => {
