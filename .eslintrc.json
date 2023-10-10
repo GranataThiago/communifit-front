@@ -1,15 +1,10 @@
 {
 	"env": {
 		"browser": true,
-		"es2021": true,
-		"jest/globals": true
+		"es2021": true
 	},
-	"extends": [
-		"plugin:react/recommended",
-		"plugin:jest/recommended",
-		"prettier",
-		"next/core-web-vitals"
-	],
+	"extends": ["plugin:react/recommended"],
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -17,16 +12,20 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react", "jest"],
+	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
-		"no-underscore-dangle": 0,
 		"import/extensions": [
 			"error",
 			"ignorePackages",
 			{
-				"js": "always",
-				"jsx": "always"
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
 			}
 		]
+	},
+	"settings": {
+		"react": { "version": "detect" }
 	}
 }
