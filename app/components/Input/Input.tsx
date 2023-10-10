@@ -19,22 +19,25 @@ export const Input = ({ variant, className, ...props }: InputProps) => {
   )
 }
 
-interface LabeledInputProps{
-  variant: InputVariant;
-  label: string;
-  name: string;
-  type: string;
-  ref?: null;
+interface LabeledInputProps {
+	variant: InputVariant;
+	label: string;
+	name: string;
+	type: string;
+	ref?: null;
+	id?: string;
 }
 
 export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
-    return(
-      <div className='flex flex-col w-full'>
-        <label htmlFor={props.name} className='pb-1'>{label}</label>
-        <Input {...props}/>
-      </div>
-    )
-}
+	return (
+		<div className='flex flex-col w-full'>
+			<label htmlFor={props.name} className='pb-1'>
+				{label}
+			</label>
+			<Input {...props} />
+		</div>
+	);
+};
 
 interface LabeledTextareaProps{
   variant: InputVariant;
