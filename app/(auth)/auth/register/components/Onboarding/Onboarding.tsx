@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useContext, useState } from "react";
-import { RegisterForm } from "../RegisterForm/RegisterForm";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
 import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
 import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
@@ -12,6 +11,7 @@ import { inter, montserrat } from "../../../../../components/fonts";
 import { Button } from "../../../../../components";
 import { UserTypes } from "../../../../../../interfaces/user";
 import { UserContext } from "../../../../../../context/UserContext";
+import { RegisterFormComponent } from "../RegisterForm/RegisterForm";
 
 export type RegisterForm = {
 	fullname: string;
@@ -77,7 +77,7 @@ const Onboarding = () => {
 			case 1:
 				return <PersonalInfoStep {...baseProps} />;
 			case 2:
-				return <RegisterForm {...baseProps} />;
+				return <RegisterFormComponent {...baseProps} />;
 			default:
 				return <FinalStep />;
 		}
