@@ -8,9 +8,8 @@ export default function ProfilePage(){
   
 
   return (
-    <div>
-      <ProfileHeading />
-
-    </div>
-  )
+		<div data-testid='content'>
+			<ProfileHeading />
+		</div>
+	);
 }
