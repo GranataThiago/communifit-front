@@ -31,7 +31,7 @@ export const UserGreeting = () => {
 			<div className=''>
 				<ImageWithFallback
 					className='object-contain rounded-full w-24'
-					src={(user && user.image) || "https://i.pravatar.cc/300"}
+					src={user?.image ?? ""}
 					alt='fortys'
 					width={0}
 					height={0}

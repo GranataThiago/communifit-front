@@ -24,11 +24,15 @@ export const ImageWithFallback: FC<ImageWithFallbackProps> = ({
 	}, [src]);
 
 	return (
-		<Image
-			alt={alt}
-			onError={setError}
-			src={error ? fallbackImage : src}
-			{...props}
-		/>
+		<>
+			{src && (
+				<Image
+					alt={alt}
+					onError={setError}
+					src={error ? fallbackImage : src}
+					{...props}
+				/>
+			)}
+		</>
 	);
 };
