@@ -3,7 +3,7 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": ["next", "prettier", "next/core-web-vitals"],
+	"extends": ["next", "plugin:react/recommended", "prettier"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -13,29 +13,7 @@
 		"sourceType": "module"
 	},
 	"plugins": ["react", "@typescript-eslint"],
-	"rules": {
-		"react/no-unescaped-entities": "off",
-		"@next/next/no-page-custom-font": "off",
-		"import/extensions": [
-			"error",
-			"ignorePackages",
-			{
-				"js": "never",
-				"jsx": "never",
-				"ts": "never",
-				"tsx": "never"
-			}
-		]
-	},
 	"settings": {
 		"react": { "version": "detect" }
-	},
-	"overrides": [
-		{
-			"files": ["**/*.spec.ts", "**/*.spec.tsx"],
-			"env": {
-				"jest": true
-			}
-		}
-	]
+	}
 }
