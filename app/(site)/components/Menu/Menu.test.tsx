@@ -6,7 +6,7 @@ jest.mock("next/navigation", () => ({
 	usePathname: jest.fn(),
 }));
 
-jest.mock("../../../context/UserContext", () => ({
+jest.mock("../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",
@@ -26,15 +26,6 @@ describe("Menu component", () => {
 
 	it("should render the menu with the correct active item", () => {
 		jest.spyOn(require("next/navigation"), "usePathname").mockReturnValue("/");
-		jest
-			.spyOn(require("../../../context/UserContext"), "useUserContext")
-			.mockReturnValue({
-				user: {
-					community: {
-						name: "CommunityName",
-					},
-				},
-			});
 
 		const { getByTestId } = render(<Menu />);
 
@@ -47,7 +38,7 @@ describe("Menu component", () => {
 			.spyOn(require("next/navigation"), "usePathname")
 			.mockReturnValue("/community");
 		jest
-			.spyOn(require("../../../context/UserContext"), "useUserContext")
+			.spyOn(require("../../../../context/UserContext"), "useUserContext")
 			.mockReturnValue({});
 
 		const { container } = render(<Menu />);
@@ -63,9 +54,6 @@ describe("Menu component", () => {
 		jest
 			.spyOn(require("next/navigation"), "usePathname")
 			.mockReturnValue("/chat");
-		jest
-			.spyOn(require("../../../context/UserContext"), "useUserContext")
-			.mockReturnValue({});
 
 		const { container } = render(<Menu />);
 
@@ -80,9 +68,6 @@ describe("Menu component", () => {
 		jest
 			.spyOn(require("next/navigation"), "usePathname")
 			.mockReturnValue("/profile");
-		jest
-			.spyOn(require("../../../context/UserContext"), "useUserContext")
-			.mockReturnValue({});
 
 		const { container } = render(<Menu />);
 
