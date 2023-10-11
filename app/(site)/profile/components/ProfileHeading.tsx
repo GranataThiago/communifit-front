@@ -14,18 +14,18 @@ export const ProfileHeading = () => {
   }
 
   return (
-    <header className='flex justify-between p-6'>
-      <div>
-        <p className='font-semibold text-lg'>{user?.fullname}</p>
-        <p>{user?.username}</p>
-      </div>
-      <Button
-        variant='filled'
-        className='bg-red-500 w-12 h-12'
-        onClick={onLogout}
-      >
-        <BiLogOut size={24} className='ml-2'/>
-      </Button>
-    </header>
-  )
+		<header className='flex justify-between p-6' data-testid='header'>
+			<div>
+				<p className='font-semibold text-lg'>{user?.fullname}</p>
+				<p>{user?.username}</p>
+			</div>
+			<Button
+				variant='filled'
+				className='bg-red-500 w-12 h-12'
+				onClick={onLogout}
+			>
+				<BiLogOut size={24} className='ml-2' data-testid='button' />
+			</Button>
+		</header>
+	);
 }
