@@ -51,6 +51,7 @@ export const RevisionScreen = () => {
 	return (
 		<main
 			className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}
+			data-testid='main'
 		>
 			<header className='flex justify-between p-6 pb-0'>
 				<div className='greetings'>
