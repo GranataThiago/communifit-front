@@ -40,9 +40,7 @@ interface OnBoardingProps {
 const Onboarding = (props: OnBoardingProps) => {
 	const { currentStepMock } = props;
 	const router = useRouter();
-	const [currentStep, setCurrentStep] = useState<number>(
-		currentStepMock ? currentStepMock : 0
-	);
+	const [currentStep, setCurrentStep] = useState<number>(currentStepMock ?? 0);
 	const { register: registerUser } = useContext(UserContext);
 
 	const {
