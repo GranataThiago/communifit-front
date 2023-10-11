@@ -1,9 +1,9 @@
-export * from './Button/Button';
-export { default as Heading } from './Heading/Heading';
-export * from './ImageWithFallback/ImageWithFallback';
-export * from './Input/Input';
-export { default as InviteModal } from './Modals/InviteModal/InviteModal';
-export { default as Modal } from './Modals/Modal';
-export { default as WorkoutModal } from './Modals/WorkoutModal/WorkoutModal';
-export * from './RadioCard/RadioCard';
+export * from './Button';
+export * from './Heading';
+export * from './ImageWithFallback';
+export * from './Input';
+export * from './Modals/InviteModal';
+export * from './Modals/WorkoutModal';
+export * from './Modals';
+export * from './RadioCard';
 export * from './fonts';
