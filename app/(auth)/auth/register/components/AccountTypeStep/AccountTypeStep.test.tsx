@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { RegisterForm } from "../Onboarding/Onboarding";
 
 const mockRegister = jest.fn();
-const mockControl = useForm<RegisterForm>().control;
 
 describe("<AccountTypeStep />", () => {
+	const mockControl = useForm<RegisterForm>().control;
 	it("renders without errors", () => {
 		render(<AccountTypeStep register={mockRegister} control={mockControl} />);
 
