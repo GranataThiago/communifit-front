@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { ProgressChart } from "../ProgressChart/ProgressChart";
-import { Workout } from "../Workout/Workout";
-import { UserGreeting } from "../UserGreeting/UserGreeting";
-import { montserrat } from "../../../components/fonts";
+import { ProgressChart } from "../../ProgressChart/ProgressChart";
+import { Workout } from "../../Workout/Workout";
+import { UserGreeting } from "../../UserGreeting/UserGreeting";
+import { montserrat } from "../../../../components/fonts";
 
 export const ClientScreen = () => {
 	return (
