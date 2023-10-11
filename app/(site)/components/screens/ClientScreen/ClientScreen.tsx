@@ -7,15 +7,13 @@ import { montserrat } from "../../../../components/fonts";
 
 export const ClientScreen = () => {
 	return (
-		<main className='bg-secondary flex flex-col gap-8'>
+		<main className='bg-secondary flex flex-col gap-8' data-testid='work'>
 			<header className='flex flex-col justify-between items-center w-full p-6'>
 				<UserGreeting />
 			</header>
 
 			<section className='workout flex flex-col gap-2 p-6'>
-				<p className='font-bold text-3xl' data-testid='work'>
-					Your work for today
-				</p>
+				<p className='font-bold text-3xl'>Your work for today</p>
 				<div className='h-60 relative overflow-hidden before:w-full before:h-full before:absolute before:left-0 before:top-0 before:bg-gradient-to-t before:from-white before:pointer-events-none'>
 					<Workout></Workout>
 				</div>
