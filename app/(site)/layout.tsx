@@ -1,46 +1,45 @@
-
-import Head from 'next/head'
-import '../globals.css'
+import React from "react";
+import Head from "next/head";
+import "../globals.css";
 import InviteModal from "../components/Modals/InviteModal/InviteModal";
 import WorkoutModal from "../components/Modals/WorkoutModal/WorkoutModal";
-import { Menu } from './components/Menu'
-import ToasterProvider from '../providers/ToasterProvider'
-
+import { Menu } from "./components/Menu";
+import ToasterProvider from "../providers/ToasterProvider";
 
 export const metadata = {
-  title: 'Communifit | Take your training to next level.',
-  description: 'bla bla',
-  icons: [
-    {
-      rel: 'icon',
-      type: 'image/svg',
-      sizes: '64x64',
-      url: '/app/icon.svg',
-    },
-  ],
-}
-
+	title: "Communifit | Take your training to next level.",
+	description: "bla bla",
+	icons: [
+		{
+			rel: "icon",
+			type: "image/svg",
+			sizes: "64x64",
+			url: "/app/icon.svg",
+		},
+	],
+};
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
+	return (
+		<>
+			<Head>
+				<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+				<meta
+					content='We provide professional on and off page SEO and Web Design services. We also help companies with their advertising campaigns ensuring their money is not wasted.'
+					name='description'
+				/>
+				<meta name='robots' content='index,follow' />
+			</Head>
+			<Menu />
+			<InviteModal />
+			<WorkoutModal />
+			<ToasterProvider />
 
-
-  return (
-    <>
-      <Head>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <meta content="We provide professional on and off page SEO and Web Design services. We also help companies with their advertising campaigns ensuring their money is not wasted." name="description"/>
-        <meta name="robots" content="index,follow"/>
-      </Head>
-      <Menu />
-      <InviteModal />
-      <WorkoutModal />
-      <ToasterProvider />
-        
-            {children}
-    </>
-  )
+			{children}
+		</>
+	);
 }
