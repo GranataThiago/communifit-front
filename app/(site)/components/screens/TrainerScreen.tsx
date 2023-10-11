@@ -27,7 +27,9 @@ export const TrainerScreen = () => {
 			</section>
 
 			<section className='chart p-6'>
-				<p className='text-3xl font-bold'>Your Clients</p>
+				<p className='text-3xl font-bold' data-testid='clients'>
+					Your Clients
+				</p>
 				<div className='border w-full h-96 mx-auto'>
 					<table className='table-auto text-center w-full'>
 						<thead className='w-full'>
