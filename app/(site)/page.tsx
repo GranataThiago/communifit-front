@@ -1,10 +1,14 @@
 import React from "react";
 import { ClientScreen, TrainerScreen } from "./components/screens";
 
-const HARDCODED_ROLE: string = "trainer";
 
-export default function Page() {
+interface PageProps {
+	roleMock?: "member" | "trainer";
+}
+
+export default function Page(props: PageProps) {
+	const HARDCODED_ROLE: string = props.roleMock ?? "trainer";
 	return (
-		<>{HARDCODED_ROLE === "member" ? <TrainerScreen /> : <ClientScreen />}</>
+		<>{HARDCODED_ROLE === "member" ? <ClientScreen /> : <TrainerScreen />}</>
 	);
 }
