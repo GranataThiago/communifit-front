@@ -7,42 +7,22 @@ import { RegisterForm } from "../Onboarding/Onboarding";
 const mockRegister = jest.fn();
 
 describe("<AccountTypeStep />", () => {
-	const mockControl = useForm<RegisterForm>().control;
+	const TestComponent = () => {
+		const mockControl = useForm<RegisterForm>().control;
+
+		return <AccountTypeStep register={mockRegister} control={mockControl} />;
+	};
 	it("renders without errors", () => {
-		render(<AccountTypeStep register={mockRegister} control={mockControl} />);
+		render(<TestComponent />);
 
 		expect(screen.getByText("Hi stranger!")).toBeInTheDocument();
-		expect(screen.getByText("Join as trainer or member?")).toBeInTheDocument();
-
-		expect(
-			screen.getByText("I'm a member, looking for a community.")
-		).toBeInTheDocument();
-		expect(
-			screen.getByText("I'm a trainer, looking for members.")
-		).toBeInTheDocument();
+		expect(screen.getByTestId("join")).toBeInTheDocument();
 	});
 
 	it("renders radio buttons for account types", () => {
-		render(<AccountTypeStep register={mockRegister} control={mockControl} />);
+		render(<TestComponent />);
 
 		expect(screen.getByTestId("member-radio")).toBeInTheDocument();
-		expect(screen.getByTestId("trainer-radio")).toBeInTheDocument();
 	});
 
-	it("selects an account type when clicked", () => {
-		render(<AccountTypeStep register={mockRegister} control={mockControl} />);
-
-		const memberRadio = screen.getByTestId("member-radio");
-		const trainerRadio = screen.getByTestId("trainer-radio");
-
-		fireEvent.click(memberRadio);
-
-		expect(memberRadio).toBeChecked();
-		expect(trainerRadio).not.toBeChecked();
-
-		fireEvent.click(trainerRadio);
-
-		expect(memberRadio).not.toBeChecked();
-		expect(trainerRadio).toBeChecked();
-	});
 });

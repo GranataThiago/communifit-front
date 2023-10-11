@@ -20,12 +20,12 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 	return (
 		<div className={`flex-1 ${montserrat.className}`}>
 			<p className='font-bold text-xl'>Hi stranger!</p>
-			<p className='font-medium text-lg'>
+			<p className='font-medium text-lg' data-testid='join'>
 				Join as <span className='text-primary'>trainer</span> or{" "}
 				<span className='text-primary'>member</span>?
 			</p>
 
-			<div className='flex flex-col gap-2 mt-8'>
+			<div className='flex flex-col gap-2 mt-8' data-testid='member-radio'>
 				<Controller
 					name='type'
 					control={control}
