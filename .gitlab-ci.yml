@@ -11,7 +11,7 @@ build:
       - echo "Building project..."
       - mkdir build
       - touch build/config.json
-    artefacts:
+    artifacts:
       paths:
         - build/
 
