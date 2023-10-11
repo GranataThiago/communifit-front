@@ -33,9 +33,16 @@ export interface RegisterFormStep {
 	control: Control<RegisterForm, any>;
 }
 
-const Onboarding = () => {
+interface OnBoardingProps {
+	currentStepMock?: number;
+}
+
+const Onboarding = (props: OnBoardingProps) => {
+	const { currentStepMock } = props;
 	const router = useRouter();
-	const [currentStep, setCurrentStep] = useState<number>(0);
+	const [currentStep, setCurrentStep] = useState<number>(
+		currentStepMock ? currentStepMock : 0
+	);
 	const { register: registerUser } = useContext(UserContext);
 
 	const {

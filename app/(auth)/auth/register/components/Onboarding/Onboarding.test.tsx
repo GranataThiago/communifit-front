@@ -1,5 +1,10 @@
 import React from "react";
-import { render, fireEvent, act, waitFor } from "@testing-library/react";
+import {
+	render,
+	fireEvent,
+	waitFor,
+	getByTestId,
+} from "@testing-library/react";
 import Onboarding from "./Onboarding";
 
 jest.mock("next/navigation", () => ({
@@ -24,10 +29,34 @@ jest.mock("next/navigation", () => ({
 jest.mock("../../../../../../context/UserContext");
 
 describe("Onboarding component", () => {
-	it("renders without crashing", () => {
-		const { getByText } = render(<Onboarding />);
+	describe("Onboarding component", () => {
+		it("should display the initial step correctly", () => {
+			const { getByText } = render(<Onboarding />);
+			expect(getByText("Hi stranger!")).toBeInTheDocument();
+		});
 
-		expect(getByText("Hi stranger!")).toBeInTheDocument();
-		expect(getByText("Continue")).toBeInTheDocument();
+		it("should display the next step when 'Continue' is clicked", () => {
+			const { getByText } = render(<Onboarding />);
+			const continueButton = getByText("Continue");
+			fireEvent.click(continueButton);
+
+			expect(getByText("Gender")).toBeInTheDocument();
+			expect(getByText("Birthday")).toBeInTheDocument();
+		});
+
+		it("should submit the form and call registerUser", async () => {
+			const { getByText, getByTestId } = render(
+				<Onboarding currentStepMock={2} />
+			);
+			expect(getByText("Full name")).toBeInTheDocument();
+			expect(getByText("Username")).toBeInTheDocument();
+			expect(getByText("Email")).toBeInTheDocument();
+			expect(getByText("Password")).toBeInTheDocument();
+			fireEvent.click(getByText("Continue"));
+
+			await waitFor(() => {
+				expect(getByTestId("text")).toBeInTheDocument();
+			});
+		});
 	});
 });
