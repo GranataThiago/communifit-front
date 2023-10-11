@@ -5,3 +5,18 @@ stages:
     - build
     - test
 
+build: 
+    stage: build
+    script:
+      - echo "Building project..."
+      - mkdir build
+      - touch build/config.json
+    artefacts:
+      paths:
+        - build/
+
+test:
+    stage: test
+    script:
+        - echo "Running tests..."
+        - test -f "build/config.json"
