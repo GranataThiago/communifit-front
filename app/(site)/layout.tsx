@@ -3,7 +3,7 @@ import Head from "next/head";
 import "../globals.css";
 import InviteModal from "../components/Modals/InviteModal/InviteModal";
 import WorkoutModal from "../components/Modals/WorkoutModal/WorkoutModal";
-import { Menu } from "./components/Menu";
+import { Menu } from "./components/Menu/Menu";
 import ToasterProvider from "../providers/ToasterProvider";
 
 export const metadata = {

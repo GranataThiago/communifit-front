@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { ProgressChart } from "../ProgressChart";
-import { Workout } from "../Workout";
-import { UserGreeting } from "../UserGreeting";
+import { ProgressChart } from "../ProgressChart/ProgressChart";
+import { Workout } from "../Workout/Workout";
+import { UserGreeting } from "../UserGreeting/UserGreeting";
 import { montserrat } from "../../../components/fonts";
 
 export const ClientScreen = () => {

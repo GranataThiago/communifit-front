@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import React, {
 	LiHTMLAttributes,
 	useEffect,
 	useReducer,
 	useState,
 } from "react";
-import useWorkoutModal from "../../hooks/modals/useWorkoutModal";
-import { useUserContext } from "../../../context/UserContext";
-import { Button, montserrat } from "../../components";
+import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
+import { useUserContext } from "../../../../context/UserContext";
+import { Button, montserrat } from "../../../components";
 
 type WorkoutState = { [day: string]: Exercise[] };
 

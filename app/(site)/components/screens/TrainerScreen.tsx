@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { UserGreeting } from "../UserGreeting";
+import { UserGreeting } from "../UserGreeting/UserGreeting";
 
 export const TrainerScreen = () => {
 	return (
