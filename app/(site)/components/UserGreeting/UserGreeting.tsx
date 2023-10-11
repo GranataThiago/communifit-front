@@ -20,7 +20,7 @@ export const UserGreeting = () => {
         ${montserrat.className}
       `}
 		>
-			<div className='greetings'>
+			<div className='greetings' data-testid='greetings'>
 				<p className='font-bold text-xl xxs:text-3xl'>
 					Hi {(user && user.username) || "Anonymous"},
 				</p>
