@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Post } from "../Post";
-import CommunityActions from "../CommunityActions";
+import { Post } from "../Post/Post";
+import CommunityActions from "../CommunityActions/CommunityActions";
 import { Community } from "../../../../../interfaces/community";
 
 const CommunityScreen = ({ name, description, posts }: Community) => {

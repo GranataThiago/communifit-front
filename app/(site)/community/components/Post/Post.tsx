@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { BsPencil } from "react-icons/bs";
-import { Post as IPost } from "../../../../interfaces/community";
+import { Post as IPost } from "../../../../../interfaces/community";
 import { format } from "date-fns";
 
 export const Post = ({ fullname, username, body, datepublished }: IPost) => {
