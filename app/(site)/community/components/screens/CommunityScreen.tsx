@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Post } from '../Post'
 import CommunityActions from '../CommunityActions';
-import { Community } from '../../../../../interfaces/community';
 
 export const CommunityScreen = async({ name, description, posts }: { name: string, description: string, posts: any[] }) => {
 
