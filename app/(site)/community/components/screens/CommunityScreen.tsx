@@ -1,8 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import { Post } from "../Post/Post";
-import CommunityActions from "../CommunityActions/CommunityActions";
-import { Community } from "../../../../../interfaces/community";
+import Image from 'next/image'
+import CommunityActions from '../CommunityActions/CommunityActions';
+import { Post } from '../Post/Post';
+import { Community } from '../../../../../interfaces/community';
 
 const CommunityScreen = ({ name, description, posts }: Community) => {
 	return (
@@ -38,7 +37,7 @@ const CommunityScreen = ({ name, description, posts }: Community) => {
 				</nav>
 
 				<div className='flex flex-col gap-4'>
-					{posts.map((post, index) => (
+					{posts?.map((post, index) => (
 						<Post key={index} {...post} />
 					))}
 				</div>

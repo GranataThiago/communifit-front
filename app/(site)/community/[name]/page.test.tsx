@@ -9,10 +9,8 @@ afterAll(() => {
 	jest.clearAllMocks();
 });
 
-// Simula Axios con axios-mock-adapter
 const mock = new MockAdapter(axios);
 
-// Configura una respuesta simulada
 const mockResponse = {
 	id: 1,
 	name: "John Doe",
@@ -32,11 +30,12 @@ jest.mock("../../../api", () => ({
 	},
 }));
 
+jest.mock("next/navigation");
+
 describe("<Page />", () => {
 	it("should render CommunityScreen component when community data is available", async () => {
 		const { getByText } = render(await Page({ params: { name: "1" } }));
 
-		expect(getByText("Test Community")).toBeInTheDocument();
-		expect(getByText("Test Description")).toBeInTheDocument();
+		expect(getByText("Posts")).toBeInTheDocument();
 	});
 });

@@ -1,19 +1,10 @@
 import React, { InputHTMLAttributes, ReactNode } from 'react'
 
-// interface RadioCardProps{
-//     name: string;
-//     id: string;
-//     value: string;
-//     label: string;
-//     className?: string;
-//     children?: React.ReactNode
-// }
-
-interface RadioCardProps extends InputHTMLAttributes<HTMLInputElement> {
-	label: string;
-	height?: number;
-	icon?: ReactNode;
-	ref?: any;
+interface RadioCardProps extends InputHTMLAttributes<HTMLInputElement>{
+    label: string,
+    height?: number;
+    icon?: ReactNode;
+    ref: any;
 }
 
 export const RadioCard = ({ label, children, icon, height, ...props }: RadioCardProps) => {

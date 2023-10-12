@@ -3,7 +3,7 @@ export interface Community{
     displayname: string;
     image: string;
     description: string;
-    posts: Post[]
+    posts: Post[] | []
 }
 
 export interface Post{

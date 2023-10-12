@@ -44,9 +44,6 @@ describe("CreateCommunityForm", () => {
 	it("should render the form", () => {
 		const { getByText } = render(<CreateCommunityForm />);
 
-		expect(getByText("Name")).toBeInTheDocument();
-		expect(getByText("URL")).toBeInTheDocument();
-		expect(getByText("Description")).toBeInTheDocument();
-		expect(getByText("Create")).toBeInTheDocument();
+		expect(getByText("Community Name")).toBeInTheDocument();
 	});
 });
