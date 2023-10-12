@@ -8,7 +8,7 @@ interface ContextProps{
     user: User | null,
     register: (user: RegisterUser) => void
     login: (email: string, password: string) => Promise<boolean>,
-    validateUser: (token: string) => void,
+    decryptUserData: (token: string) => void,
     logout: () => boolean,
 }
 

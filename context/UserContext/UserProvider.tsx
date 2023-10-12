@@ -72,12 +72,14 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
             const { token } = cookies;
             if(!token) return;
         
-            const { data } = await decryptUser({token});
+            const data = await decryptUser({token});
+            if(!data) return;
                 
             dispatch({
                 type: '[USER] Login',
                 payload: { token, user: data.user }
             });
+
         }catch(err){
             console.log(err);
             removeCookie('token');
@@ -100,7 +102,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         ...state,
         login,
         register,
-        validateUser,
+        decryptUserData,
         logout
        }}>
            {children}
