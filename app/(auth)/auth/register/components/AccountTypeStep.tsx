@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React from 'react'
 import { RegisterFormStep } from './Onboarding'
 import { RadioCard } from '../../../../components/RadioCard';

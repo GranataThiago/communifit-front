@@ -6,6 +6,8 @@ import { useCookies } from 'react-cookie';
 import { RegisterUser, User } from '../../interfaces/user';
 import { loginUser } from '../../services/auth/login';
 import { decryptUser } from '../../services/auth/decrypt';
+import {  createUserAndGetToken } from '../../services/users/register';
+import { ICreateUserResponse } from '../../interfaces';
 
 
 export interface UserState{
@@ -29,14 +31,12 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     }, [])
 
     const register = async(user: RegisterUser) => {
-        try{
-            const { objective, ...newUser } = user;
-            const { data } = await apiInstance.post(`/users`, newUser);
-            dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
-        }catch(err){
-            console.log(err)
-            return;
-        }
+        const { objective = null, ...userData } = user;
+        const token:ICreateUserResponse = await createUserAndGetToken({user: userData});
+        if(!token) return alert("Create user error");
+
+        dispatch({ type: '[USER] Login', payload: {token, user: {...user, image: 'asd'}} });
+        
    }
 
    const login = async(email: string, password: string): Promise<boolean> => {

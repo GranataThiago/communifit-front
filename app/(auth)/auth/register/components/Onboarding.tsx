@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import { inter, montserrat } from '../../../../components/fonts';
 import { UserContext } from '../../../../../context/UserContext';
 import { Button } from '../../../../components';
-import { UserTypes } from '../../../../../interfaces/user';
+import { RegisterUser, UserTypes } from '../../../../../interfaces/user';
 
 export type RegisterForm = {
     fullName: string;
@@ -82,11 +82,13 @@ export const Onboarding = () => {
       const { birthdate: { day, month, year } } = formData;
       
       const birthdate = new Date(year, month, day);
-      
-      registerUser({
-        ...formData,
-        birthdate,
-      });
+
+      const SAFE_USER: RegisterUser = {
+        ...formData, 
+        birthdate
+      }
+
+      registerUser(SAFE_USER);
   }
 
 
