@@ -34,7 +34,7 @@ jest.mock("../../../api", () => ({
 
 describe("<Page />", () => {
 	it("should render CommunityScreen component when community data is available", async () => {
-		const { getByText } = render(await Page({}));
+		const { getByText } = render(await Page({ params: { name: "1" } }));
 
 		expect(getByText("Test Community")).toBeInTheDocument();
 		expect(getByText("Test Description")).toBeInTheDocument();

@@ -10,8 +10,8 @@ import { Button } from "../../../../../components";
 import { UserTypes } from "../../../../../../interfaces/user";
 import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
 import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
-import { RegisterForm } from "../RegisterForm/RegisterForm";
 import { FinalStep } from "../FinalStep/FinalStep";
+import { RegisterFormComponent } from "../RegisterForm/RegisterForm";
 
 export type RegisterForm = {
 	fullName: string;
@@ -33,9 +33,15 @@ export interface RegisterFormStep {
 	control: Control<RegisterForm, any>;
 }
 
-export const Onboarding = () => {
+interface OnBoardingProps {
+	currentStepMock?: number;
+}
+
+export const Onboarding = (props: OnBoardingProps) => {
 	const router = useRouter();
-	const [currentStep, setCurrentStep] = useState<number>(0);
+	const [currentStep, setCurrentStep] = useState<number>(
+		props.currentStepMock ?? 0
+	);
 	const { register: registerUser } = useContext(UserContext);
 
 	const {
@@ -77,7 +83,7 @@ export const Onboarding = () => {
 			case 1:
 				return <PersonalInfoStep {...baseProps} />;
 			case 2:
-				return <RegisterForm {...baseProps} />;
+				return <RegisterFormComponent {...baseProps} />;
 			default:
 				return <FinalStep />;
 		}

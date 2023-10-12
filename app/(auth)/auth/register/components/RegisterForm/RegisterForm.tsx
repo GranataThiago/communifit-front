@@ -4,7 +4,10 @@ import { Controller } from "react-hook-form";
 import { montserrat } from "../../../../../components/fonts";
 import { RegisterFormStep } from "../Onboarding/Onboarding";
 
-export const RegisterForm = ({ register, control }: RegisterFormStep) => {
+export const RegisterFormComponent = ({
+	register,
+	control,
+}: RegisterFormStep) => {
 	return (
 		<div
 			className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}

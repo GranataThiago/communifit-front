@@ -21,7 +21,7 @@ export const WorkoutActions = () => {
 	};
 
 	return (
-		<div>
+		<div data-testid='div'>
 			<Button variant='filled' onClick={onWorkoutUpdated}>
 				<span className='flex items-center justify-center gap-3'>
 					<BsPencil />

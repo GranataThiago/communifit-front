@@ -2,6 +2,7 @@ import React from "react";
 import { render, cleanup, renderHook } from "@testing-library/react";
 import { useController, useForm } from "react-hook-form";
 import { RegisterFormComponent } from "./RegisterForm";
+import { RegisterForm } from "../Onboarding/Onboarding";
 
 afterAll(() => {
 	cleanup();
@@ -49,6 +50,9 @@ jest.mock("react-hook-form", () => ({
 
 describe("<RegisterForm />", () => {
 	it("should render truthy", () => {
-		render(<RegisterFormComponent />);
+		const mockControl = useForm<RegisterForm>().control;
+		render(
+			<RegisterFormComponent register={jest.fn()} control={mockControl} />
+		);
 	});
 });
