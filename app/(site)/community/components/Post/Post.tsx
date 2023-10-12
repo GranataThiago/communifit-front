@@ -1,10 +1,9 @@
-import React from "react";
 import Image from "next/image";
 import { BsPencil } from "react-icons/bs";
-import { Post as IPost } from "../../../../../interfaces/community";
 import { format } from "date-fns";
+import { Post as IPost } from "../../../../../interfaces/community";
 
-export const Post = ({ fullname, username, body, datepublished }: IPost) => {
+export const Post = ({ fullName, username, body, datepublished }: IPost) => {
 	return (
 		<div className='flex flex-col gap-2'>
 			<div className='flex justify-between items-center '>
@@ -17,7 +16,7 @@ export const Post = ({ fullname, username, body, datepublished }: IPost) => {
 						height={32}
 					/>
 					<p className='font-bold text-lg flex flex-col'>
-						{fullname}
+						{fullName}
 						<span className='text-gray-400 text-sm font-medium'>
 							{format(new Date(datepublished), "dd-MM")}
 						</span>

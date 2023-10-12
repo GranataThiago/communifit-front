@@ -1,16 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import {
-	Controller,
-	FieldValues,
-	SubmitHandler,
-	useForm,
-} from "react-hook-form";
-import Modal from "../Modal";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useCallback } from "react";
-import Heading from "../../Heading/Heading";
 import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
-import { LabeledInput, LabeledTextarea } from "../../Input/Input";
+import { Exercise } from "../../../../interfaces/exercises";
+import { Heading } from "../../Heading";
+import { LabeledInput, LabeledTextarea } from "../../Input";
+import Modal from "../Modal";
 
 const WorkoutModal = () => {
 	const workoutModal = useWorkoutModal();
@@ -92,10 +88,10 @@ const WorkoutModal = () => {
 	return (
 		<Modal
 			disabled={isLoading}
-			isOpen={workoutModal?.isOpen}
+			isOpen={workoutModal.isOpen}
 			title='Workout'
 			actionLabel='Add'
-			onClose={workoutModal?.onClose}
+			onClose={workoutModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
 			body={bodyContent}
 		/>

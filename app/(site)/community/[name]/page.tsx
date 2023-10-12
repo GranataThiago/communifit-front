@@ -5,36 +5,48 @@ import apiInstance from "../../../api";
 import CommunityScreen from "../components/screens/CommunityScreen";
 import { NonCommunityScreen } from "../components/screens/NonCommunityScreen";
 
-const getCommunity = async (): Promise<Community> => {
+const getCommunity = async (name: string): Promise<Community | null> => {
 	const cookieStore = cookies();
 	const {
 		data: { community },
-	} = await apiInstance.get("/communities/gorillas", {
+	} = await apiInstance.get(`/communities/${name}`, {
 		headers: { token: cookieStore.get("token")?.value },
 	});
 	const { data, request } = await apiInstance.get(
-		"/communities/gorillas/posts?page=1",
+		`/communities/${name}/posts?page=1`,
 		{ headers: { token: cookieStore.get("token")?.value } }
 	);
 	const { posts, totalPages, totalResults } = data;
+
+	if (!community) return null;
+
 	return {
 		posts: [...posts],
 		image: "",
 		name: community.displayname,
-		description: community.description,
 		displayname: community.displayname,
+		description: community.description,
 	};
 };
 
-export default async function CommunityPage({ params, searchParams }: any) {
-	const community: Community = await getCommunity();
+export default async function CommunityPage({
+	params,
+}: {
+	params: { name: string };
+}) {
+	const { name } = params;
+	const community: Community | null = await getCommunity(name);
+
+	if (!community) {
+	}
 
 	return (
 		<>
 			{community ? (
+				/* @ts-expect-error Server Component */
 				<CommunityScreen {...community} />
 			) : (
-				//@ts-ignore @ts-expect-error Server Component
+				/* @ts-expect-error Server Component */
 				<NonCommunityScreen />
 			)}
 		</>

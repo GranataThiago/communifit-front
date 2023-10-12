@@ -1,6 +1,15 @@
-import React from "react";
 import Image from "next/image";
+import { User } from "../../../../../interfaces/user";
 import { UserGreeting } from "../../UserGreeting/UserGreeting";
+
+const FAKE_USERS = [
+	{
+		username: "thiagog",
+		fullName: "Thiago Granata",
+		image: "none",
+		state: "paid",
+	},
+];
 
 export const TrainerScreen = () => {
 	return (
@@ -27,9 +36,7 @@ export const TrainerScreen = () => {
 			</section>
 
 			<section className='chart p-6'>
-				<p className='text-3xl font-bold' data-testid='clients'>
-					Your Clients
-				</p>
+				<p className='text-3xl font-bold'>Your Clients</p>
 				<div className='border w-full h-96 mx-auto'>
 					<table className='table-auto text-center w-full'>
 						<thead className='w-full'>
@@ -41,12 +48,16 @@ export const TrainerScreen = () => {
 							</tr>
 						</thead>
 						<tbody className='w-full'>
-							<tr>
-								<td>Thiago</td>
-								<td>Paid</td>
-								<td>-</td>
-								<td>Edit</td>
-							</tr>
+							{FAKE_USERS.map(({ username, fullName, image, state }) => (
+								<tr key={username}>
+									<td>{fullName}</td>
+									<td>{state}</td>
+									<td>-</td>
+									<td>
+										<a href={`/trainer/create/${username}`}>Edit</a>
+									</td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 				</div>

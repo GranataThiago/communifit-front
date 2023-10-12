@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Exercise } from '../../../interfaces/exercises';
 
 /* Zustand para utilizar una gestion de estados pequeñas, rapida y escalable */ 
 

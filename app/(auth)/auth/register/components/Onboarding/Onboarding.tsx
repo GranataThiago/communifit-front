@@ -1,20 +1,20 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
-import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
-import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
-import { FinalStep } from "../FinalStep/FinalStep";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { inter, montserrat } from "../../../../../components/fonts";
+import { UserContext } from "../../../../../../context/UserContext";
 import { Button } from "../../../../../components";
 import { UserTypes } from "../../../../../../interfaces/user";
-import { UserContext } from "../../../../../../context/UserContext";
-import { RegisterFormComponent } from "../RegisterForm/RegisterForm";
+import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
+import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
+import { RegisterForm } from "../RegisterForm/RegisterForm";
+import { FinalStep } from "../FinalStep/FinalStep";
 
 export type RegisterForm = {
-	fullname: string;
+	fullName: string;
 	username: string;
 	email: string;
 	password: string;
@@ -33,14 +33,9 @@ export interface RegisterFormStep {
 	control: Control<RegisterForm, any>;
 }
 
-interface OnBoardingProps {
-	currentStepMock?: number;
-}
-
-const Onboarding = (props: OnBoardingProps) => {
-	const { currentStepMock } = props;
+export const Onboarding = () => {
 	const router = useRouter();
-	const [currentStep, setCurrentStep] = useState<number>(currentStepMock ?? 0);
+	const [currentStep, setCurrentStep] = useState<number>(0);
 	const { register: registerUser } = useContext(UserContext);
 
 	const {
@@ -52,7 +47,7 @@ const Onboarding = (props: OnBoardingProps) => {
 	} = useForm<RegisterForm>({
 		defaultValues: {
 			email: "",
-			fullname: "",
+			fullName: "",
 			username: "",
 			password: "",
 			objective: "",
@@ -62,7 +57,7 @@ const Onboarding = (props: OnBoardingProps) => {
 				year: 2023,
 			},
 			gender: "",
-			type: null,
+			type: "member",
 		},
 	});
 
@@ -82,7 +77,7 @@ const Onboarding = (props: OnBoardingProps) => {
 			case 1:
 				return <PersonalInfoStep {...baseProps} />;
 			case 2:
-				return <RegisterFormComponent {...baseProps} />;
+				return <RegisterForm {...baseProps} />;
 			default:
 				return <FinalStep />;
 		}
@@ -132,5 +127,3 @@ const Onboarding = (props: OnBoardingProps) => {
 		</form>
 	);
 };
-
-export default Onboarding;

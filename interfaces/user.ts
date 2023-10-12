@@ -1,12 +1,13 @@
 import { Community } from "./community";
 
 export interface User{
-    fullname: string;
+    fullName: string;
     username: string;
     email: string;
     image: string;
     type: UserTypes;
     community?: Community;
+    _id?: string 
 }
 
 export interface RegisterUser{
@@ -15,7 +16,7 @@ export interface RegisterUser{
     gender: string;
     password: string;
     type: UserTypes;
-    fullname: string;
+    fullName: string;
     email: string;
     objective?: string,
 }

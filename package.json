@@ -1,5 +1,5 @@
 {
-  "name": "tomihq-adviency",
+  "name": "communifit-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "test:ci": "jest --config ./jest.config.js --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false --logHeapUsage --maxConcurrency=4 --maxWorkers='50%' --testTimeout=15000"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.5.4",
     "axios": "^1.4.0",
     "date-fns": "^2.29.3",
     "eslint": "8.51.0",
