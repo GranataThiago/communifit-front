@@ -27,7 +27,7 @@ const CommunityActions = ({ name }: { name: string }) => {
 	};
 
 	return (
-		<div className='flex gap-2'>
+		<div className='flex gap-2' data-testid='data'>
 			<BsEnvelope
 				className='text-gray-400 text-lg'
 				onClick={inviteModal.onOpen}
