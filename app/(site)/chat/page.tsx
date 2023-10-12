@@ -27,7 +27,10 @@ export default async function ChatListPage() {
 	const chats = await getChats();
 
 	return (
-		<section className={`bg-primary h-screen ${montserrat.className}`}>
+		<section
+			className={`bg-primary h-screen ${montserrat.className}`}
+			data-testid='section'
+		>
 			<div className='bg-primary w-full h-32 grid content-center p-6'>
 				<Input variant='filled' type='text' placeholder='Search messages...' />
 			</div>
