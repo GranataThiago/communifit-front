@@ -2,7 +2,7 @@ import { SocialMediaForm } from "../../../components/SocialMediaForm";
 import { LabeledInput } from "../../../../../components/Input";
 import { Controller } from "react-hook-form";
 import { montserrat } from "../../../../../components/fonts";
-import { RegisterFormStep } from "../Onboarding";
+import { RegisterFormStep } from "../Onboarding/Onboarding";
 
 export const RegisterForm = ({ register, control }: RegisterFormStep) => {
 	return (

@@ -43,10 +43,10 @@ export default async function CommunityPage({
 	return (
 		<>
 			{community ? (
-				/* @ts-expect-error Server Component */
+				/* @ts-ignore @ts-expect-error Server Component */
 				<CommunityScreen {...community} />
 			) : (
-				/* @ts-expect-error Server Component */
+				/* @ts-ignore @ts-expect-error Server Component */
 				<NonCommunityScreen />
 			)}
 		</>
