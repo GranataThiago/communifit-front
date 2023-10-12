@@ -1,10 +1,13 @@
 'use client'
-
 import React, { useEffect, useReducer } from 'react'
 import { UserContext, userReducer } from '.';
-import { RegisterUser, User } from '../../interfaces/user';
 import { useCookies } from 'react-cookie';
-import apiInstance from '../../app/api';
+import { RegisterUser, User } from '../../interfaces/user';
+import { loginUser } from '../../services/auth/login';
+import { decryptUser } from '../../services/auth/decrypt';
+import {  createUserAndGetToken } from '../../services/users/register';
+import { ICreateUserResponse } from '../../interfaces';
+
 
 export interface UserState{
     token: string | null;
@@ -23,33 +26,35 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     useEffect(() => {
-        validateUser();
+        decryptUserData();
     }, [])
 
     const register = async(user: RegisterUser) => {
-        try{
-            const { objective, ...newUser } = user;
-            const { data } = await apiInstance.post(`/users`, newUser);
-            dispatch({ type: '[USER] Login', payload: {token: data, user: {...user, image: 'asd'}} });
-        }catch(err){
-            console.log(err)
-            return;
-        }
+        const { objective = null, ...userData } = user;
+        const data:ICreateUserResponse = await createUserAndGetToken({user: userData});
+        if(!data || !data.token) return alert("Create user error");
+
+        dispatch({ type: '[USER] Login', payload: {token: data.token, user: {...user, image: 'asd'}} });
+        
    }
 
    const login = async(email: string, password: string): Promise<boolean> => {
         try{
-            const { data: { token } } = await apiInstance.post(`/auth/login`, { email, password });
+            const data = await loginUser({email, password})
+            if(!data || !data.token) return false;
 
-            if(!token) return false;
+            const { token } = data;
 
-            setCookie('token', token, {
+            setCookie('token', data.token, {
                 path: '/'
             });
+
+            const userData = await decryptUser({token})
+            let user = null;
+            if(userData && userData.user){
+                user = userData.user;
+            }
             
-
-            const { data: { user } } = await apiInstance.get(`/auth/decrypt`, { headers: { token }});
-
             dispatch({ type: '[USER] Login', payload: {user, token} });
 
             return true;
@@ -61,22 +66,19 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         }
    }
 
-   const validateUser = async() => {
+   const decryptUserData = async() => {
         try{
             const { token } = cookies;
-
             if(!token) return;
         
-            const { data } = await apiInstance.get(`/auth/decrypt`, { 
-                headers: {
-                    token
-                }
-            });
+            const data = await decryptUser({token});
+            if(!data) return;
                 
             dispatch({
                 type: '[USER] Login',
                 payload: { token, user: data.user }
             });
+
         }catch(err){
             console.log(err);
             removeCookie('token');
@@ -99,7 +101,7 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         ...state,
         login,
         register,
-        validateUser,
+        decryptUserData,
         logout
        }}>
            {children}

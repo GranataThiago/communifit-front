@@ -1,8 +1,4 @@
-import Link from 'next/link';
-import { SocialMediaForm } from '../components/SocialMediaForm';
 import { Onboarding } from './components/Onboarding';
-import { useUserContext } from '../../../../context/UserContext';
-import { useRouter } from 'next/navigation';
 
 const RegisterPage = () => {
   return (

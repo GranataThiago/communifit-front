@@ -1,9 +1,8 @@
 "use client"
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Input, LabeledInput, LabeledTextarea } from '../../../components/Input';
 import { Button } from '../../../components/Button';
-import apiInstance from '../../../api';
 import { useUserContext } from '../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
