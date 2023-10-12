@@ -10,10 +10,8 @@ export const createUserAndGetToken = async({user}:ICreateUser):Promise<ICreateUs
     let response: ICreateUserResponse = null; 
     try {
         const apiResponse = await apiInstance.post<ICreateUserFetch>(`/users`, user);
-        if(apiResponse.data.token){
-            const { token } = apiResponse.data;
-            response = token; 
-        }
+        if(apiResponse.data) response = apiResponse.data; 
+        
     } catch (error) {
         console.log(error)
     }

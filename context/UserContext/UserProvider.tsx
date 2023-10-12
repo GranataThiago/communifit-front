@@ -27,15 +27,15 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     useEffect(() => {
-        validateUser();
+        decryptUserData();
     }, [])
 
     const register = async(user: RegisterUser) => {
         const { objective = null, ...userData } = user;
-        const token:ICreateUserResponse = await createUserAndGetToken({user: userData});
-        if(!token) return alert("Create user error");
+        const data:ICreateUserResponse = await createUserAndGetToken({user: userData});
+        if(!data || !data.token) return alert("Create user error");
 
-        dispatch({ type: '[USER] Login', payload: {token, user: {...user, image: 'asd'}} });
+        dispatch({ type: '[USER] Login', payload: {token: data.token, user: {...user, image: 'asd'}} });
         
    }
 
@@ -67,17 +67,12 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
         }
    }
 
-   const validateUser = async() => {
+   const decryptUserData = async() => {
         try{
             const { token } = cookies;
-
             if(!token) return;
         
-            const { data } = await apiInstance.get(`/auth/decrypt`, { 
-                headers: {
-                    token
-                }
-            });
+            const { data } = await decryptUser({token});
                 
             dispatch({
                 type: '[USER] Login',
