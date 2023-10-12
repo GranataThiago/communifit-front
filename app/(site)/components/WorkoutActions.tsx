@@ -2,7 +2,6 @@
 import React from 'react'
 import { Button } from '../../components'
 import { BsPencil } from 'react-icons/bs'
-import apiInstance from '../../api'
 import { usePlanContext } from '../../../context/CreatePlanContext/PlanContext'
 
 export const WorkoutActions = () => {
@@ -16,9 +15,6 @@ export const WorkoutActions = () => {
             userId: ''
         }
         console.log(newWorkoutPlan)
-        // apiInstance.post('/plans', {
-        //     newWorkoutPlan
-        // });
     }
 
     return (

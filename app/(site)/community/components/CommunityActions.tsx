@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect } from 'react'
-import { BsEnvelope, BsPencil } from 'react-icons/bs'
 import useInviteModal from '../../../hooks/modals/useInviteModal';
+import React, { useEffect } from 'react'
 import apiInstance from '../../../api';
 import { useUserContext } from '../../../../context/UserContext';
+import { BsEnvelope, BsPencil } from 'react-icons/bs'
 
 const CommunityActions = ({name}: {name: string}) => {
 

@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useReducer } from 'react'
-import apiInstance from '../../app/api';
 import { UserContext, userReducer } from '.';
 import { useCookies } from 'react-cookie';
 import { RegisterUser, User } from '../../interfaces/user';
