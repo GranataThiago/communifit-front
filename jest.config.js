@@ -22,7 +22,7 @@ const customJestConfig = {
     '!<rootDir>/app/components/fonts.ts',
     '!<rootDir>/app/layout.tsx',
     '!<rootDir>/context/**',
-    '!<rootDir>/app/providers'
+    '!<rootDir>/app/providers/**'
     ],
     coverageDirectory: "coverage",
     preset: 'ts-jest',
