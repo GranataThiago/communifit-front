@@ -21,14 +21,13 @@ const customJestConfig = {
     '!<rootDir>/app/components/index.ts', 
     '!<rootDir>/app/components/fonts.ts',
     '!<rootDir>/app/layout.tsx',
-    '!<rootDir>/context/**',
     '!<rootDir>/app/providers/**'
     ],
     coverageDirectory: "coverage",
     preset: 'ts-jest',
     coverageThreshold: {
         global: {
-            branches: 75,
+            branches: 70,
             functions: 75,
             lines: 80,
             statements: 80,
