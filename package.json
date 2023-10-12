@@ -1,5 +1,5 @@
 {
-  "name": "tomihq-adviency",
+  "name": "communifit-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.5.4",
     "axios": "^1.4.0",
     "date-fns": "^2.29.3",
     "eslint": "8.28.0",

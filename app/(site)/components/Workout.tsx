@@ -1,12 +1,11 @@
 "use client"
-import React, { LiHTMLAttributes, useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { montserrat } from '../../components/fonts'
 import { Button } from '../../components/Button';
 import useWorkoutModal from '../../hooks/modals/useWorkoutModal';
 import { useUserContext } from '../../../context/UserContext';
 import { WEEK_DAYS } from '../../../helpers/week-days';
 import { usePlanContext } from '../../../context/CreatePlanContext/PlanContext';
-import { WorkoutState } from '../../../interfaces/exercises';
 
 
 
@@ -21,10 +20,6 @@ export const Workout = () => {
     useEffect(() => {
         if(!workoutModal.exercise) return;
         addExerciseToPlan(workoutModal.exercise, day)
-        // setExercises(prevState => ({
-        //     ...prevState,
-        //     [day]: [...prevState[day], workoutModal.exercise]
-        // }))
     }, [workoutModal.exercise])
 
     const onDayChanged = (selectedDay: string) => {

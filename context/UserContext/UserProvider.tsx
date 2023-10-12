@@ -1,13 +1,12 @@
 'use client'
-
-import React, { FC, useEffect, useReducer } from 'react'
-import { UserContext, userReducer } from '.';
-import { RegisterUser, User } from '../../interfaces/user';
-import { useCookies } from 'react-cookie';
+import React, { useEffect, useReducer } from 'react'
 import apiInstance from '../../app/api';
-import { addDays } from 'date-fns';
+import { UserContext, userReducer } from '.';
+import { useCookies } from 'react-cookie';
+import { RegisterUser, User } from '../../interfaces/user';
 import { loginUser } from '../../services/auth/login';
 import { decryptUser } from '../../services/auth/decrypt';
+
 
 export interface UserState{
     token: string | null;
@@ -92,13 +91,13 @@ export default function UserProvider ({ children }: { children: React.ReactNode 
    }
 
    const logout = () => {
-    try{
-        dispatch({type: '[USER] Logout'});
-        removeCookie('token');
-        return true;
-    }catch(err){
-        return false;
-    }
+        try{
+            dispatch({type: '[USER] Logout'});
+            removeCookie('token');
+            return true;
+        }catch(err){
+            return false;
+        }
    }
 
    return (
