@@ -10,6 +10,6 @@ afterAll(() => {
 describe("<Page />", () => {
 	it("renders CommunityPage", async () => {
 		const { getByText } = render(await Page());
-		expect(getByText("Community"));
+		expect(getByText(" Hello, Trainer"));
 	});
 });
