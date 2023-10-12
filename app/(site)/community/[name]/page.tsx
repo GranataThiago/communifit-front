@@ -1,9 +1,9 @@
-import React from 'react'
-import { NonCommunityScreen } from "../components/screens";
+import React from "react";
 import { cookies } from "next/headers";
 import { Community } from "../../../../interfaces/community";
 import apiInstance from "../../../api";
 import CommunityScreen from "../components/screens/CommunityScreen";
+import { NonCommunityScreen } from "../components/screens/NonCommunityScreen";
 
 const getCommunity = async (): Promise<Community> => {
 	const cookieStore = cookies();
