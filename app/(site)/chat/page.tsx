@@ -1,5 +1,5 @@
 import React from "react";
-import { ChatCard } from "./components/ChatCard";
+import { ChatCard } from "./components/ChatCard/ChatCard";
 import { montserrat } from "../../components/fonts";
 import { Input } from "../../components";
 

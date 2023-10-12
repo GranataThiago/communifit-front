@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Message from "../components/Message";
+import Message from "../components/Message/Message";
 import { BsArrowLeftShort, BsCameraVideo, BsTelephone } from "react-icons/bs";
 
 export default function ChatPage() {
