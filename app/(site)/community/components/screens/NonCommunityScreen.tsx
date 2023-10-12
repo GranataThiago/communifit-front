@@ -1,5 +1,5 @@
 import React from "react";
-import { CommunityCard } from "../CommunityCard";
+import { CommunityCard } from "../CommunityCard/CommunityCard";
 import { Input } from "../../../../components";
 
 const getCommunities = async () => {
