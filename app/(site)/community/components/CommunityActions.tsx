@@ -25,8 +25,12 @@ const CommunityActions = ({name}: {name: string}) => {
     
     return (
         <div className='flex gap-2'>
-            <BsEnvelope className='text-gray-400 text-lg' onClick={inviteModal.onOpen}/>
-            <BsPencil className='text-gray-400 text-lg'></BsPencil>
+            <div role='button' aria-label='Crear invitación para ingresar a comunidad'>
+                <BsEnvelope className='text-gray-400 text-lg' onClick={inviteModal.onOpen}/>
+            </div>
+            <div role='button' aria-label='Editar perfil de la comunidad'>
+                <BsPencil className='text-gray-400 text-lg'/>
+            </div>
         </div>
     )
 }
