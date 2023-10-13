@@ -5,8 +5,8 @@ import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
 import { Button, LabeledInput } from "../../../../components";
 import { montserrat } from '../../../../components/fonts';
-import { useUserContext } from '../../../../../context/UserContext/UserContext';
 import { useRouter } from 'next/navigation';
+import { useUserContext } from '../../../../../context/UserContext';
 
 type LoginForm = {
     email: string;
