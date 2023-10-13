@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Page from "../../../../../app/(site)/page";
+import RevisionPage from "../../../../../app/(site)/member/revision/page";
 
 afterAll(() => {
 	cleanup();
@@ -9,7 +9,7 @@ afterAll(() => {
 
 describe("<Page />", () => {
 	it("renders trainer role", () => {
-		const { getByText } = render(<Page />);
+		const { getByText } = render(<RevisionPage />);
 		expect(getByText("Upload your progress for week 3"));
 	});
 });

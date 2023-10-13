@@ -11,6 +11,7 @@ import fetchMock from "jest-fetch-mock";
 import { LoginForm } from "../../../../../../app/(auth)/auth/login/components/LoginForm";
 
 
+
 beforeEach(() => {
 	fetchMock.dontMock();
 });
