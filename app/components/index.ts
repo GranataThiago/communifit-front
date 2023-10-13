@@ -2,8 +2,5 @@ export * from "./Button";
 export * from "./Heading";
 export * from "./ImageWithFallback";
 export * from "./Input";
-export * from "./Modals/InviteModal";
-export * from "./Modals/WorkoutModal";
-export * from "./Modals";
 export * from "./RadioCard";
 export * from "./fonts";

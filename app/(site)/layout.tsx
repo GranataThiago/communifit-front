@@ -1,10 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import "../globals.css";
-import InviteModal from "../components/Modals/InviteModal/InviteModal";
-import WorkoutModal from "../components/Modals/WorkoutModal/WorkoutModal";
 import { Menu } from "./components/Menu/Menu";
 import ToasterProvider from "../providers/ToasterProvider";
+import { InviteModal, WorkoutModal } from "../components/modals";
 
 export const metadata = {
   title: "Communifit | Take your training to next level.",
