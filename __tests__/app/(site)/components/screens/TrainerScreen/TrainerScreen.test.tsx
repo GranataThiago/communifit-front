@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
-import { TrainerScreen } from "../../../../../../app/(site)/components";
+import TrainerScreen from "../../../../../../app/(site)/components/screens/TrainerScreen/TrainerScreen";
 
 afterAll(() => {
 	cleanup();

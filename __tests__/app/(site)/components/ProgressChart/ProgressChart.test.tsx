@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { ProgressChart } from "../../../../../app/(site)/components";
+import ProgressChart from "../../../../../app/(site)/components/ProgressChart/ProgressChart";
 
 jest.mock("recharts");
 

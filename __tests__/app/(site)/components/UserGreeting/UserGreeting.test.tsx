@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { UserGreeting } from "../../../../../app/(site)/components";
 
-jest.mock("../../../../context/UserContext", () => ({
+jest.mock("../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",

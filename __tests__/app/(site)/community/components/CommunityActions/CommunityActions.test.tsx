@@ -2,19 +2,18 @@ import React from "react";
 import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
 import CommunityActions from "../../../../../../app/(site)/community/components/CommunityActions/CommunityActions";
 import apiInstance from "../../../../../../app/api";
-
 afterAll(() => {
 	cleanup();
 	jest.clearAllMocks();
 });
 
-jest.mock("/context/UserContext", () => ({
+jest.mock("../../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		token: "",
 	}),
 }));
 
-jest.mock("/hooks/modals/useInviteModal", () => ({
+jest.mock("../../../../../../app/hooks/modals/useInviteModal", () => ({
 	__esModule: true,
 	default: jest.fn(() => ({
 		setName: jest.fn(),
@@ -22,7 +21,6 @@ jest.mock("/hooks/modals/useInviteModal", () => ({
 		onOpen: jest.fn(),
 	})),
 }));
-
 jest.mock("../../../../../../app/api");
 
 describe("CommunityActions component", () => {

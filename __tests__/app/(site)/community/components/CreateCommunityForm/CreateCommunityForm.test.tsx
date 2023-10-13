@@ -1,9 +1,10 @@
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import CreateCommunityForm from "../../../../../../app/(site)/community/components/CreateCommunityForm/CreateCommunityForm";
 
+
+
 const mockRouterPush = jest.fn();
-const mockUseCookies = jest.fn();
 
 jest.mock("next/navigation", () => ({
 	useRouter: () => ({
@@ -19,7 +20,7 @@ jest.mock("react-cookie", () => ({
 
 jest.mock("axios");
 
-jest.mock("../../../api", () => ({
+jest.mock("../../../../../../app/api", () => ({
 	default: {
 		post: jest.fn(() => {
 			return Promise.resolve({
@@ -29,8 +30,7 @@ jest.mock("../../../api", () => ({
 		}),
 	},
 }));
-
-jest.mock("/context/UserContext", () => ({
+jest.mock("../../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",

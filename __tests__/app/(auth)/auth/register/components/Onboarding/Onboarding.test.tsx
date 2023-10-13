@@ -6,7 +6,6 @@ import {
 	getByTestId,
 } from "@testing-library/react";
 import { Onboarding } from "../../../../../../../app/(auth)/auth/register/components/Onboarding/Onboarding";
-
 jest.mock("next/navigation", () => ({
 	useRouter() {
 		return {
@@ -26,7 +25,7 @@ jest.mock("next/navigation", () => ({
 	},
 }));
 
-jest.mock("../../../../../../context/UserContext");
+jest.mock("../../../../../../../context/UserContext");
 
 describe("Onboarding component", () => {
 	describe("Onboarding component", () => {

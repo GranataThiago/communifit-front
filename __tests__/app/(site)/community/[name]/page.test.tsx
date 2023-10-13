@@ -23,7 +23,7 @@ jest.mock("next/headers", () => ({
 	}),
 }));
 
-jest.mock("../../../api", () => ({
+jest.mock("../../../../../app/api", () => ({
 	default: {
 		get: jest.fn(),
 	},

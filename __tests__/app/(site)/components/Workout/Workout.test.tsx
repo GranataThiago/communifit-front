@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { Workout } from "../../../../../app/(site)/components";
-jest.mock("../../../../context/UserContext", () => ({
+jest.mock("../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",
