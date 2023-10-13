@@ -25,7 +25,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "interfaces/services/users/register"  ],
   "exclude": [
     "node_modules"
   ]

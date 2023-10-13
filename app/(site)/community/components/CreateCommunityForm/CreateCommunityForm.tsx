@@ -1,10 +1,6 @@
 "use client"
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Input, LabeledInput, LabeledTextarea } from '../../../../components/Input';
-import { Button } from '../../../../components/Button';
-import apiInstance from '../../../../api';
-import { useUserContext } from '../../../../../context/UserContext';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 import { montserrat } from '../../../../components/fonts';
@@ -12,6 +8,8 @@ import { renderToast } from '../../../../providers/ToasterProvider';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { createCommunity } from '../../../../../services/community/create-community';
 import { CreateCommunity } from '../../../../../interfaces/services/community/create-community';
+import { useUserContext } from '../../../../../context/UserContext';
+import { Button, Input, LabeledInput, LabeledTextarea } from '../../../../components';
 
 
 const CreateCommunityForm = () => {

@@ -2,7 +2,7 @@ import { UserState } from '.';
 import { User } from '../../interfaces/user';
 
 type UserActionType = 
-| { type: '[USER] Login', payload: { token: string, user: User } }
+| { type: '[USER] Login', payload: { token: string, user: User | null} }
 | { type: '[USER] Logout' }
 
 export const userReducer = (state: UserState, action: UserActionType): UserState => {

@@ -1,13 +1,9 @@
-import React from "react";
-import { CommunityScreen } from "../components/screens";
-import { cookies } from "next/headers";
-import { Community } from "../../../../interfaces/community";
-import { redirect } from "next/navigation";
-import apiInstance from "../../../api";
-import {
-	getCommunityData,
-	getCommunityPosts,
-} from "../../../../services/community/community-page";
+import React from 'react'
+import { CommunityScreen } from '../components/screens'
+import { cookies } from 'next/headers';
+import { Community } from '../../../../interfaces/community';
+import { redirect } from 'next/navigation';
+import { getCommunityData, getCommunityPosts } from '../../../../services/community/community-page';
 
 interface CommunityPageParams {
 	name: string;
