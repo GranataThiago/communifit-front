@@ -6,36 +6,36 @@ import apiInstance from "../../../../api";
 import { useUserContext } from "../../../../../context/UserContext";
 
 const CommunityActions = ({ name }: { name: string }) => {
-	const { token } = useUserContext();
-	const inviteModal = useInviteModal();
+  const { token } = useUserContext();
+  const inviteModal = useInviteModal();
 
-	useEffect(() => {
-		inviteModal.setName(name);
-		if (token) getInvitationLink();
-	}, [token]);
+  useEffect(() => {
+    inviteModal.setName(name);
+    if (token) getInvitationLink();
+  }, [token]);
 
-	const getInvitationLink = async () => {
-		const { data } = await apiInstance.post(
-			"/communities/invitation",
-			{
-				name,
-			},
-			{ headers: { token } }
-		);
-		inviteModal.setLink(data.link);
-		console.log(data.link);
-	};
+  const getInvitationLink = async () => {
+    const { data } = await apiInstance.post(
+      "/communities/invitation",
+      {
+        name,
+      },
+      { headers: { token } },
+    );
+    inviteModal.setLink(data.link);
+    console.log(data.link);
+  };
 
-	return (
-		<div className='flex gap-2' data-testid='data'>
-			<BsEnvelope
-				data-testid='envelope-icon'
-				className='text-gray-400 text-lg'
-				onClick={inviteModal.onOpen}
-			/>
-			<BsPencil className='text-gray-400 text-lg'></BsPencil>
-		</div>
-	);
+  return (
+    <div className="flex gap-2" data-testid="data">
+      <BsEnvelope
+        data-testid="envelope-icon"
+        className="text-gray-400 text-lg"
+        onClick={inviteModal.onOpen}
+      />
+      <BsPencil className="text-gray-400 text-lg"></BsPencil>
+    </div>
+  );
 };
 
 export default CommunityActions;

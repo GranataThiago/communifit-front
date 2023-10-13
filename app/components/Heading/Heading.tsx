@@ -1,21 +1,21 @@
-'use client';
+"use client";
 import React from "react";
 
 interface HeadingProps {
-	title: string;
-	subtitle?: string;
-	center?: boolean;
+  title: string;
+  subtitle?: string;
+  center?: boolean;
 }
 
 const Heading = (props: HeadingProps) => {
-	const { center, title, subtitle } = props;
-	return (
-		<div className={center ? "text-center" : "text-start"}>
-			<div className='text-2xl font-bold'>{title}</div>
+  const { center, title, subtitle } = props;
+  return (
+    <div className={center ? "text-center" : "text-start"}>
+      <div className="text-2xl font-bold">{title}</div>
 
-			<div className='font-light text-neutral-500 mt-2'>{subtitle}</div>
-		</div>
-	);
+      <div className="font-light text-neutral-500 mt-2">{subtitle}</div>
+    </div>
+  );
 };
 
 export default Heading;

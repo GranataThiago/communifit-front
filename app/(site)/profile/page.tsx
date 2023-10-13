@@ -1,11 +1,10 @@
-import React from 'react'
-import { ProfileHeading } from './components/ProfileHeading';
+import React from "react";
+import { ProfileHeading } from "./components/ProfileHeading";
 
-export default function ProfilePage(){
-
+export default function ProfilePage() {
   return (
-		<div data-testid='content'>
-			<ProfileHeading />
-		</div>
-	);
+    <div data-testid="content">
+      <ProfileHeading />
+    </div>
+  );
 }

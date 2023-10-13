@@ -3,19 +3,22 @@ import { ICreateUserFetch, ICreateUserResponse } from "../../interfaces";
 import { RegisterUser } from "../../interfaces/user";
 
 interface ICreateUser {
-    user: RegisterUser;
+  user: RegisterUser;
 }
 
-export const createUserAndGetToken = async({user}:ICreateUser):Promise<ICreateUserResponse> => {
-    let response: ICreateUserResponse = null; 
-    try {
-        const apiResponse = await apiInstance.post<ICreateUserFetch>(`/users`, user);
-        if(apiResponse.data) response = apiResponse.data; 
-        
-    } catch (error) {
-        console.log(error)
-    }
+export const createUserAndGetToken = async ({
+  user,
+}: ICreateUser): Promise<ICreateUserResponse> => {
+  let response: ICreateUserResponse = null;
+  try {
+    const apiResponse = await apiInstance.post<ICreateUserFetch>(
+      `/users`,
+      user,
+    );
+    if (apiResponse.data) response = apiResponse.data;
+  } catch (error) {
+    console.log(error);
+  }
 
-    return response;
-    
-}
+  return response;
+};

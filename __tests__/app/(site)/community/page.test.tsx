@@ -3,24 +3,24 @@ import { render, cleanup, waitFor } from "@testing-library/react";
 import CommunityPage from "../../../../app/(site)/community/page";
 
 afterAll(() => {
-	cleanup();
-	jest.clearAllMocks();
+  cleanup();
+  jest.clearAllMocks();
 });
 
 jest.mock("../../../../context/UserContext", () => ({
-	useUserContext: () => ({
-		user: {
-			fullname: "John Doe",
-			username: "johndoe",
-			type: "trainer",
-		},
-	}),
+  useUserContext: () => ({
+    user: {
+      fullname: "John Doe",
+      username: "johndoe",
+      type: "trainer",
+    },
+  }),
 }));
 
 describe("<Page />", () => {
-	it("renders CommunityPage", () => {
-		const { getByText } = render(<CommunityPage />);
+  it("renders CommunityPage", () => {
+    const { getByText } = render(<CommunityPage />);
 
-		expect(getByText("Join with Code")).toBeInTheDocument();
-	});
+    expect(getByText("Join with Code")).toBeInTheDocument();
+  });
 });

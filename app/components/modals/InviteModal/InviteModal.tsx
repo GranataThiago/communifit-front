@@ -10,49 +10,49 @@ import Heading from "../../Heading/Heading";
 import { renderToast } from "../../../providers/ToasterProvider";
 
 const InviteModal = () => {
-	const inviteModal = useInviteModal();
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+  const inviteModal = useInviteModal();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		setIsLoading(true);
-	};
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+  };
 
-	const toggle = useCallback(() => {
-		inviteModal.onClose();
-	}, [inviteModal]);
+  const toggle = useCallback(() => {
+    inviteModal.onClose();
+  }, [inviteModal]);
 
-	const bodyContent = (
-		<div className='flex flex-col gap-4'>
-			<Heading
-				title='Invite someone to Gorillas'
-				subtitle='Link is valid for one person only'
-			/>
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading
+        title="Invite someone to Gorillas"
+        subtitle="Link is valid for one person only"
+      />
 
-			<input
-				type='text'
-				aria-label='Copied to clipboard'
-				value={inviteModal.link}
-				disabled
-			/>
-		</div>
-	);
+      <input
+        type="text"
+        aria-label="Copied to clipboard"
+        value={inviteModal.link}
+        disabled
+      />
+    </div>
+  );
 
-	const onLinkCopied = () => {
-		renderToast("Copied to clipboard", <AiFillCheckCircle />);
-		navigator.clipboard.writeText(inviteModal.link);
-	};
+  const onLinkCopied = () => {
+    renderToast("Copied to clipboard", <AiFillCheckCircle />);
+    navigator.clipboard.writeText(inviteModal.link);
+  };
 
-	return (
-		<Modal
-			disabled={isLoading}
-			isOpen={inviteModal.isOpen}
-			title='Invite'
-			actionLabel='Copy'
-			onClose={inviteModal.onClose}
-			onSubmit={onLinkCopied}
-			body={bodyContent}
-		/>
-	);
+  return (
+    <Modal
+      disabled={isLoading}
+      isOpen={inviteModal.isOpen}
+      title="Invite"
+      actionLabel="Copy"
+      onClose={inviteModal.onClose}
+      onSubmit={onLinkCopied}
+      body={bodyContent}
+    />
+  );
 };
 
 export default InviteModal;

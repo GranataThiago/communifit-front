@@ -6,8 +6,8 @@ import CommunityScreen from "../../../../../app/(site)/community/components/scre
 const props = CommunityScreen_Mock;
 
 describe("CommunityScreen component", () => {
-	it("should render the CommunityScreen with the correct data", () => {
-		const { getByText } = render(<CommunityScreen {...props} />);
-		expect(getByText("Test Community")).toBeInTheDocument();
-	});
+  it("should render the CommunityScreen with the correct data", () => {
+    const { getByText } = render(<CommunityScreen {...props} />);
+    expect(getByText("Test Community")).toBeInTheDocument();
+  });
 });

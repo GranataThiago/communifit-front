@@ -1,2 +1,2 @@
-export * from './ChatCard/ChatCard';
-export { default as Message } from './Message/Message';
+export * from "./ChatCard/ChatCard";
+export { default as Message } from "./Message/Message";

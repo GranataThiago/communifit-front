@@ -1,1 +1,1 @@
-export { default as WorkoutModal } from './WorkoutModal';
+export { default as WorkoutModal } from "./WorkoutModal";

@@ -4,15 +4,15 @@ import { HomeScreen } from "../../../app/(site)/components/screens/HomeScreen";
 import Page from "../../../app/(site)/page";
 
 afterAll(() => {
-	cleanup();
-	jest.clearAllMocks();
+  cleanup();
+  jest.clearAllMocks();
 });
 
 jest.mock("recharts");
 
 describe("<Page />", () => {
-	it("renders trainer role", () => {
-		render(<Page />);
-		expect(render(<HomeScreen />));
-	});
+  it("renders trainer role", () => {
+    render(<Page />);
+    expect(render(<HomeScreen />));
+  });
 });

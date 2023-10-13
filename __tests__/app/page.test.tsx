@@ -3,13 +3,13 @@ import { render, cleanup } from "@testing-library/react";
 import Page from "../../app/page";
 
 afterAll(() => {
-	cleanup();
-	jest.clearAllMocks();
+  cleanup();
+  jest.clearAllMocks();
 });
 
 describe("<Page />", () => {
-	it("renders without errors", () => {
-		const { getByText } = render(<Page />);
-		expect(getByText("Communifit"));
-	});
+  it("renders without errors", () => {
+    const { getByText } = render(<Page />);
+    expect(getByText("Communifit"));
+  });
 });

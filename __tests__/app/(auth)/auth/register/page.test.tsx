@@ -4,36 +4,36 @@ import Page from "../../../../../app/(auth)/auth/register/page";
 import fetchMock from "jest-fetch-mock";
 
 beforeEach(() => {
-	fetchMock.dontMock();
+  fetchMock.dontMock();
 });
 
 afterAll(() => {
-	cleanup();
-	jest.clearAllMocks();
+  cleanup();
+  jest.clearAllMocks();
 });
 
 jest.mock("next/navigation", () => ({
-	useRouter() {
-		return {
-			route: "/",
-			pathname: "",
-			query: "",
-			asPath: "",
-			push: jest.fn(),
-			replace: jest.fn(),
-			events: {
-				on: jest.fn(),
-				off: jest.fn(),
-			},
-			beforePopState: jest.fn(() => null),
-			prefetch: jest.fn(() => null),
-		};
-	},
+  useRouter() {
+    return {
+      route: "/",
+      pathname: "",
+      query: "",
+      asPath: "",
+      push: jest.fn(),
+      replace: jest.fn(),
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+      beforePopState: jest.fn(() => null),
+      prefetch: jest.fn(() => null),
+    };
+  },
 }));
 
 describe("<Page />", () => {
-	it("renders without errors", () => {
-		const { getByText } = render(<Page />);
-		expect(getByText("Already have an account?"));
-	});
+  it("renders without errors", () => {
+    const { getByText } = render(<Page />);
+    expect(getByText("Already have an account?"));
+  });
 });
