@@ -1,12 +1,11 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { Menu } from "../../../../../app/(site)/components";
-
 jest.mock("next/navigation", () => ({
 	usePathname: jest.fn(),
 }));
 
-jest.mock("../../../../context/UserContext", () => ({
+jest.mock("../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",
@@ -38,7 +37,7 @@ describe("Menu component", () => {
 			.spyOn(require("next/navigation"), "usePathname")
 			.mockReturnValue("/community");
 		jest
-			.spyOn(require("../../../../context/UserContext"), "useUserContext")
+			.spyOn(require("../../../../../context/UserContext"), "useUserContext")
 			.mockReturnValue({});
 
 		const { container } = render(<Menu />);

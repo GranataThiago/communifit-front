@@ -7,7 +7,7 @@ afterAll(() => {
 	jest.clearAllMocks();
 });
 
-jest.mock("../../../../context/UserContext", () => ({
+jest.mock("../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		user: {
 			fullname: "John Doe",

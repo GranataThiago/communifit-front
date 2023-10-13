@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Page from "../../app/page-copy";
+import Page from "../../app/page";
 
 afterAll(() => {
 	cleanup();

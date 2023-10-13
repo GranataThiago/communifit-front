@@ -7,8 +7,9 @@ import {
 	waitFor,
 	act,
 } from "@testing-library/react";
-import { LoginForm } from "../../../../../../app/(auth)/auth/login/components/LoginForm";
 import fetchMock from "jest-fetch-mock";
+import { LoginForm } from "../../../../../../app/(auth)/auth/login/components/LoginForm";
+
 
 beforeEach(() => {
 	fetchMock.dontMock();
@@ -33,7 +34,7 @@ jest.mock("next/navigation", () => ({
 	},
 }));
 
-jest.mock("../../../../../context/UserContext/UserContext", () => ({
+jest.mock("../../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		login: async (email: string, password: string) => {
 			return email === "test@example.com" && password === "password";

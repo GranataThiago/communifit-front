@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
-import { ClientScreen } from "../../../../../../app/(site)/components";
+import ClientScreen from "../../../../../../app/(site)/components/screens/ClientScreen/ClientScreen";
 
 afterAll(() => {
 	cleanup();
