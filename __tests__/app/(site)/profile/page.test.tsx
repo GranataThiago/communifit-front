@@ -1,7 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Page from "../../../../app/(site)/page";
-
+import ProfilePage from "../../../../app/(site)/profile/page";
 afterAll(() => {
 	cleanup();
 	jest.clearAllMocks();
@@ -9,7 +8,7 @@ afterAll(() => {
 
 describe("<Page />", () => {
 	it("renders page", () => {
-		const { getByTestId } = render(<Page />);
+		const { getByTestId } = render(<ProfilePage />);
 		expect(getByTestId("content"));
 	});
 });
