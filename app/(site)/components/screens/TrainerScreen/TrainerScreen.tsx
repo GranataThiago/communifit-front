@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { User } from "../../../../../interfaces/user";
 import { UserGreeting } from "../../UserGreeting/UserGreeting";
 
 const FAKE_USERS = [
