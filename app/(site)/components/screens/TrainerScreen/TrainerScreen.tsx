@@ -11,7 +11,7 @@ const FAKE_USERS = [
 	},
 ];
 
-export const TrainerScreen = () => {
+const TrainerScreen = () => {
 	return (
 		<main className='bg-secondary flex flex-col gap-8'>
 			<header className='flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative'>
@@ -65,3 +65,5 @@ export const TrainerScreen = () => {
 		</main>
 	);
 };
+
+export default TrainerScreen

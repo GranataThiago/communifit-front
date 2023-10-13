@@ -48,7 +48,7 @@ const data = [
     },
   ];
 
-export const ProgressChart = () => {
+const ProgressChart = () => {
   return (
     <ResponsiveContainer width="100%" height="100%">
         <AreaChart
@@ -71,3 +71,5 @@ export const ProgressChart = () => {
     </ResponsiveContainer>
   )
 }
+
+export default ProgressChart

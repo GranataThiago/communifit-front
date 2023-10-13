@@ -1,11 +1,10 @@
 import React from "react";
-import Image from "next/image";
-import { ProgressChart } from "../../ProgressChart/ProgressChart";
 import { Workout } from "../../Workout/Workout";
 import { UserGreeting } from "../../UserGreeting/UserGreeting";
-import { montserrat } from "../../../../components/fonts";
+import dynamic from "next/dynamic";
 
-export const ClientScreen = () => {
+
+const ClientScreen = () => {
 	return (
 		<main className='bg-secondary flex flex-col gap-8' data-testid='work'>
 			<header className='flex flex-col justify-between items-center w-full p-6'>
@@ -47,12 +46,9 @@ export const ClientScreen = () => {
 				</div>
 			</section>
 
-			<section className='chart p-6'>
-				<p className='text-3xl font-bold'>Your Progress</p>
-				<div className='w-full h-96 mx-auto'>
-					<ProgressChart />
-				</div>
-			</section>
+			
 		</main>
 	);
 };
+
+export default ClientScreen
