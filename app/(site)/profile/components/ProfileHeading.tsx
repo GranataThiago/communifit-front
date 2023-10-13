@@ -1,31 +1,31 @@
-"use client"
-import React from 'react'
-import { Button } from '../../../components'
-import { BiLogOut } from 'react-icons/bi'
-import { useUserContext } from '../../../../context/UserContext'
+"use client";
+import React from "react";
+import { Button } from "../../../components";
+import { BiLogOut } from "react-icons/bi";
+import { useUserContext } from "../../../../context/UserContext";
 
 export const ProfileHeading = () => {
-
   const { user, logout } = useUserContext();
 
   const onLogout = () => {
     logout();
-    window.location.assign('/auth/login');
-  }
+    window.location.assign("/auth/login");
+  };
 
   return (
-    <header className='flex justify-between p-6'>
+    <header className="flex justify-between p-6" data-testid="header">
       <div>
-        <p className='font-semibold text-lg'>{user?.fullName}</p>
+        <p className="font-semibold text-lg">{user?.fullName}</p>
         <p>{user?.username}</p>
       </div>
       <Button
-        variant='filled'
-        className='bg-red-500 w-12 h-12'
+        data-testid="button"
+        variant="filled"
+        className="bg-red-500 w-12 h-12"
         onClick={onLogout}
       >
-        <BiLogOut size={24} className='ml-2'/>
+        <BiLogOut size={24} className="ml-2" />
       </Button>
     </header>
-  )
-}
+  );
+};
