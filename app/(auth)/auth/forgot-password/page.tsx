@@ -68,6 +68,15 @@ export default function ForgotPasswordPage() {
     }
   }
 
+  const displayCurrentTitle = () => {
+    switch(currentStep){
+      case 0: 
+        return 'First step: Enter your email'
+      case 1:
+        return 'Second step: Enter the validation code that we sent to your email'
+    }
+  }
+
   const displayCurrentStep = () => {
    
     const baseProps = {
@@ -104,6 +113,7 @@ export default function ForgotPasswordPage() {
         <Logo/>
       </div>
       <h1 className="py-2 pb-8 text-black text-xl font-semibold">Forgot Password</h1>
+      <h2 className="py-2 pb-8 text-black text-lg font-semibold">{displayCurrentTitle()}</h2>
       {displayCurrentStep()}
       
       <div className="absolute px-6 bottom-14 w-full flex flex-col items-center gap-6">
@@ -112,7 +122,7 @@ export default function ForgotPasswordPage() {
         className="relative" 
         onClick={onNextStep}
       >
-          {isLoading ? <Loading/>:getButton().title}
+          {isLoading ? <Loading containerClasses="h-8" spinnerClasses="h-6 w-6 border-2 border-gray-400" />:getButton().title}
       </Button>
         <Link
           className="w-fit h-fit"
