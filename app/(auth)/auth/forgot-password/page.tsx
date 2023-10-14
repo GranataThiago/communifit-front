@@ -25,9 +25,9 @@ export interface ForgotPasswordFormStep {
   control: Control<ForgotPasswordForm, any>;
 }
 
-
+//TODO: AGREGAR UN MIDDLEWARE QUE SI ESTÁ LOGUEADO LO MANDE A LA HOME. (Acá no, directamente crear un middleware.)
 export default function ForgotPasswordPage() {
-  const [currentStep, setCurrentStep] = useState<string>("0");
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(['', '', '', '']); 
   const router = useRouter();
@@ -53,27 +53,27 @@ export default function ForgotPasswordPage() {
     if(!response) return; 
     
     switch(currentStep){
-      case "0":
+      case 0:
         setIsLoading(true);
         const response = await recoverPassword({email: getValues("email")}); 
         if(!response || response.status_code !== "code_sent"){
           console.log("Error")
         }else{
-          setCurrentStep((prev) => String(Number(prev)+1))
+          setCurrentStep((prev) => prev+1)
         }
         setIsLoading(false);
         return; 
-      case "1":
+      case 1:
         setIsLoading(true);
-        const responseVerifyCode = await verifyCode({email:"hernandeztomas584@gmail.com", code})
+        const responseVerifyCode = await verifyCode({email:getValues("email"), code})
         if(responseVerifyCode?.status_code !== 'valid_code'){
           console.log("Código invalido")
         }else {
-          setCurrentStep((prev) => String(Number(prev)+1))
+          setCurrentStep((prev) => prev+1)
         }
         setIsLoading(false);
         return; 
-      case "2":
+      case 2:
           setIsLoading(true);
           const responseChangePassword = await changePassword({email:"hernandeztomas584@gmail.com", code, password: getValues('password'), confirmPassword: getValues('confirmPassword')})
            if(responseChangePassword?.status_code !== 'password_changed'){
@@ -93,11 +93,11 @@ export default function ForgotPasswordPage() {
 
   const getButton = () => {
     switch(currentStep){
-      case "0":
+      case 0:
        return 'Send Code';
-      case "1":
+      case 1:
         return "Verify Code"
-      case "2": 
+      case 2: 
         return "Set new password"
         
     }
@@ -107,11 +107,11 @@ export default function ForgotPasswordPage() {
 
   const displayCurrentTitle = () => {
     switch(currentStep){
-      case "0": 
+      case 0: 
         return 'First step: Enter your email'
-      case "1":
+      case 1:
         return 'Second step: Enter the validation code that we sent to your email'
-      case "2":
+      case 2:
         return 'Last step: Set your new password'
     }
   }
@@ -126,18 +126,18 @@ export default function ForgotPasswordPage() {
     
 
     switch (currentStep) {
-      case "0":
+      case 0:
         return <InsertEmailStep  {...baseProps} />; 
-      case "1":
+      case 1:
         return <InsertCodeStep code={code} setCode={setCode} {...baseProps} />;
-      case "2":
+      case 2:
         return <ChangePasswordStep {...baseProps} />; 
   
     }
   };
 
   const handleValidations = () => {
-     if(currentStep == "0"){
+     if(currentStep == 0){
      const email = getValues("email");
       if(!EMAIL_REGEX.test(email)) {
         return false;
@@ -145,7 +145,7 @@ export default function ForgotPasswordPage() {
       
     } 
 
-     if(currentStep == "1"){
+     if(currentStep == 1){
       code.forEach(digit => {
         if(!digit || digit.length != 0){
           toast.error("All digits must be filled")
@@ -153,6 +153,8 @@ export default function ForgotPasswordPage() {
         }
       });
     } 
+
+    //TODO VALIDACIONES DE CONTRASEÑA con regex del BACKEND.
     return true;
   }
 
