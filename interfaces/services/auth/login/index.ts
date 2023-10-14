@@ -1,11 +1,7 @@
 export interface ILoginUserFetch {
-  ok: boolean;
-  token: string;
-}
-
-export interface ILoginUserFetchFail {
 	ok: boolean;
-	message: string;
+	message?: string;
+	token?: string;
 }
 
-export type LoginUserResponse = ILoginUserFetchFail | ILoginUserFetch;
+export type LoginUserResponse = ILoginUserFetch | null;
