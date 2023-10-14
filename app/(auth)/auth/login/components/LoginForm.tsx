@@ -7,6 +7,7 @@ import { Button } from "../../../../components";
 import { LabeledInput } from "../../../../components/Input";
 import Link from "next/link";
 import { LoaderSpinner } from "../../../../components/LoaderSpinner/LoaderSpinner";
+import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
@@ -49,8 +50,8 @@ export const LoginForm = () => {
 		const { email, password } = formData;
 
 		try {
-			const response = await login(email, password);
-
+			const response: LoginUserResponse = await login(email, password);
+			console.log(response);
 			if (!response) {
 				setMessageError(errorLoginMessage);
 				return;
@@ -89,11 +90,7 @@ export const LoginForm = () => {
 	};
 
 	if (isLoading) {
-		return (
-			<>
-				<LoaderSpinner />
-			</>
-		);
+		return <LoaderSpinner />;
 	}
 
 	return (
@@ -126,13 +123,16 @@ export const LoginForm = () => {
 					)}
 				</React.Fragment>
 			))}
+			<Link
+				className='text-right mt-0 text-sm font-semibold'
+				href='/auth/forgot-password'
+			>
+				Forgot password?
+			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
 			<Button type='submit' variant='filled' canSubmit={!isValid}>
 				Login
 			</Button>
-			<Link className='text-right w-full mt-0' href='/auth/forgot-password'>
-				<p>Forgot password?</p>
-			</Link>
 		</form>
 	);
 };

@@ -12,7 +12,7 @@ type InputStyles = { [key: string]: string };
 
 const inputVariants: InputStyles = {
 	filled: "w-full bg-gray-100 p-2 rounded-xl",
-	outlined: "w-full border rounded-xl p-2",
+	outlined: "w-full border border-gray-300 rounded-xl p-2",
 };
 
 export const Input = ({ variant, className, name, ...props }: InputProps) => {
@@ -37,7 +37,7 @@ interface LabeledInputProps {
 export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
 	return (
 		<div className='flex flex-col w-full'>
-			<label htmlFor={props.name} className='pb-1'>
+			<label htmlFor={props.name} className='pb-1 font-semibold'>
 				{label}
 			</label>
 			<Input {...props} />
