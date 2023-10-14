@@ -7,7 +7,6 @@ import { Button } from "../../../../components";
 import { LabeledInput } from "../../../../components/Input";
 import Link from "next/link";
 import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
-import { LoaderSpinner } from "../../../../components/LoaderSpinner/LoaderSpinner";
 import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
 import { useRouter } from "next/navigation";
@@ -39,8 +38,8 @@ export const LoginForm = () => {
 
 	const router = useRouter();
 
-	const [isLoading, setIsLoading] = useState(true);
-	const [messageError, setMessageError] = useState("");
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [messageError, setMessageError] = useState<string>("");
 
 	// Change for error not generic
 	const errorLoginMessage: string =
