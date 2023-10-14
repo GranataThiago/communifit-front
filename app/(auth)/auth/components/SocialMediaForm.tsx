@@ -31,16 +31,20 @@ export const SocialMediaForm = () => {
 	});
 	return (
 		<div className='w-full mb-4 flex flex-col items-center'>
-			<p className='text-center text-gray-400'>Or Login with</p>
-			<ul className='mt-4 flex cursor-pointer'>
-				<li
+			<h5 className='text-center text-gray-400'>Or Login with</h5>
+			<div className='mt-4 flex cursor-pointer'>
+				<button
 					onClick={() => login()}
 					className='border border-gray-300 p-4 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
 				>
-					<FcGoogle size='2rem' className='cursor-pointer' />
-					Sign in with Google
-				</li>
-			</ul>
+					<FcGoogle
+						size='2rem'
+						className='cursor-pointer'
+						aria-label='Login with google'
+					/>
+					<p>Sign in with Google</p>
+				</button>
+			</div>
 		</div>
 	);
 };
