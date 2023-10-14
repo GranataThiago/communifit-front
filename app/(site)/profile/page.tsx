@@ -1,16 +1,10 @@
-import React from 'react'
-import { Button } from '../../components/Button';
-import { BiLogOut } from 'react-icons/bi'
-import { ProfileHeading } from './components/ProfileHeading';
+import React from "react";
+import { ProfileHeading } from "./components/ProfileHeading";
 
-export default function ProfilePage(){
-  
-  
-
+export default function ProfilePage() {
   return (
-    <div>
+    <div data-testid="content">
       <ProfileHeading />
-
     </div>
-  )
+  );
 }

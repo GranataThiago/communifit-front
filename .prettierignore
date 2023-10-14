@@ -1,0 +1,58 @@
+# About prettierignore: https://prettier.io/docs/en/ignore.html
+
+# dependencies
+/node_modules
+**/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env.development
+.env.preview
+.env.production
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# vscode configs
+.vscode
+
+# other files
+public/
+**/*.md
+**/*.svg
+**/*.html
+**/*.ejs
+**/*.png
+**/*.eot
+**/*.woff
+**/*.ttf
+**/*.gif
+**/*.jpg
+**/*.jpeg
+**/*.min.css
+**/*.min.js
+package.json
+package-lock.json
