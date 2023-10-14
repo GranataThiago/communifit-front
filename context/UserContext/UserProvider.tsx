@@ -54,6 +54,7 @@ export default function UserProvider({
 				email,
 				password,
 			});
+
 			if (!data || !data.token) {
 				return null;
 			}
@@ -72,10 +73,7 @@ export default function UserProvider({
 
 			dispatch({ type: "[USER] Login", payload: { user, token } });
 
-			return {
-				ok: data.ok,
-				token: data.token,
-			};
+			return data;
 		} catch (err) {
 			console.log(err);
 			removeCookie("token");
