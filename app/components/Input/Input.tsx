@@ -1,7 +1,9 @@
 import React, { InputHTMLAttributes, Ref } from "react";
 
+import { UseFormRegisterReturn } from "react-hook-form";
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  variant: InputVariant;
+	variant: InputVariant;
 }
 
 type InputVariant = "outlined" | "filled" | "text";
@@ -9,53 +11,54 @@ type InputVariant = "outlined" | "filled" | "text";
 type InputStyles = { [key: string]: string };
 
 const inputVariants: InputStyles = {
-  filled: "w-full bg-gray-100 p-2 rounded-xl",
-  outlined: "w-full border rounded-xl p-2",
+	filled: "w-full bg-gray-100 p-2 rounded-xl",
+	outlined: "w-full border rounded-xl p-2",
 };
 
-export const Input = ({ variant, className, ...props }: InputProps) => {
-  return (
-    <input className={`${inputVariants[variant]} ${className}`} {...props} />
-  );
+export const Input = ({ variant, className, name, ...props }: InputProps) => {
+	return (
+		<input
+			className={`${inputVariants[variant]} ${className}`}
+			{...props}
+			id={name}
+		/>
+	);
 };
 
 interface LabeledInputProps {
-  variant: InputVariant;
-  label: string;
-  name: string;
-  type: string;
-  ref?: null;
-  id?: string;
+	variant: InputVariant;
+	label: string;
+	name: string;
+	type: string;
+	ref?: null;
+	register?: UseFormRegisterReturn;
 }
 
 export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
-  return (
-    <div className="flex flex-col w-full">
-      <label htmlFor={props.name} className="pb-1">
-        {label}
-      </label>
-      <Input {...props} />
-    </div>
-  );
+	return (
+		<div className='flex flex-col w-full'>
+			<label htmlFor={props.name} className='pb-1'>
+				{label}
+			</label>
+			<Input {...props} />
+		</div>
+	);
 };
 
 interface LabeledTextareaProps {
-  variant: InputVariant;
-  label: string;
-  name: string;
-  ref?: null;
+	variant: InputVariant;
+	label: string;
+	name: string;
+	ref?: null;
 }
 
 export const LabeledTextarea = ({ label, ...props }: LabeledTextareaProps) => {
-  return (
-    <div className="flex flex-col w-full">
-      <label htmlFor={props.name} className="pl-2">
-        {label}
-      </label>
-      <textarea
-        {...props}
-        className={`${inputVariants[props.variant]}`}
-      ></textarea>
-    </div>
-  );
+	return (
+		<div className='flex flex-col w-full'>
+			<label htmlFor={props.name} className='pl-2'>
+				{label}
+			</label>
+			<textarea {...props} className={`${inputVariants[props.variant]}`} />
+		</div>
+	);
 };
