@@ -6,15 +6,18 @@ import InsertEmailStep from "./components/InsertEmailStep";
 import { Control, UseFormRegister, useForm } from "react-hook-form";
 import Link from "next/link";
 import { EMAIL_REGEX } from "../../../../utils";
-import { recoverPassword } from "../../../../services/users/recoverPassword";
+import { changePassword, recoverPassword, verifyCode } from "../../../../services/users/recoverPassword";
 import Loading from "../../../(site)/loading";
 import InsertCodeStep from "./components/InsertCodeStep";
+import toast from "react-hot-toast";
+import ChangePasswordStep from "./components/ChangePasswordStep";
+import { useRouter } from "next/navigation";
 
 export type ForgotPasswordForm = {
   email: string;
-  code: {
-    [key: string]: number;
-  }
+  password: string;
+  confirmPassword:string;
+
 };
 
 export interface ForgotPasswordFormStep {
@@ -24,8 +27,11 @@ export interface ForgotPasswordFormStep {
 
 
 export default function ForgotPasswordPage() {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<string>("0");
   const [isLoading, setIsLoading] = useState(false);
+  const [code, setCode] = useState(['', '', '', '']); 
+  const router = useRouter();
+
 
   const {
     handleSubmit,
@@ -36,44 +42,77 @@ export default function ForgotPasswordPage() {
   } = useForm<ForgotPasswordForm>({
     defaultValues: {
       email: "",
+      password: "",
+      confirmPassword: ""
     },
   });
 
+
   const onNextStep = async() => {
-    console.log(getValues('code'))
     const response = handleValidations();
     if(!response) return; 
-
-    switch(currentStep){
-      case 0:
-        setIsLoading(true);
-        const response = await recoverPassword({email: getValues("email")});
-        setIsLoading(false);
-    }
     
-    setCurrentStep((prevStep) => prevStep + 1);
+    switch(currentStep){
+      case "0":
+        setIsLoading(true);
+        const response = await recoverPassword({email: getValues("email")}); 
+        if(!response || response.status_code !== "code_sent"){
+          console.log("Error")
+        }else{
+          setCurrentStep((prev) => String(Number(prev)+1))
+        }
+        setIsLoading(false);
+        return; 
+      case "1":
+        setIsLoading(true);
+        const responseVerifyCode = await verifyCode({email:"hernandeztomas584@gmail.com", code})
+        if(responseVerifyCode?.status_code !== 'valid_code'){
+          console.log("Código invalido")
+        }else {
+          setCurrentStep((prev) => String(Number(prev)+1))
+        }
+        setIsLoading(false);
+        return; 
+      case "2":
+          setIsLoading(true);
+          const responseChangePassword = await changePassword({email:"hernandeztomas584@gmail.com", code, password: getValues('password'), confirmPassword: getValues('confirmPassword')})
+           if(responseChangePassword?.status_code !== 'password_changed'){
+            console.log("Error de contraseña")
+          }else {
+            alert("Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos");
+            setTimeout(() => {
+              router.push('/auth/login')
+            }, 3000)
+          } 
+          setIsLoading(false);
+          return; 
+    }
+
+    
   };
 
   const getButton = () => {
-    let title: string = 'Send Code';
     switch(currentStep){
-      case 0:
-        title = 'Send Code';
+      case "0":
+       return 'Send Code';
+      case "1":
+        return "Verify Code"
+      case "2": 
+        return "Set new password"
         
     }
     
-    return {
-      title,
-      onNextStep
-    }
+  
   }
 
   const displayCurrentTitle = () => {
     switch(currentStep){
-      case 0: 
+      case "0": 
         return 'First step: Enter your email'
-      case 1:
+      case "1":
         return 'Second step: Enter the validation code that we sent to your email'
+      case "2":
+        return 'Last step: Set your new password'
     }
   }
 
@@ -87,23 +126,33 @@ export default function ForgotPasswordPage() {
     
 
     switch (currentStep) {
-      case 0:
-        return <InsertEmailStep  {...baseProps} />;
-      case 1:
-        return <InsertCodeStep {...baseProps} />;
-      /* case 2:
-        return <ChangePasswordStep {...baseProps} />; */ 
+      case "0":
+        return <InsertEmailStep  {...baseProps} />; 
+      case "1":
+        return <InsertCodeStep code={code} setCode={setCode} {...baseProps} />;
+      case "2":
+        return <ChangePasswordStep {...baseProps} />; 
   
     }
   };
 
   const handleValidations = () => {
-    if(currentStep == 0){
+     if(currentStep == "0"){
      const email = getValues("email");
-      if(!EMAIL_REGEX.test(email)){
-          return false;
+      if(!EMAIL_REGEX.test(email)) {
+        return false;
       }
-    }
+      
+    } 
+
+     if(currentStep == "1"){
+      code.forEach(digit => {
+        if(!digit || digit.length != 0){
+          toast.error("All digits must be filled")
+          return false;
+        }
+      });
+    } 
     return true;
   }
 
@@ -113,7 +162,7 @@ export default function ForgotPasswordPage() {
         <Logo/>
       </div>
       <h1 className="py-2 pb-8 text-black text-xl font-semibold">Forgot Password</h1>
-      <h2 className="py-2 pb-8 text-black text-lg font-semibold">{displayCurrentTitle()}</h2>
+      <h2 className="py-2 pb-8 text-black text-lg font-semibold" aria-label={displayCurrentTitle()}>{displayCurrentTitle()}</h2>
       {displayCurrentStep()}
       
       <div className="absolute px-6 bottom-14 w-full flex flex-col items-center gap-6">
@@ -121,8 +170,9 @@ export default function ForgotPasswordPage() {
         variant="filled" 
         className="relative" 
         onClick={onNextStep}
+        aria-label={getButton()}
       >
-          {isLoading ? <Loading containerClasses="h-8" spinnerClasses="h-6 w-6 border-2 border-gray-400" />:getButton().title}
+          {isLoading ? <Loading containerClasses="h-8" spinnerClasses="h-6 w-6 border-2 border-gray-400" />:getButton()}
       </Button>
         <Link
           className="w-fit h-fit"
