@@ -8,9 +8,9 @@ import { LoginUserResponse } from "../../interfaces";
 interface ContextProps {
 	token: string | null;
 	user: User | null;
-	register: (user: RegisterUser) => void;
+	register: (user: RegisterUser) => Promise<boolean | string>;
 	login: (email: string, password: string) => Promise<LoginUserResponse>;
-	decryptUserData: (token: string) => void;
+	decryptUserData: (token: string) => Promise<boolean | string>;
 	logout: () => boolean;
 }
 
