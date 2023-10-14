@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Button } from "../../../../components";
 import { LabeledInput } from "../../../../components/Input";
 import Link from "next/link";
+import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
 import { LoaderSpinner } from "../../../../components/LoaderSpinner/LoaderSpinner";
 import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
@@ -38,7 +39,7 @@ export const LoginForm = () => {
 
 	const router = useRouter();
 
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const [messageError, setMessageError] = useState("");
 
 	// Change for error not generic
@@ -90,7 +91,7 @@ export const LoginForm = () => {
 	};
 
 	if (isLoading) {
-		return <LoaderSpinner />;
+		return <LoaderLogo />;
 	}
 
 	return (
