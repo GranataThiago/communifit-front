@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Button, Input, montserrat } from "../../../components";
+import Logo from "../../../components/Company/Logo";
 
 export default function ForgotPasswordPage() {
   return (
     <div className={`flex flex-col items-center  w-full h-screen p-6 relative ${montserrat.className}`}>
-      {/* <div className="max-w-[580px] h-auto">
-         <Image alt="CommuniFit logo" fill={true}/>
-      </div> */}
+      <Logo/>
       <h1 className="py-12 text-black text-xl">Forgot Password</h1>
       <form aria-label="Reset password form" className="w-full">
         <div aria-label="Email" className="flex flex-col justify-center  w-full">
