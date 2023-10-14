@@ -7,26 +7,18 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
+const mockLogout = jest.fn();
+
 jest.mock("../../../../../context/UserContext", () => ({
   useUserContext: () => ({
     user: {
       fullname: "John Doe",
       username: "johndoe",
     },
-    logout: jest.fn(),
+    logout: mockLogout,
   }),
 }));
 
-const mockLocationAssign = jest.fn();
-
-beforeAll(() => {
-  // Mock window.location.assign
-  Object.defineProperty(window, "location", {
-    value: {
-      assign: mockLocationAssign,
-    },
-  });
-});
 
 describe("<ProfileHeading />", () => {
   it("renders ProfileHeading", () => {
@@ -40,7 +32,7 @@ describe("<ProfileHeading />", () => {
     fireEvent.click(logoutButton);
 
     await waitFor(() => {
-      expect(mockLocationAssign).toHaveBeenCalledWith("/auth/login");
+      expect(mockLogout).toHaveBeenCalled();
     });
   });
 });

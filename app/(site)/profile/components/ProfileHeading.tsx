@@ -9,7 +9,6 @@ export const ProfileHeading = () => {
 
   const onLogout = () => {
     logout();
-    window.location.assign("/auth/login");
   };
 
   return (
