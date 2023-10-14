@@ -11,10 +11,13 @@ export const loginUser = async ({
 	password,
 }: ILoginUser): Promise<LoginUserResponse> => {
 	try {
-		const response: LoginUserResponse = await apiInstance.post(`/auth/login`, {
-			email,
-			password,
-		});
+		const response: LoginUserResponse | null = await apiInstance.post(
+			`/auth/login`,
+			{
+				email,
+				password,
+			}
+		);
 		return response;
 	} catch (error) {
 		console.log(error);
