@@ -16,7 +16,7 @@ const LoginPage = () => {
 				<p className='text-xl font-medium mt-2'>Login</p>
 			</div>
 
-			<LoginForm></LoginForm>
+			<LoginForm />
 
 			<SocialMediaForm />
 

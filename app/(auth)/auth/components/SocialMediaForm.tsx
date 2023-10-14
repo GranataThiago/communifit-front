@@ -4,7 +4,7 @@ import React from "react";
 
 export const SocialMediaForm = () => {
 	return (
-		<div className='w-full'>
+		<div className='w-full mb-4'>
 			<p className='text-center text-gray-400'>Or Login with</p>
 			<ul className='mt-4 flex justify-evenly'>
 				<li className='border border-gray-300 p-4 rounded-xl'>
