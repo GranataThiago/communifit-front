@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes, Ref } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant: InputVariant;
+  ref?: null;
 }
 
 type InputVariant = "outlined" | "filled" | "text";
@@ -10,7 +11,7 @@ type InputStyles = { [key: string]: string };
 
 const inputVariants: InputStyles = {
   filled: "w-full bg-gray-100 p-2 rounded-xl",
-  outlined: "w-full border rounded-xl p-2",
+  outlined: "w-full border rounded-xl p-2  border-gray-300",
 };
 
 export const Input = ({ variant, className, ...props }: InputProps) => {
