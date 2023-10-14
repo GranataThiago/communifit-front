@@ -50,8 +50,8 @@ export const LoginForm = () => {
 		const { email, password } = formData;
 
 		try {
-			const response: LoginUserResponse = await login(email, password);
-			console.log(response);
+			const response: LoginUserResponse | null = await login(email, password);
+
 			if (!response) {
 				setMessageError(errorLoginMessage);
 				return;
