@@ -34,7 +34,7 @@ jest.mock("next/navigation", () => ({
 	},
 }));
 
-jest.mock("../../../../../context/UserContext/UserContext", () => ({
+jest.mock("../../../../../../context/UserContext", () => ({
 	useUserContext: () => ({
 		login: async (email: string, password: string) => {
 			return email === "test@example.com" && password === "password";

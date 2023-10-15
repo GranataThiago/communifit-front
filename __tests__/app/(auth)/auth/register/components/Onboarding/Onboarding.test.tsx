@@ -26,7 +26,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 jest.mock("../../../../../../../context/UserContext");
-
+jest.mock("@react-oauth/google");
 describe("Onboarding component", () => {
   describe("Onboarding component", () => {
     it("should display the initial step correctly", () => {
