@@ -9,7 +9,7 @@ interface ContextProps {
 	token: string | null;
 	user: User | null;
 	register: (user: RegisterUser) => void;
-	login: (email: string, password: string) => Promise<LoginUserResponse | null>;
+	login: (email: string, password: string) => Promise<LoginUserResponse>;
 	decryptUserData: (token: string) => void;
 	logout: () => boolean;
 }

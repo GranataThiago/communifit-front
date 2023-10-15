@@ -50,13 +50,15 @@ export default function UserProvider({
 		password: string
 	): Promise<LoginUserResponse> => {
 		try {
-			const data: LoginUserResponse | null = await loginUser({
+			const data: LoginUserResponse = await loginUser({
 				email,
 				password,
 			});
 
 			if (!data || !data.token) {
-				return null;
+				return {
+					ok: false,
+				};
 			}
 
 			const { token } = data;
@@ -74,10 +76,18 @@ export default function UserProvider({
 			dispatch({ type: "[USER] Login", payload: { user, token } });
 
 			return data;
-		} catch (err) {
-			console.log(err);
-			removeCookie("token");
-			return null;
+		} catch (error:any) {
+			if (error.response) {
+				return {
+					ok: false,
+					message: error.response.data.message,
+				};
+			} else {
+				return {
+					ok: false,
+					message: "An error has occurred, we apologize for any inconvenience.",
+				};
+			}
 		}
 	};
 
