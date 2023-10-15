@@ -78,11 +78,21 @@ export const LoginForm = () => {
 			label: "Email address",
 			type: "email",
 			variant: "outlined",
+			rules: {
+				required: "The email is required.",
+				pattern: {
+					value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zAZ0-9-.]+$/,
+					message: "Invalid email address",
+				},
+			},
 		},
 		password: {
 			label: "Password",
 			type: "password",
 			variant: "outlined",
+			rules: {
+				required: "The password is required",
+			},
 		},
 	};
 
@@ -107,7 +117,9 @@ export const LoginForm = () => {
 								label={fieldProps.label}
 								type={fieldProps.type}
 								variant={fieldProps.variant as FieldVariant}
-								register={register(fieldName as FieldName)}
+								register={register(fieldName as FieldName, {
+									...fieldProps.rules,
+								})}
 							/>
 						)}
 					/>
@@ -125,12 +137,7 @@ export const LoginForm = () => {
 				Forgot password?
 			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-			<Button
-				type='submit'
-				variant='filled'
-				canSubmit={!isValid}
-				aria-label={isValid ? "disabled" : ""}
-			>
+			<Button type='submit' variant='filled' canSubmit={!isValid}>
 				Login
 			</Button>
 		</form>
