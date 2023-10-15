@@ -57,7 +57,7 @@ export const LoginForm = () => {
 				return;
 			}
 
-			if (response && response.message) {
+			if (!response.ok && response.message) {
 				setMessageError(response.message);
 				setIsLoading(false);
 				return;
