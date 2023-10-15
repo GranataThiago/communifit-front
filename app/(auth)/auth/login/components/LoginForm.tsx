@@ -49,28 +49,25 @@ export const LoginForm = () => {
 		setIsLoading(true);
 		const { email, password } = formData;
 
-		try {
-			const response: LoginUserResponse | null = await login(email, password);
-
+			const response: LoginUserResponse = await login(email, password);
+			console.log(response);
 			if (!response) {
 				setMessageError(errorLoginMessage);
+				setIsLoading(false);
 				return;
 			}
 
 			if (response && response.message) {
 				setMessageError(response.message);
+				setIsLoading(false);
 				return;
 			}
 
 			router.replace("/");
 
 			reset();
-		} catch (error) {
-			setMessageError(errorLoginMessage);
-			return;
-		} finally {
 			setIsLoading(false);
-		}
+		
 	};
 
 	const validationRules = {
