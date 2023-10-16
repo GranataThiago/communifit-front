@@ -7,7 +7,7 @@ import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 
-export const SocialMediaForm = () => {
+const SocialMediaForm = () => {
 	const router = useRouter();
 	const login = useGoogleLogin({
 		onSuccess: async (tokenResponse) => {
@@ -48,3 +48,4 @@ export const SocialMediaForm = () => {
 		</div>
 	);
 };
+export default SocialMediaForm;
