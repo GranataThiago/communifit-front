@@ -24,7 +24,7 @@ const InviteModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
-        title="Invite someone to Gorillas"
+        title={`Invite someone to ${inviteModal.name}`}
         subtitle="Link is valid for one person only"
       />
 

@@ -35,10 +35,11 @@ const getCommunity = async (name: string): Promise<Community | null> => {
 export default async function CommunityPage({ params }: CommunityPageProps) {
   const { name } = params;
   const community: Community | null = await getCommunity(name);
-
+  
   if (!community) {
     redirect("/community");
   }
+
 
   return (
     /*@ts-ignore @ts-expect-error Server Component */

@@ -4,34 +4,32 @@ import { BsEnvelope, BsPencil } from "react-icons/bs";
 import useInviteModal from "../../../../hooks/modals/useInviteModal";
 import apiInstance from "../../../../api";
 import { useUserContext } from "../../../../../context/UserContext";
+import { getInvitationLink } from "../../../../../services/community/create-community";
+import { Community } from '../../../../../interfaces/community';
 
-const CommunityActions = ({ name }: { name: string }) => {
+const CommunityActions = ({ name, displayname }: Community) => {
+
   const { token } = useUserContext();
   const inviteModal = useInviteModal();
 
-  useEffect(() => {
-    inviteModal.setName(name);
-    if (token) getInvitationLink();
-  }, [token]);
+  const onInviteModalOpen = async() => {
+      if(!token) return
+      console.log({ name, displayname })
+      const response = await getInvitationLink({ token, communityName: name });
 
-  const getInvitationLink = async () => {
-    const { data } = await apiInstance.post(
-      "/communities/invitation",
-      {
-        name,
-      },
-      { headers: { token } },
-    );
-    inviteModal.setLink(data.link);
-    console.log(data.link);
-  };
+      if(!response || !response.ok) return
+
+      inviteModal.setLink(response.link)
+      inviteModal.setName(displayname)
+      inviteModal.onOpen()
+  }
 
   return (
     <div className="flex gap-2" data-testid="data">
       <BsEnvelope
         data-testid="envelope-icon"
         className="text-gray-400 text-lg"
-        onClick={inviteModal.onOpen}
+        onClick={onInviteModalOpen}
       />
       <BsPencil className="text-gray-400 text-lg"></BsPencil>
     </div>
