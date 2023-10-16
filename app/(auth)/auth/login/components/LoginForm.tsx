@@ -3,7 +3,7 @@
 import { Controller, useForm } from "react-hook-form";
 import React, { useState } from "react";
 
-import { Button } from "../../../../components";
+import { Button } from "../../../../components/ui/button";
 import { LabeledInput } from "../../../../components/Input";
 import Link from "next/link";
 import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
@@ -11,6 +11,8 @@ import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
+
+//import { Button } from "../../../../components";
 
 type LoginForm = {
 	email: string;
@@ -49,25 +51,24 @@ export const LoginForm = () => {
 		setIsLoading(true);
 		const { email, password } = formData;
 
-			const response: LoginUserResponse = await login(email, password);
+		const response: LoginUserResponse = await login(email, password);
 
-			if (!response) {
-				setMessageError(errorLoginMessage);
-				setIsLoading(false);
-				return;
-			}
-
-			if (!response.ok && response.message) {
-				setMessageError(response.message);
-				setIsLoading(false);
-				return;
-			}
-
-			router.replace("/");
-
-			reset();
+		if (!response) {
+			setMessageError(errorLoginMessage);
 			setIsLoading(false);
-		
+			return;
+		}
+
+		if (!response.ok && response.message) {
+			setMessageError(response.message);
+			setIsLoading(false);
+			return;
+		}
+
+		router.replace("/");
+
+		reset();
+		setIsLoading(false);
 	};
 
 	const validationRules = {
@@ -134,14 +135,17 @@ export const LoginForm = () => {
 				Forgot password?
 			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-			<Button
+			<Button variant='filled' canSubmit={!isValid}>
+				Continue
+			</Button>
+			{/*<Button
 				className='font-semibold'
 				type='submit'
 				variant='filled'
 				canSubmit={!isValid}
 			>
 				Continue
-			</Button>
+			</Button>*/}
 		</form>
 	);
 };
