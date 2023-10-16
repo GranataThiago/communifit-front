@@ -9,7 +9,7 @@ const LoginPage = () => {
 		<section
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
 		>
-			<div className='flex flex-col items-center gap-2 tracking-[-0.0255rem] leading-[1.375rem]'>
+			<div className='flex flex-col items-center gap-2 leading-[1.375rem]'>
 				<h1 className='text-[2rem] font-bold'>
 					Communi<span className='text-primary'>fit</span>.
 				</h1>
