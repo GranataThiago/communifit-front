@@ -12,7 +12,8 @@ type InputStyles = { [key: string]: string };
 
 const inputVariants: InputStyles = {
 	filled: "w-full bg-gray-100 p-2 rounded-xl",
-	outlined: "w-full rounded-2xl border border-[1px] border-[#BBB] h-11",
+	outlined:
+		"w-full rounded-2xl border border-[1px] border-[#BBB] h-11 p-2 focus:outline-none",
 };
 
 export const Input = ({ variant, className, name, ...props }: InputProps) => {
