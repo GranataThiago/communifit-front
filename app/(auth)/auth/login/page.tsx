@@ -9,11 +9,11 @@ const LoginPage = () => {
 		<section
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
 		>
-			<div className='text-center'>
-				<h1 className='text-4xl font-bold'>
+			<div className='flex flex-col items-center gap-2 tracking-[-0.0255rem] leading-[1.375rem]'>
+				<h1 className='text-[2rem] italic font-thin'>
 					Communi<span className='text-primary'>fit</span>.
 				</h1>
-				<p className='text-xl font-medium mt-2'>Login</p>
+				<h2 className='font-normal text-[1.3125rem]'>Login</h2>
 			</div>
 
 			<LoginForm />
