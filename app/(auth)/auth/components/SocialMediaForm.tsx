@@ -1,6 +1,6 @@
 "use client";
 
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { Button } from "../../../components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import React from "react";
 import axios from "axios";
@@ -31,21 +31,20 @@ const SocialMediaForm = () => {
 		onError: () => console.log("login failed"),
 	});
 	return (
-		<div className='w-full mb-4 flex flex-col items-center'>
-			<h5 className='text-center text-gray-400'>Or Log In with</h5>
+		<section className='w-full mb-4 flex flex-col items-center'>
+			<h2 className='text-center text-gray-400'>Or Log In with</h2>
 			<div className='mt-4 flex cursor-pointer'>
-				<button
+				<Button
+					variant='customize'
 					onClick={() => login()}
 					className='h-[3.25rem] border border-gray-300 p-3 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
+					aria-label='Login with Google'
 				>
-					<FcGoogle
-						size='2rem'
-						className='cursor-pointer'
-						aria-label='Login with google'
-					/>
-				</button>
+					<FcGoogle size='2rem' className='cursor-pointer' aria-hidden={true} />
+					<span className='sr-only'>Log In with Google</span>
+				</Button>
 			</div>
-		</div>
+		</section>
 	);
 };
 export default SocialMediaForm;
