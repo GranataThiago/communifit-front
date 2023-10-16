@@ -2,24 +2,16 @@
 
 import * as z from "zod";
 
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-} from "../../../../components/ui/form";
 import React, { useState } from "react";
 
 import { Button } from "../../../../components/ui/button";
 import ForgotPasswordLink from "./ForgotPasswordLink/ForgotPasswordLink";
-import { Input } from "../../../../components/ui/input";
-import Link from "next/link";
+import { Form } from "../../../../components/ui/form";
 import LoginFormFields from "./LoginFormFields/LoginFormFields";
 import { LoginUserResponse } from "../../../../../interfaces";
-import { montserrat } from "../../../../components/fonts";
+import useErrorLoginMessageStore from "../../../../hooks/errorMessage/useErrorMessageLogin";
 import { useForm } from "react-hook-form";
-import useLoader from "../../../../hooks/modals/useLoader";
+import useLoader from "../../../../hooks/loader/useLoader";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,10 +25,18 @@ export const LoginForm = () => {
 	const { login } = useUserContext();
 
 	const setIsLoading = useLoader((state) => state.setIsLoading);
+	const messageError = useErrorLoginMessageStore((state) => state.messageError);
+	const setMessageError = useErrorLoginMessageStore(
+		(state) => state.setMessageError
+	);
 
 	const formSchema = z.object({
-		email: z.string(),
-		password: z.string(),
+		email: z.string().min(2, {
+			message: "Email is required.",
+		}),
+		password: z.string().min(2, {
+			message: "Password is required.",
+		}),
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -48,8 +48,6 @@ export const LoginForm = () => {
 	});
 
 	const router = useRouter();
-
-	const [messageError, setMessageError] = useState<string>("");
 
 	// Change for error not generic
 	const errorLoginMessage: string =
@@ -74,7 +72,6 @@ export const LoginForm = () => {
 		}
 
 		router.replace("/");
-
 		setIsLoading(false);
 	};
 
@@ -82,7 +79,10 @@ export const LoginForm = () => {
 		<Form {...form}>
 			<form
 				className={`w-full flex flex-col gap-4 pt-2`}
-				onSubmit={form.handleSubmit(onLogin)}
+				onSubmit={(e) => {
+					e.preventDefault();
+					form.handleSubmit(onLogin)(e);
+				}}
 			>
 				<LoginFormFields form={form} />
 				<ForgotPasswordLink />
