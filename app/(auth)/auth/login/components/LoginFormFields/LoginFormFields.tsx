@@ -3,6 +3,7 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
+	FormMessage,
 } from "../../../../../components/ui/form";
 
 import { Input } from "../../../../../components/ui/input";
@@ -17,9 +18,6 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 	return (
 		<>
 			<FormField
-				rules={{
-					required: "The email is required.",
-				}}
 				control={form.control}
 				name='email'
 				render={({ field }) => (
@@ -33,6 +31,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 								type='email'
 							/>
 						</FormControl>
+						<FormMessage />
 					</FormItem>
 				)}
 			/>
@@ -53,6 +52,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 								type='password'
 							/>
 						</FormControl>
+						<FormMessage />
 					</FormItem>
 				)}
 			/>
