@@ -12,8 +12,6 @@ import { montserrat } from "../../../../components/fonts";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
 
-//import { Button } from "../../../../components";
-
 type LoginForm = {
 	email: string;
 	password: string;
@@ -135,17 +133,9 @@ export const LoginForm = () => {
 				Forgot password?
 			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-			<Button variant='filled' canSubmit={!isValid}>
+			<Button variant='filled' canSubmit={!isValid} type='submit'>
 				Continue
 			</Button>
-			{/*<Button
-				className='font-semibold'
-				type='submit'
-				variant='filled'
-				canSubmit={!isValid}
-			>
-				Continue
-			</Button>*/}
 		</form>
 	);
 };
