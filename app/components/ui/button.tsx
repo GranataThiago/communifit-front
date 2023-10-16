@@ -9,6 +9,7 @@ const buttonVariants = cva(
 	{
 		variants: {
 			variant: {
+				customize: "",
 				filled: "bg-primary text-white h-[3.25rem] rounded-[1.6875rem]",
 				outlined:
 					"border border-primary rounded-full py-3 font-[500] text-white h-[3.25rem] rounded-[1.6875rem]",
