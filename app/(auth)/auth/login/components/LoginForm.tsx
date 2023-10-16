@@ -65,8 +65,8 @@ export const LoginForm = () => {
 			return;
 		}
 
-		if (!response.ok && response.message) {
-			setMessageError(response.message);
+		if (!response.ok) {
+			setMessageError(response.message ?? errorLoginMessage);
 			setIsLoading(false);
 			return;
 		}
