@@ -80,7 +80,10 @@ export const LoginForm = () => {
 
 	return (
 		<Form {...form}>
-			<form className={`w-full flex flex-col gap-4 pt-2`}>
+			<form
+				className={`w-full flex flex-col gap-4 pt-2`}
+				onSubmit={form.handleSubmit(onLogin)}
+			>
 				<LoginFormFields form={form} />
 				<ForgotPasswordLink />
 				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
