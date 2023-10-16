@@ -14,10 +14,10 @@ import React, { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Input } from "../../../../components/ui/input";
 import Link from "next/link";
-import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
 import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
 import { useForm } from "react-hook-form";
+import useLoader from "../../../../hooks/modals/useLoader";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +29,8 @@ type LoginForm = {
 
 export const LoginForm = () => {
 	const { login } = useUserContext();
+
+	const setIsLoading = useLoader((state) => state.setIsLoading);
 
 	const formSchema = z.object({
 		email: z.string(),
@@ -45,7 +47,6 @@ export const LoginForm = () => {
 
 	const router = useRouter();
 
-	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [messageError, setMessageError] = useState<string>("");
 
 	// Change for error not generic
@@ -75,9 +76,6 @@ export const LoginForm = () => {
 		setIsLoading(false);
 	};
 
-	if (isLoading) {
-		return <LoaderLogo />;
-	}
 	return (
 		<Form {...form}>
 			<form
