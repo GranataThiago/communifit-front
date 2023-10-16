@@ -32,7 +32,7 @@ export const SocialMediaForm = () => {
 	});
 	return (
 		<div className='w-full mb-4 flex flex-col items-center'>
-			<h5 className='text-center text-gray-400'>Or Login with</h5>
+			<h5 className='text-center text-gray-400'>Or Log In with</h5>
 			<div className='mt-4 flex cursor-pointer'>
 				<button
 					onClick={() => login()}
