@@ -2,7 +2,6 @@
 
 import * as z from "zod";
 
-import { Controller, useForm } from "react-hook-form";
 import {
 	Form,
 	FormControl,
@@ -18,6 +17,7 @@ import Link from "next/link";
 import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
 import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -42,8 +42,6 @@ export const LoginForm = () => {
 			password: "",
 		},
 	});
-
-	const { isValid } = form.formState;
 
 	const router = useRouter();
 
@@ -80,7 +78,6 @@ export const LoginForm = () => {
 	if (isLoading) {
 		return <LoaderLogo />;
 	}
-
 	return (
 		<Form {...form}>
 			<form
@@ -88,6 +85,9 @@ export const LoginForm = () => {
 				onSubmit={form.handleSubmit(onLogin)}
 			>
 				<FormField
+					rules={{
+						required: "The email is required.",
+					}}
 					control={form.control}
 					name='email'
 					render={({ field }) => (
@@ -106,11 +106,15 @@ export const LoginForm = () => {
 				<FormField
 					control={form.control}
 					name='password'
+					rules={{
+						required: "The password is required.",
+					}}
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<Input
+									{...field}
 									placeholder='Enter your password...'
 									variant='outlined'
 								/>
@@ -125,7 +129,7 @@ export const LoginForm = () => {
 					Forgot password?
 				</Link>
 				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-				<Button variant='filled' type='submit' canSubmit={isValid}>
+				<Button variant='filled' type='submit'>
 					Continue
 				</Button>
 			</form>
