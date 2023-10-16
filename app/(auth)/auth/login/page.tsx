@@ -20,9 +20,12 @@ const LoginPage = () => {
 
 			<SocialMediaForm />
 
-			<p data-testid='text-footer'>
+			<p
+				data-testid='text-footer'
+				className='text-[#9D9D9D] text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+			>
 				Don&apos;t have an account yet?
-				<Link href={"/auth/register"}>
+				<Link href={"/auth/register"} className='text-black bold'>
 					<b>&nbsp;Sign Up</b>
 				</Link>
 			</p>
