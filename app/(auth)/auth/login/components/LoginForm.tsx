@@ -129,7 +129,7 @@ export const LoginForm = () => {
 					Forgot password?
 				</Link>
 				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-				<Button variant='filled' type='submit'>
+				<Button variant='filled' type='submit' aria-label='Continue with login'>
 					Continue
 				</Button>
 			</form>
