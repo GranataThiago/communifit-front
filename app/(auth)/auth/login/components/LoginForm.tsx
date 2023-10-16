@@ -72,7 +72,7 @@ export const LoginForm = () => {
 
 	const validationRules = {
 		email: {
-			label: "Email address",
+			label: "Your email address",
 			type: "email",
 			variant: "outlined",
 			rules: {
@@ -128,14 +128,14 @@ export const LoginForm = () => {
 				</React.Fragment>
 			))}
 			<Link
-				className='text-right mt-0 text-sm font-semibold'
+				className='text-right text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
 				href='/auth/forgot-password'
 			>
 				Forgot password?
 			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
 			<Button type='submit' variant='filled' canSubmit={!isValid}>
-				Login
+				Continue
 			</Button>
 		</form>
 	);
