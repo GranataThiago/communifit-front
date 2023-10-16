@@ -17,8 +17,8 @@ export interface IGetCommunityPostsFetch {
 export type GetCommunityPostsResponse = null | IGetCommunityPostsFetch;
 
 export interface IGetInvitationLinkFetch {
-  ok: boolean
-  link: string
+  ok: boolean;
+  link: string;
 }
 
-export type GetInvitationLinkResponse = null | IGetInvitationLinkFetch
+export type GetInvitationLinkResponse = null | IGetInvitationLinkFetch;

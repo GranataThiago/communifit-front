@@ -25,7 +25,7 @@ const CommunityScreen = (community: Community) => {
                 <p className="text-md font-light text-gray-400">Community</p>
               </div>
             </div>
-            <CommunityActions  {...community}/>
+            <CommunityActions {...community} />
           </div>
           <div className="mt-4 leading-5">{description}</div>
         </header>

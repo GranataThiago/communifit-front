@@ -28,20 +28,27 @@ export const createCommunity = async ({
   return community;
 };
 
-interface IGetInvitationLink{
-    token: string,
-    communityName: string
+interface IGetInvitationLink {
+  token: string;
+  communityName: string;
 }
 
-export const getInvitationLink = async({ token, communityName }: IGetInvitationLink): Promise<GetInvitationLinkResponse> => {
-    let invitationLink: GetInvitationLinkResponse = null;
+export const getInvitationLink = async ({
+  token,
+  communityName,
+}: IGetInvitationLink): Promise<GetInvitationLinkResponse> => {
+  let invitationLink: GetInvitationLinkResponse = null;
 
-    try{
-        const response = await apiInstance.post('/communities/invitation', { name: communityName }, { headers: { token } });
-        invitationLink = response.data;
-    }catch(err){
-        console.log(err)
-    }
+  try {
+    const response = await apiInstance.post(
+      "/communities/invitation",
+      { name: communityName },
+      { headers: { token } },
+    );
+    invitationLink = response.data;
+  } catch (err) {
+    console.log(err);
+  }
 
-    return invitationLink;
-}
+  return invitationLink;
+};
