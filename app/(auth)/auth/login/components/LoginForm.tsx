@@ -1,40 +1,49 @@
 "use client";
 
+import * as z from "zod";
+
 import { Controller, useForm } from "react-hook-form";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+} from "../../../../components/ui/form";
 import React, { useState } from "react";
 
 import { Button } from "../../../../components/ui/button";
-import { LabeledInput } from "../../../../components/Input";
+import { Input } from "../../../../components/ui/input";
 import Link from "next/link";
 import LoaderLogo from "../../../../components/LoaderLogo/LoaderLogo";
 import { LoginUserResponse } from "../../../../../interfaces";
 import { montserrat } from "../../../../components/fonts";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../../context/UserContext/UserContext";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type LoginForm = {
 	email: string;
 	password: string;
 };
 
-type FieldName = "email" | "password";
-type FieldVariant = "outlined" | "filled" | "text";
-
 export const LoginForm = () => {
 	const { login } = useUserContext();
 
-	const {
-		handleSubmit,
-		formState: { errors, isValid },
-		control,
-		register,
-		reset,
-	} = useForm<LoginForm>({
+	const formSchema = z.object({
+		email: z.string(),
+		password: z.string(),
+	});
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
+
+	const { isValid } = form.formState;
 
 	const router = useRouter();
 
@@ -45,7 +54,7 @@ export const LoginForm = () => {
 	const errorLoginMessage: string =
 		"An error has occurred, we apologize for any inconvenience.";
 
-	const onLogin = async (formData: LoginForm) => {
+	const onLogin = async (formData: z.infer<typeof formSchema>) => {
 		setIsLoading(true);
 		const { email, password } = formData;
 
@@ -65,31 +74,7 @@ export const LoginForm = () => {
 
 		router.replace("/");
 
-		reset();
 		setIsLoading(false);
-	};
-
-	const validationRules = {
-		email: {
-			label: "Your email address",
-			type: "email",
-			variant: "outlined",
-			rules: {
-				required: "The email is required.",
-				pattern: {
-					value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zAZ0-9-.]+$/,
-					message: "Invalid email address",
-				},
-			},
-		},
-		password: {
-			label: "Password",
-			type: "password",
-			variant: "outlined",
-			rules: {
-				required: "The password is required",
-			},
-		},
 	};
 
 	if (isLoading) {
@@ -97,45 +82,53 @@ export const LoginForm = () => {
 	}
 
 	return (
-		<form
-			className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`}
-			onSubmit={handleSubmit(onLogin)}
-		>
-			{Object.entries(validationRules).map(([fieldName, fieldProps]) => (
-				<React.Fragment key={fieldName}>
-					<Controller
-						control={control}
-						name={fieldName as FieldName}
-						render={({ field }) => (
-							<LabeledInput
-								{...field}
-								ref={null}
-								label={fieldProps.label}
-								type={fieldProps.type}
-								variant={fieldProps.variant as FieldVariant}
-								register={register(fieldName as FieldName, {
-									...fieldProps.rules,
-								})}
-							/>
-						)}
-					/>
-					{errors[fieldName as FieldName] && (
-						<p className='text-red-500'>
-							{errors[fieldName as FieldName]?.message}
-						</p>
-					)}
-				</React.Fragment>
-			))}
-			<Link
-				className='text-right text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
-				href='/auth/forgot-password'
+		<Form {...form}>
+			<form
+				className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`}
+				onSubmit={form.handleSubmit(onLogin)}
 			>
-				Forgot password?
-			</Link>
-			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-			<Button variant='filled' canSubmit={!isValid} type='submit'>
-				Continue
-			</Button>
-		</form>
+				<FormField
+					control={form.control}
+					name='email'
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Your email adress</FormLabel>
+							<FormControl>
+								<Input
+									{...field}
+									placeholder='Mail@example.com'
+									variant='outlined'
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name='password'
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Password</FormLabel>
+							<FormControl>
+								<Input
+									placeholder='Enter your password...'
+									variant='outlined'
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<Link
+					className='text-right text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+					href='/auth/forgot-password'
+				>
+					Forgot password?
+				</Link>
+				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
+				<Button variant='filled' type='submit' canSubmit={isValid}>
+					Continue
+				</Button>
+			</form>
+		</Form>
 	);
 };
