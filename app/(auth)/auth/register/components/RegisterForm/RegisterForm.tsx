@@ -1,78 +1,100 @@
-import { SocialMediaForm } from "../../../components/SocialMediaForm";
-import { LabeledInput } from "../../../../../components/Input";
+import {
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+} from "../../../../../components/ui/form";
+
 import { Controller } from "react-hook-form";
-import { montserrat } from "../../../../../components/fonts";
+import { Input } from "../../../../../components/ui/input";
+import { Label } from "../../../../../components/ui/label";
 import { RegisterFormStep } from "../Onboarding/Onboarding";
+import { SocialMediaForm } from "../../../components/SocialMediaForm";
+import { montserrat } from "../../../../../components/fonts";
 
 export const RegisterFormComponent = ({
-  register,
-  control,
+	register,
+	control,
 }: RegisterFormStep) => {
-  return (
-    <div
-      className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}
-    >
-      <Controller
-        name="fullName"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            ref={null}
-            label="Full name"
-            type="text"
-            variant="outlined"
-          />
-        )}
-      />
+	return (
+		<div
+			className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}
+		>
+			<FormField
+				rules={{
+					required: "The fullName is required.",
+				}}
+				control={control}
+				name='fullName'
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>Full name</FormLabel>
+						<FormControl>
+							<Input {...field} ref={null} variant='outlined' type='text' />
+						</FormControl>
+					</FormItem>
+				)}
+			/>
 
-      <Controller
-        name="username"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            ref={null}
-            label="Username"
-            type="text"
-            variant="outlined"
-          />
-        )}
-      />
+			<FormField
+				rules={{
+					required: "The username is required.",
+				}}
+				control={control}
+				name='username'
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>Username</FormLabel>
+						<FormControl>
+							<Input {...field} ref={null} variant='outlined' type='text' />
+						</FormControl>
+					</FormItem>
+				)}
+			/>
 
-      <Controller
-        name="email"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            ref={null}
-            label="Email"
-            type="email"
-            variant="outlined"
-          />
-        )}
-      />
+			<FormField
+				rules={{
+					required: "The email is required.",
+				}}
+				control={control}
+				name='email'
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>Your email adress</FormLabel>
+						<FormControl>
+							<Input
+								{...field}
+								ref={null}
+								placeholder='Mail@example.com'
+								variant='outlined'
+								type='email'
+							/>
+						</FormControl>
+					</FormItem>
+				)}
+			/>
 
-      <Controller
-        name="password"
-        control={control}
-        defaultValue=""
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            ref={null}
-            label="Password"
-            type="password"
-            variant="outlined"
-          />
-        )}
-      />
-
-      <SocialMediaForm />
-    </div>
-  );
+			<FormField
+				control={control}
+				name='password'
+				rules={{
+					required: "The password is required.",
+				}}
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>Password</FormLabel>
+						<FormControl>
+							<Input
+								{...field}
+								placeholder='Enter your password...'
+								variant='outlined'
+								type='password'
+							/>
+						</FormControl>
+					</FormItem>
+				)}
+			/>
+			<SocialMediaForm />
+		</div>
+	);
 };

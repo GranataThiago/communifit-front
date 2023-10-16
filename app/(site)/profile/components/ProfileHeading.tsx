@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
-import { Button } from "../../../components";
+
 import { BiLogOut } from "react-icons/bi";
+import { Button } from "../../../components/ui/button";
+import React from "react";
 import { useUserContext } from "../../../../context/UserContext";
 
 export const ProfileHeading = () => {

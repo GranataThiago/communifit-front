@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+
 import { useCallback, useEffect, useState } from "react";
 
+import { Button } from "../ui/button";
 import { IoMdClose } from "react-icons/io";
-import { Button } from "../Button/Button";
+import React from "react";
 
 interface ModalProps {
   isOpen: boolean;

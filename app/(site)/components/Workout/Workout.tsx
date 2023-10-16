@@ -1,11 +1,13 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { montserrat } from "../../../components/fonts";
-import { Button } from "../../../components/Button";
-import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
-import { useUserContext } from "../../../../context/UserContext";
+
+import { Button } from "../../../components/ui/button";
 import { WEEK_DAYS } from "../../../../helpers/week-days";
+import { montserrat } from "../../../components/fonts";
 import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
+import { useUserContext } from "../../../../context/UserContext";
+import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
 
 export const Workout = () => {
   const { user } = useUserContext();

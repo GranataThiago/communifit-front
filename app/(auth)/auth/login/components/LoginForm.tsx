@@ -96,6 +96,7 @@ export const LoginForm = () => {
 									{...field}
 									placeholder='Mail@example.com'
 									variant='outlined'
+									type='email'
 								/>
 							</FormControl>
 						</FormItem>
@@ -115,6 +116,7 @@ export const LoginForm = () => {
 									{...field}
 									placeholder='Enter your password...'
 									variant='outlined'
+									type='password'
 								/>
 							</FormControl>
 						</FormItem>
