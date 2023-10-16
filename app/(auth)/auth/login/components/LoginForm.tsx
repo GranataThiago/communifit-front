@@ -134,7 +134,12 @@ export const LoginForm = () => {
 				Forgot password?
 			</Link>
 			{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-			<Button type='submit' variant='filled' canSubmit={!isValid}>
+			<Button
+				className='font-semibold'
+				type='submit'
+				variant='filled'
+				canSubmit={!isValid}
+			>
 				Continue
 			</Button>
 		</form>

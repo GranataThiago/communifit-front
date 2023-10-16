@@ -10,10 +10,10 @@ const LoginPage = () => {
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
 		>
 			<div className='flex flex-col items-center gap-2 tracking-[-0.0255rem] leading-[1.375rem]'>
-				<h1 className='text-[2rem] italic font-thin'>
+				<h1 className='text-[2rem] font-bold'>
 					Communi<span className='text-primary'>fit</span>.
 				</h1>
-				<h2 className='font-normal text-[1.3125rem]'>Login</h2>
+				<h2 className='font-semibold text-[1.3125rem]'>Login</h2>
 			</div>
 
 			<LoginForm />
@@ -25,7 +25,7 @@ const LoginPage = () => {
 				className='text-[#9D9D9D] text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
 			>
 				Don&apos;t have an account yet?
-				<Link href={"/auth/register"} className='text-black bold'>
+				<Link href={"/auth/register"} className='text-black font-normal'>
 					<b>&nbsp;Sign Up</b>
 				</Link>
 			</p>

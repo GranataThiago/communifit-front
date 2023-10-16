@@ -39,7 +39,7 @@ export const LabeledInput = ({ label, ...props }: LabeledInputProps) => {
 		<div className='flex flex-col w-full'>
 			<label
 				htmlFor={props.name}
-				className='pb-1 text-black text-base font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+				className='pb-1 text-black text-base font-semibold tracking-[-0.0255rem] leading-[1.375rem]'
 			>
 				{label}
 			</label>
