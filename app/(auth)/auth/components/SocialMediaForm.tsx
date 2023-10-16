@@ -1,9 +1,10 @@
 "use client";
+
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import React from "react";
-import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 
 export const SocialMediaForm = () => {
@@ -35,14 +36,13 @@ export const SocialMediaForm = () => {
 			<div className='mt-4 flex cursor-pointer'>
 				<button
 					onClick={() => login()}
-					className='border border-gray-300 p-4 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
+					className='h-[3.25rem] border border-gray-300 p-3 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
 				>
 					<FcGoogle
 						size='2rem'
 						className='cursor-pointer'
 						aria-label='Login with google'
 					/>
-					<p>Sign in with Google</p>
 				</button>
 			</div>
 		</div>
