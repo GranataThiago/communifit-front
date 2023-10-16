@@ -6,11 +6,19 @@ import { LoginForm } from "./components/LoginForm";
 import React from "react";
 import dynamic from "next/dynamic";
 import { montserrat } from "../../../components/fonts";
+import { useCookies } from "react-cookie";
 import useLoader from "../../../hooks/loader/useLoader";
+import { useRouter } from "next/navigation";
 
 const SocialMediaForm = dynamic(() => import("../components/SocialMediaForm"));
 const LoginPage = () => {
+	const router = useRouter();
+	const [cookies] = useCookies(["token"]);
 	const isLoading = useLoader((state) => state.isLoading);
+
+	if (cookies.token && cookies.token!.value) {
+		router.replace("/");
+	}
 
 	return (
 		<section
