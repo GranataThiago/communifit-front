@@ -1,10 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import LoaderLogo from "../../../components/LoaderLogo/LoaderLogo";
 import { LoginForm } from "./components/LoginForm";
 import React from "react";
 import { SocialMediaForm } from "../components/SocialMediaForm";
 import { montserrat } from "../../../components/fonts";
+import useLoader from "../../../hooks/modals/useLoader";
 
 const LoginPage = () => {
+	const { isLoading } = useLoader();
+
+	if (isLoading) {
+		return <LoaderLogo />;
+	}
+
 	return (
 		<section
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
