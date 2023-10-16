@@ -4,10 +4,11 @@ import Link from "next/link";
 import LoaderLogo from "../../../components/LoaderLogo/LoaderLogo";
 import { LoginForm } from "./components/LoginForm";
 import React from "react";
-import { SocialMediaForm } from "../components/SocialMediaForm";
+import dynamic from "next/dynamic";
 import { montserrat } from "../../../components/fonts";
 import useLoader from "../../../hooks/modals/useLoader";
 
+const SocialMediaForm = dynamic(() => import("../components/SocialMediaForm"));
 const LoginPage = () => {
 	const { isLoading } = useLoader();
 
