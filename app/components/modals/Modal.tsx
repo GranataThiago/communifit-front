@@ -1,195 +1,77 @@
-"use client";
-
-import { useCallback, useEffect, useState } from "react";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../ui/dialog";
 
 import { Button } from "../ui/button";
-import { IoMdClose } from "react-icons/io";
-import React from "react";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: () => void;
-  title?: string;
-  body?: React.ReactElement;
-  footer?: React.ReactElement;
-  actionLabel: string;
-  disabled?: boolean;
-  secondaryAction?: () => void;
-  secondaryActionLabel?: string;
+interface LabelProps {
+	className?: string;
+	htmlFor?: string;
+	label: string;
 }
 
-const Modal = (props: ModalProps) => {
-  const {
-    isOpen,
-    onClose,
-    onSubmit,
-    title,
-    body,
-    footer,
-    actionLabel,
-    disabled,
-    secondaryAction,
-    secondaryActionLabel,
-  } = props;
-  const [showModal, setShowModal] = useState<boolean>(isOpen);
+interface InputProps {
+	id: string;
+	variant: "outlined" | "filled" | "text";
+	className: string;
+}
 
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
+interface ModalProps {
+	TextButton?: string;
+	Title?: string;
+	Description?: string;
+	Footer?: string;
+	Labels?: LabelProps[];
+	Inputs?: InputProps[];
+}
 
-  const handleClose = useCallback(() => {
-    if (disabled) {
-      return;
-    }
+export function Modal(props: ModalProps) {
+	const { TextButton, Footer, Description, Title, Labels, Inputs } = props;
 
-    setShowModal(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  }, [disabled, onClose]);
+	return (
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button variant='outlined'>{TextButton}</Button>
+			</DialogTrigger>
+			<DialogContent className='sm:max-w-[425px]'>
+				<DialogHeader>
+					<DialogTitle>{Title}</DialogTitle>
+					<DialogDescription>{Description}</DialogDescription>
+				</DialogHeader>
+				<div className='grid gap-4 py-4'>
+					<div className='grid grid-cols-4 items-center gap-4'>
+						{Labels?.map((label: LabelProps, key: number) => (
+							<Label
+								htmlFor={label.htmlFor}
+								className={label.className}
+								key={key}
+							>
+								{label.label}
+							</Label>
+						))}
+						{Inputs?.map((input: InputProps, key: number) => (
+							<Input
+								key={key}
+								id={input.id}
+								variant={input.variant}
+								className={input.className}
+							/>
+						))}
+					</div>
+				</div>
 
-  const handleSubmit = useCallback(() => {
-    if (disabled) {
-      return;
-    }
-
-    onSubmit();
-  }, [disabled, onSubmit]);
-
-  const handleSecondaryAction = useCallback(() => {
-    if (disabled || !secondaryAction) {
-      return;
-    }
-    secondaryAction();
-  }, [disabled, secondaryAction]);
-
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <>
-      <div
-        className="
-                justify-center
-                items-center
-                flex
-                overflow-x-hidden
-                overflow-y-auto
-                fixed
-                inset-0
-                z-50
-                outline-none
-                focus:outline-none
-                bg-neutral-800/70
-            "
-        data-testid="modal"
-      >
-        <div
-          className="
-                    relative
-                    w-full
-                    md:w-4/6
-                    lg:w-3/6
-                    xl:w-2/5
-                    my-6
-                    mx-auto
-                    lg:h-auto
-                    md:h-auto
-                "
-        >
-          {/* Content */}
-          <div
-            className={`
-                    translate 
-                    duration-300
-                    h-full
-                    ${showModal ? "translate-y-0" : "translate-y-full"}
-                    ${showModal ? "opacity-100" : "opacity-0"}
-                `}
-          >
-            <div
-              className="
-                        translate 
-                        h-full
-                        lg:h-auto
-                        md:h-auto
-                        border-0
-                        rounded-lg
-                        shadow-lg
-                        relative
-                        flex
-                        flex-col
-                        w-full
-                        bg-white
-                        outline-none
-                        focus:outline-none
-                    "
-            >
-              <div
-                className="
-                                flex 
-                                items-center 
-                                p-6 
-                                rounded-t 
-                                justify-center 
-                                relative 
-                                border-b-[1px]
-                            "
-              >
-                <button
-                  onClick={handleClose}
-                  className="
-                                p-1
-                                border-0
-                                hover:opacity-70
-                                transition
-                                absolute
-                                left-9
-                            "
-                  data-testid="close-button"
-                >
-                  <IoMdClose size={18} />
-                </button>
-
-                <div className="text-lg font-semibold">{title}</div>
-              </div>
-
-              {/* BODY */}
-              <div className="relative p-6 flex-auto">{body}</div>
-
-              {/* FOOTER */}
-              <div className="flex flex-col gap-2 p-6">
-                <div
-                  className="
-                                    flex
-                                    flex-row
-                                    items-center
-                                    gap-4
-                                    w-full
-                                "
-                >
-                  {secondaryAction && secondaryActionLabel && (
-                    <Button variant="outlined">Hola</Button>
-                  )}
-
-                  <Button
-                    variant="filled"
-                    onClick={onSubmit}
-                    data-testid="submit-button"
-                  >
-                    {actionLabel}
-                  </Button>
-                </div>
-                {footer}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Modal;
+				<DialogFooter>
+					<Button type='submit'>{Footer}</Button>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
+	);
+}
