@@ -7,6 +7,7 @@ import { loginUser } from "../../services/auth/login";
 import { decryptUser } from "../../services/auth/decrypt";
 import { createUserAndGetToken } from "../../services/users/register";
 import { ICreateUserResponse } from "../../interfaces";
+import { useRouter } from "next/navigation";
 
 export interface UserState {
   token: string | null;
@@ -23,6 +24,7 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
@@ -93,6 +95,7 @@ export default function UserProvider({
     try {
       dispatch({ type: "[USER] Logout" });
       removeCookie("token");
+      router.push("/auth/login");
       return true;
     } catch (err) {
       return false;

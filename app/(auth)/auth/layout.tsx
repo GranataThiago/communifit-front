@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import ToasterProvider from "../../providers/ToasterProvider";
 
 export const metadata = {
   title: "Communifit",
@@ -29,6 +30,7 @@ export default function RootLayout({
         />
         <meta name="robots" content="index,follow" />
       </Head>
+      <ToasterProvider />
       {children}
     </>
   );

@@ -36,7 +36,6 @@ export default function RootLayout({
       <Menu />
       <InviteModal />
       <WorkoutModal />
-      <ToasterProvider />
 
       {children}
     </>
