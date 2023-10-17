@@ -1,7 +1,7 @@
 import React from "react";
 import { Control, Controller, UseFormRegister } from "react-hook-form";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { RegisterForm, RegisterFormStep } from "../Onboarding/Onboarding";
+import { RegisterForm } from "../Onboarding/Onboarding";
 import { montserrat } from "../../../../../components/fonts";
 import { RadioCard } from "../../../../../components";
 
