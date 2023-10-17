@@ -1,97 +1,96 @@
 "use client";
 
+import * as z from "zod";
+
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import Link from "next/link";
-import { Button, LabeledInput } from "../../../../components";
-import { montserrat } from "../../../../components/fonts";
+
+import { Button } from "../../../../components/ui/button";
+import ForgotPasswordLink from "./ForgotPasswordLink/ForgotPasswordLink";
+import { Form } from "../../../../components/ui/form";
+import LoginFormFields from "./LoginFormFields/LoginFormFields";
+import { LoginUserResponse } from "../../../../../interfaces";
+import useErrorLoginMessageStore from "../../../../hooks/errorMessage/useErrorMessageLogin";
+import { useForm } from "react-hook-form";
+import useLoader from "../../../../hooks/loader/useLoader";
 import { useRouter } from "next/navigation";
-import { useUserContext } from "../../../../../context/UserContext";
+import { useUserContext } from "../../../../../context/UserContext/UserContext";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type LoginForm = {
-  email: string;
-  password: string;
+	email: string;
+	password: string;
 };
 
 export const LoginForm = () => {
-  const router = useRouter();
+	const { login } = useUserContext();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const { login } = useUserContext();
+	const setIsLoading = useLoader((state) => state.setIsLoading);
+	const messageError = useErrorLoginMessageStore((state) => state.messageError);
+	const setMessageError = useErrorLoginMessageStore(
+		(state) => state.setMessageError
+	);
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-    control,
-  } = useForm<LoginForm>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+	const formSchema = z.object({
+		email: z.string().min(2, {
+			message: "Email is required.",
+		}),
+		password: z.string().min(2, {
+			message: "Password is required.",
+		}),
+	});
 
-  const onLogin = async (formData: LoginForm) => {
-    setIsLoading(true);
-    const { email, password } = formData;
-    const success = await login(email, password);
-    if (success) {
-      router.replace("/");
-    }
-  };
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			email: "",
+			password: "",
+		},
+	});
 
-  return (
-    <form
-      className={`w-full flex flex-col gap-4 pt-2 ${montserrat.className}`}
-      onSubmit={handleSubmit(onLogin)}
-    >
-      <Controller
-        control={control}
-        name="email"
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            id="Email address"
-            ref={null}
-            name="Email address"
-            label="Email address"
-            type="email"
-            variant="outlined"
-          ></LabeledInput>
-        )}
-      />
+	const router = useRouter();
 
-      <Controller
-        control={control}
-        name="password"
-        render={({ field }) => (
-          <LabeledInput
-            {...field}
-            id="Password"
-            ref={null}
-            name="Password"
-            label="Password"
-            type="password"
-            variant="outlined"
-          ></LabeledInput>
-        )}
-      />
+	// Change for error not generic
+	const errorLoginMessage: string =
+		"An error has occurred, we apologize for any inconvenience.";
 
-      <Button
-        type="submit"
-        variant="filled"
-        isLoading={isLoading}
-        data-testid="login"
-      >
-        Login
-      </Button>
-      <Link
-        className="text-right w-full mt-0"
-        href={"/auth/forgot-password"}
-        data-testid="text-footer"
-      >
-        <p>Forgot password?</p>
-      </Link>
-    </form>
-  );
+	const onLogin = async (formData: z.infer<typeof formSchema>) => {
+		setIsLoading(true);
+		const { email, password } = formData;
+
+		const response: LoginUserResponse = await login(email, password);
+
+		if (!response) {
+			setMessageError(errorLoginMessage);
+			setIsLoading(false);
+			return;
+		}
+
+		if (!response.ok) {
+			setMessageError(response.message ?? errorLoginMessage);
+			setIsLoading(false);
+			return;
+		}
+
+		router.replace("/");
+		setIsLoading(false);
+	};
+
+	return (
+		<Form {...form}>
+			<form
+				className={`w-full flex flex-col gap-4 pt-2`}
+				onSubmit={(e) => {
+					e.preventDefault();
+					form.handleSubmit(onLogin)(e);
+				}}
+			>
+				<LoginFormFields form={form} />
+				<ForgotPasswordLink />
+				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
+				<Button variant='filled' type='submit' aria-label='Continue with login'>
+					Continue
+				</Button>
+			</form>
+		</Form>
+	);
 };

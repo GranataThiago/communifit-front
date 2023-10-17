@@ -1,22 +1,25 @@
 "use client";
-import { Button, montserrat } from "../../../components";
-import Logo from "../../../components/Company/Logo";
-import { useState } from "react";
-import InsertEmailStep from "./components/InsertEmailStep";
+
 import { Control, UseFormRegister, useForm } from "react-hook-form";
-import Link from "next/link";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../../../utils";
 import {
-  changePassword,
-  recoverPassword,
-  verifyCode,
+	changePassword,
+	recoverPassword,
+	verifyCode,
 } from "../../../../services/users/recoverPassword";
-import Loading from "../../../(site)/loading";
-import InsertCodeStep from "./components/InsertCodeStep";
+
+import { Button } from "../../../components/ui/button";
 import ChangePasswordStep from "./components/ChangePasswordStep";
-import { useRouter } from "next/navigation";
-import { renderToast } from "../../../providers/ToasterProvider";
 import { ErrorIcon } from "react-hot-toast";
+import InsertCodeStep from "./components/InsertCodeStep";
+import InsertEmailStep from "./components/InsertEmailStep";
+import Link from "next/link";
+import Loading from "../../../(site)/loading";
+import Logo from "../../../components/Company/Logo";
+import { montserrat } from "../../../components";
+import { renderToast } from "../../../providers/ToasterProvider";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export type ForgotPasswordForm = {
   email: string;

@@ -13,14 +13,14 @@ interface InviteModalStore {
 }
 
 const useInviteModal = create<InviteModalStore>((set) => ({
-  isOpen: false,
-  name: "",
-  link: "",
-  onOpen: () => set({ isOpen: true }),
-  onClose: () => set({ isOpen: false }),
-  setName: (newName: string) => set({ name: newName }),
-  setLink: (newLink: string) =>
-    set({ link: `${process.env.NEXT_PUBLIC_DOMAIN}join/${newLink}` }),
+	isOpen: false,
+	name: "",
+	link: "test",
+	onOpen: () => set({ isOpen: true }),
+	onClose: () => set({ isOpen: false }),
+	setName: (newName: string) => set({ name: newName }),
+	setLink: (newLink: string) =>
+		set({ link: `${process.env.NEXT_PUBLIC_DOMAIN}join/${newLink}` }),
 }));
 
 export default useInviteModal;
