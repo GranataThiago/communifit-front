@@ -41,7 +41,7 @@ const InsertCodeStep = ({
   };
 
   const onResendEmail = async () => {
-    await recoverPassword({ email: getValues("email") });
+    await recoverPassword({ email: getValues("email").toLowerCase().trim() });
   };
 
   return (
