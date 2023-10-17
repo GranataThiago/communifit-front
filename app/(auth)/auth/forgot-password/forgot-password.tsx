@@ -91,7 +91,7 @@ export const ForgotPassword = () => {
           );
         }
         const responseChangePassword = await changePassword({
-          email: "hernandeztomas584@gmail.com",
+          email: getValues("email").toLowerCase().trim(),
           code,
           password: getValues("password"),
           confirmPassword: getValues("confirmPassword"),
