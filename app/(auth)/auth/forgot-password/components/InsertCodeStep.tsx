@@ -58,6 +58,7 @@ const InsertCodeStep = ({
               value={value}
               onPaste={handlePaste}
               onChange={(e) => handleChangeCode(index, e.target.value)}
+              onInput={(e) => handleChangeCode(index, (e.target as HTMLInputElement).value)}
             />
           </div>
         ))}

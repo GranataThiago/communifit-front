@@ -106,6 +106,7 @@ export const ForgotPassword = () => {
             "Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos",
           );
           setTimeout(() => {
+            localStorage.removeItem('email')
             router.push("/auth/login");
           }, 3000);
         }
