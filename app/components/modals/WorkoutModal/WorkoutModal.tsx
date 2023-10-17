@@ -1,6 +1,6 @@
 "use client";
 
-import Modal, { LabelProps } from "../Modal";
+import Modal, { LabelProps } from "../ModalForm";
 
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -70,7 +70,6 @@ const WorkoutModal = () => {
 			Labels={labels}
 			Form={form}
 			TextButton='Add'
-			//disabled={isLoading}
 		/>
 	);
 };
