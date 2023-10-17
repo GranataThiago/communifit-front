@@ -31,7 +31,6 @@ export const verifyCode = async ({email, code}: {email: string, code: string[]})
       }
     );
     if (apiResponse.data) response = apiResponse.data; 
-    console.log(response)
   } catch (error) {
     console.log(error);
   }

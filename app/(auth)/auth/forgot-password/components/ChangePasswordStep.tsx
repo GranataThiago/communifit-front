@@ -1,6 +1,6 @@
 import { Controller } from "react-hook-form";
-import {  ForgotPasswordFormStep } from "../forgot-password";
 import { Input } from "../../../../components";
+import { ForgotPasswordFormStep } from "../forgot-password";
 
 const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
   return (

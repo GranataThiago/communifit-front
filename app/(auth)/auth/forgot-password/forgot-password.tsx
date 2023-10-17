@@ -5,13 +5,15 @@ import { useState } from "react";
 import InsertEmailStep from "./components/InsertEmailStep";
 import { Control, UseFormRegister, useForm } from "react-hook-form";
 import Link from "next/link";
-import { EMAIL_REGEX } from "../../../../utils";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../../../../utils";
 import { changePassword, recoverPassword, verifyCode } from "../../../../services/users/recoverPassword";
 import Loading from "../../../(site)/loading";
 import InsertCodeStep from "./components/InsertCodeStep";
-import toast from "react-hot-toast";
 import ChangePasswordStep from "./components/ChangePasswordStep";
 import { useRouter } from "next/navigation";
+import { toast } from "../../../../@/components/ui/use-toast";
+import { renderToast } from "../../../providers/ToasterProvider";
+import { ErrorIcon } from "react-hot-toast";
 
 export type ForgotPasswordForm = {
   email: string;
@@ -23,6 +25,8 @@ export type ForgotPasswordForm = {
 export interface ForgotPasswordFormStep {
   register: UseFormRegister<ForgotPasswordForm>;
   control: Control<ForgotPasswordForm, any>;
+  errors?: any;
+  isValid: boolean;
 }
 
 //TODO: AGREGAR UN MIDDLEWARE QUE SI ESTÁ LOGUEADO LO MANDE A LA HOME. (Acá no, directamente crear un middleware.)
@@ -35,7 +39,7 @@ export const ForgotPassword = () =>  {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
     control,
     getValues,
@@ -57,7 +61,7 @@ export const ForgotPassword = () =>  {
         setIsLoading(true);
         const response = await recoverPassword({email: getValues("email")}); 
         if(!response || response.status_code !== "code_sent"){
-          console.log("Error")
+          renderToast("Oops, something went wrong", <ErrorIcon/>)
         }else{
           setCurrentStep((prev) => prev+1)
         }
@@ -67,7 +71,7 @@ export const ForgotPassword = () =>  {
         setIsLoading(true);
         const responseVerifyCode = await verifyCode({email:getValues("email"), code})
         if(responseVerifyCode?.status_code !== 'valid_code'){
-          console.log("Código invalido")
+          renderToast("Invalid code", <ErrorIcon/>)
         }else {
           setCurrentStep((prev) => prev+1)
         }
@@ -75,9 +79,13 @@ export const ForgotPassword = () =>  {
         return; 
       case 2:
           setIsLoading(true);
+          if(!PASSWORD_REGEX.test(getValues("password"))){
+            setIsLoading(false);
+            return renderToast("Password must have at least 8 characters, including one uppercase letter, one lowercase letter, and at least 2 digits.", <ErrorIcon/>)
+          }
           const responseChangePassword = await changePassword({email:"hernandeztomas584@gmail.com", code, password: getValues('password'), confirmPassword: getValues('confirmPassword')})
            if(responseChangePassword?.status_code !== 'password_changed'){
-            console.log("Error de contraseña")
+            renderToast("Oops, something went wrong. Please, refresh the page.", <ErrorIcon/>)
           }else {
             alert("Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos");
             setTimeout(() => {
@@ -121,6 +129,8 @@ export const ForgotPassword = () =>  {
     const baseProps = {
       register,
       control,
+      errors,
+      isValid
     };
 
     
@@ -148,7 +158,6 @@ export const ForgotPassword = () =>  {
      if(currentStep == 1){
       code.forEach(digit => {
         if(!digit || digit.length != 0){
-          toast.error("All digits must be filled")
           return false;
         }
       });
