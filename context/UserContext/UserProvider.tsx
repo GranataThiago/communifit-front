@@ -1,118 +1,139 @@
 "use client";
+
+import { ICreateUserResponse, LoginUserResponse } from "../../interfaces";
 import React, { useEffect, useReducer } from "react";
-import { UserContext, userReducer } from ".";
-import { useCookies } from "react-cookie";
 import { RegisterUser, User } from "../../interfaces/user";
-import { loginUser } from "../../services/auth/login";
-import { decryptUser } from "../../services/auth/decrypt";
+import { UserContext, userReducer } from ".";
+
 import { createUserAndGetToken } from "../../services/users/register";
-import { ICreateUserResponse } from "../../interfaces";
+import { decryptUser } from "../../services/auth/decrypt";
+import { loginUser } from "../../services/auth/login";
+import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 
 export interface UserState {
-  token: string | null;
-  user: User | null;
+	token: string | null;
+	user: User | null;
 }
 
 const USER_INITIAL_STATE: UserState = {
-  token: null,
-  user: null,
+	token: null,
+	user: null,
 };
 
 export default function UserProvider({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const router = useRouter();
-  const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+	const router = useRouter();
+	const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
+	const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
-  useEffect(() => {
-    decryptUserData();
-  }, []);
+	useEffect(() => {
+		decryptUserData();
+	}, []);
 
-  const register = async (user: RegisterUser) => {
-    const { objective = null, ...userData } = user;
-    const data: ICreateUserResponse = await createUserAndGetToken({
-      user: userData,
-    });
-    if (!data || !data.token) return alert("Create user error");
+	const register = async (user: RegisterUser) => {
+		const { objective = null, ...userData } = user;
+		const data: ICreateUserResponse = await createUserAndGetToken({
+			user: userData,
+		});
+		if (!data || !data.token) return alert("Create user error");
 
-    dispatch({
-      type: "[USER] Login",
-      payload: { token: data.token, user: { ...user, image: "asd" } },
-    });
-  };
+		dispatch({
+			type: "[USER] Login",
+			payload: { token: data.token, user: { ...user, image: "asd" } },
+		});
+	};
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    try {
-      const data = await loginUser({ email, password });
-      if (!data || !data.token) return false;
+	const login = async (
+		email: string,
+		password: string
+	): Promise<LoginUserResponse> => {
+		try {
+			const data: LoginUserResponse = await loginUser({
+				email,
+				password,
+			});
 
-      const { token } = data;
+			if (!data || !data.token) {
+				return {
+					ok: false,
+				};
+			}
 
-      setCookie("token", data.token, {
-        path: "/",
-      });
+			const { token } = data;
 
-      const userData = await decryptUser({ token });
-      let user = null;
-      if (userData && userData.user) {
-        user = userData.user;
-      }
+			setCookie("token", data.token, {
+				path: "/",
+			});
 
-      dispatch({ type: "[USER] Login", payload: { user, token } });
+			const userData = await decryptUser({ token });
+			let user = null;
+			if (userData && userData.user) {
+				user = userData.user;
+			}
 
-      return true;
-    } catch (err) {
-      console.log(err);
-      removeCookie("token");
-      return false;
-    }
-  };
+			dispatch({ type: "[USER] Login", payload: { user, token } });
 
-  const decryptUserData = async () => {
-    try {
-      const { token } = cookies;
-      if (!token) return;
+			return data;
+		} catch (error: any) {
+			if (error.response) {
+				return {
+					ok: false,
+					message: error.response.data.message,
+				};
+			} else {
+				return {
+					ok: false,
+					message: "An error has occurred, we apologize for any inconvenience.",
+				};
+			}
+		}
+	};
 
-      const data = await decryptUser({ token });
-      if (!data) return;
+	const decryptUserData = async () => {
+		try {
+			const { token } = cookies;
+			if (!token) return;
 
-      dispatch({
-        type: "[USER] Login",
-        payload: { token, user: data.user },
-      });
-    } catch (err) {
-      console.log(err);
-      removeCookie("token");
-      return;
-    }
-  };
+			const data = await decryptUser({ token });
+			if (!data) return;
 
-  const logout = () => {
-    try {
-      dispatch({ type: "[USER] Logout" });
-      removeCookie("token");
-      router.push("/auth/login");
-      return true;
-    } catch (err) {
-      return false;
-    }
-  };
+			dispatch({
+				type: "[USER] Login",
+				payload: { token, user: data.user },
+			});
+		} catch (err) {
+			console.log(err);
+			removeCookie("token");
+			return;
+		}
+	};
 
-  return (
-    <UserContext.Provider
-      value={{
-        ...state,
-        login,
-        register,
-        decryptUserData,
-        logout,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+	const logout = () => {
+		try {
+			dispatch({ type: "[USER] Logout" });
+			removeCookie("token");
+			router.push("/auth/login");
+			return true;
+		} catch (err) {
+			return false;
+		}
+	};
+
+	return (
+		<UserContext.Provider
+			value={{
+				...state,
+				login,
+				register,
+				decryptUserData,
+				logout,
+			}}
+		>
+			{children}
+		</UserContext.Provider>
+	);
 }

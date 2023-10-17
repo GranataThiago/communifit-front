@@ -1,58 +1,63 @@
 "use client";
-import React from "react";
-import { AiFillCheckCircle } from "react-icons/ai";
-import { useCallback, useState } from "react";
-import { FieldValues, SubmitHandler } from "react-hook-form";
 
-import useInviteModal from "../../../hooks/modals/useInviteModal";
-import Modal from "../Modal";
+import ModalForm, { LabelProps } from "../ModalForm";
+import React, { useEffect, useState } from "react";
+
+import { AiFillCheckCircle } from "react-icons/ai";
 import Heading from "../../Heading/Heading";
 import { renderToast } from "../../../providers/ToasterProvider";
+import { useForm } from "react-hook-form";
+import useInviteModal from "../../../hooks/modals/useInviteModal";
 
 const InviteModal = () => {
-  const inviteModal = useInviteModal();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [clickOnSubmit, setClickOnSubmit] = useState(false);
+	const inviteModal = useInviteModal();
+	const form = useForm({
+		defaultValues: {
+			link: "",
+		},
+	});
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
-  };
+	const labels: LabelProps[] = [
+		{
+			label: "Link is valid for one person only",
+			className: "font-light text-neutral-500 mt-2",
+			input: {
+				variant: "outlined",
+				id: "link",
+				type: "text",
+				fieldName: "link",
+				value: `${inviteModal.link}`,
+			},
+		},
+	];
 
-  const toggle = useCallback(() => {
-    inviteModal.onClose();
-  }, [inviteModal]);
+	const onLinkCopied = () => {
+		setClickOnSubmit(true);
 
-  const bodyContent = (
-    <div className="flex flex-col gap-4">
-      <Heading
-        title="Invite someone to Gorillas"
-        subtitle="Link is valid for one person only"
-      />
+		navigator.clipboard.writeText(inviteModal.link);
+	};
 
-      <input
-        type="text"
-        aria-label="Copied to clipboard"
-        value={inviteModal.link}
-        disabled
-      />
-    </div>
-  );
+	useEffect(() => {
+		if (setClickOnSubmit) {
+			setTimeout(() => {
+				setClickOnSubmit(false);
+			}, 7000);
+		}
+	}, [clickOnSubmit]);
 
-  const onLinkCopied = () => {
-    renderToast("Copied to clipboard", <AiFillCheckCircle />);
-    navigator.clipboard.writeText(inviteModal.link);
-  };
-
-  return (
-    <Modal
-      disabled={isLoading}
-      isOpen={inviteModal.isOpen}
-      title="Invite"
-      actionLabel="Copy"
-      onClose={inviteModal.onClose}
-      onSubmit={onLinkCopied}
-      body={bodyContent}
-    />
-  );
+	return (
+		<ModalForm
+			Title='Invite'
+			Description='Invite someone to Gorillas'
+			Footer={`${clickOnSubmit ? "Copied to clipboard" : "Copy"}`}
+			Labels={labels}
+			Form={form}
+			TextButton='Invite'
+			Icon={clickOnSubmit ? <AiFillCheckCircle /> : null}
+			OnSubmit={() => onLinkCopied()}
+		/>
+	);
 };
 
 export default InviteModal;
