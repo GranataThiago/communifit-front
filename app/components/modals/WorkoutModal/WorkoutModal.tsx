@@ -1,27 +1,30 @@
 "use client";
 
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { FormControl, FormField, FormItem, FormLabel } from "../../ui/form";
-import React, { useState } from "react";
+import Modal, { LabelProps } from "../Modal";
 
-import { Exercise } from "../../../../interfaces/exercises";
-import { Heading } from "../../Heading";
-import { Input } from "../../ui/input";
-import Modal from "../Modal";
-import { useCallback } from "react";
-import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const WorkoutModal = () => {
-	const workoutModal = useWorkoutModal();
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const formSchema = z.object({
+		name: z.string().min(1, {
+			message: "Name is required.",
+		}),
+		quantity: z.string().min(1, {
+			message: "Quantity is required.",
+		}),
+		weight: z.string().min(1, {
+			message: "Weight is required.",
+		}),
+		observations: z.string().min(1, {
+			message: "Observations is required.",
+		}),
+	});
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		control,
-		reset,
-	} = useForm<Exercise>({
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: "",
 			quantity: "",
@@ -30,78 +33,44 @@ const WorkoutModal = () => {
 		},
 	});
 
-	const onSubmit: SubmitHandler<Exercise> = (data) => {
-		setIsLoading(true);
-		workoutModal.exercise = { ...data };
-		workoutModal.onClose();
-		reset();
-	};
-
-	const toggle = useCallback(() => {
-		workoutModal.onClose();
-	}, [workoutModal]);
-
-	const bodyContent = (
-		<div className='flex flex-col gap-4'>
-			<Heading title='Exercise Details' subtitle='' />
-
-			<FormField
-				rules={{
-					required: "The name is required.",
-				}}
-				control={control}
-				name='name'
-				render={({ field }) => (
-					<FormItem>
-						<FormLabel>Name</FormLabel>
-						<FormControl>
-							<Input {...field} ref={null} variant='outlined' type='text' />
-						</FormControl>
-					</FormItem>
-				)}
-			/>
-			<FormField
-				rules={{
-					required: "The quantity is required.",
-				}}
-				control={control}
-				name='quantity'
-				render={({ field }) => (
-					<FormItem>
-						<FormLabel>Sets/Reps</FormLabel>
-						<FormControl>
-							<Input {...field} ref={null} variant='outlined' type='text' />
-						</FormControl>
-					</FormItem>
-				)}
-			/>
-			<FormField
-				rules={{
-					required: "The observations is required.",
-				}}
-				control={control}
-				name='observations'
-				render={({ field }) => (
-					<FormItem>
-						<FormLabel>Observations</FormLabel>
-						<FormControl>
-							<Input {...field} ref={null} variant='outlined' type='text' />
-						</FormControl>
-					</FormItem>
-				)}
-			/>
-		</div>
-	);
+	const labels: LabelProps[] = [
+		{
+			label: "Name",
+			input: {
+				variant: "outlined",
+				id: "name",
+				type: "text",
+				fieldName: "name",
+			},
+		},
+		{
+			label: "Sets/Reps",
+			input: {
+				variant: "outlined",
+				id: "quantity",
+				type: "text",
+				fieldName: "quantity",
+			},
+		},
+		{
+			label: "Observations",
+			input: {
+				variant: "outlined",
+				id: "observations",
+				type: "text",
+				fieldName: "observations",
+			},
+		},
+	];
 
 	return (
 		<Modal
-			disabled={isLoading}
-			isOpen={workoutModal.isOpen}
-			title='Workout'
-			actionLabel='Add'
-			onClose={workoutModal.onClose}
-			onSubmit={handleSubmit(onSubmit)}
-			body={bodyContent}
+			Title='Exercise Details'
+			Footer='Add'
+			Labels={labels}
+			Form={form}
+			TextButton='Add'
+			//disabled={isLoading}
 		/>
 	);
 };
