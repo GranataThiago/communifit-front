@@ -6,11 +6,11 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 // This function can be marked async if using await inside
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith("/auth")) {
+  let cookie = request.cookies.get("token");
+
+  if (request.nextUrl.pathname.startsWith("/auth") && !cookie) {
     return NextResponse.next();
   }
-
-  let cookie = request.cookies.get("token");
 
   if (!cookie) {
     return NextResponse.redirect(new URL("/auth/login", request.url));

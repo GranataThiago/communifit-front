@@ -35,7 +35,7 @@ export interface RegisterFormStep {
 
 export const Onboarding = () => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<number>(3);
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const { register: registerUser } = useContext(UserContext);
 
   const {

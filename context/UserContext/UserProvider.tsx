@@ -41,11 +41,15 @@ export default function UserProvider({
       });
       if (!data || !data.token) return { ok: false, error: 'There has been an error while creating the user' };
   
+      setCookie("token", data.token, {
+        path: "/",
+      });
+
       dispatch({
         type: "[USER] Login",
-        payload: { token: data.token, user: { ...user, image: "asd" } },
+        payload: { token: data.token, user: { ...user, image: null } },
       });
-  
+
       return { ok: true }
     }catch(err){
       console.log(err)
