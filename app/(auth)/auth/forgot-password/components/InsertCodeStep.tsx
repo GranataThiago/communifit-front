@@ -1,5 +1,5 @@
 import { Button } from "../../../../components/ui/button";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { recoverPassword } from "../../../../../services/users/recoverPassword";
 
 const InsertCodeStep = ({
@@ -11,6 +11,16 @@ const InsertCodeStep = ({
 	setCode: any;
 	getValues: any;
 }) => {
+
+  	const inputRefs = useRef<HTMLInputElement[] | null >([]);
+
+	useEffect(() => {
+		if(inputRefs && Array.isArray(inputRefs.current)){
+			inputRefs.current = inputRefs.current.slice(0, code.length);
+		}
+	}, [code]);
+
+	
 	const handlePaste = (e: any) => {
 		e.preventDefault();
 		const clipboardData = e.clipboardData.getData("text");
@@ -26,9 +36,12 @@ const InsertCodeStep = ({
 			}
 		});
 		setCode(newCode);
+		
+
 	};
 
 	const handleChangeCode = (index: number, newValue: string) => {
+		if(!inputRefs && !Array.isArray(inputRefs)) return;
 		if (newValue.length >= 1) {
 			newValue = newValue.slice(0, 1);
 		}
@@ -38,6 +51,17 @@ const InsertCodeStep = ({
 		let newCode = [...code];
 		newCode[index] = newValue;
 		setCode(newCode);
+
+		 if (newValue === '') {
+			if (index > 0) {
+			  inputRefs.current![index - 1].focus();
+			}
+		  } else {
+			if (index < code.length - 1) {
+			  inputRefs.current![index + 1].focus();
+			}
+		  }
+
 	};
 
 	const onResendEmail = async () => {
@@ -51,8 +75,11 @@ const InsertCodeStep = ({
 					<div
 						key={index}
 						className='flex items-center justify-center text-center'
+						tabIndex={index}
+
 					>
 						<input
+							ref={(ref) => (inputRefs.current![index] = ref as HTMLInputElement)}
 							type='text'
 							className='w-[80px] h-[80px] text-5xl rounded-xl border-2 border-gray-300 text-center'
 							value={value}
