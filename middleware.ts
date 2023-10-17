@@ -8,11 +8,11 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 export async function middleware(request: NextRequest) {
   let cookie = request.cookies.get("token");
 
-  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth")
+  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth");
   if (isAuthRoute && !cookie) {
     return NextResponse.next();
-  }else if(isAuthRoute && cookie){
-    return NextResponse.redirect(new URL('/', request.nextUrl.origin))
+  } else if (isAuthRoute && cookie) {
+    return NextResponse.redirect(new URL("/", request.nextUrl.origin));
   }
 
   if (!cookie) {

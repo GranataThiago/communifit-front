@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
 import { AccountTypeStep } from "../AccountTypeStep";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { inter, montserrat } from "../../../../../components/fonts";
 import { UserContext } from "../../../../../../context/UserContext";
 import { Button } from "../../../../../components";
@@ -39,7 +39,9 @@ interface OnBoardingProps {
 
 export const Onboarding = (props: OnBoardingProps) => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<number>(props.currentStepMock ?? 0);
+  const [currentStep, setCurrentStep] = useState<number>(
+    props.currentStepMock ?? 0,
+  );
   const { register: registerUser } = useContext(UserContext);
 
   const {
@@ -66,8 +68,8 @@ export const Onboarding = (props: OnBoardingProps) => {
   });
 
   const onNextStep = () => {
-    if(currentStep > 3){
-      router.push('/')
+    if (currentStep > 3) {
+      router.push("/");
     }
     setCurrentStep((prevStep) => prevStep + 1);
   };
@@ -90,7 +92,7 @@ export const Onboarding = (props: OnBoardingProps) => {
     }
   };
 
-  const onRegister = async(formData: RegisterForm) => {
+  const onRegister = async (formData: RegisterForm) => {
     const {
       birthdate: { day, month, year },
     } = formData;
@@ -103,13 +105,13 @@ export const Onboarding = (props: OnBoardingProps) => {
     };
 
     const response = await registerUser(SAFE_USER);
-    if(response.ok){
-      onNextStep()
+    if (response.ok) {
+      onNextStep();
       setTimeout(() => {
         router.push("/");
       }, 3000);
-    }else{
-      alert("There was an error while registering your account")
+    } else {
+      alert("There was an error while registering your account");
     }
   };
 

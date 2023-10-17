@@ -7,7 +7,10 @@ export const FinalStep = () => {
         Excellent, your account has been{" "}
         <span className="text-primary">succesfully</span> created!{" "}
       </p>
-      <p className="mx-auto text-md text-center text-gray-500">You will be redirected in 3 seconds. If not, please click the "Continue" button below.</p>
+      <p className="mx-auto text-md text-center text-gray-500">
+        You will be redirected in 3 seconds. If not, please click the "Continue"
+        button below.
+      </p>
     </div>
   );
 };

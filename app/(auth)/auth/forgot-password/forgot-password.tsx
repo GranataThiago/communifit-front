@@ -46,7 +46,7 @@ export const ForgotPassword = () => {
     getValues,
   } = useForm<ForgotPasswordForm>({
     defaultValues: {
-      email: localStorage.getItem('email') || "",
+      email: localStorage.getItem("email") || "",
       password: "",
       confirmPassword: "",
     },
@@ -59,11 +59,13 @@ export const ForgotPassword = () => {
     switch (currentStep) {
       case 0:
         setIsLoading(true);
-        const response = await recoverPassword({ email: getValues("email").toLowerCase().trim() });
+        const response = await recoverPassword({
+          email: getValues("email").toLowerCase().trim(),
+        });
         if (!response || response.status_code !== "code_sent") {
           renderToast("Oops, something went wrong", <ErrorIcon />);
         } else {
-          localStorage.setItem("email", getValues("email"))  
+          localStorage.setItem("email", getValues("email"));
           setCurrentStep((prev) => prev + 1);
         }
         setIsLoading(false);
@@ -106,7 +108,7 @@ export const ForgotPassword = () => {
             "Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos",
           );
           setTimeout(() => {
-            localStorage.removeItem('email')
+            localStorage.removeItem("email");
             router.push("/auth/login");
           }, 3000);
         }

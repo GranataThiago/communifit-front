@@ -19,7 +19,6 @@ const USER_INITIAL_STATE: UserState = {
   user: null,
 };
 
-
 export default function UserProvider({
   children,
 }: {
@@ -34,13 +33,17 @@ export default function UserProvider({
   }, []);
 
   const register = async (user: RegisterUser): Promise<CreateUserReturn> => {
-    try{
+    try {
       const { objective = null, ...userData } = user;
       const data: ICreateUserResponse = await createUserAndGetToken({
         user: userData,
       });
-      if (!data || !data.token) return { ok: false, error: 'There has been an error while creating the user' };
-  
+      if (!data || !data.token)
+        return {
+          ok: false,
+          error: "There has been an error while creating the user",
+        };
+
       setCookie("token", data.token, {
         path: "/",
       });
@@ -50,12 +53,11 @@ export default function UserProvider({
         payload: { token: data.token, user: { ...user, image: null } },
       });
 
-      return { ok: true }
-    }catch(err){
-      console.log(err)
+      return { ok: true };
+    } catch (err) {
+      console.log(err);
       return { ok: false, error: err };
     }
-
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
