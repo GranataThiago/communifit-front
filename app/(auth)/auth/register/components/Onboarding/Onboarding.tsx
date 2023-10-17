@@ -1,21 +1,21 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Control, useForm, UseFormRegister } from "react-hook-form";
+import { AccountTypeStep } from "../AccountTypeStep";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { inter, montserrat } from "../../../../../components/fonts";
 import { UserContext } from "../../../../../../context/UserContext";
 import { Button } from "../../../../../components";
-import { UserTypes } from "../../../../../../interfaces/user";
-import { AccountTypeStep } from "../AccountTypeStep/AccountTypeStep";
+import { RegisterUser, UserTypes } from "../../../../../../interfaces/user";
 import { PersonalInfoStep } from "../PersonalInfoStep/PersonalInfoStep";
-import { FinalStep } from "../FinalStep/FinalStep";
 import { RegisterFormComponent } from "../RegisterForm/RegisterForm";
+import { FinalStep } from "../FinalStep/FinalStep";
 
 export type RegisterForm = {
-  fullName: string;
   username: string;
+  fullName: string;
   email: string;
   password: string;
   type: UserTypes;
@@ -33,15 +33,9 @@ export interface RegisterFormStep {
   control: Control<RegisterForm, any>;
 }
 
-interface OnBoardingProps {
-  currentStepMock?: number;
-}
-
-export const Onboarding = (props: OnBoardingProps) => {
+export const Onboarding = () => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<number>(
-    props.currentStepMock ?? 0,
-  );
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const { register: registerUser } = useContext(UserContext);
 
   const {
@@ -68,6 +62,9 @@ export const Onboarding = (props: OnBoardingProps) => {
   });
 
   const onNextStep = () => {
+    if(currentStep >= 3){
+      console.log('Last Step')
+    }
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
@@ -90,16 +87,20 @@ export const Onboarding = (props: OnBoardingProps) => {
   };
 
   const onRegister = (formData: RegisterForm) => {
+    console.log('on register')
+    return;
     const {
       birthdate: { day, month, year },
     } = formData;
 
     const birthdate = new Date(year, month, day);
 
-    registerUser({
+    const SAFE_USER: RegisterUser = {
       ...formData,
       birthdate,
-    });
+    };
+
+    registerUser(SAFE_USER);
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { RegisterFormStep } from "./Onboarding";
+import { RegisterFormStep } from "./Onboarding/Onboarding";
 import { RadioCard } from "../../../../components/RadioCard";
 import { Controller } from "react-hook-form";
 import { montserrat } from "../../../../components/fonts";
