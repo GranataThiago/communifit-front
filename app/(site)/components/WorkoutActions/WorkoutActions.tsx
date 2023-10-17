@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
-import { Button } from "../../../components";
+
 import { BsPencil } from "react-icons/bs";
+import { Button } from "../../../components/ui/button";
+import React from "react";
 import apiInstance from "../../../api";
 import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
 

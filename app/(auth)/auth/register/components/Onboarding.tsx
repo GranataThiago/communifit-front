@@ -1,17 +1,18 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { Control, useForm, UseFormRegister } from "react-hook-form";
-import { AccountTypeStep } from "./AccountTypeStep";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { inter, montserrat } from "../../../../components/fonts";
-import { UserContext } from "../../../../../context/UserContext";
-import { Button } from "../../../../components";
+import { Control, UseFormRegister, useForm } from "react-hook-form";
 import { RegisterUser, UserTypes } from "../../../../../interfaces/user";
+import { inter, montserrat } from "../../../../components/fonts";
+import { useContext, useState } from "react";
+
+import { AccountTypeStep } from "./AccountTypeStep";
+import { Button } from "../../../../components/ui/button";
+import { FinalStep } from "./FinalStep/FinalStep";
+import Link from "next/link";
 import { PersonalInfoStep } from "./PersonalInfoStep/PersonalInfoStep";
 import { RegisterFormComponent } from "./RegisterForm/RegisterForm";
-import { FinalStep } from "./FinalStep/FinalStep";
+import { UserContext } from "../../../../../context/UserContext";
+import { useRouter } from "next/navigation";
 
 export type RegisterForm = {
   fullName: string;

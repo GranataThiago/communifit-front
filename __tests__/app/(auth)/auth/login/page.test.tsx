@@ -30,7 +30,7 @@ jest.mock("next/navigation", () => ({
     };
   },
 }));
-
+jest.mock("@react-oauth/google");
 describe("<Page />", () => {
   it("renders without errors", () => {
     const { getByText, getAllByTestId } = render(<Page />);
