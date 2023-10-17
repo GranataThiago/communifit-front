@@ -36,7 +36,6 @@ export default function RootLayout({
 				<meta name='robots' content='index,follow' />
 			</Head>
 			<Menu />
-			<InviteModal />
 			<ToasterProvider />
 
 			{children}
