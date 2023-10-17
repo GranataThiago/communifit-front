@@ -34,7 +34,7 @@ export interface ForgotPasswordFormStep {
   isValid: boolean;
 }
 
-//TODO: AGREGAR UN MIDDLEWARE QUE SI ESTÁ LOGUEADO LO MANDE A LA HOME. (Acá no, directamente crear un middleware.)
+
 export const ForgotPassword = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
