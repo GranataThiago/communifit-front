@@ -13,7 +13,7 @@ const gendersOptions = [
   },
   {
     label: "Women",
-    value: "Women",
+    value: "women",
     icon: <BsGenderFemale className="text-5xl" />,
   },
 ];
