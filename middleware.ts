@@ -8,8 +8,11 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 export async function middleware(request: NextRequest) {
   let cookie = request.cookies.get("token");
 
-  if (request.nextUrl.pathname.startsWith("/auth") && !cookie) {
+  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth")
+  if (isAuthRoute && !cookie) {
     return NextResponse.next();
+  }else if(isAuthRoute && cookie){
+    return NextResponse.redirect(new URL('/', request.nextUrl.origin))
   }
 
   if (!cookie) {
@@ -33,5 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next/static|_next/image|favicon.ico|auth).*)",
+  matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
 };
