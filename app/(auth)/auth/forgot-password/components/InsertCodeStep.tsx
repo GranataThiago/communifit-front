@@ -20,6 +20,9 @@ const InsertCodeStep = ({code, setCode}: {code: string[], setCode: any}) => {
   };
 
   const handleChangeCode = (index: number, newValue: string) => {
+    if(newValue.length>=1){
+      newValue = newValue.slice(0, 1);
+    }
     if((!Number(newValue) && Number(newValue) !== 0) && newValue !== '' ){
         return;
     }
