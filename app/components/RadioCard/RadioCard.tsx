@@ -20,19 +20,19 @@ export const RadioCard = ({
 }: RadioCardProps) => {
 	return (
 		<Card
-			className={`flex p-4 w-full items-center justify-center rounded-lg h-${height}`}
+			className={`border border-primary flex p-4 w-full items-center justify-center rounded-lg h-${height}`}
 		>
 			<CardTitle className='w-full text-center'>
 				<Label
 					htmlFor={props.id}
-					className='w-4/5 font-semibold xxs:text-sm xs:text-lg'
+					className='w-4/5 font-semibold xxs:text-sm xs:text-lg cursor-pointer '
 				>
 					{label}
 				</Label>
 			</CardTitle>
 			<CardContent>
 				{icon ? icon : null}
-				<Input variant='outlined' type='radio' {...props} />
+				<Input variant='outlined' type='radio' name={props.name} {...props} />
 			</CardContent>
 		</Card>
 	);
