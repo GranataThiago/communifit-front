@@ -59,7 +59,7 @@ export const ForgotPassword = () => {
     switch (currentStep) {
       case 0:
         setIsLoading(true);
-        const response = await recoverPassword({ email: getValues("email").toLowerCase() });
+        const response = await recoverPassword({ email: getValues("email").toLowerCase().trim() });
         if (!response || response.status_code !== "code_sent") {
           renderToast("Oops, something went wrong", <ErrorIcon />);
         } else {
