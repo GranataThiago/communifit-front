@@ -1,11 +1,15 @@
 import React from "react";
+import { Button } from "../../../../components";
+import { recoverPassword } from "../../../../../services/users/recoverPassword";
 
 const InsertCodeStep = ({
   code,
   setCode,
+  getValues,
 }: {
   code: string[];
   setCode: any;
+  getValues: any;
 }) => {
   const handlePaste = (e: any) => {
     e.preventDefault();
@@ -36,23 +40,38 @@ const InsertCodeStep = ({
     setCode(newCode);
   };
 
+  const onResendEmail = async () => {
+    await recoverPassword({ email: getValues("email") });
+  };
+
   return (
-    <div className="flex flex-row w-full items-center justify-center gap-3">
-      {code.map((value, index) => (
-        <div
-          key={index}
-          className="flex items-center justify-center text-center"
-        >
-          <input
-            type="text"
-            className="w-[80px] h-[80px] text-5xl rounded-xl border-2 border-gray-300 text-center"
-            value={value}
-            onPaste={handlePaste}
-            onChange={(e) => handleChangeCode(index, e.target.value)}
-          />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="flex flex-row w-full items-center justify-center gap-3">
+        {code.map((value, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center text-center"
+          >
+            <input
+              type="text"
+              className="w-[80px] h-[80px] text-5xl rounded-xl border-2 border-gray-300 text-center"
+              value={value}
+              onPaste={handlePaste}
+              onChange={(e) => handleChangeCode(index, e.target.value)}
+            />
+          </div>
+        ))}
+      </div>
+
+      <Button
+        variant="text"
+        className="relative self-end"
+        aria-label={"Resend verification code"}
+        onClick={onResendEmail}
+      >
+        Didn't received the code? Resend.
+      </Button>
+    </>
   );
 };
 

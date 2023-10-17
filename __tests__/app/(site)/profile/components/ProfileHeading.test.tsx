@@ -19,7 +19,6 @@ jest.mock("../../../../../context/UserContext", () => ({
   }),
 }));
 
-
 describe("<ProfileHeading />", () => {
   it("renders ProfileHeading", () => {
     const { getByTestId } = render(<ProfileHeading />);

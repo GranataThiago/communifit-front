@@ -141,6 +141,7 @@ export const ForgotPassword = () => {
       control,
       errors,
       isValid,
+      getValues,
     };
 
     switch (currentStep) {
