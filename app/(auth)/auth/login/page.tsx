@@ -3,6 +3,7 @@
 import Link from "next/link";
 import LoaderLogo from "../../../components/LoaderLogo/LoaderLogo";
 import { LoginForm } from "./components/LoginForm";
+import Logo from "../../../components/Company/Logo";
 import React from "react";
 import dynamic from "next/dynamic";
 import { montserrat } from "../../../components/fonts";
@@ -24,11 +25,9 @@ const LoginPage = () => {
 		<section
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
 		>
-			<div className='flex flex-col items-center gap-2 leading-[1.375rem]'>
-				<h1 className='text-[2rem] font-bold'>
-					Communi<span className='text-primary'>fit</span>.
-				</h1>
-				<h2 className='font-semibold text-[1.3125rem]'>Login</h2>
+			<div className='text-center'>
+				<Logo />
+				<p className='text-xl font-medium'>Login</p>
 			</div>
 
 			{isLoading ? (
