@@ -9,9 +9,12 @@ import { Controller } from "react-hook-form";
 import { Input } from "../../../../../components/ui/input";
 import { Label } from "../../../../../components/ui/label";
 import { RegisterFormStep } from "../Onboarding/Onboarding";
-import { SocialMediaForm } from "../../../components/SocialMediaForm";
+import dynamic from "next/dynamic";
 import { montserrat } from "../../../../../components/fonts";
 
+const SocialMediaForm = dynamic(
+	() => import("../../../components/SocialMediaForm")
+);
 export const RegisterFormComponent = ({
 	register,
 	control,
