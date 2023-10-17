@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Dialog,
 	DialogContent,
@@ -7,21 +9,30 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "../ui/dialog";
+import {
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "../ui/form";
 
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 
-interface LabelProps {
+export interface LabelProps {
 	className?: string;
 	htmlFor?: string;
 	label: string;
+	input: InputProps;
 }
 
 interface InputProps {
 	id: string;
 	variant: "outlined" | "filled" | "text";
-	className: string;
+	className?: string;
+	type: string;
+	fieldName: string;
 }
 
 interface ModalProps {
@@ -30,16 +41,20 @@ interface ModalProps {
 	Description?: string;
 	Footer?: string;
 	Labels?: LabelProps[];
-	Inputs?: InputProps[];
+	OnSubmit?: () => void;
+	Form?: any;
 }
 
-export function Modal(props: ModalProps) {
-	const { TextButton, Footer, Description, Title, Labels, Inputs } = props;
+const Modal = (props: ModalProps) => {
+	const { TextButton, Footer, Description, Title, Labels, OnSubmit, Form } =
+		props;
 
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant='outlined'>{TextButton}</Button>
+				<Button variant='outlined' className='bg-primary text-white'>
+					{TextButton}
+				</Button>
 			</DialogTrigger>
 			<DialogContent className='sm:max-w-[425px]'>
 				<DialogHeader>
@@ -47,31 +62,46 @@ export function Modal(props: ModalProps) {
 					<DialogDescription>{Description}</DialogDescription>
 				</DialogHeader>
 				<div className='grid gap-4 py-4'>
-					<div className='grid grid-cols-4 items-center gap-4'>
+					<form className='grid grid-cols-4 items-center gap-4'>
 						{Labels?.map((label: LabelProps, key: number) => (
-							<Label
-								htmlFor={label.htmlFor}
-								className={label.className}
+							<FormField
+								control={Form.control}
+								name={label.input.fieldName}
 								key={key}
-							>
-								{label.label}
-							</Label>
-						))}
-						{Inputs?.map((input: InputProps, key: number) => (
-							<Input
-								key={key}
-								id={input.id}
-								variant={input.variant}
-								className={input.className}
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel
+											htmlFor={label.htmlFor}
+											className={label.className}
+										>
+											{label.label}
+										</FormLabel>
+										<FormControl>
+											<Input
+												{...field}
+												id={label.input.id}
+												variant={label.input.variant}
+												className={label.input.className}
+												type={label.input.type}
+												ref={null}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
 							/>
 						))}
-					</div>
+					</form>
 				</div>
 
 				<DialogFooter>
-					<Button type='submit'>{Footer}</Button>
+					<Button type='submit' onSubmit={OnSubmit}>
+						{Footer}
+					</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);
-}
+};
+
+export default Modal;
