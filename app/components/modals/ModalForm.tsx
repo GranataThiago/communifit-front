@@ -45,7 +45,7 @@ interface ModalProps {
 	Form?: any;
 }
 
-const Modal = (props: ModalProps) => {
+const ModalForm = (props: ModalProps) => {
 	const { TextButton, Footer, Description, Title, Labels, OnSubmit, Form } =
 		props;
 
@@ -104,4 +104,4 @@ const Modal = (props: ModalProps) => {
 	);
 };
 
-export default Modal;
+export default ModalForm;
