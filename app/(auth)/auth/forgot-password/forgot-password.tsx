@@ -46,7 +46,7 @@ export const ForgotPassword = () => {
     getValues,
   } = useForm<ForgotPasswordForm>({
     defaultValues: {
-      email: "",
+      email: localStorage.getItem('email') || "",
       password: "",
       confirmPassword: "",
     },
@@ -63,6 +63,7 @@ export const ForgotPassword = () => {
         if (!response || response.status_code !== "code_sent") {
           renderToast("Oops, something went wrong", <ErrorIcon />);
         } else {
+          localStorage.setItem("email", getValues("email"))  
           setCurrentStep((prev) => prev + 1);
         }
         setIsLoading(false);
