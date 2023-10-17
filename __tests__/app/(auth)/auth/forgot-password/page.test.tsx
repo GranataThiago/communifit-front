@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Page from "../../../../../app/(auth)/auth/forgot-password/page";
+import Page from "../../../../../app/(auth)/auth/forgot-password/forgot-password";
 
 afterAll(() => {
   cleanup();
