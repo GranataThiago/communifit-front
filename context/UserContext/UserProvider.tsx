@@ -6,7 +6,7 @@ import { RegisterUser, User } from "../../interfaces/user";
 import { loginUser } from "../../services/auth/login";
 import { decryptUser } from "../../services/auth/decrypt";
 import { createUserAndGetToken } from "../../services/users/register";
-import { ICreateUserResponse } from "../../interfaces";
+import { CreateUserReturn, ICreateUserResponse } from "../../interfaces";
 import { useRouter } from "next/navigation";
 
 export interface UserState {
@@ -18,6 +18,7 @@ const USER_INITIAL_STATE: UserState = {
   token: null,
   user: null,
 };
+
 
 export default function UserProvider({
   children,
@@ -32,17 +33,25 @@ export default function UserProvider({
     decryptUserData();
   }, []);
 
-  const register = async (user: RegisterUser) => {
-    const { objective = null, ...userData } = user;
-    const data: ICreateUserResponse = await createUserAndGetToken({
-      user: userData,
-    });
-    if (!data || !data.token) return alert("Create user error");
+  const register = async (user: RegisterUser): Promise<CreateUserReturn> => {
+    try{
+      const { objective = null, ...userData } = user;
+      const data: ICreateUserResponse = await createUserAndGetToken({
+        user: userData,
+      });
+      if (!data || !data.token) return { ok: false, error: 'There has been an error while creating the user' };
+  
+      dispatch({
+        type: "[USER] Login",
+        payload: { token: data.token, user: { ...user, image: "asd" } },
+      });
+  
+      return { ok: true }
+    }catch(err){
+      console.log(err)
+      return { ok: false, error: err };
+    }
 
-    dispatch({
-      type: "[USER] Login",
-      payload: { token: data.token, user: { ...user, image: "asd" } },
-    });
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
