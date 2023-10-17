@@ -7,7 +7,7 @@ import {
 	FieldPath,
 	FieldValues,
 	FormProvider,
-	useFormContext,
+	useForm,
 } from "react-hook-form";
 
 import { Label } from "./label";
@@ -43,7 +43,7 @@ const FormField = <
 const useFormField = () => {
 	const fieldContext = React.useContext(FormFieldContext);
 	const itemContext = React.useContext(FormItemContext);
-	const { getFieldState, formState } = useFormContext();
+	const { getFieldState, formState } = useForm();
 
 	const fieldState = getFieldState(fieldContext.name, formState);
 
