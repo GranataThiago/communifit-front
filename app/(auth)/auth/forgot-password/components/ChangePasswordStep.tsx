@@ -5,7 +5,10 @@ import { ForgotPasswordFormStep } from "../forgot-password";
 const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
   return (
     <>
-      <form aria-label="Reset password form" className="w-full flex flex-col gap-6">
+      <form
+        aria-label="Reset password form"
+        className="w-full flex flex-col gap-6"
+      >
         <div
           aria-label="Password"
           className="flex flex-col justify-center  w-full"
@@ -18,15 +21,9 @@ const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
             control={control}
             defaultValue=""
             render={({ field }) => (
-                <Input
-                    {...field}
-                    ref={null}
-                    type="password"
-                    variant="outlined"
-                />
-                )}
-        />
-         
+              <Input {...field} ref={null} type="password" variant="outlined" />
+            )}
+          />
         </div>
 
         <div
@@ -41,19 +38,11 @@ const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
             control={control}
             defaultValue=""
             render={({ field }) => (
-                <Input
-                    {...field}
-                    ref={null}
-                    type="password"
-                    variant="outlined"
-                />
-                )}
-        />
-         
+              <Input {...field} ref={null} type="password" variant="outlined" />
+            )}
+          />
         </div>
       </form>
-
-      
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, Ref } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant: InputVariant;
-  ref?: null;
+  ref?: any;
 }
 
 type InputVariant = "outlined" | "filled" | "text";
@@ -25,7 +25,7 @@ interface LabeledInputProps {
   label: string;
   name: string;
   type: string;
-  ref?: null;
+  ref?: any;
   id?: string;
 }
 

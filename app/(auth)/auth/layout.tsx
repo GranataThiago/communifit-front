@@ -30,7 +30,7 @@ export default function RootLayout({
         />
         <meta name="robots" content="index,follow" />
       </Head>
-      <ToasterProvider/>
+      <ToasterProvider />
       {children}
     </>
   );

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Button, montserrat } from "../../../components";
 import Logo from "../../../components/Company/Logo";
 import { useState } from "react";
@@ -6,20 +6,22 @@ import InsertEmailStep from "./components/InsertEmailStep";
 import { Control, UseFormRegister, useForm } from "react-hook-form";
 import Link from "next/link";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../../../utils";
-import { changePassword, recoverPassword, verifyCode } from "../../../../services/users/recoverPassword";
+import {
+  changePassword,
+  recoverPassword,
+  verifyCode,
+} from "../../../../services/users/recoverPassword";
 import Loading from "../../../(site)/loading";
 import InsertCodeStep from "./components/InsertCodeStep";
 import ChangePasswordStep from "./components/ChangePasswordStep";
 import { useRouter } from "next/navigation";
-import { toast } from "../../../../@/components/ui/use-toast";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { ErrorIcon } from "react-hot-toast";
 
 export type ForgotPasswordForm = {
   email: string;
   password: string;
-  confirmPassword:string;
-
+  confirmPassword: string;
 };
 
 export interface ForgotPasswordFormStep {
@@ -30,12 +32,11 @@ export interface ForgotPasswordFormStep {
 }
 
 //TODO: AGREGAR UN MIDDLEWARE QUE SI ESTÁ LOGUEADO LO MANDE A LA HOME. (Acá no, directamente crear un middleware.)
-export const ForgotPassword = () =>  {
+export const ForgotPassword = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [code, setCode] = useState(['', '', '', '']); 
+  const [code, setCode] = useState(["", "", "", ""]);
   const router = useRouter();
-
 
   const {
     handleSubmit,
@@ -47,144 +48,165 @@ export const ForgotPassword = () =>  {
     defaultValues: {
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     },
   });
 
-
-  const onNextStep = async() => {
+  const onNextStep = async () => {
     const response = handleValidations();
-    if(!response) return; 
-    
-    switch(currentStep){
+    if (!response) return;
+
+    switch (currentStep) {
       case 0:
         setIsLoading(true);
-        const response = await recoverPassword({email: getValues("email")}); 
-        if(!response || response.status_code !== "code_sent"){
-          renderToast("Oops, something went wrong", <ErrorIcon/>)
-        }else{
-          setCurrentStep((prev) => prev+1)
+        const response = await recoverPassword({ email: getValues("email") });
+        if (!response || response.status_code !== "code_sent") {
+          renderToast("Oops, something went wrong", <ErrorIcon />);
+        } else {
+          setCurrentStep((prev) => prev + 1);
         }
         setIsLoading(false);
-        return; 
+        return;
       case 1:
         setIsLoading(true);
-        const responseVerifyCode = await verifyCode({email:getValues("email"), code})
-        if(responseVerifyCode?.status_code !== 'valid_code'){
-          renderToast("Invalid code", <ErrorIcon/>)
-        }else {
-          setCurrentStep((prev) => prev+1)
+        const responseVerifyCode = await verifyCode({
+          email: getValues("email"),
+          code,
+        });
+        if (responseVerifyCode?.status_code !== "valid_code") {
+          renderToast("Invalid code", <ErrorIcon />);
+        } else {
+          setCurrentStep((prev) => prev + 1);
         }
         setIsLoading(false);
-        return; 
+        return;
       case 2:
-          setIsLoading(true);
-          if(!PASSWORD_REGEX.test(getValues("password"))){
-            setIsLoading(false);
-            return renderToast("Password must have at least 8 characters, including one uppercase letter, one lowercase letter, and at least 2 digits.", <ErrorIcon/>)
-          }
-          const responseChangePassword = await changePassword({email:"hernandeztomas584@gmail.com", code, password: getValues('password'), confirmPassword: getValues('confirmPassword')})
-           if(responseChangePassword?.status_code !== 'password_changed'){
-            renderToast("Oops, something went wrong. Please, refresh the page.", <ErrorIcon/>)
-          }else {
-            alert("Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos");
-            setTimeout(() => {
-              router.push('/auth/login')
-            }, 3000)
-          } 
+        setIsLoading(true);
+        if (!PASSWORD_REGEX.test(getValues("password"))) {
           setIsLoading(false);
-          return; 
+          return renderToast(
+            "Password must have at least 8 characters, including one uppercase letter, one lowercase letter, and at least 2 digits.",
+            <ErrorIcon />,
+          );
+        }
+        const responseChangePassword = await changePassword({
+          email: "hernandeztomas584@gmail.com",
+          code,
+          password: getValues("password"),
+          confirmPassword: getValues("confirmPassword"),
+        });
+        if (responseChangePassword?.status_code !== "password_changed") {
+          renderToast(
+            "Oops, something went wrong. Please, refresh the page.",
+            <ErrorIcon />,
+          );
+        } else {
+          alert(
+            "Contraseña modificada correctamente, lo redigiremos a la pantalla de login en 3 segundos",
+          );
+          setTimeout(() => {
+            router.push("/auth/login");
+          }, 3000);
+        }
+        setIsLoading(false);
+        return;
     }
-
-    
   };
 
   const getButton = () => {
-    switch(currentStep){
+    switch (currentStep) {
       case 0:
-       return 'Send Code';
+        return "Send Code";
       case 1:
-        return "Verify Code"
-      case 2: 
-        return "Set new password"
-        
+        return "Verify Code";
+      case 2:
+        return "Set new password";
     }
-    
-  
-  }
+  };
 
   const displayCurrentTitle = () => {
-    switch(currentStep){
-      case 0: 
-        return 'First step: Enter your email'
+    switch (currentStep) {
+      case 0:
+        return "First step: Enter your email";
       case 1:
-        return 'Second step: Enter the validation code that we sent to your email'
+        return "Second step: Enter the validation code that we sent to your email";
       case 2:
-        return 'Last step: Set your new password'
+        return "Last step: Set your new password";
     }
-  }
+  };
 
   const displayCurrentStep = () => {
-   
     const baseProps = {
       register,
       control,
       errors,
-      isValid
+      isValid,
     };
-
-    
 
     switch (currentStep) {
       case 0:
-        return <InsertEmailStep  {...baseProps} />; 
+        return <InsertEmailStep {...baseProps} />;
       case 1:
         return <InsertCodeStep code={code} setCode={setCode} {...baseProps} />;
       case 2:
-        return <ChangePasswordStep {...baseProps} />; 
-  
+        return <ChangePasswordStep {...baseProps} />;
     }
   };
 
   const handleValidations = () => {
-     if(currentStep == 0){
-     const email = getValues("email");
-      if(!EMAIL_REGEX.test(email)) {
+    if (currentStep == 0) {
+      const email = getValues("email");
+      if (!EMAIL_REGEX.test(email)) {
         return false;
       }
-      
-    } 
+    }
 
-     if(currentStep == 1){
-      code.forEach(digit => {
-        if(!digit || digit.length != 0){
+    if (currentStep == 1) {
+      code.forEach((digit) => {
+        if (!digit || digit.length != 0) {
           return false;
         }
       });
-    } 
+    }
 
     //TODO VALIDACIONES DE CONTRASEÑA con regex del BACKEND.
     return true;
-  }
+  };
 
   return (
-    <div className={`flex flex-col items-center  w-full h-screen p-6 relative ${montserrat.className}`}>
+    <div
+      className={`flex flex-col items-center  w-full h-screen p-6 relative ${montserrat.className}`}
+    >
       <div className="pt-8">
-        <Logo/>
+        <Logo />
       </div>
-      <h1 className="py-2 pb-8 text-black text-xl font-semibold">Forgot Password</h1>
-      <h2 className="py-2 pb-8 text-black text-lg font-semibold" aria-label={displayCurrentTitle()}>{displayCurrentTitle()}</h2>
-      {displayCurrentStep()}
-      
-      <div className="absolute px-6 bottom-14 w-full flex flex-col items-center gap-6">
-      <Button 
-        variant="filled" 
-        className="relative" 
-        onClick={onNextStep}
-        aria-label={getButton()}
+      <h1 className="py-2 pb-8 text-black text-xl font-semibold">
+        Forgot Password
+      </h1>
+      <h2
+        className="py-2 pb-8 text-black text-lg font-semibold"
+        aria-label={displayCurrentTitle()}
       >
-          {isLoading ? <Loading containerClasses="h-8" spinnerClasses="h-6 w-6 border-2 border-gray-400" />:getButton()}
-      </Button>
+        {displayCurrentTitle()}
+      </h2>
+      {displayCurrentStep()}
+
+      <div className="absolute px-6 bottom-14 w-full flex flex-col items-center gap-6">
+        <Button
+          variant="filled"
+          className="relative"
+          onClick={onNextStep}
+          aria-label={getButton()}
+        >
+          {isLoading ? (
+            <Loading
+              containerClasses="h-8"
+              spinnerClasses="h-6 w-6 border-2 border-gray-400"
+            />
+          ) : (
+            getButton()
+          )}
+        </Button>
         <Link
           className="w-fit h-fit"
           href={"/auth/login"}
@@ -194,8 +216,6 @@ export const ForgotPassword = () =>  {
           <strong className="text-custom-gray font-semibold">login</strong>
         </Link>
       </div>
-      
-      
     </div>
-  )
-}
+  );
+};

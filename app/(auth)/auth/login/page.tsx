@@ -11,7 +11,7 @@ const LoginPage = () => {
       className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
     >
       <div className="text-center">
-        <Logo/>
+        <Logo />
         <p className="text-xl font-medium">Login</p>
       </div>
 

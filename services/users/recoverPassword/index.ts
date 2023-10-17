@@ -1,17 +1,23 @@
 import apiInstance from "../../../app/api";
-import { IRecoverPasswordFetch, IRecoverPasswordResponse } from "../../../interfaces/services/users/recoverPassword";
+import {
+  IRecoverPasswordFetch,
+  IRecoverPasswordResponse,
+} from "../../../interfaces/services/users/recoverPassword";
 
-
-export const recoverPassword = async ({email}: {email: string}): Promise<IRecoverPasswordResponse> => {
+export const recoverPassword = async ({
+  email,
+}: {
+  email: string;
+}): Promise<IRecoverPasswordResponse> => {
   let response: IRecoverPasswordResponse = null;
   try {
-   const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
+    const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
       `/users/reset-password`,
       {
-        email
-      }
+        email,
+      },
     );
-    if (apiResponse.data) response = apiResponse.data; 
+    if (apiResponse.data) response = apiResponse.data;
   } catch (error) {
     console.log(error);
   }
@@ -19,18 +25,22 @@ export const recoverPassword = async ({email}: {email: string}): Promise<IRecove
   return response;
 };
 
-
-
-export const verifyCode = async ({email, code}: {email: string, code: string[]}): Promise<IRecoverPasswordResponse> => {
+export const verifyCode = async ({
+  email,
+  code,
+}: {
+  email: string;
+  code: string[];
+}): Promise<IRecoverPasswordResponse> => {
   let response: IRecoverPasswordResponse = null;
   try {
-   const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
+    const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
       `/users/reset-password/${Number(code.join(""))}/verify`,
       {
         email,
-      }
+      },
     );
-    if (apiResponse.data) response = apiResponse.data; 
+    if (apiResponse.data) response = apiResponse.data;
   } catch (error) {
     console.log(error);
   }
@@ -38,21 +48,29 @@ export const verifyCode = async ({email, code}: {email: string, code: string[]})
   return response;
 };
 
-
-
-export const changePassword = async ({email, code, password, confirmPassword}: {email: string, code: string[], password: string, confirmPassword:string}): Promise<IRecoverPasswordResponse> => {
+export const changePassword = async ({
+  email,
+  code,
+  password,
+  confirmPassword,
+}: {
+  email: string;
+  code: string[];
+  password: string;
+  confirmPassword: string;
+}): Promise<IRecoverPasswordResponse> => {
   let response: IRecoverPasswordResponse = null;
   try {
-   const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
+    const apiResponse = await apiInstance.post<IRecoverPasswordFetch>(
       `/users/reset-password/${Number(code.join(""))}`,
       {
         email,
         password,
-        confirmPassword
-      }
+        confirmPassword,
+      },
     );
-    if (apiResponse.data) response = apiResponse.data; 
-    console.log(response)
+    if (apiResponse.data) response = apiResponse.data;
+    console.log(response);
   } catch (error) {
     console.log(error);
   }

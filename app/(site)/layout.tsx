@@ -4,7 +4,6 @@ import "../globals.css";
 import { Menu } from "./components/Menu/Menu";
 import ToasterProvider from "../providers/ToasterProvider";
 import { InviteModal, WorkoutModal } from "../components/modals";
-import { Toaster } from "../../@/components/ui/toaster";
 
 export const metadata = {
   title: "Communifit | Take your training to next level.",
@@ -37,7 +36,6 @@ export default function RootLayout({
       <Menu />
       <InviteModal />
       <WorkoutModal />
-      <Toaster />
 
       {children}
     </>
