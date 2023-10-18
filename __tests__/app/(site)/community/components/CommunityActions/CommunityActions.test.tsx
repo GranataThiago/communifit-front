@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, waitFor, cleanup } from "@testing-library/react";
-import CommunityActions from "../../../../../../app/(site)/community/components/CommunityActions/CommunityActions";
+import CommunityActions from "../../../../../../app/(site)/community/components/CommunityActions";
 import apiInstance from "../../../../../../app/api";
 afterAll(() => {
   cleanup();

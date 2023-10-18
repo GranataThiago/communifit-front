@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import CreateCommunityForm from "../../../../../../app/(site)/community/components/CreateCommunityForm/CreateCommunityForm";
+import CreateCommunityForm from "../../../../../../app/(site)/community/components/CreateCommunityForm";
 
 const mockRouterPush = jest.fn();
 

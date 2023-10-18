@@ -5,7 +5,7 @@ import {
   waitFor,
   getByTestId,
 } from "@testing-library/react";
-import { Onboarding } from "../../../../../../../app/(auth)/auth/register/components/Onboarding/Onboarding";
+import { Onboarding } from "../../../../../../../app/(auth)/auth/register/components/Onboarding";
 jest.mock("next/navigation", () => ({
   useRouter() {
     return {

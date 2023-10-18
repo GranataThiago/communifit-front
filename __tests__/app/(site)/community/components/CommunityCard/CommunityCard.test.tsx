@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CommunityCard } from "../../../../../../app/(site)/community/components/CommunityCard/CommunityCard";
+import { CommunityCard } from "../../../../../../app/(site)/community/components/CommunityCard";
 
 describe("CommunityCard component", () => {
   it("should render the CommunityCard with the correct data", () => {

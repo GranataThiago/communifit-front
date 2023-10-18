@@ -1,9 +1,9 @@
 import React from "react";
 import { Control, Controller, UseFormRegister } from "react-hook-form";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { RegisterForm, RegisterFormStep } from "../Onboarding/Onboarding";
-import { montserrat } from "../../../../../components/fonts";
-import { RadioCard } from "../../../../../components";
+import { RegisterForm } from "./Onboarding";
+import { montserrat } from "../../../../components/fonts";
+import { RadioCard } from "../../../../components";
 
 const gendersOptions = [
   {
@@ -13,7 +13,7 @@ const gendersOptions = [
   },
   {
     label: "Women",
-    value: "Women",
+    value: "women",
     icon: <BsGenderFemale className="text-5xl" />,
   },
 ];
@@ -36,20 +36,23 @@ export const PersonalInfoStep = (props: PersonalInfoStepProps) => {
         name="gender"
         control={control}
         render={({ field }) => (
-          <div className="flex gap-2">
-            {gendersOptions.map((gender) => (
-              <RadioCard
+          <fieldset {...field} name="gender" className="flex flex-col gap-5">
+            {gendersOptions.map((gender, index) => (
+              <div  className="flex gap-2" role="button"  key={gender.value} aria-label={`Select gender ${gender.value}`} {...field}  tabIndex={index+1}>
+                <RadioCard
                 {...field}
-                icon={gender.icon}
-                key={gender.value}
-                ref={null}
-                id={gender.value}
-                value={gender.value}
-                label={gender.label}
-                height={60}
-              ></RadioCard>
+                  key={gender.value}
+                  icon={gender.icon}
+                  ref={null}
+                  id={gender.value}
+                  value={gender.value}
+                  label={gender.label}
+                  height={60}
+                  tabIndex={index+1}
+              />
+              </div>
             ))}
-          </div>
+          </fieldset>
         )}
       />
 

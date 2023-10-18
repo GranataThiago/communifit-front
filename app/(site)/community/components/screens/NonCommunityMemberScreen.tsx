@@ -1,4 +1,4 @@
-import { CommunityCard } from "../CommunityCard/CommunityCard";
+import { CommunityCard } from "../CommunityCard";
 import { Input } from "../../../../components/ui/input";
 import React from "react";
 

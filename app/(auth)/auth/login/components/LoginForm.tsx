@@ -5,9 +5,9 @@ import * as z from "zod";
 import React, { useState } from "react";
 
 import { Button } from "../../../../components/ui/button";
-import ForgotPasswordLink from "./ForgotPasswordLink/ForgotPasswordLink";
+import ForgotPasswordLink from "./ForgotPasswordLink";
 import { Form } from "../../../../components/ui/form";
-import LoginFormFields from "./LoginFormFields/LoginFormFields";
+import LoginFormFields from "./LoginFormFields";
 import { LoginUserResponse } from "../../../../../interfaces";
 import useErrorLoginMessageStore from "../../../../hooks/errorMessage/useErrorMessageLogin";
 import { useForm } from "react-hook-form";

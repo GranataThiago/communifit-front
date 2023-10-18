@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import { ForgotPasswordFormStep } from "../forgot-password";
+import { ForgotPasswordFormStep } from "../page";
 import { Input } from "../../../../components/ui/input";
 
 const InsertEmailStep = ({ register, control }: ForgotPasswordFormStep) => {
@@ -18,7 +18,7 @@ const InsertEmailStep = ({ register, control }: ForgotPasswordFormStep) => {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <Input {...field} ref={null} type="email" variant="outlined" />
+              <Input placeholder="mail@example.com"{...field} ref={null} type="email" variant="outlined" />
             )}
           />
         </div>

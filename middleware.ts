@@ -6,11 +6,14 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 // This function can be marked async if using await inside
 export async function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith("/auth")) {
-    return NextResponse.next();
-  }
-
   let cookie = request.cookies.get("token");
+
+  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth");
+  if (isAuthRoute && !cookie) {
+    return NextResponse.next();
+  } else if (isAuthRoute && cookie) {
+    return NextResponse.redirect(new URL("/", request.nextUrl.origin));
+  }
 
   if (!cookie) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
@@ -33,5 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next/static|_next/image|favicon.ico|auth).*)",
+  matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
 };

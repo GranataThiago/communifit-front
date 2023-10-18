@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Post } from "../../../../../../app/(site)/community/components/Post/Post";
+import { Post } from "../../../../../../app/(site)/community/components/Post";
 
 describe("Post component", () => {
   it("should render the Post with the correct data", () => {

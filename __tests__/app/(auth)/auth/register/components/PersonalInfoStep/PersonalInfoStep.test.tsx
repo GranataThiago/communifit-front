@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup, renderHook } from "@testing-library/react";
 import { useController, useForm } from "react-hook-form";
-import { PersonalInfoStep } from "../../../../../../../app/(auth)/auth/register/components/PersonalInfoStep/PersonalInfoStep";
+import { PersonalInfoStep } from "../../../../../../../app/(auth)/auth/register/components/PersonalInfoStep";
 
 afterAll(() => {
   cleanup();

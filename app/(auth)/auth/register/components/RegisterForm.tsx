@@ -3,17 +3,17 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
-} from "../../../../../components/ui/form";
+} from "../../../../components/ui/form";
 
 import { Controller } from "react-hook-form";
-import { Input } from "../../../../../components/ui/input";
-import { Label } from "../../../../../components/ui/label";
-import { RegisterFormStep } from "../Onboarding/Onboarding";
+import { Input } from "../../../../components/ui/input";
+import { Label } from "../../../../components/ui/label";
+import { RegisterFormStep } from "./Onboarding";
 import dynamic from "next/dynamic";
-import { montserrat } from "../../../../../components/fonts";
+import { montserrat } from "../../../../components/fonts";
 
 const SocialMediaForm = dynamic(
-	() => import("../../../components/SocialMediaForm")
+	() => import("../../components/SocialMediaForm")
 );
 export const RegisterFormComponent = ({
 	register,
@@ -33,7 +33,7 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Full name</FormLabel>
 						<FormControl>
-							<Input {...field} ref={null} variant='outlined' type='text' />
+							<Input placeholder="Your full name" {...field} ref={null} variant='outlined' type='text' />
 						</FormControl>
 					</FormItem>
 				)}
@@ -49,7 +49,7 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Username</FormLabel>
 						<FormControl>
-							<Input {...field} ref={null} variant='outlined' type='text' />
+							<Input placeholder="Your username" {...field} ref={null} variant='outlined' type='text' />
 						</FormControl>
 					</FormItem>
 				)}
@@ -63,12 +63,12 @@ export const RegisterFormComponent = ({
 				name='email'
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Your email adress</FormLabel>
+						<FormLabel>Your email address</FormLabel>
 						<FormControl>
 							<Input
 								{...field}
 								ref={null}
-								placeholder='Mail@example.com'
+								placeholder='mail@example.com'
 								variant='outlined'
 								type='email'
 							/>
@@ -97,7 +97,7 @@ export const RegisterFormComponent = ({
 					</FormItem>
 				)}
 			/>
-			<SocialMediaForm />
+			{/* <SocialMediaForm /> */}
 		</div>
 	);
 };

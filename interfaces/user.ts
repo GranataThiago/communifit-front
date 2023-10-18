@@ -4,7 +4,7 @@ export interface User {
   fullName: string;
   username: string;
   email: string;
-  image: string;
+  image: string | null;
   type: UserTypes;
   community?: Community;
   _id?: string;
