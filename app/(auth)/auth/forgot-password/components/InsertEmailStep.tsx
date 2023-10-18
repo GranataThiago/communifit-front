@@ -18,7 +18,7 @@ const InsertEmailStep = ({ register, control }: ForgotPasswordFormStep) => {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <Input {...field} ref={null} type="email" variant="outlined" />
+              <Input placeholder="mail@example.com"{...field} ref={null} type="email" variant="outlined" />
             )}
           />
         </div>
