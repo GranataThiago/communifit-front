@@ -1,22 +1,22 @@
 "use client";
 
 import { Control, UseFormRegister, useForm } from "react-hook-form";
-import { RegisterUser, UserTypes } from "../../../../../interfaces/user";
 import { inter, montserrat } from "../../../../components/fonts";
 import { useContext, useState } from "react";
 
 import { AccountTypeStep } from "./AccountTypeStep";
 import { Button } from "../../../../components/ui/button";
-import { FinalStep } from "./FinalStep/FinalStep";
+import { FinalStep } from "./FinalStep";
 import Link from "next/link";
-import { PersonalInfoStep } from "./PersonalInfoStep/PersonalInfoStep";
-import { RegisterFormComponent } from "./RegisterForm/RegisterForm";
+import { PersonalInfoStep } from "./PersonalInfoStep";
+import { RegisterFormComponent } from "./RegisterForm";
 import { UserContext } from "../../../../../context/UserContext";
+import { RegisterUser, UserTypes } from "../../../../../interfaces/user";
 import { useRouter } from "next/navigation";
 
 export type RegisterForm = {
-  fullName: string;
   username: string;
+  fullName: string;
   email: string;
   password: string;
   type: UserTypes;
@@ -34,9 +34,15 @@ export interface RegisterFormStep {
   control: Control<RegisterForm, any>;
 }
 
-export const Onboarding = () => {
+interface OnBoardingProps {
+  currentStepMock?: number;
+}
+
+export const Onboarding = (props: OnBoardingProps) => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<number>(
+    props.currentStepMock ?? 0,
+  );
   const { register: registerUser } = useContext(UserContext);
 
   const {
@@ -63,6 +69,9 @@ export const Onboarding = () => {
   });
 
   const onNextStep = () => {
+    if (currentStep > 3) {
+      router.push("/");
+    }
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
@@ -84,7 +93,7 @@ export const Onboarding = () => {
     }
   };
 
-  const onRegister = (formData: RegisterForm) => {
+  const onRegister = async (formData: RegisterForm) => {
     const {
       birthdate: { day, month, year },
     } = formData;
@@ -96,7 +105,15 @@ export const Onboarding = () => {
       birthdate,
     };
 
-    registerUser(SAFE_USER);
+    const response = await registerUser(SAFE_USER);
+    if (response.ok) {
+      onNextStep();
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+    } else {
+      alert("There was an error while registering your account");
+    }
   };
 
   return (
@@ -114,7 +131,7 @@ export const Onboarding = () => {
       {displayCurrentStep()}
       <Button
         variant="filled"
-        type={currentStep === 4 ? "submit" : "button"}
+        type={currentStep === 3 ? "submit" : "button"}
         onClick={onNextStep}
       >
         Continue

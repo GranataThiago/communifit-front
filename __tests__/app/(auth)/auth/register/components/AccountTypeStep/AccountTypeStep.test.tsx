@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { AccountTypeStep } from "../../../../../../../app/(auth)/auth/register/components/AccountTypeStep/AccountTypeStep";
+import { AccountTypeStep } from "../../../../../../../app/(auth)/auth/register/components/AccountTypeStep";
 import { useForm } from "react-hook-form";
-import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding/Onboarding";
+import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding";
 
 const mockRegister = jest.fn();
 

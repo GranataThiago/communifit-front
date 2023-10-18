@@ -3,17 +3,17 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
-} from "../../../../../components/ui/form";
+} from "../../../../components/ui/form";
 
 import { Controller } from "react-hook-form";
-import { Input } from "../../../../../components/ui/input";
-import { Label } from "../../../../../components/ui/label";
-import { RegisterFormStep } from "../Onboarding/Onboarding";
+import { Input } from "../../../../components/ui/input";
+import { Label } from "../../../../components/ui/label";
+import { RegisterFormStep } from "./Onboarding";
 import dynamic from "next/dynamic";
-import { montserrat } from "../../../../../components/fonts";
+import { montserrat } from "../../../../components/fonts";
 
 const SocialMediaForm = dynamic(
-	() => import("../../../components/SocialMediaForm")
+	() => import("../../components/SocialMediaForm")
 );
 export const RegisterFormComponent = ({
 	register,

@@ -1,9 +1,9 @@
 import React from "react";
 import { Control, Controller, UseFormRegister } from "react-hook-form";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { RegisterForm } from "../Onboarding/Onboarding";
-import { montserrat } from "../../../../../components/fonts";
-import { RadioCard } from "../../../../../components";
+import { RegisterForm } from "./Onboarding";
+import { montserrat } from "../../../../components/fonts";
+import { RadioCard } from "../../../../components";
 
 const gendersOptions = [
   {

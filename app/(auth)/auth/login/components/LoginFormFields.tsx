@@ -4,9 +4,9 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../../../components/ui/form";
+} from "../../../../components/ui/form";
 
-import { Input } from "../../../../../components/ui/input";
+import { Input } from "../../../../components/ui/input";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
@@ -26,7 +26,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 						<FormControl>
 							<Input
 								{...field}
-								placeholder='Mail@example.com'
+								placeholder='mail@example.com'
 								variant='outlined'
 								type='email'
 							/>

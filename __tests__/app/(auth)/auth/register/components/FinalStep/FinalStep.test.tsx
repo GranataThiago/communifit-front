@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import { FinalStep } from "../../../../../../../app/(auth)/auth/register/components/FinalStep/FinalStep";
+import { FinalStep } from "../../../../../../../app/(auth)/auth/register/components/FinalStep";
 
 afterAll(() => {
   cleanup();
