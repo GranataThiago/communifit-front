@@ -57,7 +57,7 @@ const ModalForm = (props: ModalProps) => {
 			<DialogTrigger asChild>
 				<button >{ActionTrigger}</button>
 			</DialogTrigger>
-			<DialogContent className='sm:max-w-[425px] max-h-[500px]'>
+			<DialogContent className='sm:max-w-[425px] min-h-[320px] max-h-[450px] sm:max-h-[300px]'>
 				<DialogHeader className='gap-4'>
 					<DialogTitle>{Title}</DialogTitle>
 					<DialogDescription>{Description}</DialogDescription>

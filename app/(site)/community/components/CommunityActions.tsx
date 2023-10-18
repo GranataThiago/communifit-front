@@ -10,6 +10,7 @@ const CommunityActions = ({ name, displayname }: Community) => {
     <div className="flex gap-2" data-testid="data">
       <InviteModal 
         Icon={BsEnvelope}
+        IconAriaLabel={`Invite someone to ${displayname}`}
         community={{name, displayname}}
       />
       <BsPencil className="text-gray-400 text-lg"></BsPencil>

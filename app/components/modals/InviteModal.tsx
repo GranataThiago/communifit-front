@@ -15,9 +15,10 @@ interface IInviteModal {
 		name: string;
 		displayname:string;
 	}
+	IconAriaLabel: string;
 }
 
-const InviteModal = ({Icon, community}:IInviteModal) => {
+const InviteModal = ({Icon, community, IconAriaLabel}:IInviteModal) => {
 	const {name, displayname} = community;
 	const [clickOnSubmit, setClickOnSubmit] = useState(false);
 	const { token } = useUserContext();
@@ -56,7 +57,7 @@ const InviteModal = ({Icon, community}:IInviteModal) => {
 
 		inviteModal.setLink(response.link);
 
-	   setLabels((prevLabels: any) => [
+	  setLabels((prevLabels: any) => [
 			{
 			...prevLabels[0],
 			input: {
@@ -83,7 +84,7 @@ const InviteModal = ({Icon, community}:IInviteModal) => {
 				Footer={`${clickOnSubmit ? "Copied to clipboard" : "Copy"}`}
 				Labels={labels}
 				Form={form}
-				ActionTrigger={<Icon onClick={onInviteModalOpen}/>}
+				ActionTrigger={<Icon onClick={onInviteModalOpen} aria-label={IconAriaLabel}/>}
 				Icon={clickOnSubmit ? <AiFillCheckCircle /> :null}
 				OnSubmit={() => onLinkCopied()}
 			/>
