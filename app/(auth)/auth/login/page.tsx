@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import LoaderLogo from "../../../components/LoaderLogo/LoaderLogo";
+import LoaderLogo from "../../../components/LoaderLogo";
 import { LoginForm } from "./components/LoginForm";
 import Logo from "../../../components/Company/Logo";
 import React from "react";

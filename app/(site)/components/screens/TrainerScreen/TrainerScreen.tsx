@@ -1,4 +1,4 @@
-import { UserGreeting } from "../../UserGreeting/UserGreeting";
+import { UserGreeting } from "../../UserGreeting";
 
 const FAKE_USERS = [
   {

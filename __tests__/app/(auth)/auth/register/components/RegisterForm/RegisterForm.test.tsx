@@ -1,8 +1,8 @@
 import React from "react";
 import { render, cleanup, renderHook } from "@testing-library/react";
 import { useController, useForm } from "react-hook-form";
-import { RegisterFormComponent } from "../../../../../../../app/(auth)/auth/register/components/RegisterForm/RegisterForm";
-import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding/Onboarding";
+import { RegisterFormComponent } from "../../../../../../../app/(auth)/auth/register/components/RegisterForm";
+import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding";
 
 afterAll(() => {
   cleanup();

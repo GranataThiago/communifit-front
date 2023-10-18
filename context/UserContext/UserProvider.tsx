@@ -1,11 +1,11 @@
 "use client";
 
-import { ICreateUserResponse, LoginUserResponse } from "../../interfaces";
 import React, { useEffect, useReducer } from "react";
 import { RegisterUser, User } from "../../interfaces/user";
 import { UserContext, userReducer } from ".";
 
 import { createUserAndGetToken } from "../../services/users/register";
+import { CreateUserReturn, ICreateUserResponse, LoginUserResponse } from "../../interfaces";
 import { decryptUser } from "../../services/auth/decrypt";
 import { loginUser } from "../../services/auth/login";
 import { useCookies } from "react-cookie";
@@ -34,18 +34,33 @@ export default function UserProvider({
 		decryptUserData();
 	}, []);
 
-	const register = async (user: RegisterUser) => {
-		const { objective = null, ...userData } = user;
-		const data: ICreateUserResponse = await createUserAndGetToken({
-			user: userData,
-		});
-		if (!data || !data.token) return alert("Create user error");
+  const register = async (user: RegisterUser): Promise<CreateUserReturn> => {
+    try {
+      const { objective = null, ...userData } = user;
+      const data: ICreateUserResponse = await createUserAndGetToken({
+        user: userData,
+      });
+      if (!data || !data.token)
+        return {
+          ok: false,
+          error: "There has been an error while creating the user",
+        };
 
-		dispatch({
-			type: "[USER] Login",
-			payload: { token: data.token, user: { ...user, image: "asd" } },
-		});
-	};
+      setCookie("token", data.token, {
+        path: "/",
+      });
+
+      dispatch({
+        type: "[USER] Login",
+        payload: { token: data.token, user: { ...user, image: null } },
+      });
+
+      return { ok: true };
+    } catch (err) {
+      console.log(err);
+      return { ok: false, error: err };
+    }
+  };
 
 	const login = async (
 		email: string,

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup, renderHook } from "@testing-library/react";
-import { GoalStep } from "../../../../../../../app/(auth)/auth/register/components/GoalStep/GoalStep";
+import { GoalStep } from "../../../../../../../app/(auth)/auth/register/components/GoalStep";
 import { useController, useForm } from "react-hook-form";
 
 afterAll(() => {

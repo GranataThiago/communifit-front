@@ -3,12 +3,12 @@
 import { RegisterUser, User } from "../../interfaces/user";
 import { createContext, useContext } from "react";
 
-import { LoginUserResponse } from "../../interfaces";
+import { CreateUserReturn, LoginUserResponse } from "../../interfaces";
 
 interface ContextProps {
 	token: string | null;
 	user: User | null;
-	register: (user: RegisterUser) => void;
+	register: (user: RegisterUser) => Promise<CreateUserReturn>;
 	login: (email: string, password: string) => Promise<LoginUserResponse>;
 	decryptUserData: (token: string) => void;
 	logout: () => boolean;

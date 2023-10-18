@@ -1,9 +1,10 @@
 import Image from "next/image";
-import CommunityActions from "../CommunityActions/CommunityActions";
-import { Post } from "../Post/Post";
+import CommunityActions from "../CommunityActions";
+import { Post } from "../Post";
 import { Community } from "../../../../../interfaces/community";
 
-const CommunityScreen = ({ name, description, posts }: Community) => {
+const CommunityScreen = (community: Community) => {
+  const { name, displayname, description, posts } = community;
   return (
     <section className="bg-primary h-screen">
       <div className="bg-primary w-full h-32"></div>
@@ -20,11 +21,11 @@ const CommunityScreen = ({ name, description, posts }: Community) => {
                 height={96}
               />
               <div className="ml-28">
-                <p className="text-2xl font-bold">{name}</p>
+                <p className="text-2xl font-bold">{displayname}</p>
                 <p className="text-md font-light text-gray-400">Community</p>
               </div>
             </div>
-            <CommunityActions name={name} />
+            <CommunityActions {...community} />
           </div>
           <div className="mt-4 leading-5">{description}</div>
         </header>

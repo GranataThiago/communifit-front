@@ -15,7 +15,7 @@ interface InviteModalStore {
 const useInviteModal = create<InviteModalStore>((set) => ({
 	isOpen: false,
 	name: "",
-	link: "test",
+	link: "",
 	onOpen: () => set({ isOpen: true }),
 	onClose: () => set({ isOpen: false }),
 	setName: (newName: string) => set({ name: newName }),
