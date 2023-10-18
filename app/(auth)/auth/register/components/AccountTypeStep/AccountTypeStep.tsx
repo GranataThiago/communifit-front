@@ -49,15 +49,7 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 					)}
 				/>
 
-				{/* <div className='border border-gray-400 w-full h-40 flex items-center justify-center relative rounded-lg'>
-              <input {...register('type')} className='accent-primary absolute top-2 right-2' type="radio" name='type' id='member' value='member'/>
-              <label className='w-4/5 font-semibold text-xl text-center' htmlFor="member">I&apos;m a member, looking for a community.</label>
-          </div>
-
-          <div className='border border-gray-400 w-full h-40 flex items-center justify-center relative rounded-lg'>
-              <input {...register('type')} className='accent-primary absolute top-2 right-2' type="radio" name='type' id='trainer' value='trainer'/>
-              <label className='w-4/5 font-semibold text-xl text-center' htmlFor="trainer">I&apos;m a trainer, looking for members.</label>
-          </div> */}
+				
 			</div>
 		</div>
 	);
