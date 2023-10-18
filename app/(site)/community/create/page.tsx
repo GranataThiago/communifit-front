@@ -1,5 +1,5 @@
 import React from "react";
-import CreateCommunityForm from "../components/CreateCommunityForm/CreateCommunityForm";
+import CreateCommunityForm from "../components/CreateCommunityForm";
 
 export default function Page() {
   return (

@@ -6,19 +6,19 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
-} from "../../../../components/ui/form";
+} from "../../../components/ui/form";
 import React, { useEffect } from "react";
 
 import { AiFillCloseCircle } from "react-icons/ai";
-import { Button } from "../../../../components/ui/button";
-import { CreateCommunity } from "../../../../../interfaces/services/community/create-community";
-import { Input } from "../../../../components/ui/input";
-import { createCommunity } from "../../../../../services/community/create-community";
-import { montserrat } from "../../../../components/fonts";
-import { renderToast } from "../../../../providers/ToasterProvider";
+import { Button } from "../../../components/ui/button";
+import { CreateCommunity } from "../../../../interfaces/services/community/create-community";
+import { Input } from "../../../components/ui/input";
+import { createCommunity } from "../../../../services/community/create-community";
+import { montserrat } from "../../../components/fonts";
+import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
-import { useUserContext } from "../../../../../context/UserContext";
+import { useUserContext } from "../../../../context/UserContext";
 
 const CreateCommunityForm = () => {
 	const router = useRouter();
