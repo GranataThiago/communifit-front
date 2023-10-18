@@ -36,18 +36,21 @@ export const PersonalInfoStep = (props: PersonalInfoStepProps) => {
         name="gender"
         control={control}
         render={({ field }) => (
-          <div className="flex gap-2">
-            {gendersOptions.map((gender) => (
-              <RadioCard
+          <div {...field}>
+            {gendersOptions.map((gender, index) => (
+              <div  className="flex gap-2" role="button" aria-label={`Select gender ${gender.value}`}>
+                <RadioCard
                 {...field}
                 icon={gender.icon}
                 key={gender.value}
                 ref={null}
+                tabIndex={index}
                 id={gender.value}
                 value={gender.value}
                 label={gender.label}
                 height={60}
-              ></RadioCard>
+              />
+              </div>
             ))}
           </div>
         )}
