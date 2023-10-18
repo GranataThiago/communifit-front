@@ -1,9 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { BsEnvelope, BsPencil } from "react-icons/bs";
-import { getInvitationLink } from "../../../../services/community/create-community";
-import useInviteModal from "../../../hooks/modals/useInviteModal";
-import { useUserContext } from "../../../../context/UserContext";
 import { Community } from "../../../../interfaces/community";
 import InviteModal from "../../../components/modals/InviteModal";
 

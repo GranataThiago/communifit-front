@@ -1,6 +1,6 @@
 "use client";
 
-import ModalForm, { LabelProps } from "./ModalForm";
+import ModalForm  from "./ModalForm";
 import React, { useEffect, useState } from "react";
 
 import { AiFillCheckCircle } from "react-icons/ai";
@@ -24,40 +24,47 @@ const InviteModal = ({Icon, community}:IInviteModal) => {
   	const inviteModal = useInviteModal();
 	const form = useForm({
 		defaultValues: {
-			link: "",
+			link: null,
 		},
 	});
 
-	const labels: LabelProps[] = [
+	const [labels, setLabels] = useState([
 		{
-			label: "Link is valid for one person only",
-			className: "font-light text-neutral-500 mt-2",
-			input: {
-				variant: "outlined",
-				id: "link",
-				type: "text",
-				fieldName: "link",
-				value: `${inviteModal.link}`,
-			},
+		  key: 'link',
+		  label: "Link is valid for one person only",
+		  className: "font-light text-neutral-500 mt-2",
+		  input: {
+			variant: "outlined",
+			id: "link",
+			type: "text",
+			fieldName: "link",
+			value: form.getValues("link"), 
+		  },
 		},
-	];
+	  ]);
 
 	const onLinkCopied = () => {
 		setClickOnSubmit(true);
-
 		navigator.clipboard.writeText(inviteModal.link);
 	};
 
 	const onInviteModalOpen = async () => {
 		if (!token) return;
 		const response = await getInvitationLink({ token, communityName: name });
-		console.log(response)
 	
 		if (!response || !response.ok) return;
-	
+
 		inviteModal.setLink(response.link);
-		inviteModal.setName(displayname);
-		inviteModal.onOpen();
+
+	   setLabels((prevLabels: any) => [
+			{
+			...prevLabels[0],
+			input: {
+				...prevLabels[0].input,
+				value: response.link,
+			},
+			},
+		]);
 	  };
 
 	useEffect(() => {
@@ -72,7 +79,7 @@ const InviteModal = ({Icon, community}:IInviteModal) => {
 		<>
 			<ModalForm
 				Title='Invite'
-				Description='Invite someone to Gorillas'
+				Description={`Invite someone to ${displayname}`}
 				Footer={`${clickOnSubmit ? "Copied to clipboard" : "Copy"}`}
 				Labels={labels}
 				Form={form}
