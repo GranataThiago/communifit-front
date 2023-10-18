@@ -9,7 +9,7 @@ import {
   BsPerson,
   BsPeople,
 } from "react-icons/bs";
-import { useUserContext } from "../../../../context/UserContext";
+import { useUserContext } from "../../../context/UserContext";
 
 export const Menu = () => {
   const pathname = usePathname();

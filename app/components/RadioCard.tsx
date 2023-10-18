@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import React, { InputHTMLAttributes, ReactNode } from "react";
 
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 interface RadioCardProps extends InputHTMLAttributes<HTMLInputElement> {
 	label: string;

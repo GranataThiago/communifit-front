@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import { ImageWithFallback } from "../../../../app/components/ImageWithFallback/ImageWithFallback";
+import { ImageWithFallback } from "../../../../app/components/ImageWithFallback";
 
 afterEach(cleanup);
 

@@ -1,10 +1,10 @@
 "use client";
 
 import { BsPencil } from "react-icons/bs";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import React from "react";
-import apiInstance from "../../../api";
-import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
+import apiInstance from "../../api";
+import { usePlanContext } from "../../../context/CreatePlanContext/PlanContext";
 
 export const WorkoutActions = () => {
   const { workout } = usePlanContext();

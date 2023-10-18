@@ -4,7 +4,7 @@ import ModalForm, { LabelProps } from "../ModalForm";
 import React, { useEffect, useState } from "react";
 
 import { AiFillCheckCircle } from "react-icons/ai";
-import Heading from "../../Heading/Heading";
+import Heading from "../../Heading";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useForm } from "react-hook-form";
 import useInviteModal from "../../../hooks/modals/useInviteModal";

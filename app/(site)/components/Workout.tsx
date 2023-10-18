@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Button } from "../../../components/ui/button";
-import { WEEK_DAYS } from "../../../../helpers/week-days";
-import { WorkoutModal } from "../../../components/modals";
-import { montserrat } from "../../../components/fonts";
-import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
-import { useUserContext } from "../../../../context/UserContext";
-import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
+import { Button } from "../../components/ui/button";
+import { WEEK_DAYS } from "../../../helpers/week-days";
+import { WorkoutModal } from "../../components/modals";
+import { montserrat } from "../../components/fonts";
+import { usePlanContext } from "../../../context/CreatePlanContext/PlanContext";
+import { useUserContext } from "../../../context/UserContext";
+import useWorkoutModal from "../../hooks/modals/useWorkoutModal";
 
 export const Workout = () => {
 	const { user } = useUserContext();

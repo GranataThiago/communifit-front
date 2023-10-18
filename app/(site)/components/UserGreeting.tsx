@@ -2,9 +2,9 @@
 
 import { format } from "date-fns";
 import React from "react";
-import { useUserContext } from "../../../../context/UserContext";
-import { ImageWithFallback } from "../../../components/ImageWithFallback/ImageWithFallback";
-import { montserrat } from "../../../components/fonts";
+import { useUserContext } from "../../../context/UserContext";
+import { ImageWithFallback } from "../../components/ImageWithFallback";
+import { montserrat } from "../../components/fonts";
 
 export const UserGreeting = () => {
   const { user } = useUserContext();

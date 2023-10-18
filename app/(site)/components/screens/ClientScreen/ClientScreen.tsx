@@ -1,6 +1,6 @@
 import React from "react";
-import { Workout } from "../../Workout/Workout";
-import { UserGreeting } from "../../UserGreeting/UserGreeting";
+import { Workout } from "../../Workout";
+import { UserGreeting } from "../../UserGreeting";
 
 const ClientScreen = () => {
   return (
