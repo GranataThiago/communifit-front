@@ -31,6 +31,8 @@ export interface ButtonProps
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 	canSubmit?: boolean;
+	variant?: any;
+	size?:any;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

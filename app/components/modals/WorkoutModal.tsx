@@ -33,7 +33,7 @@ const WorkoutModal = () => {
 		},
 	});
 
-	const labels: LabelProps[] = [
+	/* const labels: LabelProps[] = [
 		{
 			label: "Name",
 			input: {
@@ -61,15 +61,15 @@ const WorkoutModal = () => {
 				fieldName: "observations",
 			},
 		},
-	];
+	]; */
 
 	return (
 		<Modal
 			Title='Exercise Details'
 			Footer='Add'
-			Labels={labels}
+			/* Labels={labels} */
 			Form={form}
-			TextButton='Add'
+			/* TextButton='Add' */
 		/>
 	);
 };

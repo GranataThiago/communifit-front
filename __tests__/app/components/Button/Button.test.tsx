@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import { Button } from "../../../../app/components/Button/Button";
+import { Button } from "../../../../app/components/ui/button";
 
 afterAll(() => {
   cleanup();
