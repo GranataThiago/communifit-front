@@ -1,16 +1,18 @@
 import React from "react";
 import "./globals.css";
-import { UserProvider } from "../context/UserContext";
+import RootLayoutClientSide from "./RootLayoutClientSide";
 interface LoggedLayout {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: LoggedLayout) {
-  return (
-    <html>
-      <body>
-        <UserProvider>{children}</UserProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html>
+			<body>
+				<RootLayoutClientSide>
+					{children}
+				</RootLayoutClientSide>
+			</body>
+		</html>
+	);
 }

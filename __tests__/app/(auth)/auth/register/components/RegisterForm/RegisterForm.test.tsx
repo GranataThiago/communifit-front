@@ -1,8 +1,8 @@
 import React from "react";
 import { render, cleanup, renderHook } from "@testing-library/react";
 import { useController, useForm } from "react-hook-form";
-import { RegisterFormComponent } from "../../../../../../../app/(auth)/auth/register/components/RegisterForm/RegisterForm";
-import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding/Onboarding";
+import { RegisterFormComponent } from "../../../../../../../app/(auth)/auth/register/components/RegisterForm";
+import { RegisterForm } from "../../../../../../../app/(auth)/auth/register/components/Onboarding";
 
 afterAll(() => {
   cleanup();
@@ -47,6 +47,26 @@ jest.mock("react-hook-form", () => ({
     r: { current: { subject: { subscribe: () => jest.fn() } } },
   }),
 }));
+
+jest.mock("next/navigation", () => ({
+	useRouter() {
+		return {
+			route: "/",
+			pathname: "",
+			query: "",
+			asPath: "",
+			push: jest.fn(),
+			replace: jest.fn(),
+			events: {
+				on: jest.fn(),
+				off: jest.fn(),
+			},
+			beforePopState: jest.fn(() => null),
+			prefetch: jest.fn(() => null),
+		};
+	},
+}));
+jest.mock("@react-oauth/google");
 
 describe("<RegisterForm />", () => {
   it("should render truthy", () => {

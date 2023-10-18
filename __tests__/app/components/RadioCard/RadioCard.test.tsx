@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { RadioCard } from "../../../../app/components/RadioCard/RadioCard";
+import { RadioCard } from "../../../../app/components/RadioCard";
 
 describe("RadioCard", () => {
   it("renders RadioCard component", () => {

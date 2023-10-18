@@ -7,9 +7,17 @@ afterAll(() => {
   jest.clearAllMocks();
 });
 
+jest.mock("next/navigation", () => ({
+  useRouter() {
+    return {
+      push: jest.fn(),
+    };
+  },
+}));
+
 describe("<Page />", () => {
   it("renders without errors", () => {
     const { getByText } = render(<Page />);
-    expect(getByText("page"));
+    expect(getByText("Forgot Password"));
   });
 });

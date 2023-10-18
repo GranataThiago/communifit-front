@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import Heading from "../../../../app/components/Heading/Heading";
+import Heading from "../../../../app/components/Heading";
 
 afterAll(() => {
   cleanup();

@@ -1,33 +1,56 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import LoaderLogo from "../../../components/LoaderLogo";
 import { LoginForm } from "./components/LoginForm";
-import { SocialMediaForm } from "../components/SocialMediaForm";
+import Logo from "../../../components/Company/Logo";
+import React from "react";
+import dynamic from "next/dynamic";
 import { montserrat } from "../../../components/fonts";
+import { useCookies } from "react-cookie";
+import useLoader from "../../../hooks/loader/useLoader";
+import { useRouter } from "next/navigation";
 
+const SocialMediaForm = dynamic(() => import("../components/SocialMediaForm"));
 const LoginPage = () => {
-  return (
-    <section
-      className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
-    >
-      <div className="text-center">
-        <h1 className="text-4xl font-bold">
-          Communi<span className="text-primary">fit</span>.
-        </h1>
-        <p className="text-xl font-medium">Login</p>
-      </div>
+	const router = useRouter();
+	const [cookies] = useCookies(["token"]);
+	const isLoading = useLoader((state) => state.isLoading);
 
-      <LoginForm></LoginForm>
+	if (cookies.token && cookies.token!.value) {
+		router.replace("/");
+	}
 
-      <SocialMediaForm />
+	return (
+		<section
+			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
+		>
+			<div className='text-center'>
+				<Logo />
+				<p className='text-xl font-medium'>Login</p>
+			</div>
 
-      <p data-testid="text-footer">
-        Don&apos;t have an account yet?{" "}
-        <Link href={"/auth/register"}>
-          <strong>Sign Up</strong>
-        </Link>
-      </p>
-    </section>
-  );
+			{isLoading ? (
+				<LoaderLogo />
+			) : (
+				<>
+					<LoginForm />
+
+					<SocialMediaForm />
+
+					<p
+						data-testid='text-footer'
+						className='text-[#9D9D9D] text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+					>
+						Don&apos;t have an account?
+						<Link href={"/auth/register"} className='text-black font-normal'>
+							<b>&nbsp;Sign Up</b>
+						</Link>
+					</p>
+				</>
+			)}
+		</section>
+	);
 };
 
 export default LoginPage;
