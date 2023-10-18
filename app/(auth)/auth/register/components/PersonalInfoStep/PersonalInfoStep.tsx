@@ -36,7 +36,7 @@ export const PersonalInfoStep = (props: PersonalInfoStepProps) => {
         name="gender"
         control={control}
         render={({ field }) => (
-          <fieldset {...field} name="gender">
+          <fieldset {...field} name="gender" className="flex flex-col gap-5">
             {gendersOptions.map((gender, index) => (
               <div  className="flex gap-2" role="button" aria-label={`Select gender ${gender.value}`} {...field}  tabIndex={index+1}>
                 <RadioCard

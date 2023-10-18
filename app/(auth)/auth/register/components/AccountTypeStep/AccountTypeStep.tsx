@@ -30,7 +30,7 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 					name='type'
 					control={control}
 					render={({ field }) => (
-						<div {...field}>
+						<fieldset {...field} name="type" className="flex flex-col gap-5">
 							{accountTypeOptions.map((type, index) => (
 								<div role="button" aria-label={`Select type ${type.value}`} {...field} tabIndex={index+1}> 
 									<RadioCard
@@ -45,7 +45,7 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 										/>
 								</div>
 								))}
-						</div>
+						</fieldset>
 					)}
 				/>
 
