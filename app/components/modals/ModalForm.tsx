@@ -19,25 +19,19 @@ import {
 
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import InputSkeleton from "../skeletons/InputSkeleton";
 
 export interface LabelProps {
+	key: string;
 	className?: string;
 	htmlFor?: string;
 	label: string;
-	input: InputProps;
+	input: any;
 }
 
-interface InputProps {
-	id: string;
-	variant: "outlined" | "filled" | "text";
-	className?: string;
-	type: string;
-	fieldName: string;
-	value?: string;
-}
 
 interface ModalProps {
-	TextButton?: string;
+	ActionTrigger?: any;
 	Title?: string;
 	Description?: string;
 	Footer?: string;
@@ -49,7 +43,7 @@ interface ModalProps {
 
 const ModalForm = (props: ModalProps) => {
 	const {
-		TextButton,
+		ActionTrigger,
 		Footer,
 		Description,
 		Title,
@@ -58,13 +52,12 @@ const ModalForm = (props: ModalProps) => {
 		Form,
 		Icon,
 	} = props;
-
 	return (
-		<Dialog>
+		<Dialog  >
 			<DialogTrigger asChild>
-				<Button variant='filled'>{TextButton}</Button>
+				<button >{ActionTrigger}</button>
 			</DialogTrigger>
-			<DialogContent className='sm:max-w-[425px]'>
+			<DialogContent className='sm:max-w-[425px] min-h-[320px] max-h-[450px] sm:max-h-[300px]'>
 				<DialogHeader className='gap-4'>
 					<DialogTitle>{Title}</DialogTitle>
 					<DialogDescription>{Description}</DialogDescription>
@@ -83,6 +76,8 @@ const ModalForm = (props: ModalProps) => {
 									>
 										{label.label}
 									</FormLabel>
+									{
+										label.input.value ? 
 									<FormControl>
 										<Input
 											{...field}
@@ -94,6 +89,9 @@ const ModalForm = (props: ModalProps) => {
 											value={label.input.value}
 										/>
 									</FormControl>
+									: <InputSkeleton parentContainerStyles="h-10"/>
+									}
+									
 									<FormMessage />
 								</FormItem>
 							)}

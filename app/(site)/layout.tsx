@@ -1,7 +1,5 @@
 import "../globals.css";
 
-import { InviteModal, WorkoutModal } from "../components/modals";
-
 import Head from "next/head";
 import { Menu } from "./components/Menu";
 import React from "react";
