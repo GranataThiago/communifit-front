@@ -4,7 +4,7 @@ import { UserGreeting } from "../../UserGreeting";
 
 const ClientScreen = () => {
   return (
-    <main className="bg-secondary flex flex-col gap-8" data-testid="work">
+    <main className="flex flex-col gap-8" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full p-6">
         <UserGreeting />
       </header>

@@ -11,7 +11,7 @@ const FAKE_USERS = [
 
 const TrainerScreen = () => {
   return (
-    <main className="bg-secondary flex flex-col gap-8">
+    <main className="flex flex-col gap-8">
       <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative">
         <UserGreeting />
       </header>
