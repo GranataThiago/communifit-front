@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import React from "react";
 import { useUserContext } from "../../../context/UserContext";
 import { ImageWithFallback } from "../../components/ImageWithFallback";
-import { montserrat } from "../../components/fonts";
+import { montserrat, poppins } from "../../components/fonts";
 
 export const UserGreeting = () => {
   const { user } = useUserContext();
@@ -17,14 +17,13 @@ export const UserGreeting = () => {
         flex-col-reverse
         xs:flex-row
         justify-between
-        ${montserrat.className}
       `}
     >
       <div className="greetings" data-testid="greetings">
-        <p className="font-bold text-xl xxs:text-3xl">
+        <p className={`text-surface-light font-bold text-2xl xxs:text-3xl ${poppins.className}`}>
           Hi {(user && user.username) || "Anonymous"},
         </p>
-        <p className="font-semibold text-base xxs:text-xl">
+        <p className={`text-surface-dark font-semibold text-xl xxs:text-xl ${montserrat.className}`}>
           {format(new Date(), "EEEE dd, MMMM")}
         </p>
       </div>

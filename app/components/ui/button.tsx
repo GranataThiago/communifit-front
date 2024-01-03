@@ -3,17 +3,18 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../lib/utils";
+import { poppins } from "../fonts";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer hover:brightness-105 tranisiton all",
+	`${poppins.className} font-bold inline-flex items-center justify-center rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer hover:brightness-105 tranisiton all`,
 	{
 		variants: {
 			variant: {
 				customize: "",
-				filled: "bg-primary text-white h-[3.25rem] rounded-[1.6875rem]",
+				filled: "bg-primary text-secondary h-[3.25rem] rounded-xl",
 				outlined:
-					"border border-primary rounded-full py-3 font-[500] text-white h-[3.25rem] rounded-[1.6875rem]",
-				text: "bg-transparent text-primary rounded-full py-3 font-[500]",
+					"border-2 border-highlight rounded-xl py-3 text-highlight h-[3.25rem] rounded-xl",
+				text: "bg-transparent text-primary rounded-xl py-3",
 			},
 			size: {
 				default: "w-full",
