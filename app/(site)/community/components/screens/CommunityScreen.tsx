@@ -31,7 +31,7 @@ const CommunityScreen = (community: Community) => {
       <nav className="my-4 text-surface-light">
         <ul className="flex gap-4 font-medium text-lg">
           <li className="border-b border-primary">Posts</li>
-          <li>Material</li>
+          <li>Pinned</li>
         </ul>
       </nav>
 
