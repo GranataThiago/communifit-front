@@ -3,13 +3,12 @@
 import { useReducer } from "react";
 import { PlanContext } from "./PlanContext";
 import { planReducer } from "./planReducer";
-import { WEEK_DAYS } from "../../helpers/week-days";
-import { Exercise, WorkoutState } from "../../interfaces/exercises";
+import { IExercise, WorkoutState } from "../../interfaces/exercises";
 
-export interface PlanState {
+export interface IPlanState {
   workout: WorkoutState | null;
 }
-const PLAN_INITIAL_STATE: PlanState = {
+const PLAN_INITIAL_STATE: IPlanState = {
   workout: {
     Monday: [],
     Tuesday: [],
@@ -32,7 +31,7 @@ export default function PlanProvider({
     dispatch({ type: "[PLAN] Set", payload: workout });
   };
 
-  const addExerciseToPlan = (exercise: Exercise, day: string) => {
+  const addExerciseToPlan = (exercise: IExercise, day: string) => {
     dispatch({ type: "[PLAN] Add Exercise", payload: { exercise, day } });
   };
 

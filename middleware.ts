@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
     SAFE_USER_DATA["community"] = community;
   }
   
-  response.cookies.set("user", SAFE_USER_DATA);
+  response.cookies.set("user", JSON.stringify(SAFE_USER_DATA));
 
 
 

@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { BsEnvelope, BsPencil } from "react-icons/bs";
-import { Community } from "../../../../interfaces/community";
+import { ICommunity } from "../../../../interfaces/community";
 import InviteModal from "../../../components/modals/InviteModal";
 
 
-const CommunityActions = ({ name, displayname }: Community) => {
+const CommunityActions = ({ name, displayname }: ICommunity) => {
   return (
     <div className="flex gap-2" data-testid="data">
       <InviteModal 

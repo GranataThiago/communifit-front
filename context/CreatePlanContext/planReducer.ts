@@ -1,17 +1,17 @@
-import { WorkoutState, Exercise } from "../../interfaces/exercises";
-import { PlanState } from "./PlanProvider";
+import { WorkoutState, IExercise } from "../../interfaces/exercises";
+import { IPlanState } from "./PlanProvider";
 
 export type PlanActionType =
   | { type: "[PLAN] Set"; payload: WorkoutState }
   | {
       type: "[PLAN] Add Exercise";
-      payload: { exercise: Exercise; day: string };
+      payload: { exercise: IExercise; day: string };
     };
 
 export const planReducer = (
-  state: PlanState,
+  state: IPlanState,
   action: PlanActionType,
-): PlanState => {
+): IPlanState => {
   switch (action.type) {
     case "[PLAN] Set":
       return { ...state, ...action.payload };

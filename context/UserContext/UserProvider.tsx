@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useReducer } from "react";
-import { RegisterUser, User } from "../../interfaces/user";
 import { UserContext, userReducer } from ".";
 
 import { createUserAndGetToken } from "../../services/users/register";
@@ -10,13 +9,14 @@ import { decryptUser } from "../../services/auth/decrypt";
 import { loginUser } from "../../services/auth/login";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import { IRegisterUser, IUser } from "../../interfaces/user";
 
-export interface UserState {
+export interface IUserState {
 	token: string | null;
-	user: User | null;
+	user: IUser | null;
 }
 
-const USER_INITIAL_STATE: UserState = {
+const USER_INITIAL_STATE: IUserState = {
 	token: null,
 	user: null,
 };
@@ -34,7 +34,7 @@ export default function UserProvider({
 		decryptUserData();
 	}, []);
 
-  const register = async (user: RegisterUser): Promise<CreateUserReturn> => {
+  const register = async (user: IRegisterUser): Promise<CreateUserReturn> => {
     try {
       const { objective = null, ...userData } = user;
       const data: ICreateUserResponse = await createUserAndGetToken({

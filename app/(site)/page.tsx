@@ -5,6 +5,9 @@ export default function Page() {
   const token = cookieStore.get('token');
   const userData = cookieAsJSON('user'); 
   return (
-      <HomeScreen />
+      <HomeScreen
+        token={token}
+        user={userData}
+      />
   );
 }

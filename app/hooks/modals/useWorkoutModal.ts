@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Exercise } from "../../../interfaces/exercises";
+import { IExercise } from "../../../interfaces/exercises";
 
 /* Zustand para utilizar una gestion de estados pequeñas, rapida y escalable */
 
@@ -7,7 +7,7 @@ interface WorkoutModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  exercise: Exercise | null;
+  exercise: IExercise | null;
 }
 
 const useWorkoutModal = create<WorkoutModalStore>((set) => ({
