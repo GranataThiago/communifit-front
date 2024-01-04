@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { CommunityEssential, DecryptUserResponse } from "./interfaces/";
+import {  NextRequest, NextResponse } from "next/server";
+import { CommunityEssential } from "./interfaces/";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;

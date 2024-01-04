@@ -1,4 +1,4 @@
-import { UserState } from ".";
+import { IUserState } from ".";
 import { IUser } from "../../interfaces/user";
 
 type UserActionType =
@@ -6,9 +6,9 @@ type UserActionType =
   | { type: "[USER] Logout" };
 
 export const userReducer = (
-  state: UserState,
+  state: IUserState,
   action: UserActionType,
-): UserState => {
+): IUserState => {
   switch (action.type) {
     case "[USER] Login":
       return { ...state, ...action.payload };
