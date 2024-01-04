@@ -1,6 +1,6 @@
 import { CommunityEssential } from "./community";
 
-export interface User {
+export interface IUser {
   fullName: string;
   username: string;
   email: string;
@@ -10,7 +10,7 @@ export interface User {
   _id?: string;
 }
 
-export interface RegisterUser {
+export interface IRegisterUser {
   birthdate: Date;
   username: string;
   gender: string;
