@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 
 type InputStyles = { [key: string]: string };
-type InputVariant = "outlined" | "filled" | "text";
+type InputVariant = "outlined" | "filled" | "text"|'dark';
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,6 +13,7 @@ const inputVariants: InputStyles = {
 	filled: "w-full bg-surface-light text-secondary-dark p-2 rounded-xl",
 	outlined:
 		"w-full rounded-2xl border border-[1px] border-surface-light h-11 p-2 focus:outline-none",
+	dark: 'w-full bg-secondary-dark text-surface-dark p-2 rounded-xl border-none'
 };
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
 	({ variant, className, name, type, ...props }, ref) => {

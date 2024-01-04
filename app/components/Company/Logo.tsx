@@ -1,11 +1,13 @@
+import { poppins } from "../fonts";
+
 const Logo = () => {
   return (
     <div
       role="heading"
       aria-label="CommuniFit logo"
-      className="text-black text-4xl"
+      className={`${poppins.className} text-surface-light text-4xl font-bold`}
     >
-      Communi<span className="text-primary">Fit</span>.
+      Communi<span className="text-primary">fit</span>.
     </div>
   );
 };

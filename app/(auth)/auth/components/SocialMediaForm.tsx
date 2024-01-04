@@ -32,12 +32,12 @@ const SocialMediaForm = () => {
 	});
 	return (
 		<section className='w-full mb-4 flex flex-col items-center'>
-			<h2 className='text-center text-gray-400'>Or Log In with</h2>
+			<h2 className='text-center text-surface-dark'>Or Log In with</h2>
 			<div className='mt-4 flex cursor-pointer'>
 				<Button
 					variant='customize'
 					onClick={() => login()}
-					className='h-[3.25rem] border border-gray-300 p-3 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
+					className='h-[3.25rem] border border-surface-dark p-3 rounded-xl cursor-pointer flex gap-2 items-center justify-center'
 					aria-label='Login with Google'
 				>
 					<FcGoogle size='2rem' className='cursor-pointer' aria-hidden={true} />

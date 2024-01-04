@@ -23,7 +23,7 @@ const LoginPage = () => {
 
 	return (
 		<section
-			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
+			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className} bg-secondary-dark text-surface-light`}
 		>
 			<div className='text-center'>
 				<Logo />
@@ -40,10 +40,10 @@ const LoginPage = () => {
 
 					<p
 						data-testid='text-footer'
-						className='text-[#9D9D9D] text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+						className='text-surface-light text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
 					>
 						Don&apos;t have an account?
-						<Link href={"/auth/register"} className='text-black font-normal'>
+						<Link href={"/auth/register"} className='text-surface-light font-bold'>
 							<b>&nbsp;Sign Up</b>
 						</Link>
 					</p>
