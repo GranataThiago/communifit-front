@@ -1,13 +1,8 @@
-import { cookieAsJSON, cookieStore } from "../../helpers/cookie";
-import { HomeScreen } from "./components/screens/HomeScreen";
+import { redirect } from "next/navigation";
+import { cookieAsJSON } from "../../helpers/cookie";
+import { IUser } from "../../interfaces/user";
 
 export default function Page() {
-  const token = cookieStore.get('token');
-  const userData = cookieAsJSON('user'); 
-  return (
-      <HomeScreen
-        token={token}
-        user={userData}
-      />
-  );
+  const userData:IUser = cookieAsJSON('user'); 
+  return userData.type === 'trainer'?redirect('/trainer'):redirect('/member')
 }

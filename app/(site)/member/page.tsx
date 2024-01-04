@@ -1,8 +1,8 @@
-import React from "react";
-import { Workout } from "../../Workout";
-import { UserGreeting } from "../../UserGreeting";
+import React from 'react'
+import Workout from '../components/Workout'
+import UserGreeting from '../components/UserGreeting'
 
-const ClientScreen = () => {
+export default function MemberPage() {
   return (
     <main className="flex flex-col gap-8" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full p-6">
@@ -12,7 +12,7 @@ const ClientScreen = () => {
       <section className="workout flex flex-col gap-2 p-6">
         <p className="font-bold text-3xl">Your work for today</p>
         <div className="h-60 relative overflow-hidden before:w-full before:h-full before:absolute before:left-0 before:top-0 before:bg-gradient-to-t before:from-white before:pointer-events-none">
-          <Workout></Workout>
+          <Workout/>
         </div>
 
         <button className="bg-primary text-white font-bold rounded-lg py-2 w-32 mx-auto">
@@ -44,7 +44,5 @@ const ClientScreen = () => {
         </div>
       </section>
     </main>
-  );
-};
-
-export default ClientScreen;
+  )
+}

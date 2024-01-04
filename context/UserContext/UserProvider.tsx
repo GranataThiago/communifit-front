@@ -28,7 +28,7 @@ export default function UserProvider({
 }) {
 	const router = useRouter();
 	const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
-	const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+	const [cookies, setCookie, removeCookie] = useCookies(["token", "user"]);
 
 	useEffect(() => {
 		decryptUserData();
@@ -49,6 +49,13 @@ export default function UserProvider({
       setCookie("token", data.token, {
         path: "/",
       });
+
+	  const foundDecryptUser = await decryptUser({ token: data.token });
+		setCookie('user', foundDecryptUser, {
+					path: "/"
+				})
+
+
 
       dispatch({
         type: "[USER] Login",
@@ -89,6 +96,10 @@ export default function UserProvider({
 			if (userData && userData.user) {
 				user = userData.user;
 			}
+			
+			setCookie('user', userData, {
+				path: "/"
+			})
 
 			dispatch({ type: "[USER] Login", payload: { user, token } });
 
@@ -131,6 +142,7 @@ export default function UserProvider({
 		try {
 			dispatch({ type: "[USER] Logout" });
 			removeCookie("token");
+			removeCookie("user")
 			router.push("/auth/login");
 			return true;
 		} catch (err) {
