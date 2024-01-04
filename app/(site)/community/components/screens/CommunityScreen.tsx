@@ -1,46 +1,43 @@
 import Image from "next/image";
-import CommunityActions from "../CommunityActions";
 import { Post } from "../Post";
 import { Community } from "../../../../../interfaces/community";
+import { montserrat, poppins } from "../../../../components";
 
 const CommunityScreen = (community: Community) => {
   const { name, displayname, description, posts } = community;
   return (
-    <section className="bg-primary h-screen">
-      <div className="bg-primary w-full h-32"></div>
+    <section className={`${montserrat.className} bg-secondary-dark p-6`}>
 
-      <div className="rounded-t-lg h-full bg-white px-6 flex flex-col gap-4">
-        <header className="">
-          <div className="flex items-center justify-between">
-            <div className="flex gap-4 relative">
-              <Image
-                className="absolute -top-7 rounded-full border-4 border-white"
+      <header className="workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6">
+        <div className="flex flex-row gap-16 items-center justify-start">
+          <Image
+                className="rounded-full border-4 border-white"
                 src="https://i.pravatar.cc/300"
                 alt="fortys"
-                width={96}
-                height={96}
-              />
-              <div className="ml-28">
-                <p className="text-2xl font-bold">{displayname}</p>
-                <p className="text-md font-light text-gray-400">Community</p>
-              </div>
+                width={128}
+                height={128}
+            />
+            <div>
+              <h2 className={`${poppins.className} font-bold text-5xl  text-primary`}>Hey Trainer!</h2>
+              <p className="text-xl text-surface-light">by Personal Trainer</p>
             </div>
-            <CommunityActions {...community} />
-          </div>
-          <div className="mt-4 leading-5">{description}</div>
-        </header>
+        </div>
 
-        <nav className="bg-white">
-          <ul className="flex gap-4 font-medium text-lg">
-            <li className="border-b border-primary">Posts</li>
-            <li>Material</li>
-          </ul>
-        </nav>
+
+          <p className={`text-md col-span-2 text-surface-light`}>Where fitness enthusiasts unite to support, inspire, and achieve collective wellness goals as a community.</p>
+      </header>
+
+
+      <nav className="my-4 text-surface-light">
+        <ul className="flex gap-4 font-medium text-lg">
+          <li className="border-b border-primary">Posts</li>
+          <li>Material</li>
+        </ul>
+      </nav>
 
         <div className="flex flex-col gap-4">
           {posts?.map((post, index) => <Post key={index} {...post} />)}
         </div>
-      </div>
     </section>
   );
 };
