@@ -29,7 +29,7 @@ export const NonCommunityMemberScreen = async () => {
 			<Input variant='filled' type='text' placeholder='Search Communities...' />
 
 			<article className="flex flex-col gap-4 bg-secondary-light p-4 mt-4 rounded-xl">
-				<h2 className="text-3xl text-primary font-bold">How to choose the ideal community for you?</h2>
+				<h2 className="text-3xl text-primary font-bold">How to choose your ideal community?</h2>
 				<p className="text-md text-surface-light">We strongly encourage you to engage with coaches and 
 				ask them any questions you might have in order to identify 
 				the best fit for your needs...</p>
