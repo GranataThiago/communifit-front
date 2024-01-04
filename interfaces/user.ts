@@ -1,12 +1,12 @@
-import { Community } from "./community";
+import { CommunityEssential } from "./community";
 
 export interface User {
   fullName: string;
   username: string;
   email: string;
-  image: string | null;
+  image?: string | null;
   type: UserTypes;
-  community?: Community;
+  community?: CommunityEssential;
   _id?: string;
 }
 
