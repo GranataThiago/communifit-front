@@ -1,11 +1,10 @@
 import React from 'react'
 import Workout from '../components/Workout'
 import UserGreeting from '../components/UserGreeting'
-import { IUser } from '../../../interfaces/user'
-
-const MemberPage = async({user}: {user: IUser}) => {
+//No tipen esto, les va a dar error el build
+const MemberPage = async({user}: any) => {
   console.log(user);
-  
+
   return (
     <main className="flex flex-col gap-8" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full p-6">

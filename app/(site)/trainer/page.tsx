@@ -10,7 +10,8 @@ const FAKE_USERS = [
   },
 ];
 
-const TrainerPage = ({user}: {user: IUser}) =>{
+//No tipen esto, les va a dar error el build
+const TrainerPage = async({user}: any) =>{
   console.log(user)
   return (
     <main className="bg-secondary flex flex-col gap-8">
