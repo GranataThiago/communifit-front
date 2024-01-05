@@ -78,7 +78,7 @@ export const LoginForm = () => {
 	return (
 		<Form {...form}>
 			<form
-				className={`w-full flex flex-col gap-4 pt-2`}
+				className={`w-full flex flex-col gap-6 bg-secondary p-10 rounded-lg`}
 				onSubmit={(e) => {
 					e.preventDefault();
 					form.handleSubmit(onLogin)(e);
