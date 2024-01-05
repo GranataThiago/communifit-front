@@ -4,7 +4,7 @@ import { BiLogOut } from "react-icons/bi";
 import { Button } from "../../../components/ui/button";
 import React from "react";
 import { useUserContext } from "../../../../context/UserContext";
-import { poppins } from "../../../components";
+import { ImageWithFallback, poppins } from "../../../components";
 
 export const ProfileHeading = () => {
   const { user, logout } = useUserContext();
@@ -18,14 +18,16 @@ export const ProfileHeading = () => {
       <div>
         <p className={`${poppins.className} text-surface-light text-3xl font-bold`}>{user?.username}</p>
       </div>
-      <Button
-        data-testid="button"
-        variant="filled"
-        className="bg-red-500 w-12 h-12 grid place-content-center"
-        onClick={onLogout}
-      >
-        <BiLogOut size={24} />
-      </Button>
+      <div className="">
+        <ImageWithFallback
+          className="object-contain rounded-full w-24"
+          src={user?.image ?? ""}
+          alt="fortys"
+          width={0}
+          height={0}
+          sizes="100vw"
+        />
+      </div>
     </header>
   );
 };

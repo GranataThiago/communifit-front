@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileHeading } from "./components/ProfileHeading";
 import { poppins } from "../../components";
+import Progress from "../../components/ui/progress";
 
 export default function ProfilePage() {
   return (
@@ -12,7 +13,7 @@ export default function ProfilePage() {
         <div className="bg-secondary-light p-6 rounded-xl">
           <p className={`font-bold ${poppins.className} text-lg`}>Disciplined Lifter</p>
           <p className="text-surface-dark">You've completed all your monthly workouts</p>
-          <progress className="mt-4 h-16 w-full [&::-webkit-progress-bar]:rounded-xl [&::-webkit-progress-value]:rounded-xl [&::-webkit-progress-bar]:bg-secondary-dark [&::-webkit-progress-value]:bg-primary" max={12} value={4}> 4/12 </progress>
+          <Progress className="mt-4 h-16 w-full" value={4} maxValue={12} variant="dark" />
         </div>
       </section>
 
