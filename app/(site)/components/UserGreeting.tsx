@@ -18,7 +18,7 @@ const UserGreeting = ({user}: {user: IUser}) => {
     >
       <div className="greetings" data-testid="greetings">
         <p className="font-bold text-xl xxs:text-3xl">
-          Hi {(user && user.username) || "Anonymous"},
+          Hi {user.username}
         </p>
         <p className="font-semibold text-base xxs:text-xl">
           {format(new Date(), "EEEE dd, MMMM")}
