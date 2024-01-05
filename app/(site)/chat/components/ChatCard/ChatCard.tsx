@@ -25,13 +25,13 @@ export const ChatCard = ({ user, message }: ChatCardProps) => {
 
 			<div className='my-auto p-1 w-2/3'>
 				<p className='text-lg font-bold'>{user}</p>
-				<p className=' text-gray-600 text-md whitespace-nowrap overflow-hidden text-ellipsis'>
+				<p className=' text-white font-extralight text-md whitespace-nowrap overflow-hidden text-ellipsis'>
 					{message}
 				</p>
 			</div>
 
 			<div className='my-auto'>
-				<p className='text-gray-400'>12:39</p>
+				<p className='text-white font-extralight'>12:39</p>
 			</div>
 		</Link>
 	);
