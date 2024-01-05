@@ -1,6 +1,8 @@
-import React from "react";
 import "./globals.css";
+
+import React from "react";
 import RootLayoutClientSide from "./RootLayoutClientSide";
+
 interface LoggedLayout {
 	children: React.ReactNode;
 }
@@ -8,10 +10,8 @@ interface LoggedLayout {
 export default function RootLayout({ children }: LoggedLayout) {
 	return (
 		<html>
-			<body className="bg-gray-100">
-				<RootLayoutClientSide>
-					{children}
-				</RootLayoutClientSide>
+			<body className='bg-[#212121]'>
+				<RootLayoutClientSide>{children}</RootLayoutClientSide>
 			</body>
 		</html>
 	);
