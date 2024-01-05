@@ -1,14 +1,14 @@
-import { UserState } from ".";
-import { User } from "../../interfaces/user";
+import { IUserState } from ".";
+import { IUser } from "../../interfaces/user";
 
 type UserActionType =
-  | { type: "[USER] Login"; payload: { token: string; user: User | null } }
+  | { type: "[USER] Login"; payload: { token: string; user: IUser | null } }
   | { type: "[USER] Logout" };
 
 export const userReducer = (
-  state: UserState,
+  state: IUserState,
   action: UserActionType,
-): UserState => {
+): IUserState => {
   switch (action.type) {
     case "[USER] Login":
       return { ...state, ...action.payload };

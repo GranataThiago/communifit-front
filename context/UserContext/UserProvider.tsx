@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useReducer } from "react";
-import { RegisterUser, User } from "../../interfaces/user";
 import { UserContext, userReducer } from ".";
 
 import { createUserAndGetToken } from "../../services/users/register";
@@ -10,13 +9,14 @@ import { decryptUser } from "../../services/auth/decrypt";
 import { loginUser } from "../../services/auth/login";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import { IRegisterUser, IUser } from "../../interfaces/user";
 
-export interface UserState {
+export interface IUserState {
 	token: string | null;
-	user: User | null;
+	user: IUser | null;
 }
 
-const USER_INITIAL_STATE: UserState = {
+const USER_INITIAL_STATE: IUserState = {
 	token: null,
 	user: null,
 };
@@ -28,13 +28,13 @@ export default function UserProvider({
 }) {
 	const router = useRouter();
 	const [state, dispatch] = useReducer(userReducer, USER_INITIAL_STATE);
-	const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+	const [cookies, setCookie, removeCookie] = useCookies(["token", "user"]);
 
 	useEffect(() => {
 		decryptUserData();
 	}, []);
 
-  const register = async (user: RegisterUser): Promise<CreateUserReturn> => {
+  const register = async (user: IRegisterUser): Promise<CreateUserReturn> => {
     try {
       const { objective = null, ...userData } = user;
       const data: ICreateUserResponse = await createUserAndGetToken({
@@ -49,6 +49,13 @@ export default function UserProvider({
       setCookie("token", data.token, {
         path: "/",
       });
+
+	  const foundDecryptUser = await decryptUser({ token: data.token });
+		setCookie('user', foundDecryptUser, {
+					path: "/"
+				})
+
+
 
       dispatch({
         type: "[USER] Login",
@@ -89,6 +96,10 @@ export default function UserProvider({
 			if (userData && userData.user) {
 				user = userData.user;
 			}
+			
+			setCookie('user', userData, {
+				path: "/"
+			})
 
 			dispatch({ type: "[USER] Login", payload: { user, token } });
 
@@ -131,6 +142,7 @@ export default function UserProvider({
 		try {
 			dispatch({ type: "[USER] Logout" });
 			removeCookie("token");
+			removeCookie("user")
 			router.push("/auth/login");
 			return true;
 		} catch (err) {

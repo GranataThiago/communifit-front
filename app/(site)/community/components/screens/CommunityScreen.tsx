@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Post } from "../Post";
-import { Community } from "../../../../../interfaces/community";
 import { montserrat, poppins } from "../../../../components";
+import { ICommunity } from "../../../../../interfaces/community";
 
-const CommunityScreen = (community: Community) => {
+const CommunityScreen = (community: ICommunity) => {
   const { name, displayname, description, posts } = community;
   return (
     <section className={`${montserrat.className} bg-secondary-dark p-6`}>

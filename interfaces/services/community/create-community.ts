@@ -1,4 +1,4 @@
-import { Community } from "../../community";
+import { ICommunity } from "../../community";
 
 export interface CreateCommunity {
   name?: string;
@@ -9,7 +9,7 @@ export interface CreateCommunity {
 
 export interface ICreateCommunityFetch {
   ok: boolean;
-  community: Community;
+  community: ICommunity;
 }
 
 export type CreateCommunityResponse = null | ICreateCommunityFetch;

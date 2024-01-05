@@ -1,8 +1,8 @@
-import { User } from "../../../user";
+import { IUser } from "../../../user";
 
 export interface IDecryptUserFetch {
   ok: boolean;
-  user: User;
+  user: IUser;
 }
 
 export type DecryptUserResponse = null | IDecryptUserFetch;

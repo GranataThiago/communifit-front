@@ -1,9 +1,13 @@
-import React from "react";
-import { UserGreeting } from "../../UserGreeting";
-import { Button } from "../../../../components/ui/button";
-import { poppins } from "../../../../components";
+import React from 'react'
+import Workout from '../components/Workout'
+import UserGreeting from '../components/UserGreeting'
+import { Button } from '../../components/ui/button';
+import { poppins } from '../../components';
 
-const ClientScreen = () => {
+//No tipen esto, les va a dar error el build
+const MemberPage = async({user}: any) => {
+  console.log(user);
+
   return (
     <main className="bg-secondary-dark flex flex-col gap-8 p-6" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full">
@@ -58,7 +62,7 @@ const ClientScreen = () => {
 
       </section>  
     </main>
-  );
-};
+  )
+}
 
-export default ClientScreen;
+export default MemberPage

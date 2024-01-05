@@ -1,9 +1,5 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-
+import {  NextRequest, NextResponse } from "next/server";
+import { API_KEY, API_URL } from "./utils";
 // This function can be marked async if using await inside
 export async function middleware(request: NextRequest) {
   let cookie = request.cookies.get("token");
@@ -31,7 +27,6 @@ export async function middleware(request: NextRequest) {
 
   const response = NextResponse.next();
   response.cookies.set("token", data.token);
-
   return response;
 }
 

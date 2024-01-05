@@ -1,13 +1,13 @@
-export interface Exercise {
+export interface IExercise {
   name: string;
   quantity: string;
   weight: string;
   observations: string;
 }
 
-interface Workout {
+interface IWorkout {
   day: string;
-  exercises: Exercise[];
+  exercises: IExercise[];
 }
 
-export type WorkoutState = { [day: string]: Exercise[] };
+export type WorkoutState = { [day: string]: IExercise[] };

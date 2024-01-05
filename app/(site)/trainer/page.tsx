@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import { poppins } from "../../../../components";
-import { Button } from "../../../../components/ui/button";
-import { UserGreeting } from "../../UserGreeting";
-import apiInstance from "../../../../api";
-import { getClientsByTrainer } from "../../../../../services/trainer/get-clients";
+import { IUser } from "../../../interfaces/user";
+import { poppins } from "../../components";
+import { Button } from "../../components/ui/button";
+import UserGreeting from "../components/UserGreeting";
 
 const FAKE_USERS = [
   {
@@ -14,17 +12,9 @@ const FAKE_USERS = [
   },
 ];
 
-const TrainerScreen = () => {
-
-  useEffect(() => {
-    getClients()
-  }, [])
-
-  const getClients = async() => {
-    const clients = await getClientsByTrainer({username: 'testTrainer'});
-    console.log(clients)
-  }
-
+//No tipen esto, les va a dar error el build
+const TrainerPage = async({user}: any) =>{
+  console.log(user)
   return (
     <main className="bg-secondary flex flex-col gap-8 p-6 bg-secondary-dark">
       <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between relative">
@@ -91,4 +81,5 @@ const TrainerScreen = () => {
   );
 };
 
-export default TrainerScreen;
+
+export default TrainerPage

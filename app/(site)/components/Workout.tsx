@@ -9,7 +9,7 @@ import { useUserContext } from "../../../context/UserContext";
 import useWorkoutModal from "../../hooks/modals/useWorkoutModal";
 import WorkoutModal from "../../components/modals/WorkoutModal";
 
-export const Workout = () => {
+const Workout = () => {
 	const { user } = useUserContext();
 
 	const [day, setDay] = useState("Monday");
@@ -63,3 +63,5 @@ export const Workout = () => {
 		</section>
 	);
 };
+
+export default Workout;
