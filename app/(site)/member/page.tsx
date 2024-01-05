@@ -67,14 +67,14 @@ const MemberPage = async ({ user }: any) => {
 				</header>
 
 				<div className='flex flex-col gap-4'>
-					<div className='bg-secondary-light rounded-xl p-6 flex-1'>
+					<div className='bg-secondary rounded-xl p-6 flex-1'>
 						<p className='text-xl text-surface-light'>
 							<span className='text-primary font-bold'>Session C</span> -
 							30/12/2023
 						</p>
 					</div>
 
-					<div className='bg-secondary-light rounded-xl p-6 grid flex-1'>
+					<div className='bg-secondary rounded-xl p-6 grid flex-1'>
 						<p className='text-xl text-surface-light'>
 							<span className='text-primary font-bold'>Session B</span> -
 							28/12/2023
