@@ -23,6 +23,7 @@ module.exports = {
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
 				background: "#212121",
+				placeholder: "#DADADA",
 				foreground: "hsl(var(--foreground))",
 				primaryShadcn: {
 					DEFAULT: "hsl(var(--primary))",
