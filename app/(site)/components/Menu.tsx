@@ -22,7 +22,7 @@ export const Menu = () => {
 		>
 			<ul className='w-full flex justify-between text-xl' data-testid='ul'>
 				<li
-					className={`hover:text-gray-700 hover:cursor-pointer ${
+					className={`hover:text-primary hover:cursor-pointer ${
 						pathname === "/" ? "text-primary" : "text-surface-light"
 					}`}
 				>
@@ -31,7 +31,7 @@ export const Menu = () => {
 					</Link>
 				</li>
 				<li
-					className={`hover:text-gray-700 hover:cursor-pointer ${
+					className={`hover:text-primary hover:cursor-pointer ${
 						pathname === "/chat" ? "text-primary" : "text-surface-light"
 					}`}
 				>
@@ -40,7 +40,7 @@ export const Menu = () => {
 					</Link>
 				</li>
 				<li
-					className={`hover:text-gray-700 hover:cursor-pointer ${
+					className={`hover:text-primary hover:cursor-pointer ${
 						pathname === "/community" ? "text-primary" : "text-surface-light"
 					}`}
 				>
@@ -55,7 +55,7 @@ export const Menu = () => {
 					</Link>
 				</li>
 				<li
-					className={`hover:text-gray-700 hover:cursor-pointer ${
+					className={`hover:text-primary hover:cursor-pointer ${
 						pathname === "/profile" ? "text-primary" : "text-surface-light"
 					}`}
 				>
