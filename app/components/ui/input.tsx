@@ -11,7 +11,8 @@ export interface InputProps
 }
 const inputVariants: InputStyles = {
 	filled: "w-full bg-gray-100 p-2 rounded-xl",
-	outlined: "w-full rounded-2xl  h-11 p-2 focus:outline-none",
+	outlined:
+		"w-full rounded-2xl  h-11 p-2 focus:outline-none  focus:border-primary ",
 };
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
 	({ variant, className, name, type, ...props }, ref) => {
@@ -20,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 				type={type}
 				className={`${cn(
 					inputVariants[variant],
-					"flex h-10 w-full rounded-md bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-placeholder placeholder:font-extralight focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 text-white",
+					"flex h-10 w-full rounded-md bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-placeholder placeholder:font-extralight focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 border-2 border-transparent text-white",
 					className
 				)}`}
 				name={name}
