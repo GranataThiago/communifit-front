@@ -27,7 +27,7 @@ const LoginPage = () => {
 		>
 			<div className='text-center'>
 				<Logo />
-				<p className='text-xl font-medium text-white'>Login</p>
+				<p className='text-2xl font-medium text-white tracking-tight'>Login</p>
 			</div>
 
 			{isLoading ? (
