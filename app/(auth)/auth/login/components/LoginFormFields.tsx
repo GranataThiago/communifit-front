@@ -22,7 +22,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 				name='email'
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Your email address</FormLabel>
+						<FormLabel className='text-white text-sm'>Email Address</FormLabel>
 						<FormControl>
 							<Input
 								{...field}
@@ -43,7 +43,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 				}}
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Password</FormLabel>
+						<FormLabel className='text-white text-sm'>Password</FormLabel>
 						<FormControl>
 							<Input
 								{...field}

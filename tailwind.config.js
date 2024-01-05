@@ -22,7 +22,7 @@ module.exports = {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
-				background: "hsl(var(--background))",
+				background: "#212121",
 				foreground: "hsl(var(--foreground))",
 				primaryShadcn: {
 					DEFAULT: "hsl(var(--primary))",
