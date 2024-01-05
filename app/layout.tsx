@@ -8,7 +8,7 @@ interface LoggedLayout {
 export default function RootLayout({ children }: LoggedLayout) {
 	return (
 		<html>
-			<body>
+			<body className="bg-gray-100">
 				<RootLayoutClientSide>
 					{children}
 				</RootLayoutClientSide>

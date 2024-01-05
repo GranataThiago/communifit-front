@@ -1,4 +1,5 @@
-import { UserGreeting } from "../../UserGreeting";
+import { IUser } from "../../../interfaces/user";
+import UserGreeting from "../components/UserGreeting";
 
 const FAKE_USERS = [
   {
@@ -9,7 +10,9 @@ const FAKE_USERS = [
   },
 ];
 
-const TrainerScreen = () => {
+//No tipen esto, les va a dar error el build
+const TrainerPage = async({user}: any) =>{
+  console.log(user)
   return (
     <main className="bg-secondary flex flex-col gap-8">
       <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative">
@@ -64,4 +67,5 @@ const TrainerScreen = () => {
   );
 };
 
-export default TrainerScreen;
+
+export default TrainerPage

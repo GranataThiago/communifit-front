@@ -1,12 +1,12 @@
 import React from "react";
 import { CommunityScreen } from "../components/screens";
 import { cookies } from "next/headers";
-import { Community } from "../../../../interfaces/community";
 import { redirect } from "next/navigation";
 import {
   getCommunityData,
   getCommunityPosts,
 } from "../../../../services/community/community-page";
+import { ICommunity } from "../../../../interfaces";
 
 interface CommunityPageParams {
   name: string;
@@ -16,7 +16,7 @@ interface CommunityPageProps {
   params: CommunityPageParams;
 }
 
-const getCommunity = async (name: string): Promise<Community | null> => {
+const getCommunity = async (name: string): Promise<ICommunity | null> => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value as string;
 
@@ -34,7 +34,7 @@ const getCommunity = async (name: string): Promise<Community | null> => {
 
 export default async function CommunityPage({ params }: CommunityPageProps) {
   const { name } = params;
-  const community: Community | null = await getCommunity(name);
+  const community: ICommunity | null = await getCommunity(name);
 
   if (!community) {
     redirect("/community");

@@ -1,12 +1,14 @@
-export interface Community {
+export interface ICommunity {
   name: string;
   displayname: string;
   image: string;
   description: string;
-  posts: Post[] | [];
+  posts: IPost[] | [];
 }
 
-export interface Post {
+export type CommunityEssential = Omit<ICommunity, 'posts' | 'image'>
+
+export interface IPost {
   fullName: string;
   username: string;
   body: string;

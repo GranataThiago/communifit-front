@@ -1,5 +1,4 @@
 import apiInstance from "../../app/api";
-import { Community } from "../../interfaces/community";
 import { GetInvitationLinkResponse } from "../../interfaces/services/community/community-page";
 import {
   CreateCommunity,

@@ -11,7 +11,7 @@ import Link from "next/link";
 import { PersonalInfoStep } from "./PersonalInfoStep";
 import { RegisterFormComponent } from "./RegisterForm";
 import { UserContext } from "../../../../../context/UserContext";
-import { RegisterUser, UserTypes } from "../../../../../interfaces/user";
+import { IRegisterUser, UserTypes } from "../../../../../interfaces/user";
 import { useRouter } from "next/navigation";
 
 export type RegisterForm = {
@@ -100,7 +100,7 @@ export const Onboarding = (props: OnBoardingProps) => {
 
     const birthdate = new Date(year, month, day);
 
-    const SAFE_USER: RegisterUser = {
+    const SAFE_USER: IRegisterUser = {
       ...formData,
       birthdate,
     };

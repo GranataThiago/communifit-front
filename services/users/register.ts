@@ -1,9 +1,9 @@
 import apiInstance from "../../app/api";
 import { ICreateUserFetch, ICreateUserResponse } from "../../interfaces";
-import { RegisterUser } from "../../interfaces/user";
+import { IRegisterUser } from "../../interfaces/user";
 
 interface ICreateUser {
-  user: RegisterUser;
+  user: IRegisterUser;
 }
 
 export const createUserAndGetToken = async ({

@@ -1,14 +1,14 @@
 "use client";
 
-import { RegisterUser, User } from "../../interfaces/user";
 import { createContext, useContext } from "react";
 
 import { CreateUserReturn, LoginUserResponse } from "../../interfaces";
+import { IRegisterUser, IUser } from "../../interfaces/user";
 
 interface ContextProps {
 	token: string | null;
-	user: User | null;
-	register: (user: RegisterUser) => Promise<CreateUserReturn>;
+	user: IUser | null;
+	register: (user: IRegisterUser) => Promise<CreateUserReturn>;
 	login: (email: string, password: string) => Promise<LoginUserResponse>;
 	decryptUserData: (token: string) => void;
 	logout: () => boolean;

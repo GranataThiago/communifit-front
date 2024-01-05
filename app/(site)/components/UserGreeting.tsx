@@ -5,8 +5,7 @@ import React from "react";
 import { useUserContext } from "../../../context/UserContext";
 import { ImageWithFallback } from "../../components/ImageWithFallback";
 import { montserrat } from "../../components/fonts";
-
-export const UserGreeting = () => {
+const UserGreeting = () => {
   const { user } = useUserContext();
 
   return (
@@ -60,3 +59,6 @@ className='absolute right-6 top-1/2 -translate-y-1/2'
     />
 </div> */
 }
+
+
+export default UserGreeting

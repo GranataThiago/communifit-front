@@ -1,15 +1,15 @@
-import { Community, Post } from "../../community";
+import { ICommunity, IPost } from "../../community";
 
 export interface IGetCommunityFetch {
   ok: boolean;
-  community: Community;
+  community: ICommunity;
 }
 
 export type GetCommunityResponse = null | IGetCommunityFetch;
 
 export interface IGetCommunityPostsFetch {
   ok: boolean;
-  posts: Post[] | [];
+  posts: IPost[] | [];
   totalPages: number;
   totalResults: number;
 }

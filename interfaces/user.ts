@@ -1,16 +1,16 @@
-import { Community } from "./community";
+import { CommunityEssential } from "./community";
 
-export interface User {
+export interface IUser {
   fullName: string;
   username: string;
   email: string;
-  image: string | null;
+  image?: string | null;
   type: UserTypes;
-  community?: Community;
+  community?: CommunityEssential;
   _id?: string;
 }
 
-export interface RegisterUser {
+export interface IRegisterUser {
   birthdate: Date;
   username: string;
   gender: string;
