@@ -1,6 +1,7 @@
 import React from 'react'
-import Workout from '../components/Workout'
+import Workout from '../components/workout/Workout'
 import UserGreeting from '../components/UserGreeting'
+import WorkoutMember from '../components/workout/WorkoutMember'
 //No tipen esto, les va a dar error el build
 const MemberPage = async({user}: any) => {
 
@@ -13,7 +14,7 @@ const MemberPage = async({user}: any) => {
       <section className="workout flex flex-col gap-2 p-6">
         <p className="font-bold text-3xl">Your work for today</p>
         <div className="h-60 relative overflow-hidden before:w-full before:h-full before:absolute before:left-0 before:top-0 before:bg-gradient-to-t before:from-white before:pointer-events-none">
-          <Workout/>
+          <WorkoutMember user={user} />
         </div>
 
         <button className="bg-primary text-white font-bold rounded-lg py-2 w-32 mx-auto">

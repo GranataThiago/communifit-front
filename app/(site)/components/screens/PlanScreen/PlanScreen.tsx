@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import { montserrat } from "../../../../components/fonts";
-import { WorkoutActions } from "../../WorkoutActions";
-import Workout from "../../Workout";
+import { WorkoutActions } from "../../workout/WorkoutActions";
+import Workout from "../../workout/Workout";
 
 export const PlanScreen = () => {
   return (

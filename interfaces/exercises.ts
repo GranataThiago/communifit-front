@@ -1,7 +1,9 @@
 export interface IExercise {
+  _id: string;
   name: string;
   quantity: string;
   weight: string;
+  day: string;
   observations: string;
 }
 
