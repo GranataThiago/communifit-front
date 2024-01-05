@@ -3,6 +3,7 @@ import Workout from '../components/Workout'
 import UserGreeting from '../components/UserGreeting'
 import { Button } from '../../components/ui/button';
 import { poppins } from '../../components';
+import Progress from '../../components/ui/progress';
 
 //No tipen esto, les va a dar error el build
 const MemberPage = async({user}: any) => {
@@ -27,7 +28,7 @@ const MemberPage = async({user}: any) => {
       <section className="w-full flex flex-col gap-4">
         <header className="w-full flex flex-col items-start justify-center gap-4">
           <h2 className={`${poppins.className} font-bold text-xl text-surface-light`}>Monthly Progress</h2>
-          <progress className="w-full [&::-webkit-progress-bar]:rounded-xl [&::-webkit-progress-value]:rounded-xl [&::-webkit-progress-bar]:bg-secondary-light [&::-webkit-progress-value]:bg-primary" max={12} value={4}> 4/12 </progress>
+          <Progress value={4} maxValue={12}></Progress>
         </header>
 
         <div className="flex gap-4">
