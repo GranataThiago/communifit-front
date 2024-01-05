@@ -23,7 +23,7 @@ const UserGreeting = () => {
 				<p className='font-bold text-xl xxs:text-3xl'>
 					Hi {(user && user.username) || "Anonymous"},
 				</p>
-				<p className='font-semibold text-base xxs:text-xl'>
+				<p className=' font-light text-base xxs:text-xl'>
 					{format(new Date(), "EEEE dd, MMMM")}
 				</p>
 			</div>
