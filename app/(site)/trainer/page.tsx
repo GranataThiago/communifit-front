@@ -1,3 +1,4 @@
+import { IUser } from "../../../interfaces/user";
 import UserGreeting from "../components/UserGreeting";
 
 const FAKE_USERS = [
@@ -9,7 +10,8 @@ const FAKE_USERS = [
   },
 ];
 
-export default function TrainerPage()  {
+const TrainerPage = ({user}: {user: IUser}) =>{
+  console.log(user)
   return (
     <main className="bg-secondary flex flex-col gap-8">
       <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between p-6 relative">
@@ -63,3 +65,6 @@ export default function TrainerPage()  {
     </main>
   );
 };
+
+
+export default TrainerPage

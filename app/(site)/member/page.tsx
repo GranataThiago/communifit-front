@@ -1,8 +1,11 @@
 import React from 'react'
 import Workout from '../components/Workout'
 import UserGreeting from '../components/UserGreeting'
+import { IUser } from '../../../interfaces/user'
 
-export default function MemberPage() {
+const MemberPage = async({user}: {user: IUser}) => {
+  console.log(user);
+  
   return (
     <main className="flex flex-col gap-8" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full p-6">
@@ -46,3 +49,5 @@ export default function MemberPage() {
     </main>
   )
 }
+
+export default MemberPage

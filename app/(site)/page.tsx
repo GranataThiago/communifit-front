@@ -1,8 +1,11 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { getAuthenticatedUser } from "../../helpers/";
+import TrainerPage from "./trainer/page";
+import MemberPage from "./member/page";
 
-export default function Page() {
+export default async function Page() {
   const cookieStore = cookies();
-  const userData = cookieStore.get('user') && cookieStore.get('user')?.value?JSON.parse(cookieStore.get('user')!.value):null
-  return userData.type === 'trainer'?redirect('/trainer'):redirect('/member')
+  const user = await getAuthenticatedUser(cookieStore.get('token')!.value);
+  return user?(user.type === 'trainer'?<TrainerPage user={user} />:<MemberPage user={user}/>):redirect('/auth/login')
 }
