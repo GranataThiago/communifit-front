@@ -41,12 +41,12 @@ const MemberPage = async ({ user }: any) => {
 				</header>
 
 				<div className='flex gap-4'>
-					<div className='bg-secondary-light rounded-xl p-6 grid place-items-center flex-1'>
+					<div className='bg-secondary rounded-xl p-6 grid place-items-center flex-1'>
 						<p className='text-primary font-bold text-xl'>46</p>
 						<p className='text-surface-light text-lg'>total sets</p>
 					</div>
 
-					<div className='bg-secondary-light rounded-xl p-6 grid place-items-center flex-1'>
+					<div className='bg-secondary rounded-xl p-6 grid place-items-center flex-1'>
 						<p className='text-primary font-bold text-xl'>3200</p>
 						<p className='text-surface-light text-lg'>kg moved</p>
 					</div>

@@ -13,7 +13,7 @@ const buttonVariants = cva(
 				customize: "",
 				filled: "bg-primary text-black h-[2.8125rem] rounded-[0.6875rem]",
 				outlined:
-					"border-2 border-highlight rounded-xl py-3 text-highlight h-[3.25rem] rounded-xl",
+					"border-2 border-highlight  text-highlight h-[2.8125rem] rounded-xl",
 				text: "bg-transparent text-primary rounded-xl py-3",
 			},
 			size: {
