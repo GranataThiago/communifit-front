@@ -10,8 +10,8 @@ const Message = ({ message, sender }: MessageProps) => {
     <div
       className={`rounded-lg p-2 ${
         sender
-          ? "bg-primary text-white ml-auto rounded-br-none"
-          : "bg-gray-300 text-black mr-auto rounded-bl-none"
+          ? "bg-primary text-secondary-dark ml-auto rounded-br-none"
+          : "bg-surface-light text-secondary-dark mr-auto rounded-bl-none"
       }`}
       data-testid="text"
     >

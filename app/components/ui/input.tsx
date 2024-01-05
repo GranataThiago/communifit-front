@@ -3,14 +3,14 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 
 type InputStyles = { [key: string]: string };
-type InputVariant = "outlined" | "filled" | "text";
+type InputVariant = "outlined" | "filled" | "text"|'dark';
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
 	variant: InputVariant;
 }
 const inputVariants: InputStyles = {
-	filled: "w-full bg-gray-100 p-2 rounded-xl",
+	filled: "w-full bg-surface-light text-secondary-dark p-2 rounded-xl",
 	outlined:
 		"w-full rounded-2xl  h-11 p-2 focus:outline-none  focus:border-primary ",
 };

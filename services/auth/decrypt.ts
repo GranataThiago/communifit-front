@@ -13,9 +13,8 @@ export const decryptUser = async ({
 }: IDecryptUser): Promise<DecryptUserResponse> => {
   let user: DecryptUserResponse = null;
   try {
-    const response = await apiInstance.get<IDecryptUserFetch>(`/auth/decrypt`, {
-      headers: { token },
-    });
+    apiInstance.defaults.headers.common = { 'token': token };
+    const response = await apiInstance.get<IDecryptUserFetch>(`/auth/decrypt`);
     user = response.data;
   } catch (error) {
     console.log(error);

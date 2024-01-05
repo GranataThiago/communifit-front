@@ -17,7 +17,7 @@ const getStars = (amount: number) => {
 export const CommunityCard = ({ name, stars, members }: CommunityCardProps) => {
   return (
     <div
-      className="flex gap-2 hover:cursor-pointer hover:bg-gray-100 transition-colors"
+      className="flex bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl"
       data-testid="container"
     >
       <Image
@@ -29,16 +29,14 @@ export const CommunityCard = ({ name, stars, members }: CommunityCardProps) => {
       />
 
       <div className="my-auto">
-        <p className="text-2xl font-bold">{name}</p>
-        <div className="flex gap-2 items-center text-primary">
-          {getStars(stars)}{" "}
-          <p className="flex gap-2 items-center text-gray-400">
+        <p className="text-2xl font-bold text-surface-light">{name}</p>
+        <div className="flex gap-2 items-center">
+          {/* {getStars(stars)}{" "} */}
+          <p className="flex gap-2 items-center text-surface-dark">
             <BsPeople></BsPeople> {members} members
           </p>
         </div>
       </div>
-
-      <p className="self-center ml-auto text-xl">&#62;</p>
     </div>
   );
 };

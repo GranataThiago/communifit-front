@@ -17,13 +17,13 @@ export const Menu = () => {
 
   return (
     <nav
-      className="w-full py-4 px-6 fixed bottom-0 right-0 bg-white z-50"
+      className="w-full py-4 px-6 fixed bottom-0 right-0 bg-secondary-light z-50"
       data-testid="nav"
     >
       <ul className="w-full flex justify-between text-xl" data-testid="ul">
         <li
           className={`hover:text-gray-700 hover:cursor-pointer ${
-            pathname === "/" ? "text-primary" : "text-black"
+            pathname === "/" ? "text-primary" : "text-surface-light"
           }`}
         >
           <Link href={"/"}>
@@ -32,7 +32,7 @@ export const Menu = () => {
         </li>
         <li
           className={`hover:text-gray-700 hover:cursor-pointer ${
-            pathname === "/chat" ? "text-primary" : "text-black"
+            pathname === "/chat" ? "text-primary" : "text-surface-light"
           }`}
         >
           <Link href={"/chat"}>
@@ -41,7 +41,7 @@ export const Menu = () => {
         </li>
         <li
           className={`hover:text-gray-700 hover:cursor-pointer ${
-            pathname === "/community" ? "text-primary" : "text-black"
+            pathname === "/community" ? "text-primary" : "text-surface-light"
           }`}
         >
           <Link
@@ -56,7 +56,7 @@ export const Menu = () => {
         </li>
         <li
           className={`hover:text-gray-700 hover:cursor-pointer ${
-            pathname === "/profile" ? "text-primary" : "text-black"
+            pathname === "/profile" ? "text-primary" : "text-surface-light"
           }`}
         >
           <Link href={"/profile"}>

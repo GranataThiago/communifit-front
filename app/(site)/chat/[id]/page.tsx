@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Message from "../components/Message/Message";
 import { BsArrowLeftShort, BsCameraVideo, BsTelephone } from "react-icons/bs";
+import { poppins } from "../../../components";
+import { Input } from "../../../components/ui/input";
 
 export default function ChatPage() {
   return (
-    <section className="p-6 h-screen">
+    <section className="p-6 h-screen bg-secondary-dark">
       <div className="pb-2 border-b border-gray-200 flex items-center gap-4">
-        <Link href={"/chat"}>
+        <Link href={"/chat"} className="text-surface-dark">
           <BsArrowLeftShort />
         </Link>
 
@@ -21,8 +23,8 @@ export default function ChatPage() {
             height={32}
           />
           <div>
-            <p className="text-black">Emanuel Antón</p>
-            <p className="text-primary">Online</p>
+            <p className={`${poppins.className} text-surface-light font-bold`}>Emanuel Antón</p>
+            <p className="text-primary">Trainer</p>
           </div>
         </div>
 
@@ -44,8 +46,8 @@ export default function ChatPage() {
         />
       </div>
 
-      <div className="bg-white fixed bottom-10 right-0 px-6 w-full h-24 flex justify-center items-center">
-        <input type="text" placeholder="Type here" className="w-full p-2" />
+      <div className="fixed bottom-10 right-0 px-6 w-full h-24 flex justify-center items-center">
+        <Input variant="filled" type="text" placeholder="Type here" className="w-full p-2" />
       </div>
     </section>
   );

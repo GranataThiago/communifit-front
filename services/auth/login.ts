@@ -14,6 +14,9 @@ export const loginUser = async ({
 		email,
 		password,
 	});
+
+	apiInstance.defaults.headers.common = { 'token': data.token };
+
 	return data;
 };
 

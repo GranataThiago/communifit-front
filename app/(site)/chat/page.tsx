@@ -31,11 +31,11 @@ export default async function ChatListPage() {
 			className={`bg-primary h-screen ${poppins.className}`}
 			data-testid='section'
 		>
-			<div className='bg-primary w-full h-32 grid content-center p-6'>
+			<div className="px-4 py-8">
 				<Input variant='filled' type='text' placeholder='Search messages...' />
 			</div>
 
-			<div className='rounded-t-lg h-full bg-white p-4 flex flex-col gap-4'>
+			<div className='rounded-t-lg h-full p-4 flex flex-col gap-4'>
 				{chats.map((chat) => (
 					<ChatCard key={chat.user} {...chat} />
 				))}

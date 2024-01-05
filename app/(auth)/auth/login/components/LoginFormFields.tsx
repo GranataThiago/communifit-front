@@ -27,7 +27,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 							<Input
 								{...field}
 								placeholder='mail@example.com'
-								variant='outlined'
+								variant='dark'
 								type='email'
 							/>
 						</FormControl>
@@ -48,7 +48,7 @@ const LoginFormFields: React.FC<LoginFormFieldsProps> = ({ form }) => {
 							<Input
 								{...field}
 								placeholder='Enter your password...'
-								variant='outlined'
+								variant='dark'
 								type='password'
 							/>
 						</FormControl>

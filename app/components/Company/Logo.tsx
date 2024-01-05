@@ -1,3 +1,5 @@
+import { poppins } from "../fonts";
+
 const Logo = () => {
   return (
 		<h1
