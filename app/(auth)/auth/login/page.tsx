@@ -6,7 +6,7 @@ import { LoginForm } from "./components/LoginForm";
 import Logo from "../../../components/Company/Logo";
 import React from "react";
 import dynamic from "next/dynamic";
-import { montserrat } from "../../../components/fonts";
+import { poppins } from "../../../components/fonts";
 import { useCookies } from "react-cookie";
 import useLoader from "../../../hooks/loader/useLoader";
 import { useRouter } from "next/navigation";
@@ -23,11 +23,11 @@ const LoginPage = () => {
 
 	return (
 		<section
-			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className}`}
+			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${poppins.className}`}
 		>
 			<div className='text-center'>
 				<Logo />
-				<p className='text-xl font-medium'>Login</p>
+				<p className='text-xl font-medium text-white'>Login</p>
 			</div>
 
 			{isLoading ? (

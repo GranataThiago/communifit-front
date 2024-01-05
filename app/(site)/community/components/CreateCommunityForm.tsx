@@ -14,7 +14,7 @@ import { Button } from "../../../components/ui/button";
 import { CreateCommunity } from "../../../../interfaces/services/community/create-community";
 import { Input } from "../../../components/ui/input";
 import { createCommunity } from "../../../../services/community/create-community";
-import { montserrat } from "../../../components/fonts";
+import { poppins } from "../../../components/fonts";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
@@ -56,7 +56,7 @@ const CreateCommunityForm = () => {
 	return (
 		<section>
 			<form
-				className={`flex flex-col items-center justify-center gap-6 ${montserrat.className}`}
+				className={`flex flex-col items-center justify-center gap-6 ${poppins.className}`}
 				onSubmit={handleSubmit(onCommunityCreated)}
 			>
 				<h1 className='text-2xl font-bold'>

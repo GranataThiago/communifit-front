@@ -2,7 +2,7 @@ import { Controller } from "react-hook-form";
 import { RadioCard } from "../../../../components";
 import React from "react";
 import { RegisterFormStep } from "./Onboarding";
-import { montserrat } from "../../../../components/fonts";
+import { poppins } from "../../../../components/fonts";
 
 const accountTypeOptions = [
 	{
@@ -17,7 +17,7 @@ const accountTypeOptions = [
 
 export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 	return (
-		<div className={`flex-1 ${montserrat.className}`}>
+		<div className={`flex-1 ${poppins.className}`}>
 			<p className='font-bold text-xl'>Hi stranger!</p>
 			<p className='font-medium text-lg' data-testid='join'>
 				Join as <span className='text-primary'>trainer</span> or{" "}
@@ -29,9 +29,15 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 					name='type'
 					control={control}
 					render={({ field }) => (
-						<fieldset {...field} name="type" className="flex flex-col gap-5">
+						<fieldset {...field} name='type' className='flex flex-col gap-5'>
 							{accountTypeOptions.map((type, index) => (
-								<div role="button" key={type.value} aria-label={`Select type ${type.value}`} {...field} tabIndex={index+1}> 
+								<div
+									role='button'
+									key={type.value}
+									aria-label={`Select type ${type.value}`}
+									{...field}
+									tabIndex={index + 1}
+								>
 									<RadioCard
 										{...field}
 										key={type.value}
@@ -40,15 +46,13 @@ export const AccountTypeStep = ({ register, control }: RegisterFormStep) => {
 										value={type.value}
 										label={type.label}
 										height={60}
-										tabIndex={index+1}
-										/>
+										tabIndex={index + 1}
+									/>
 								</div>
-								))}
+							))}
 						</fieldset>
 					)}
 				/>
-
-				
 			</div>
 		</div>
 	);

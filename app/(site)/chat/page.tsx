@@ -1,7 +1,7 @@
 import { ChatCard } from "./components/ChatCard/ChatCard";
 import { Input } from "../../components/ui/input";
 import React from "react";
-import { montserrat } from "../../components/fonts";
+import { poppins } from "../../components/fonts";
 
 const getChats = async () => {
 	const chats = [
@@ -28,7 +28,7 @@ export default async function ChatListPage() {
 
 	return (
 		<section
-			className={`bg-primary h-screen ${montserrat.className}`}
+			className={`bg-primary h-screen ${poppins.className}`}
 			data-testid='section'
 		>
 			<div className='bg-primary w-full h-32 grid content-center p-6'>

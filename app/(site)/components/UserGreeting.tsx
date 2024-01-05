@@ -4,41 +4,41 @@ import { format } from "date-fns";
 import React from "react";
 import { useUserContext } from "../../../context/UserContext";
 import { ImageWithFallback } from "../../components/ImageWithFallback";
-import { montserrat } from "../../components/fonts";
+import { poppins } from "../../components/fonts";
 const UserGreeting = () => {
-  const { user } = useUserContext();
+	const { user } = useUserContext();
 
-  return (
-    <div
-      className={`
+	return (
+		<div
+			className={`
         w-full
         flex
         flex-col-reverse
         xs:flex-row
         justify-between
-        ${montserrat.className}
+        ${poppins.className}
       `}
-    >
-      <div className="greetings" data-testid="greetings">
-        <p className="font-bold text-xl xxs:text-3xl">
-          Hi {(user && user.username) || "Anonymous"},
-        </p>
-        <p className="font-semibold text-base xxs:text-xl">
-          {format(new Date(), "EEEE dd, MMMM")}
-        </p>
-      </div>
-      <div className="">
-        <ImageWithFallback
-          className="object-contain rounded-full w-24"
-          src={user?.image ?? ""}
-          alt="fortys"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
-      </div>
-    </div>
-  );
+		>
+			<div className='greetings' data-testid='greetings'>
+				<p className='font-bold text-xl xxs:text-3xl'>
+					Hi {(user && user.username) || "Anonymous"},
+				</p>
+				<p className='font-semibold text-base xxs:text-xl'>
+					{format(new Date(), "EEEE dd, MMMM")}
+				</p>
+			</div>
+			<div className=''>
+				<ImageWithFallback
+					className='object-contain rounded-full w-24'
+					src={user?.image ?? ""}
+					alt='fortys'
+					width={0}
+					height={0}
+					sizes='100vw'
+				/>
+			</div>
+		</div>
+	);
 };
 
 {

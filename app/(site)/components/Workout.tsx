@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import { WEEK_DAYS } from "../../../helpers/week-days";
-import { montserrat } from "../../components/fonts";
+import { poppins } from "../../components/fonts";
 import { usePlanContext } from "../../../context/CreatePlanContext/PlanContext";
 import { useUserContext } from "../../../context/UserContext";
 import useWorkoutModal from "../../hooks/modals/useWorkoutModal";
@@ -27,7 +27,7 @@ const Workout = () => {
 
 	return (
 		<section
-			className={`workout flex flex-col gap-2 pb-6 ${montserrat.className}`}
+			className={`workout flex flex-col gap-2 pb-6 ${poppins.className}`}
 		>
 			<ul className='flex gap-3 overflow-x-scroll no-scrollbar'>
 				{WEEK_DAYS.map((weekDay, index) => (

@@ -11,7 +11,7 @@ import React, { ChangeEvent, useEffect } from "react";
 
 import { Button } from "../../../../components/ui/button";
 import { Input } from "../../../../components/ui/input";
-import { montserrat } from "../../../../components/fonts";
+import { poppins } from "../../../../components/fonts";
 
 type RevisionForm = {
 	pics: File[];
@@ -53,7 +53,7 @@ export const RevisionScreen = () => {
 
 	return (
 		<main
-			className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}
+			className={`bg-secondary flex flex-col gap-8 ${poppins.className}`}
 			data-testid='main'
 		>
 			<header className='flex justify-between p-6 pb-0'>

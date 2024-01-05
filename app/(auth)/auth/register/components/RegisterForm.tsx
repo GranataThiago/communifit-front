@@ -10,7 +10,7 @@ import { Input } from "../../../../components/ui/input";
 import { Label } from "../../../../components/ui/label";
 import { RegisterFormStep } from "./Onboarding";
 import dynamic from "next/dynamic";
-import { montserrat } from "../../../../components/fonts";
+import { poppins } from "../../../../components/fonts";
 
 const SocialMediaForm = dynamic(
 	() => import("../../components/SocialMediaForm")
@@ -21,7 +21,7 @@ export const RegisterFormComponent = ({
 }: RegisterFormStep) => {
 	return (
 		<div
-			className={`flex-1 flex flex-col justify-center gap-8 ${montserrat.className}`}
+			className={`flex-1 flex flex-col justify-center gap-8 ${poppins.className}`}
 		>
 			<FormField
 				rules={{
@@ -33,7 +33,13 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Full name</FormLabel>
 						<FormControl>
-							<Input placeholder="Your full name" {...field} ref={null} variant='outlined' type='text' />
+							<Input
+								placeholder='Your full name'
+								{...field}
+								ref={null}
+								variant='outlined'
+								type='text'
+							/>
 						</FormControl>
 					</FormItem>
 				)}
@@ -49,7 +55,13 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Username</FormLabel>
 						<FormControl>
-							<Input placeholder="Your username" {...field} ref={null} variant='outlined' type='text' />
+							<Input
+								placeholder='Your username'
+								{...field}
+								ref={null}
+								variant='outlined'
+								type='text'
+							/>
 						</FormControl>
 					</FormItem>
 				)}
