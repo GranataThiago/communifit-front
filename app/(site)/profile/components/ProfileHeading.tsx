@@ -7,16 +7,13 @@ import { useUserContext } from "../../../../context/UserContext";
 import { ImageWithFallback, poppins } from "../../../components";
 
 export const ProfileHeading = () => {
-  const { user, logout } = useUserContext();
+  const { user } = useUserContext();
 
-  const onLogout = () => {
-    logout();
-  };
 
   return (
     <header className="flex justify-between" data-testid="header">
       <div>
-        <p className={`${poppins.className} text-surface-light text-3xl font-bold`}>{user?.username}</p>
+        <p className={`${poppins.className} text-surface-light text-3xl font-bold`}>{user?.username || "Testing"}</p>
       </div>
       <div className="">
         <ImageWithFallback

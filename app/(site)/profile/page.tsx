@@ -2,8 +2,10 @@ import React from "react";
 import { ProfileHeading } from "./components/ProfileHeading";
 import { poppins } from "../../components";
 import Progress from "../../components/ui/progress";
+import { Button } from "../../components/ui/button";
 
 export default function ProfilePage() {
+  
   return (
     <div data-testid="content" className="bg-secondary-dark p-6 min-h-screen">
       <ProfileHeading />
@@ -34,6 +36,8 @@ export default function ProfilePage() {
             <p>&#62;</p>
           </div>
       </section>
+      
+      <Button className="mt-10 bg-red-500 text-surface-light" variant={'filled'}>Logout</Button>
     </div>
   );
 }

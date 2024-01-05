@@ -32,7 +32,6 @@ export interface ButtonProps
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 	canSubmit?: boolean;
-	variant?: any;
 	size?:any;
 }
 
