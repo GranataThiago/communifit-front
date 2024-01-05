@@ -40,11 +40,14 @@ const LoginPage = () => {
 
 					<p
 						data-testid='text-footer'
-						className='text-[#9D9D9D] text-sm font-normal tracking-[-0.0255rem] leading-[1.375rem]'
+						className='text-white font-extralight text-md tracking-[-0.0313rem] '
 					>
 						Don&apos;t have an account?
-						<Link href={"/auth/register"} className='text-black font-normal'>
-							<b>&nbsp;Sign Up</b>
+						<Link
+							href={"/auth/register"}
+							className='text-primary font-normal hover:text-white'
+						>
+							<b>&nbsp;&nbsp;Sign Up</b>
 						</Link>
 					</p>
 				</>
