@@ -2,6 +2,7 @@ import { ChatCard } from "./components/ChatCard/ChatCard";
 import { Input } from "../../components/ui/input";
 import React from "react";
 import { poppins } from "../../components/fonts";
+import { FaSearch } from "react-icons/fa";
 
 const getChats = async () => {
 	const chats = [
@@ -28,11 +29,17 @@ export default async function ChatListPage() {
 
 	return (
 		<section
-			className={`bg-primary h-screen ${poppins.className}`}
+			className={`text-white h-screen ${poppins.className}`}
 			data-testid='section'
 		>
-			<div className="px-4 py-8">
-				<Input variant='filled' type='text' placeholder='Search messages...' />
+			<div className='px-4 py-8 bg-secondary'>
+				<Input
+					icon={<FaSearch className='text-black' />}
+					variant='filled'
+					type='text'
+					placeholder='Search messages...'
+					className='bg-white rounded-lg text-black placeholder:text-black placeholder:font-normal'
+				/>
 			</div>
 
 			<div className='rounded-t-lg h-full p-4 flex flex-col gap-4'>
