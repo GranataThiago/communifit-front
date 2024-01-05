@@ -1,12 +1,9 @@
-"use client";
-
 import { format } from "date-fns";
 import React from "react";
-import { useUserContext } from "../../../context/UserContext";
 import { ImageWithFallback } from "../../components/ImageWithFallback";
 import { montserrat } from "../../components/fonts";
-const UserGreeting = () => {
-  const { user } = useUserContext();
+import { IUser } from "../../../interfaces/user";
+const UserGreeting = ({user}: {user: IUser}) => {
 
   return (
     <div
