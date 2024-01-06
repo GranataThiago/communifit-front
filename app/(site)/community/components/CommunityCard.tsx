@@ -1,6 +1,7 @@
 import { BsPeople } from "react-icons/bs";
 import { ICommunities } from "../../../../interfaces";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const getStars = (amount: number) => {
@@ -16,7 +17,7 @@ export const CommunityCard = ({
 }: ICommunities) => {
 	return (
 		<article
-			className='min-w-64 text-white flex relative bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl'
+			className='min-w-64 text-white flex relative bg-secondary-light gap-4 transition-colors p-4 rounded-xl'
 			data-testid='container'
 		>
 			<Image
@@ -28,12 +29,12 @@ export const CommunityCard = ({
 			/>
 
 			<div className='my-auto'>
-				<p className='text-2xl font-bold text-surface-light text-ellipsis w-36 overflow-hidden'>
-					{name}
+				<p className='text-2xl hover:cursor-pointer font-bold text-surface-light text-ellipsis w-36 overflow-hidden'>
+					<Link href={`/community/${name}`}>{name}</Link>
 				</p>
 				{getStars(average_rating)}
 				<p className='flex gap-2 items-center text-surface-dark'>
-					<BsPeople />
+					<BsPeople className='text-primary' />
 					{users_quantity} members
 				</p>
 			</div>
