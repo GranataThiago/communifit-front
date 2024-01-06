@@ -12,11 +12,11 @@ const getListCommunities = async (
 	token: string
 ): Promise<ICommunity[] | null> => {
 	try {
-		const response: IGetAllCommunity | null = await getCommunities({ token });
+		const response: ICommunity[] | null = await getCommunities({ token });
 
 		if (!response) return null;
 
-		return response.community;
+		return response;
 	} catch (error) {
 		console.error(error);
 		return null;
