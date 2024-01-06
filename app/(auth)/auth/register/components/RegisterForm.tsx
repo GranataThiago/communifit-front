@@ -33,7 +33,7 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Full name</FormLabel>
 						<FormControl>
-							<Input placeholder="Your full name" {...field} ref={null} variant='outlined' type='text' />
+							<Input placeholder="Your full name" {...field} ref={null} variant='dark' type='text' />
 						</FormControl>
 					</FormItem>
 				)}
@@ -49,7 +49,7 @@ export const RegisterFormComponent = ({
 					<FormItem>
 						<FormLabel>Username</FormLabel>
 						<FormControl>
-							<Input placeholder="Your username" {...field} ref={null} variant='outlined' type='text' />
+							<Input placeholder="Your username" {...field} ref={null} variant='dark' type='text' />
 						</FormControl>
 					</FormItem>
 				)}
@@ -69,7 +69,7 @@ export const RegisterFormComponent = ({
 								{...field}
 								ref={null}
 								placeholder='mail@example.com'
-								variant='outlined'
+								variant='dark'
 								type='email'
 							/>
 						</FormControl>
@@ -90,7 +90,7 @@ export const RegisterFormComponent = ({
 							<Input
 								{...field}
 								placeholder='Enter your password...'
-								variant='outlined'
+								variant='dark'
 								type='password'
 							/>
 						</FormControl>

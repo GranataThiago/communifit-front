@@ -61,19 +61,19 @@ export const PersonalInfoStep = (props: PersonalInfoStepProps) => {
         <div className="flex justify-between w-full gap-2">
           <input
             {...register("birthdate.day")}
-            className="text-center flex-1 w-0 border border-gray-400 rounded-lg p-1"
+            className="text-center flex-1 w-0 border bg-secondary-light border-surface-dark rounded-lg p-1"
             type="number"
             placeholder="Day"
           />
           <input
             {...register("birthdate.month")}
-            className="text-center flex-1 w-0 border border-gray-400 rounded-lg p-1"
+            className="text-center flex-1 w-0 border bg-secondary-light border-surface-dark rounded-lg p-1"
             type="number"
             placeholder="Month"
           />
           <input
             {...register("birthdate.year")}
-            className="text-center flex-1 w-0 border border-gray-400 rounded-lg p-1"
+            className="text-center flex-1 w-0 border bg-secondary-light border-surface-dark rounded-lg p-1"
             type="number"
             placeholder="Year"
           />
