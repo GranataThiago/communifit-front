@@ -1,7 +1,7 @@
 "use client";
 
 import { Control, UseFormRegister, useForm } from "react-hook-form";
-import { inter, poppins } from "../../../../components/fonts";
+import { poppins } from "../../../../components/fonts";
 import { useContext, useState } from "react";
 
 import { AccountTypeStep } from "./AccountTypeStep";
