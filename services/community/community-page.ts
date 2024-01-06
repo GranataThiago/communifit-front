@@ -6,8 +6,8 @@ import {
 	IGetCommunityFetch,
 	IGetCommunityPostsFetch,
 } from "../../interfaces/services/community/community-page";
+import { ICommunities, ICommunity } from "../../interfaces";
 
-import { ICommunity } from "../../interfaces";
 import apiInstance from "../../app/api";
 
 interface IGetCommunity {
@@ -19,8 +19,8 @@ export const getCommunities = async ({
 	token,
 }: {
 	token: string;
-}): Promise<ICommunity[] | null> => {
-	let community: ICommunity[] | null = null;
+}): Promise<ICommunities[] | null> => {
+	let community: ICommunities[] | null = null;
 	try {
 		const response = await apiInstance.get<IGetAllCommunity>(
 			`/communities/list`,
