@@ -17,11 +17,9 @@ import { createCommunity } from "../../../../services/community/create-community
 import { montserrat } from "../../../components/fonts";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
-import { useRouter } from "next/navigation";
 import { useUserContext } from "../../../../context/UserContext";
 
-const CreateCommunityForm = () => {
-	const router = useRouter();
+const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 	const [cookies] = useCookies(["token"]);
 	const { user } = useUserContext();
 	const { control, watch, setValue, formState, handleSubmit } =
@@ -35,23 +33,22 @@ const CreateCommunityForm = () => {
 	}, [displayName, setValue]);
 
 	const onCommunityCreated = async (formData: CreateCommunity) => {
-	
-			const newCommunity = { ...formData, adminId: user?._id };
-			const communityData = await createCommunity({
-				token: cookies.token,
-				newCommunity,
-			});
-			if (!communityData || !communityData.ok) {
-				renderToast(
-					"There has been an error while creating your community",
-					<AiFillCloseCircle />
-				);
-				return;
-			}
+		const newCommunity = { ...formData, adminId: user?._id };
+		const communityData = await createCommunity({
+			token: cookies.token,
+			newCommunity,
+		});
+		if (!communityData || !communityData.ok) {
+			renderToast(
+				"There has been an error while creating your community",
+				<AiFillCloseCircle />
+			);
+			return;
+		}
 
-			// Backend converts the name to lowercase, so we should do the same
-			// Ideally back would return the createdCommunity in the response object
-			window.location.href = `/community/${formData.name?.toLowerCase()}`;
+		// Backend converts the name to lowercase, so we should do the same
+		// Ideally back would return the createdCommunity in the response object
+		window.location.href = `/community/${formData.name?.toLowerCase()}`;
 	};
 
 	return (
@@ -60,8 +57,9 @@ const CreateCommunityForm = () => {
 				className={`flex flex-col items-center justify-center gap-6 ${montserrat.className}`}
 				onSubmit={handleSubmit(onCommunityCreated)}
 			>
-				<h1 className='text-2xl font-bold'>
-					<span className='text-primary'>Create</span> your community
+				<h1 className='text-2xl font-bold mt-4'>
+					<span className='text-primary'>{isEdit ? "Edit" : "Create"}</span>{" "}
+					your community
 				</h1>
 				<FormField
 					rules={{
@@ -123,8 +121,8 @@ const CreateCommunityForm = () => {
 					)}
 				/>
 
-				<Button className='mt-2' variant='filled' type='submit'>
-					Create
+				<Button className='mt-2 w-48' variant='filled' type='submit'>
+					{isEdit ? "Edit" : "Create"}
 				</Button>
 			</form>
 		</section>
