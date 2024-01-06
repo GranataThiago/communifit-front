@@ -5,10 +5,10 @@ import { IUser } from '../../../../interfaces/user'
 import { getUserExercises } from '../../../../services/plan'
 
 const WorkoutMember = async({user}: {user: IUser}) => {
-  const exercises = await getUserExercises({userId: user._id!});
+  const exercise = await getUserExercises({userId: user._id!, quantity: 1});
   return (
     <section className={`workout flex flex-col gap-2 pb-6 ${montserrat.className}`}>
-        <WorkoutContainer user={user} exercises={exercises} />
+        <WorkoutContainer user={user} exercise={exercise} />
     </section>
   )
 }

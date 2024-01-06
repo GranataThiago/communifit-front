@@ -5,16 +5,17 @@ import { API_KEY, API_URL } from "../../../utils";
 
 interface IGetUserExercises {
     userId: string;
+    quantity: number;
 }
 
-export const getUserExercises = async({userId}: IGetUserExercises) =>{
+export const getUserExercises = async({userId, quantity}: IGetUserExercises) =>{
   
-    let exercises: IExercise[] = [];
+    let exercise: IExercise  | null = null;
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
 
     try {
-        const foundData = await fetch(`${API_URL}/plans/exercises/${userId}`, {
+        const foundData = await fetch(`${API_URL}/plans/exercises/${userId}?limit=${quantity}`, {
             method: "GET",
             headers: {
               token: token as string,
@@ -23,9 +24,9 @@ export const getUserExercises = async({userId}: IGetUserExercises) =>{
           });
         
           const data = await foundData.json();
-          exercises = data.exercises;
+          exercise = data.exercise;
     } catch (error) {
         
     }
-    return exercises
+    return exercise
 }

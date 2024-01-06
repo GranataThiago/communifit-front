@@ -8,10 +8,10 @@ import { IExercise } from "../../../../interfaces/exercises";
 
 interface IWorkoutContainer {
     user: IUser
-    exercises: IExercise[]
+    exercise: IExercise | null
 }
 
-const WorkoutContainer = ({user, exercises}: IWorkoutContainer) => {
+const WorkoutContainer = ({user, exercise}: IWorkoutContainer) => {
     const [day, setDay] = useState("monday");
 
     return (
@@ -21,7 +21,7 @@ const WorkoutContainer = ({user, exercises}: IWorkoutContainer) => {
             {user?.type == "trainer" && <WorkoutModal />}
 
             <WorkoutExercises
-                exercises={exercises}
+                exercise={exercise}
                 selectedDay={day}
             />
         </>
