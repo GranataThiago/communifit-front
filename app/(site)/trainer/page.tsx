@@ -14,11 +14,10 @@ const FAKE_USERS = [
 
 //No tipen esto, les va a dar error el build
 const TrainerPage = async({user}: any) =>{
-  console.log(user)
   return (
     <main className="bg-secondary flex flex-col gap-8 p-6 bg-secondary-dark">
       <header className="flex flex-col-reverse gap-6 xxs:flex-row  justify-between relative">
-        <UserGreeting />
+        <UserGreeting user={user} />
       </header>
 
       <section className="workout flex flex-col gap-8 bg-secondary-light rounded-xl p-6">

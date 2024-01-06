@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 
-import { WEEK_DAYS } from "../../../helpers/week-days";
-import { montserrat } from "../../components/fonts";
-import { usePlanContext } from "../../../context/CreatePlanContext/PlanContext";
-import { useUserContext } from "../../../context/UserContext";
-import useWorkoutModal from "../../hooks/modals/useWorkoutModal";
-import WorkoutModal from "../../components/modals/WorkoutModal";
+import { WEEK_DAYS } from "../../../../helpers/week-days";
+import { montserrat } from "../../../components/fonts";
+import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
+import { useUserContext } from "../../../../context/UserContext";
+import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
+import WorkoutModal from "../../../components/modals/WorkoutModal";
 
 const Workout = () => {
 	const { user } = useUserContext();

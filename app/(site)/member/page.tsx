@@ -1,26 +1,24 @@
 import React from 'react'
-import Workout from '../components/Workout'
 import UserGreeting from '../components/UserGreeting'
 import { Button } from '../../components/ui/button';
 import { poppins } from '../../components';
 import Progress from '../../components/ui/progress';
 
+import WorkoutMember from '../components/workout/WorkoutMember'
 //No tipen esto, les va a dar error el build
 const MemberPage = async({user}: any) => {
-  console.log(user);
 
   return (
     <main className="bg-secondary-dark flex flex-col gap-8 p-6" data-testid="work">
       <header className="flex flex-col justify-between items-center w-full">
-        <UserGreeting />
+        <UserGreeting user={user} />
       </header>
 
       <section className="workout flex flex-col gap-8 bg-secondary-light rounded-xl p-6">
         <h2 className={`${poppins.className} font-bold text-3xl text-surface-light`}>Today's work</h2>
-        
-        <p className="text-primary text-2xl font-medium flex justify-between ">
-          Weighted Dips <span>3 x 6-10</span>
-        </p>
+        <div>
+          <WorkoutMember user={user} />
+        </div>
 
         <Button>Start Workout</Button>
       </section>

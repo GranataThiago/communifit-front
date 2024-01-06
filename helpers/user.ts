@@ -12,6 +12,7 @@ export const getAuthenticatedUser = async(token: string) => {
       const foundUserData = await requestDecrypt.json();
       
       let SAFE_USER_DATA: any = {
+        _id: foundUserData.user._id,
         fullName: foundUserData.user.fullname,
         username: foundUserData.user.username,
         type: foundUserData.user.type,

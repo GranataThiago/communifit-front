@@ -1,14 +1,8 @@
-"use client";
-
-import { format } from "date-fns";
 import React from "react";
-import { useUserContext } from "../../../context/UserContext";
 import { ImageWithFallback } from "../../components/ImageWithFallback";
-import { montserrat, poppins } from "../../components/fonts";
-
-const UserGreeting = () => {
-  const { user } = useUserContext();
-
+import { poppins } from "../../components/fonts";
+import { IUser } from "../../../interfaces/user";
+const UserGreeting = ({user}: {user: IUser}) => {
   return (
     <div
       className={`
@@ -21,11 +15,9 @@ const UserGreeting = () => {
     >
       <div className="greetings" data-testid="greetings">
         <p className={`text-surface-light font-bold text-2xl xxs:text-3xl ${poppins.className}`}>
-          Hi {(user && user.username) || "Anonymous"},
+          Hi {user.username}
         </p>
-        <p className={`text-surface-dark font-semibold text-xl xxs:text-xl ${montserrat.className}`}>
-          {format(new Date(), "EEEE dd, MMMM")}
-        </p>
+     
       </div>
       <div className="">
         <ImageWithFallback
