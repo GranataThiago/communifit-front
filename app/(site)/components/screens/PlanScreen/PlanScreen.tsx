@@ -7,12 +7,31 @@ import MemberInfo from "../../../../components/members/MemberInfo";
 import { getMemberByUsername } from "../../../../../services/users/recoverInfo";
 import { redirect } from "next/navigation";
 import { getClientsByTrainer } from "../../../../../services/trainer/get-clients";
+import MemberCardsInfo from "../../../../components/members/MemberCardsInfo";
 
 export const PlanScreen = async ({ user, client }: { user: IUser, client: string }) => {
   const foundTrainerClients = await getClientsByTrainer({userId: user?._id!});
   const foundUser = await getMemberByUsername({ username: client });
   const isClientOfTrainer = foundTrainerClients?.clients.filter((c) => c.username === client) || [];
   if (!foundUser || isClientOfTrainer.length===0) redirect('/');
+
+  const CARDS = [
+    {
+        id: "age",
+        title: "Age",
+        subtitle: "18 years old"
+    },
+    {
+      id: "weight",
+      title: "Weight",
+      subtitle: "78kg"
+    },
+    {
+      id: "objective",
+      title: "Objective",
+      subtitle: "Shred"
+    }
+  ]
 
 
   return (
@@ -22,25 +41,7 @@ export const PlanScreen = async ({ user, client }: { user: IUser, client: string
     >
       {/*Si o si debería de tener username. Es formulario de registro ... */}
       <MemberInfo fullname={foundUser.fullname} />
-
-      <section className="grid grid-cols-2 grid-rows-1 gap-4 text-white font-bold px-6">
-        <div className="bg-primary flex flex-col items-center justify-center py-6 rounded-lg">
-          <p className="">18</p>
-          <span>years old</span>
-        </div>
-        <div className="bg-primary  flex flex-col items-center justify-center py-6 rounded-lg">
-          <p className="">78kg</p>
-          <span>weight</span>
-        </div>
-        <div className="bg-primary  flex flex-col items-center justify-center py-6 rounded-lg">
-          <p className="">Shred</p>
-          <span>Objective</span>
-        </div>
-
-        <div className="bg-primary  flex flex-col items-center justify-center py-6 rounded-lg">
-          <p className="">More</p>
-        </div>
-      </section>
+      <MemberCardsInfo cards={CARDS} />     
 
       <section className="flex flex-col gap-4">
         <div className="ml-6">

@@ -22,3 +22,10 @@ export interface IRegisterUser {
 }
 
 export type UserTypes = "member" | "trainer" | null;
+
+
+export interface ICardInfo {
+  id: string;
+  title: string;
+  subtitle: string;
+}
