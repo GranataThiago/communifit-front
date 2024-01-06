@@ -1,14 +1,23 @@
 import { montserrat, poppins } from "../../../../components";
 
+import { FaPencilAlt } from "react-icons/fa";
 import { ICommunity } from "../../../../../interfaces/community";
+import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import Image from "next/image";
+import Link from "next/link";
 import { Post } from "../Post";
 
-const CommunityScreen = (community: ICommunity) => {
-	const { displayname, description, posts } = community;
+const CommunityScreen = ({
+	community,
+	user,
+}: {
+	community: ICommunity;
+	user: IMinimumUserInfo;
+}) => {
+	const { displayname, description, posts, name } = community;
 	return (
 		<section className={`${montserrat.className} bg-secondary-dark p-6`}>
-			<header className='workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6'>
+			<header className='relative workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6'>
 				<div className='flex flex-row gap-8 items-center justify-start'>
 					<Image
 						className='rounded-full border-4 border-white'
@@ -28,6 +37,14 @@ const CommunityScreen = (community: ICommunity) => {
 				</div>
 
 				<p className={`text-md col-span-2 text-surface-light`}>{description}</p>
+				{user.type === "trainer" && (
+					<Link
+						href={`/community/${name}/edit`}
+						className='absolute text-white right-2 top-2'
+					>
+						<FaPencilAlt />
+					</Link>
+				)}
 			</header>
 
 			<nav className='my-4 text-surface-light'>
