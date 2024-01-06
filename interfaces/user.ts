@@ -1,7 +1,7 @@
 import { CommunityEssential } from "./community";
 
 export interface IUser {
-  fullName: string;
+  fullname: string;
   username: string;
   email: string;
   image?: string | null;

@@ -1,6 +1,8 @@
+import { IUser } from "../../user";
+
 export interface IGetClientsByTrainerFetch {
     ok: boolean;
-    clients: string;
+    status_code: string;
+    clients: IUser[];
 }
   
-export type GetClientsByTrainerResponse = null | IGetClientsByTrainerFetch;

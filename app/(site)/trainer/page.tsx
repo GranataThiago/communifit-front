@@ -1,16 +1,7 @@
-import { IUser } from "../../../interfaces/user";
 import { poppins } from "../../components";
 import { Button } from "../../components/ui/button";
 import UserGreeting from "../components/UserGreeting";
-
-const FAKE_USERS = [
-  {
-    username: "thiagog",
-    fullName: "Thiago Granata",
-    image: "none",
-    state: "paid",
-  },
-];
+import TrainerClients from "./components/TrainerClients";
 
 //No tipen esto, les va a dar error el build
 const TrainerPage = async({user}: any) =>{
@@ -50,32 +41,7 @@ const TrainerPage = async({user}: any) =>{
         <Button className="ml-auto w-48" variant='outlined'>View report</Button>
       </section>
 
-      <section className="chart">
-        <h2 className={`${poppins.className} font-bold text-xl text-surface-light mb-4`}>Manage Clients</h2>
-
-        <div className="w-full mx-auto">
-          <table className="table-auto text-center w-full bg-secondary-light text-surface-light p-2 rounded-xl">
-            <thead className="w-full">
-              <tr>
-                <th className="text-surface-dark font-normal">Member</th>
-                <th className="text-surface-dark font-normal">Status</th>
-                <th className="text-surface-dark font-normal">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="w-full font-bold">
-              {FAKE_USERS.map(({ username, fullName, image, state }) => (
-                <tr key={username}>
-                  <td>{fullName}</td>
-                  <td>{state === 'paid' ? <div className="mx-auto w-4 h-4 rounded-full bg-green-300"></div> : <div className="mx-auto w-4 h-4 rounded-full bg-red-300"></div>}</td>
-                    <td>
-                    <a href={`/trainer/create/${username}`}>Edit</a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <TrainerClients user={user}/>
     </main>
   );
 };
