@@ -15,7 +15,7 @@ const UserGreeting = ({user}: {user: IUser}) => {
     >
       <div className="greetings" data-testid="greetings">
         <p className={`text-surface-light font-bold text-2xl xxs:text-3xl ${poppins.className}`}>
-          Hi {user.username}
+          Hi {user?.username}
         </p>
      
       </div>
