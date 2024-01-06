@@ -22,3 +22,10 @@ export interface IGetInvitationLinkFetch {
 }
 
 export type GetInvitationLinkResponse = null | IGetInvitationLinkFetch;
+
+export interface IGetAllCommunity {
+	ok: boolean;
+	community: ICommunity[];
+}
+
+export type GetAllCommunities = null | IGetAllCommunity;
