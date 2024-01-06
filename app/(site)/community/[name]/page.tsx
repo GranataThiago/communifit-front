@@ -19,32 +19,34 @@ interface CommunityPageProps {
   params: CommunityPageParams;
 }
 
-const getCommunity = async (name: string): Promise<ICommunity | null> => {
-  const cookieStore = cookies();
-  const token = cookieStore.get("token")?.value as string;
+const getCommunity = async (
+	name: string,
+	token: string
+): Promise<ICommunity | null> => {
+	const communityData = await getCommunityData({ token, name });
+	if (!communityData || !communityData.community) {
+		return null;
+	}
 
-  const communityData = await getCommunityData({ token, name });
-  if (!communityData || !communityData.community) {
-    return null;
-  }
+	const community = communityData.community;
+	const postsData = await getCommunityPosts({ token, name });
+	community.posts = postsData?.posts ? postsData.posts : [];
 
-  const community = communityData.community;
-  const postsData = await getCommunityPosts({ token, name });
-  community.posts = postsData?.posts ? postsData.posts : [];
-
-  return community;
+	return community;
 };
 
 export default async function CommunityPage({ params }: CommunityPageProps) {
-  const { name } = params;
-  const community: ICommunity | null = await getCommunity(name);
+	const { name } = params;
+	const cookieStore = cookies();
+	const token = cookieStore.get("token")!.value;
+	const user: IMinimumUserInfo = await getAuthenticatedUser(token);
+	const community: ICommunity | null = await getCommunity(name, token);
+	if (!community) {
+		redirect("/community");
+	}
 
-  if (!community) {
-    redirect("/community");
-  }
-
-  return (
-    /*@ts-ignore @ts-expect-error Server Component */
-    <CommunityScreen {...community} />
-  );
+	return (
+		/*@ts-ignore @ts-expect-error Server Component */
+		<CommunityScreen user={user} community={community} />
+	);
 }
