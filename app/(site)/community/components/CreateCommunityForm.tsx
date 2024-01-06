@@ -35,22 +35,23 @@ const CreateCommunityForm = () => {
 	}, [displayName, setValue]);
 
 	const onCommunityCreated = async (formData: CreateCommunity) => {
-		const newCommunity = { ...formData, adminId: user?._id };
-		const communityData = await createCommunity({
-			token: cookies.token,
-			newCommunity,
-		});
-		if (!communityData || !communityData.ok) {
-			renderToast(
-				"There has been an error while creating your community",
-				<AiFillCloseCircle />
-			);
-			return;
-		}
+	
+			const newCommunity = { ...formData, adminId: user?._id };
+			const communityData = await createCommunity({
+				token: cookies.token,
+				newCommunity,
+			});
+			if (!communityData || !communityData.ok) {
+				renderToast(
+					"There has been an error while creating your community",
+					<AiFillCloseCircle />
+				);
+				return;
+			}
 
-		// Backend converts the name to lowercase, so we should do the same
-		// Ideally back would return the createdCommunity in the response object
-		window.location.href = `/community/${formData.name?.toLowerCase()}`;
+			// Backend converts the name to lowercase, so we should do the same
+			// Ideally back would return the createdCommunity in the response object
+			window.location.href = `/community/${formData.name?.toLowerCase()}`;
 	};
 
 	return (
