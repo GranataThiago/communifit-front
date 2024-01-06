@@ -9,7 +9,7 @@ const CommunityScreen = (community: ICommunity) => {
 	return (
 		<section className={`${montserrat.className} bg-secondary-dark p-6`}>
 			<header className='workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6'>
-				<div className='flex flex-row gap-16 items-center justify-start'>
+				<div className='flex flex-row gap-8 items-center justify-start'>
 					<Image
 						className='rounded-full border-4 border-white'
 						src='https://i.pravatar.cc/300'
@@ -19,7 +19,7 @@ const CommunityScreen = (community: ICommunity) => {
 					/>
 					<div>
 						<h2
-							className={`${poppins.className} font-bold text-5xl  text-primary`}
+							className={`${poppins.className} font-bold text-3xl  text-primary`}
 						>
 							{displayname}
 						</h2>
