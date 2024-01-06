@@ -18,10 +18,10 @@ export const getCommunities = async ({
 	token,
 }: {
 	token: string;
-}): Promise<IGetAllCommunity[] | null> => {
-	let community: IGetAllCommunity[] | null = null;
+}): Promise<IGetAllCommunity | null> => {
+	let community: IGetAllCommunity | null = null;
 	try {
-		const response = await apiInstance.get<IGetAllCommunity[]>(
+		const response = await apiInstance.get<IGetAllCommunity>(
 			`/communities/list`,
 			{ headers: { token } }
 		);
