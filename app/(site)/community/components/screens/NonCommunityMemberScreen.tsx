@@ -24,34 +24,34 @@ const getCommunities = async () => {
 };
 
 export const NonCommunityMemberScreen = async ({
-	communities,
+	community,
 }: {
-	communities: CommunityEssential;
+	community: CommunityEssential | null;
 }) => {
 	const listCommunities = await getCommunities();
-
+	console.log(community);
 	return (
 		<section className='p-6 bg-secondary-dark' data-testid='section'>
 			<Input variant='filled' type='text' placeholder='Search Communities...' />
 
 			<article className='flex flex-col gap-4 bg-secondary-light p-4 mt-4 rounded-xl'>
 				<h2 className='text-3xl text-primary font-bold'>
-					{communities?.displayname ?? "How to choose your ideal community?"}
+					{community?.displayname ?? "How to choose your ideal community?"}
 				</h2>
 				<p className='text-md text-surface-light'>
-					{communities?.description ??
+					{community?.description ??
 						"We strongly encourage you to engage with coaches and ask them any questions you might have in order to identify the best fit for your needs..."}
 				</p>
 
 				<Link
-					href={communities ? `/community/${communities.name}` : ""}
+					href={community?.name ? `/community/${community.name}` : ""}
 					className='ml-auto'
 				>
 					<Button
-						className={`${communities ? "w-auto px-2" : "w-32"}`}
+						className={`${community?.name ? "w-auto px-2" : "w-32"}`}
 						variant={"outlined"}
 					>
-						{communities ? "Ir a mi Comunidad" : "Read more..."}
+						{community?.name ? "Ir a mi Comunidad" : "Read more..."}
 					</Button>
 				</Link>
 			</article>
