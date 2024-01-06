@@ -1,28 +1,27 @@
-import Image from "next/image";
 import React from "react";
 import { montserrat } from "../../../../components/fonts";
 import { WorkoutActions } from "../../workout/WorkoutActions";
 import Workout from "../../workout/Workout";
+import { IUser } from "../../../../../interfaces/user";
+import MemberInfo from "../../../../components/members/MemberInfo";
+import { getMemberByUsername } from "../../../../../services/users/recoverInfo";
+import { redirect } from "next/navigation";
+import { getClientsByTrainer } from "../../../../../services/trainer/get-clients";
 
-export const PlanScreen = () => {
+export const PlanScreen = async ({ user, client }: { user: IUser, client: string }) => {
+  const foundTrainerClients = await getClientsByTrainer({userId: user?._id!});
+  const foundUser = await getMemberByUsername({ username: client });
+  const isClientOfTrainer = foundTrainerClients?.clients.filter((c) => c.username === client) || [];
+  if (!foundUser || isClientOfTrainer.length===0) redirect('/');
+
+
   return (
     <main
-      className={`bg-secondary flex flex-col gap-8 ${montserrat.className}`}
+      className={`bg-secondary flex flex-col gap-8 text-surface-light ${montserrat.className}`}
       data-testid="main"
     >
-      <header className="flex justify-between p-6">
-        <div className="greetings">
-          <p className="font-bold text-3xl">Client Plan</p>
-          <p className="font-semibold text-xl">Emanuel Pantone</p>
-        </div>
-        <Image
-          className="rounded-full"
-          src="https://i.pravatar.cc/300"
-          alt="fortys"
-          width={64}
-          height={64}
-        />
-      </header>
+      {/*Si o si debería de tener username. Es formulario de registro ... */}
+      <MemberInfo fullname={foundUser.fullname} />
 
       <section className="grid grid-cols-2 grid-rows-1 gap-4 text-white font-bold px-6">
         <div className="bg-primary flex flex-col items-center justify-center py-6 rounded-lg">
