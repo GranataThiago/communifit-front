@@ -2,6 +2,7 @@ import { CommunityEssential, ICommunities } from "../../../../../interfaces";
 
 import { Button } from "../../../../components/ui/button";
 import { CommunityCard } from "../CommunityCard";
+import { FaStar } from "react-icons/fa";
 import { Input } from "../../../../components/ui/input";
 import Link from "next/link";
 import React from "react";
@@ -39,11 +40,11 @@ export const NonCommunityMemberScreen = async ({
 				</Link>
 			</article>
 
-			<p className='mt-6 text-3xl font-bold text-surface-light'>
-				Más Valoradas
+			<p className='mt-6 text-2xl font-bold text-surface-light flex gap-2 items-center'>
+				Recomendadas <FaStar className='text-primary' />
 			</p>
 
-			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
+			<div className='grid grid-cols-2 gap-6 mt-6'>
 				{communities?.map((community: ICommunities) => (
 					<CommunityCard key={community.name} {...community} />
 				))}
