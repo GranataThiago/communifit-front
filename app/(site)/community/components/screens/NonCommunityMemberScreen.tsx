@@ -29,7 +29,6 @@ export const NonCommunityMemberScreen = async ({
 	community: CommunityEssential | null;
 }) => {
 	const listCommunities = await getCommunities();
-	console.log(community);
 	return (
 		<section className='p-6 bg-secondary-dark' data-testid='section'>
 			<Input variant='filled' type='text' placeholder='Search Communities...' />

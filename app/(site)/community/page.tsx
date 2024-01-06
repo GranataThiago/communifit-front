@@ -1,5 +1,4 @@
 import { IMinimumUserInfo } from "../../../interfaces/user";
-import { NonCommunityMemberScreen } from "./components/screens";
 import { cookies } from "next/headers";
 import { getAuthenticatedUser } from "../../../helpers";
 import { redirect } from "next/navigation";
