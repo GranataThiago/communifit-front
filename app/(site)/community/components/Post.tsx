@@ -18,7 +18,7 @@ export const Post = ({ fullname, body, datepublished }: IPost) => {
 					<p className='font-bold text-lg flex flex-col'>
 						<span className='text-primary'>{fullname}</span>
 						<span className='text-sm font-medium'>
-							{format(new Date(datepublished), "dd-MM")}
+							{format(new Date(datepublished), "dd-MM-yyyy")}
 						</span>
 					</p>
 				</div>
