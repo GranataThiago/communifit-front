@@ -1,34 +1,18 @@
+import { CommunityEssential, ICommunities } from "../../../../../interfaces";
+
 import { Button } from "../../../../components/ui/button";
 import { CommunityCard } from "../CommunityCard";
-import { CommunityEssential } from "../../../../../interfaces";
 import { Input } from "../../../../components/ui/input";
 import Link from "next/link";
 import React from "react";
 
-const getCommunities = async () => {
-	const listCommunities = [
-		{
-			name: "BTG",
-			stars: 4,
-			members: 40,
-		},
-		{
-			name: "Sharks",
-			stars: 5,
-			members: 17,
-		},
-	];
-	await new Promise((resolve) => setTimeout(resolve, 100));
-
-	return listCommunities;
-};
-
 export const NonCommunityMemberScreen = async ({
 	community,
+	communities,
 }: {
 	community: CommunityEssential | null;
+	communities: ICommunities[] | null;
 }) => {
-	const listCommunities = await getCommunities();
 	return (
 		<section className='p-6 bg-secondary-dark' data-testid='section'>
 			<Input variant='filled' type='text' placeholder='Search Communities...' />
@@ -56,31 +40,11 @@ export const NonCommunityMemberScreen = async ({
 			</article>
 
 			<p className='mt-6 text-3xl font-bold text-surface-light'>
-				Trending Communities 🔥
+				Más Valoradas
 			</p>
 
 			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
-				{listCommunities.map((community) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
-
-			<p className='mt-6 text-3xl font-bold text-surface-light'>
-				New Communities 🔝
-			</p>
-
-			<div className='flex flex-row gap-6 mt-6  overflow-x-scroll'>
-				{listCommunities.map((community) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
-
-			<p className='mt-6 text-3xl font-bold text-surface-light'>
-				Oldest Communities 💪
-			</p>
-
-			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
-				{listCommunities.map((community) => (
+				{communities?.map((community: ICommunities) => (
 					<CommunityCard key={community.name} {...community} />
 				))}
 			</div>
