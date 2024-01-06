@@ -25,10 +25,10 @@ export const RegisterFormComponent = ({
 		>
 			<FormField
 				rules={{
-					required: "The fullName is required.",
+					required: "The fullname is required.",
 				}}
 				control={control}
-				name='fullName'
+				name='fullname'
 				render={({ field }) => (
 					<FormItem>
 						<FormLabel>Full name</FormLabel>

@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 
 export type RegisterForm = {
   username: string;
-  fullName: string;
+  fullname: string;
   email: string;
   password: string;
   type: UserTypes;
@@ -54,7 +54,7 @@ export const Onboarding = (props: OnBoardingProps) => {
   } = useForm<RegisterForm>({
     defaultValues: {
       email: "",
-      fullName: "",
+      fullname: "",
       username: "",
       password: "",
       objective: "",

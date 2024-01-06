@@ -7,13 +7,13 @@ const CommunityScreen_Mock: ICommunity = {
   description: "This is a test community description.",
   posts: [
     {
-      fullName: "John Doe",
+      fullname: "John Doe",
       username: "johndoe123",
       body: "This is a test post.",
       datepublished: "2023-10-15",
     },
     {
-      fullName: "Alice Smith",
+      fullname: "Alice Smith",
       username: "alicesmith456",
       body: "Another test post.",
       datepublished: "2023-10-16",

@@ -16,7 +16,7 @@ export interface IRegisterUser {
   gender: string;
   password: string;
   type: UserTypes;
-  fullName: string;
+  fullname: string;
   email: string;
   objective?: string;
 }

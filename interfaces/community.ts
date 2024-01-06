@@ -9,7 +9,7 @@ export interface ICommunity {
 export type CommunityEssential = Omit<ICommunity, 'posts' | 'image'>
 
 export interface IPost {
-  fullName: string;
+  fullname: string;
   username: string;
   body: string;
   datepublished: string;
