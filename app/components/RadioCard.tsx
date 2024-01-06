@@ -20,13 +20,13 @@ export const RadioCard = ({
 }: RadioCardProps) => {
 	return (
 		<Card
-			className={`relative border border-primary block h-full p-4 w-full items-center justify-center rounded-lg h-${height} `}
+			className={`bg-secondary-light relative border border-primary block h-full p-4 w-full items-center justify-center rounded-lg h-${height} `}
 		>
 			<CardContent className="h-full p-0 flex flex-col items-center flex-shrink flex-grow justify-center">
 				<CardTitle className='w-full text-center grid place-items-center h-full'>
 					<Label
 						htmlFor={props.id}
-						className=' font-semibold xxs:text-sm xs:text-lg cursor-pointer h-full flex flex-col items-center justify-center w-full'
+						className='text-surface-light font-semibold xxs:text-sm xs:text-lg cursor-pointer h-full flex flex-col items-center justify-center w-full'
 					>
 						{icon ? icon : null}
 						{label}

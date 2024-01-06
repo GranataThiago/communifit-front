@@ -118,7 +118,7 @@ export const Onboarding = (props: OnBoardingProps) => {
 
   return (
     <form
-      className="w-full flex flex-col justify-center gap-4 flex-1 py-4"
+      className="w-full flex flex-col justify-center gap-4 flex-1 py-4 text-surface-light "
       onSubmit={handleSubmit(onRegister)}
     >
       <h1
