@@ -86,8 +86,8 @@ export const LoginForm = () => {
 			>
 				<LoginFormFields form={form} />
 				<ForgotPasswordLink />
-				{messageError != "" && <p className='text-red-500'>{messageError}</p>}
-				<Button variant='filled' type='submit' aria-label='Continue with login'>
+				{messageError != "" && <p className='text-red-500 text-xs md:text-sm'>{messageError}</p>}
+				<Button variant='filled' className="w-full h-10 xs:h-12" type='submit' aria-label='Continue with login'>
 					Continue
 				</Button>
 			</form>

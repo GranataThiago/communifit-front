@@ -25,7 +25,7 @@ const LoginPage = () => {
 		<section
 			className={`flex flex-col justify-around items-center w-full h-screen p-6 ${montserrat.className} bg-secondary-dark text-surface-light`}
 		>
-			<div className='text-center'>
+			<div className='text-center mb-4'>
 				<Logo />
 				<p className='text-xl font-medium'>Login</p>
 			</div>

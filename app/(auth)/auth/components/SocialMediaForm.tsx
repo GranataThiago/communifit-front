@@ -31,7 +31,7 @@ const SocialMediaForm = () => {
 		onError: () => console.log("login failed"),
 	});
 	return (
-		<section className='w-full mb-4 flex flex-col items-center'>
+		<section className='w-full m-4 flex flex-col items-center'>
 			<h2 className='text-center text-surface-dark'>Or Log In with</h2>
 			<div className='mt-4 flex cursor-pointer'>
 				<Button
