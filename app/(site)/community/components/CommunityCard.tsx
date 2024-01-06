@@ -17,7 +17,7 @@ const getStars = (amount: number) => {
 export const CommunityCard = ({ name, stars, members }: CommunityCardProps) => {
   return (
     <div
-      className="flex bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl"
+      className="min-w-64 flex bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl"
       data-testid="container"
     >
       <Image

@@ -39,7 +39,7 @@ export const NonCommunityMemberScreen = async () => {
 
 			<p className='mt-6 text-3xl font-bold text-surface-light'>Trending Communities 🔥</p>
 
-			<div className='flex flex-row gap-6 mt-6'>
+			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
 				{communities.map((community) => (
 					<CommunityCard key={community.name} {...community} />
 				))}
@@ -47,7 +47,7 @@ export const NonCommunityMemberScreen = async () => {
 
 			<p className='mt-6 text-3xl font-bold text-surface-light'>New Communities 🔝</p>
 
-			<div className='flex flex-row gap-6 mt-6'>
+			<div className='flex flex-row gap-6 mt-6  overflow-x-scroll'>
 				{communities.map((community) => (
 					<CommunityCard key={community.name} {...community} />
 				))}
@@ -55,7 +55,7 @@ export const NonCommunityMemberScreen = async () => {
 
 			<p className='mt-6 text-3xl font-bold text-surface-light'>Oldest Communities 💪</p>
 
-			<div className='flex flex-row gap-6 mt-6'>
+			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
 				{communities.map((community) => (
 					<CommunityCard key={community.name} {...community} />
 				))}
