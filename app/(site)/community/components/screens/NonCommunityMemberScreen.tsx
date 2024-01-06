@@ -5,6 +5,7 @@ import { CommunityCard } from "../CommunityCard";
 import { FaStar } from "react-icons/fa";
 import { Input } from "../../../../components/ui/input";
 import Link from "next/link";
+import { Message } from "../../../chat/components";
 import React from "react";
 
 export const NonCommunityMemberScreen = async ({
@@ -44,11 +45,20 @@ export const NonCommunityMemberScreen = async ({
 				Recomendadas <FaStar className='text-primary' />
 			</p>
 
-			<div className='grid grid-cols-2 gap-6 mt-6'>
-				{communities?.map((community: ICommunities) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
+			{communities ? (
+				<div className='grid grid-cols-2 gap-6 mt-6'>
+					{communities.map((community: ICommunities) => (
+						<CommunityCard key={community.name} {...community} />
+					))}
+				</div>
+			) : (
+				<div className='w-100 mt-6'>
+					<Message
+						message='Looks like there are no communities here...'
+						sender={false}
+					/>
+				</div>
+			)}
 		</section>
 	);
 };
