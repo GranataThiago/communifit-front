@@ -30,7 +30,7 @@ describe("<Message />", () => {
 
     expect(messageElement).toBeInTheDocument();
     expect(div).toHaveClass(
-      "rounded-lg p-2 bg-gray-300 text-black mr-auto rounded-bl-none",
+      "rounded-lg p-2 bg-gray-300 text-surface-light mr-auto rounded-bl-none",
     );
   });
 });

@@ -1569,7 +1569,7 @@ body {
   color: rgb(157 157 157 / var(--tw-text-opacity));
 }
 
-.text-black {
+.text-surface-light {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }

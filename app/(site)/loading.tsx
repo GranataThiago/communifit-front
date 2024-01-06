@@ -8,10 +8,10 @@ export default function Loading({
 }: ILoading) {
   return (
     <div
-      className={`flex items-center justify-center bg-secondary-dark w-full ${containerClasses}`}
+      className={`flex items-center justify-center  w-full ${containerClasses}`}
     >
       <div
-        className={`animate-spin bg-transparent   border-t-primary rounded-full ${spinnerClasses}`}
+        className={`animate-spin  rounded-full ${spinnerClasses}`}
       ></div>
     </div>
   );

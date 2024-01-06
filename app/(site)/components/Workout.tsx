@@ -35,7 +35,7 @@ const Workout = () => {
 						key={index}
 						onClick={() => onDayChanged(weekDay)}
 						className={`font-normal ${
-							day === weekDay ? "text-black" : "text-gray-300"
+							day === weekDay ? "text-surface-light" : "text-gray-300"
 						}`}
 					>
 						{weekDay}

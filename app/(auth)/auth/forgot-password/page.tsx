@@ -185,11 +185,11 @@ const ForgotPassword = () => {
       <div className="pt-8">
         <Logo />
       </div>
-      <h1 className="py-2 pb-8 text-black text-xl font-semibold">
+      <h1 className="py-2 pb-8 text-surface-light text-xl font-semibold">
         Forgot Password
       </h1>
       <h2
-        className="py-2 pb-8 text-black text-lg font-semibold"
+        className="py-2 pb-8 text-surface-light text-lg font-semibold"
         aria-label={displayCurrentTitle()}
       >
         {displayCurrentTitle()}
@@ -199,21 +199,21 @@ const ForgotPassword = () => {
       <div className="absolute px-6 bottom-14 w-full flex flex-col items-center gap-6">
         <Button
           variant="filled"
-          className="relative"
+          className="relative text-surface-light"
           onClick={onNextStep}
           aria-label={getButton()}
         >
           {isLoading ? (
             <Loading
-              containerClasses="h-8"
-              spinnerClasses="h-6 w-6 border-2 border-gray-400"
+              containerClasses="h-8 bg-primary"
+              spinnerClasses="h-6 w-6 bg-primary border-2 border-surface-light"
             />
           ) : (
             getButton()
           )}
         </Button>
         <Link
-          className="w-fit h-fit"
+          className="w-fit h-fit text-surface-light"
           href={"/auth/login"}
           aria-label="Back to login page"
         >

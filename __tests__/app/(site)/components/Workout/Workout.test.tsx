@@ -21,7 +21,7 @@ describe("<Workout />", () => {
     const tuesdayButton = getByText("Tuesday");
 
     fireEvent.click(tuesdayButton);
-    expect(tuesdayButton).toHaveClass("text-black");
+    expect(tuesdayButton).toHaveClass("text-surface-light");
 
     const activeDay = getByText("Monday");
     expect(activeDay).toHaveClass("text-gray-300");

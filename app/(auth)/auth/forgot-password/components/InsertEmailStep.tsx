@@ -10,7 +10,7 @@ const InsertEmailStep = ({ register, control }: ForgotPasswordFormStep) => {
           aria-label="Email"
           className="flex flex-col justify-center  w-full"
         >
-          <label htmlFor="email" className="text-base text-black">
+          <label htmlFor="email" className="text-base text-surface-light">
             Enter your email address
           </label>
           <Controller

@@ -13,7 +13,7 @@ const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
 					aria-label='Password'
 					className='flex flex-col justify-center  w-full'
 				>
-					<label htmlFor='password' className='text-base text-black'>
+					<label htmlFor='password' className='text-base text-surface-light'>
 						Password
 					</label>
 					<Controller
@@ -30,7 +30,7 @@ const ChangePasswordStep = ({ register, control }: ForgotPasswordFormStep) => {
 					aria-label='Confirm Password'
 					className='flex flex-col justify-center  w-full'
 				>
-					<label htmlFor='confirmPassword' className='text-base text-black'>
+					<label htmlFor='confirmPassword' className='text-base text-surface-light'>
 						Confirm Password
 					</label>
 					<Controller

@@ -45,7 +45,7 @@ describe("Menu component", () => {
     const communityMenuItem = container.querySelector("li");
 
     expect(communityMenuItem).toHaveClass(
-      "hover:text-gray-700 hover:cursor-pointer text-black",
+      "hover:text-gray-700 hover:cursor-pointer text-surface-light",
     );
   });
 
@@ -59,7 +59,7 @@ describe("Menu component", () => {
     const communityMenuItem = container.querySelector("li");
 
     expect(communityMenuItem).toHaveClass(
-      "hover:text-gray-700 hover:cursor-pointer text-black",
+      "hover:text-gray-700 hover:cursor-pointer text-surface-light",
     );
   });
 
@@ -73,7 +73,7 @@ describe("Menu component", () => {
     const communityMenuItem = container.querySelector("li");
 
     expect(communityMenuItem).toHaveClass(
-      "hover:text-gray-700 hover:cursor-pointer text-black",
+      "hover:text-gray-700 hover:cursor-pointer text-surface-light",
     );
   });
 });
