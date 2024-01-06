@@ -16,7 +16,7 @@ export const CommunityCard = ({
 }: ICommunities) => {
 	return (
 		<article
-			className='min-w-64 flex relative bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl'
+			className='min-w-64 text-white flex relative bg-secondary-light gap-4 hover:cursor-pointer transition-colors p-4 rounded-xl'
 			data-testid='container'
 		>
 			<Image
