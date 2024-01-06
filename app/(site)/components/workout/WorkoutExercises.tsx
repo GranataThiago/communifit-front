@@ -5,14 +5,14 @@ interface IWorkoutExercises {
 }
 
 const WorkoutExercises = ({ exercise = null }: IWorkoutExercises) => {
-
+    exercise = null;
     const getContent = () => {
-        if (exercise) {
+        if (exercise && Array.isArray(exercise)) { //No hay problema con esto. Siempre pero siempre algo va a tener.
             return (
-                <>
-                    {exercise.name}
-                    <span>{exercise.quantity} x {exercise.weight}</span>
-                </>
+                <div id="exercise" className="flex flex-wrap items-center gap-1">
+                    {exercise[0].exercise}
+                    <span>{exercise[0].quantity} x {exercise[0].weight}</span>
+                </div>
             )
         } else {
             return (

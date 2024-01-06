@@ -20,7 +20,7 @@ const MemberPage = async({user}: any) => {
           <WorkoutMember user={user} />
         </div>
 
-        <Button>Start Workout</Button>
+        <Button>Show Workout</Button>
       </section>
 
       <section className="w-full flex flex-col gap-4">
