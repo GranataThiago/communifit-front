@@ -28,7 +28,7 @@ const TrainerClientsTable = ({ foundClients }: { foundClients: IUser[] }) => {
                         <TableCell className='w-full flex-1 font-semibold'>{fullname}</TableCell>
                         <TableCell className='w-full'>{state === 'paid' ? <div className="mx-auto w-4 h-4 rounded-full bg-green-300"></div> : <div className="mx-auto w-4 h-4 rounded-full bg-red-300"></div>}</TableCell> 
                         <TableCell className='text-center'>
-                            <a href={`/trainer/create/${username}`}>Edit</a>
+                            <a href={`/trainer/manage/${username}`}>Manage</a>
                         </TableCell>
                     </TableRow>
                 ))}
