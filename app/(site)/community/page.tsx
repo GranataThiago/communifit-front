@@ -1,5 +1,5 @@
-import { NonCommunityScreen } from "./components/screens/index";
+import { NonCommunityScreen } from "./components/screens";
 
 export default function CommunityPage() {
-  return <NonCommunityScreen />;
+	return <NonCommunityScreen />;
 }
