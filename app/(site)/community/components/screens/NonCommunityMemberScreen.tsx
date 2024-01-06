@@ -2,6 +2,7 @@ import { Button } from "../../../../components/ui/button";
 import { CommunityCard } from "../CommunityCard";
 import { CommunityEssential } from "../../../../../interfaces";
 import { Input } from "../../../../components/ui/input";
+import Link from "next/link";
 import React from "react";
 
 const getCommunities = async () => {
@@ -35,17 +36,24 @@ export const NonCommunityMemberScreen = async ({
 
 			<article className='flex flex-col gap-4 bg-secondary-light p-4 mt-4 rounded-xl'>
 				<h2 className='text-3xl text-primary font-bold'>
-					How to choose your ideal community?
+					{communities?.displayname ?? "How to choose your ideal community?"}
 				</h2>
 				<p className='text-md text-surface-light'>
-					We strongly encourage you to engage with coaches and ask them any
-					questions you might have in order to identify the best fit for your
-					needs...
+					{communities?.description ??
+						"We strongly encourage you to engage with coaches and ask them any questions you might have in order to identify the best fit for your needs..."}
 				</p>
 
-				<Button className='ml-auto w-32' variant={"outlined"}>
-					Read more...
-				</Button>
+				<Link
+					href={communities ? `/community/${communities.name}` : ""}
+					className='ml-auto'
+				>
+					<Button
+						className={`${communities ? "w-auto px-2" : "w-32"}`}
+						variant={"outlined"}
+					>
+						{communities ? "Ir a mi Comunidad" : "Read more..."}
+					</Button>
+				</Link>
 			</article>
 
 			<p className='mt-6 text-3xl font-bold text-surface-light'>
