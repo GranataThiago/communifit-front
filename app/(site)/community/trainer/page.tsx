@@ -12,6 +12,7 @@ const CommunityPageTrainer = async () => {
 	);
 	if (!user) return redirect("/");
 	if (user.type !== "trainer") return redirect("/community");
+	if (user.community) return redirect(`/community/${user.community.name}`);
 	return <NonCommunityTrainerScreen />;
 };
 
