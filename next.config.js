@@ -3,6 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    serverActions: true
+  },
   images: {
     domains: ["pbs.twimg.com"],
     remotePatterns: [

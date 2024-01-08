@@ -15,12 +15,7 @@ const MemberPage = async({user}: any) => {
       </header>
 
       <section className="workout flex flex-col gap-8 bg-secondary-light rounded-xl p-6">
-        <h2 className={`${poppins.className} font-bold text-3xl text-surface-light`}>Today's work</h2>
-        <div>
-          <WorkoutMember user={user} />
-        </div>
-
-        <Button>Show Workout</Button>
+        <WorkoutMember user={user}/>
       </section>
 
       <section className="w-full flex flex-col gap-4">
