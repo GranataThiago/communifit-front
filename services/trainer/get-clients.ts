@@ -1,10 +1,10 @@
-import { cookies } from "next/headers";
-import {  IGetClientsByTrainerFetch } from "../../interfaces/services/trainer/get-clients";
 import { API_KEY, API_URL } from "../../utils";
 
-  
+import { IGetClientsByTrainerFetch } from "../../interfaces/services/trainer/get-clients";
+import { cookies } from "next/headers";
+
 interface IGetClientsByTrainer {
-    userId: string;
+	userId: number;
 }
 
 export const getClientsByTrainer = async({userId}: IGetClientsByTrainer): Promise<IGetClientsByTrainerFetch | null> => {

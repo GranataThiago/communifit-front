@@ -14,3 +14,14 @@ export interface IPost {
   body: string;
   datepublished: string;
 }
+
+export interface ICommunities {
+	owner_username: string;
+	owner_fullname: string;
+	users_quantity: number;
+	name: string;
+	displayname: string;
+	description: "test community";
+	createdat: string;
+	average_rating: number;
+}

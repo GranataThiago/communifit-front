@@ -1,14 +1,33 @@
-import apiInstance from "../../app/api";
-import { GetInvitationLinkResponse } from "../../interfaces/services/community/community-page";
 import {
   CreateCommunity,
   CreateCommunityResponse,
 } from "../../interfaces/services/community/create-community";
 
+import { GetInvitationLinkResponse } from "../../interfaces/services/community/community-page";
+import apiInstance from "../../app/api";
+
 interface ICreateCommunity {
   token: string;
   newCommunity: CreateCommunity;
 }
+
+export const editCommunity = async ({
+	token,
+	newCommunity,
+}: ICreateCommunity): Promise<CreateCommunityResponse> => {
+	let community: CreateCommunityResponse = null;
+	try {
+		const response = await apiInstance.put("/communities", newCommunity, {
+			headers: { token: token },
+		});
+		community = response.data;
+	} catch (err) {
+		console.log(err);
+	}
+
+	return community;
+};
+
 
 export const createCommunity = async ({
   token,
