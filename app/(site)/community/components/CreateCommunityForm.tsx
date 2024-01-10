@@ -8,12 +8,15 @@ import {
 	FormLabel,
 } from "../../../components/ui/form";
 import React, { useEffect } from "react";
+import {
+	createCommunity,
+	editCommunity,
+} from "../../../../services/community/create-community";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Button } from "../../../components/ui/button";
 import { CreateCommunity } from "../../../../interfaces/services/community/create-community";
 import { Input } from "../../../components/ui/input";
-import { createCommunity } from "../../../../services/community/create-community";
 import { montserrat } from "../../../components/fonts";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
@@ -34,10 +37,12 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 
 	const onCommunityCreated = async (formData: CreateCommunity) => {
 		const newCommunity = { ...formData, adminId: user?._id };
-		const communityData = await createCommunity({
-			token: cookies.token,
-			newCommunity,
-		});
+		const communityData = isEdit
+			? await editCommunity({ token: cookies.token, newCommunity })
+			: await createCommunity({
+					token: cookies.token,
+					newCommunity,
+				});
 		if (!communityData || !communityData.ok) {
 			renderToast(
 				"There has been an error while creating your community",
