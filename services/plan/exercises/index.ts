@@ -1,11 +1,13 @@
 'use server'
-import { cookies } from "next/headers";
-import { IExercise } from "../../../interfaces/exercises";
+
 import { API_KEY, API_URL } from "../../../utils";
 
+import { IExercise } from "../../../interfaces/exercises";
+import { cookies } from "next/headers";
+
 interface IGetUserExercises {
-    userId: string;
-    quantity: number;
+	userId: number;
+	quantity: number;
 }
 
 export const getUserExercises = async({userId, quantity}: IGetUserExercises) =>{

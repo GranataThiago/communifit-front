@@ -1,13 +1,18 @@
 import { CommunityEssential } from "./community";
 
-export interface IUser {
-  fullname: string;
-  username: string;
-  email: string;
-  image?: string | null;
-  type: UserTypes;
-  community?: CommunityEssential;
-  _id?: string;
+export type UserTypes = "member" | "trainer" | null;
+
+export interface IMinimumUserInfo {
+	_id?: number;
+	fullname: string;
+	username: string;
+	type: UserTypes;
+	community?: CommunityEssential;
+}
+
+export interface IUser extends IMinimumUserInfo {
+	email: string;
+	image?: string | null;
 }
 
 export interface IRegisterUser {
@@ -20,9 +25,6 @@ export interface IRegisterUser {
   email: string;
   objective?: string;
 }
-
-export type UserTypes = "member" | "trainer" | null;
-
 
 export interface ICardInfo {
   id: string;

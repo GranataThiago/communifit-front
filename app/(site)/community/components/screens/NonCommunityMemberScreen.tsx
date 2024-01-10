@@ -1,65 +1,64 @@
-import { CommunityCard } from "../CommunityCard";
-import { Input } from "../../../../components/ui/input";
-import React from "react";
+import { CommunityEssential, ICommunities } from "../../../../../interfaces";
+
 import { Button } from "../../../../components/ui/button";
+import { CommunityCard } from "../CommunityCard";
+import { FaStar } from "react-icons/fa";
+import { Input } from "../../../../components/ui/input";
+import Link from "next/link";
+import { Message } from "../../../chat/components";
+import React from "react";
 
-const getCommunities = async () => {
-	const communities = [
-		{
-			name: "BTG",
-			stars: 4,
-			members: 40,
-		},
-		{
-			name: "Sharks",
-			stars: 5,
-			members: 17,
-		},
-	];
-	await new Promise((resolve) => setTimeout(resolve, 100));
-
-	return communities;
-};
-
-export const NonCommunityMemberScreen = async () => {
-	const communities = await getCommunities();
-
+export const NonCommunityMemberScreen = async ({
+	community,
+	communities,
+}: {
+	community: CommunityEssential | null;
+	communities: ICommunities[] | null;
+}) => {
 	return (
 		<section className='p-6 bg-secondary-dark' data-testid='section'>
 			<Input variant='filled' type='text' placeholder='Search Communities...' />
 
-			<article className="flex flex-col gap-4 bg-secondary-light p-4 mt-4 rounded-xl">
-				<h2 className="text-3xl text-primary font-bold">How to choose your ideal community?</h2>
-				<p className="text-md text-surface-light">We strongly encourage you to engage with coaches and 
-				ask them any questions you might have in order to identify 
-				the best fit for your needs...</p>
+			<article className='flex flex-col gap-4 bg-secondary-light p-4 mt-4 rounded-xl'>
+				<h2 className='text-3xl text-primary font-bold'>
+					{community?.displayname ?? "How to choose your ideal community?"}
+				</h2>
+				<p className='text-md text-surface-light'>
+					{community?.description ??
+						"We strongly encourage you to engage with coaches and ask them any questions you might have in order to identify the best fit for your needs..."}
+				</p>
 
-				<Button  className="ml-auto w-32" variant={'outlined'}>Read more...</Button>
+				<Link
+					href={community?.name ? `/community/${community.name}` : ""}
+					className='ml-auto'
+				>
+					<Button
+						className={`${community?.name ? "w-auto px-2" : "w-32"}`}
+						variant={"outlined"}
+					>
+						{community?.name ? "Ir a mi Comunidad" : "Read more..."}
+					</Button>
+				</Link>
 			</article>
 
-			<p className='mt-6 text-3xl font-bold text-surface-light'>Trending Communities 🔥</p>
+			<p className='mt-6 text-2xl font-bold text-surface-light flex gap-2 items-center'>
+				Recomendadas <FaStar className='text-primary' />
+			</p>
 
-			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
-				{communities.map((community) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
-
-			<p className='mt-6 text-3xl font-bold text-surface-light'>New Communities 🔝</p>
-
-			<div className='flex flex-row gap-6 mt-6  overflow-x-scroll'>
-				{communities.map((community) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
-
-			<p className='mt-6 text-3xl font-bold text-surface-light'>Oldest Communities 💪</p>
-
-			<div className='flex flex-row gap-6 mt-6 overflow-x-scroll'>
-				{communities.map((community) => (
-					<CommunityCard key={community.name} {...community} />
-				))}
-			</div>
+			{communities ? (
+				<div className='grid grid-cols-2 gap-6 mt-6'>
+					{communities.map((community: ICommunities) => (
+						<CommunityCard key={community.name} {...community} />
+					))}
+				</div>
+			) : (
+				<div className='w-100 mt-6'>
+					<Message
+						message='Looks like there are no communities here...'
+						sender={false}
+					/>
+				</div>
+			)}
 		</section>
 	);
 };

@@ -1,48 +1,71 @@
-import apiInstance from "../../app/api";
 import {
-  IGetCommunityFetch,
-  GetCommunityResponse,
-  GetCommunityPostsResponse,
-  IGetCommunityPostsFetch,
+	GetAllCommunities,
+	GetCommunityPostsResponse,
+	GetCommunityResponse,
+	IGetAllCommunity,
+	IGetCommunityFetch,
+	IGetCommunityPostsFetch,
 } from "../../interfaces/services/community/community-page";
+import { ICommunities, ICommunity } from "../../interfaces";
+
+import apiInstance from "../../app/api";
 
 interface IGetCommunity {
-  token: string;
-  name: string;
+	token: string;
+	name: string;
 }
 
-export const getCommunityData = async ({
-  token,
-  name,
-}: IGetCommunity): Promise<GetCommunityResponse> => {
-  let community: GetCommunityResponse = null;
-  try {
-    const response = await apiInstance.get<IGetCommunityFetch>(
-      `/communities/${name}`,
-      { headers: { token } },
-    );
-    community = response.data;
-  } catch (err) {
-    console.log(err);
-  }
+export const getCommunities = async ({
+	token,
+}: {
+	token: string;
+}): Promise<ICommunities[] | null> => {
+	let community: ICommunities[] | null = null;
+	try {
+		const response = await apiInstance.get<IGetAllCommunity>(
+			`/communities/list`,
+			{ headers: { token } }
+		);
+		community = response.data.communities;
+	} catch (err) {
+		console.log(err);
+	}
 
-  return community;
+	return community;
+};
+
+export const getCommunityData = async ({
+	token,
+	name,
+}: IGetCommunity): Promise<GetCommunityResponse> => {
+	let community: GetCommunityResponse = null;
+	try {
+		const response = await apiInstance.get<IGetCommunityFetch>(
+			`/communities/${name}`,
+			{ headers: { token } }
+		);
+		community = response.data;
+	} catch (err) {
+		console.log(err);
+	}
+
+	return community;
 };
 
 export const getCommunityPosts = async ({
-  token,
-  name,
+	token,
+	name,
 }: IGetCommunity): Promise<GetCommunityPostsResponse> => {
-  let posts: GetCommunityPostsResponse = null;
-  try {
-    const responsePosts = await apiInstance.get<IGetCommunityPostsFetch>(
-      `/communities/${name}/posts?page=1`,
-      { headers: { token } },
-    );
-    posts = responsePosts.data;
-  } catch (err) {
-    console.log(err);
-  }
+	let posts: GetCommunityPostsResponse = null;
+	try {
+		const responsePosts = await apiInstance.get<IGetCommunityPostsFetch>(
+			`/communities/${name}/posts?page=1`,
+			{ headers: { token } }
+		);
+		posts = responsePosts.data;
+	} catch (err) {
+		console.log(err);
+	}
 
-  return posts;
+	return posts;
 };
