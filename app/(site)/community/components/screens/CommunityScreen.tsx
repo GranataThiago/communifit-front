@@ -1,7 +1,8 @@
+import { ICommunity, IPost } from "../../../../../interfaces/community";
 import { montserrat, poppins } from "../../../../components";
 
+import CommunityScreenNav from "../CommunityScreenNav";
 import { FaPencilAlt } from "react-icons/fa";
-import { ICommunity } from "../../../../../interfaces/community";
 import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,16 +48,20 @@ const CommunityScreen = ({
 				)}
 			</header>
 
-			<nav className='my-4 text-surface-light'>
-				<ul className='flex gap-4 font-medium text-lg'>
-					<li className='border-b border-primary'>Posts</li>
-					<li>Pinned</li>
-				</ul>
-			</nav>
+			<CommunityScreenNav />
 
-			<div className='flex flex-col gap-4'>
-				{posts?.map((post, index) => <Post key={index} {...post} />)}
-			</div>
+			{posts?.length > 0 ? (
+				<div className='flex flex-col gap-4'>
+					{posts.map((post: IPost, index: any) => (
+						<Post key={index} {...post} />
+					))}
+				</div>
+			) : (
+				<div className='text-black text-center flex flex-col mt-24 gap-4 text-2xl'>
+					<span className='text-5xl'>:(</span>
+					<p>Looks like there are no post here...</p>
+				</div>
+			)}
 		</section>
 	);
 };
