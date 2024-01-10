@@ -23,8 +23,8 @@ const CommunityScreen = ({
 						className='rounded-full border-4 border-white'
 						src='https://i.pravatar.cc/300'
 						alt='fortys'
-						width={128}
-						height={128}
+						width={100}
+						height={100}
 					/>
 					<div>
 						<h2
