@@ -54,7 +54,7 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 	return (
 		<section>
 			<form
-				className={`flex flex-col items-center justify-center gap-6 ${montserrat.className}`}
+				className={`flex flex-col items-center justify-center gap-6 ${montserrat.className} text-white`}
 				onSubmit={handleSubmit(onCommunityCreated)}
 			>
 				<h1 className='text-2xl font-bold mt-4'>
@@ -71,18 +71,31 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 						<FormItem>
 							<FormLabel>Community Name</FormLabel>
 							<FormControl>
-								<Input {...field} ref={null} variant='outlined' type='text' />
+								<Input
+									{...field}
+									ref={null}
+									variant='outlined'
+									type='text'
+									className='text-black'
+								/>
 							</FormControl>
 						</FormItem>
 					)}
 				/>
 
 				<div className='flex flex-col'>
-					<label htmlFor='name'>Community URL</label>
 					<div className='flex items-center justify-center'>
-						<div className='bg-gray-100 p-2'>
-							<p>www.communifit.com/</p>
-						</div>
+						<FormItem>
+							<FormLabel className='mb-2'>Community URL</FormLabel>
+							<Input
+								value={"www.communifit.com/"}
+								ref={null}
+								variant='outlined'
+								type='text'
+								className='text-black'
+							/>
+						</FormItem>
+
 						<FormField
 							rules={{
 								required: "The Name is required.",
@@ -98,6 +111,7 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 											ref={null}
 											variant='outlined'
 											type='text'
+											className='text-black'
 										/>
 									</FormControl>
 								</FormItem>
@@ -115,7 +129,13 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 						<FormItem>
 							<FormLabel>Description</FormLabel>
 							<FormControl>
-								<Input {...field} ref={null} variant='outlined' type='text' />
+								<Input
+									{...field}
+									ref={null}
+									variant='outlined'
+									type='text'
+									className='text-black'
+								/>
 							</FormControl>
 						</FormItem>
 					)}
