@@ -7,5 +7,5 @@ import MemberPage from "./member/page";
 export default async function Page() {
   const cookieStore = cookies();
   const user = await getAuthenticatedUser(cookieStore.get('token')!.value);
-  return user?(user.type === 'trainer'?<TrainerPage user={user} />:<MemberPage user={user}/>):redirect('/auth/login')
+  return user ? (user.type === 'trainer' ? <TrainerPage user={user} />:<MemberPage user={user}/>) : redirect('/auth/login')
 }

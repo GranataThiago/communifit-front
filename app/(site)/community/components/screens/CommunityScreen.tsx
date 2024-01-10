@@ -6,6 +6,7 @@ import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "../Post";
+import CommunityActions from "../CommunityActions";
 
 const CommunityScreen = ({
 	community,
@@ -45,6 +46,7 @@ const CommunityScreen = ({
 						<FaPencilAlt />
 					</Link>
 				)}
+				<CommunityActions {...community} />
 			</header>
 
 			<nav className='my-4 text-surface-light'>

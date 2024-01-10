@@ -7,13 +7,12 @@ import InviteModal from "../../../components/modals/InviteModal";
 
 const CommunityActions = ({ name, displayname }: ICommunity) => {
   return (
-    <div className="flex gap-2" data-testid="data">
+    <div className="flex gap-2 text-surface-light" data-testid="data">
       <InviteModal 
         Icon={BsEnvelope}
         IconAriaLabel={`Invite someone to ${displayname}`}
         community={{name, displayname}}
       />
-      <BsPencil className="text-gray-400 text-lg"></BsPencil>
     </div>
   );
 };

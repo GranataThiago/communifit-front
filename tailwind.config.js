@@ -27,11 +27,11 @@ module.exports = {
           light: "#EAEAEA",
           dark: "#DADADA"
         },
-        border: "hsl(var(--border))",
+        border: "hsl(var(--secondary-light))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--secondary-dark))",
+        foreground: "hsl(var(--surface-dark))",
         primaryShadcn: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

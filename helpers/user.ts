@@ -2,6 +2,9 @@ import { CommunityEssential } from "../interfaces";
 import { API_KEY, API_URL } from "../utils";
 
 export const getAuthenticatedUser = async(token: string) => {
+
+    if(!token) return;
+
     const requestDecrypt: any = await fetch(`${API_URL}/auth/decrypt`, {
         method: "GET",
         headers: {
@@ -10,14 +13,13 @@ export const getAuthenticatedUser = async(token: string) => {
         },
       });
       const foundUserData = await requestDecrypt.json();
-      
+
       let SAFE_USER_DATA: any = {
         _id: foundUserData.user._id,
         fullname: foundUserData.user.fullname,
         username: foundUserData.user.username,
         type: foundUserData.user.type,
-        community: null
-    
+        community: null    
       }
     
       if (foundUserData.user.community) {

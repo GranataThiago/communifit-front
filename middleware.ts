@@ -3,11 +3,10 @@ import { API_KEY, API_URL } from "./utils";
 // This function can be marked async if using await inside
 export async function middleware(request: NextRequest) {
   let cookie = request.cookies.get("token");
-
   const isAuthRoute = request.nextUrl.pathname.startsWith("/auth");
-  if (isAuthRoute && !cookie) {
+  if (isAuthRoute && !cookie?.value) {
     return NextResponse.next();
-  } else if (isAuthRoute && cookie) {
+  } else if (isAuthRoute && cookie?.value) {
     return NextResponse.redirect(new URL("/", request.nextUrl.origin));
   }
 
