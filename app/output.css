@@ -955,10 +955,6 @@ body {
   width: 80px;
 }
 
-.w-auto {
-  width: auto;
-}
-
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1512,10 +1508,6 @@ body {
   padding-bottom: 0.5rem;
 }
 
-.pb-4 {
-  padding-bottom: 1rem;
-}
-
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -1806,16 +1798,6 @@ body {
   animation-duration: 200ms;
 }
 
-.marker\:text-lg *::marker {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-.marker\:text-lg::marker {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .file\:border-0::file-selector-button {
   border-width: 0px;
 }
@@ -2043,10 +2025,6 @@ body {
 
   .sm\:flex-row {
     flex-direction: row;
-  }
-
-  .sm\:flex-col {
-    flex-direction: column;
   }
 
   .sm\:justify-end {

@@ -36,7 +36,9 @@ const LoginPage = () => {
 				<>
 					<LoginForm />
 
-					<SocialMediaForm />
+					<div className="min-h-[10rem] grid place-center">
+						<SocialMediaForm />
+					</div>
 
 					<p
 						data-testid='text-footer'
