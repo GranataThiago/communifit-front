@@ -16,7 +16,7 @@ const CommunityScreen = ({
 }) => {
 	const { displayname, description, posts, name } = community;
 	return (
-		<section className={`${montserrat.className} bg-secondary-dark p-6`}>
+		<section className={`${montserrat.className} bg-secondary-dark p-6 mb-10`}>
 			<header className='relative workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6'>
 				<div className='flex flex-row gap-8 items-center justify-start'>
 					<Image
