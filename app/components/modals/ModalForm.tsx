@@ -53,16 +53,18 @@ const ModalForm = (props: ModalProps) => {
 		Icon,
 	} = props;
 	return (
-		<Dialog  >
+		<Dialog >
 			<DialogTrigger asChild>
 				<button >{ActionTrigger}</button>
 			</DialogTrigger>
-			<DialogContent className='sm:max-w-[425px] min-h-[320px] max-h-[450px] sm:max-h-[300px]'>
+			<DialogContent className='sm:max-w-[425px] min-h-[320px] max-h-[450px] sm:max-h-[300px] bg-secondary-light text-surface-light'>
 				<DialogHeader className='gap-4'>
 					<DialogTitle>{Title}</DialogTitle>
 					<DialogDescription>{Description}</DialogDescription>
 				</DialogHeader>
-				<form className='flex flex-col w-full gap-4'>
+				{
+					Form 
+					? <form className='flex flex-col w-full gap-4'>
 					{Labels?.map((label: LabelProps, key: number) => (
 						<FormField
 							control={Form.control}
@@ -97,7 +99,10 @@ const ModalForm = (props: ModalProps) => {
 							)}
 						/>
 					))}
-				</form>
+					</form>
+					: null
+				}
+
 
 				<DialogFooter>
 					<Button type='submit' onClick={OnSubmit} className='flex gap-2'>

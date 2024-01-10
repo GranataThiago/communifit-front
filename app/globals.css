@@ -4,6 +4,16 @@
  
 @layer base {
   :root {
+    /* brand */
+
+    --primary: 22, 100%, 70%;
+    --secondary-light: 0, 0%, 17%; 
+    --secondary-dark: 0, 0%, 13%;
+    --highlight: 5, 100%, 78%;
+    --surface-light: 0, 0%, 92%;
+    --surface-dark: 0, 0%, 85%;
+
+    /* shadcn */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
