@@ -46,7 +46,7 @@ export const NonCommunityMemberScreen = async ({
 			</p>
 
 			{communities ? (
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-12'>
 					{communities.map((community: ICommunities) => (
 						<CommunityCard key={community.name} {...community} />
 					))}
