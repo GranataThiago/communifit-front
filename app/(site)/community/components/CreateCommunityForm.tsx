@@ -89,7 +89,7 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 				/>
 
 				<div className='flex flex-col'>
-					<div className='flex items-center justify-center'>
+					<div className='flex items-center justify-center w-80 md:w-100'>
 						<FormItem>
 							<FormLabel className='mb-2'>Community URL</FormLabel>
 							<Input
@@ -108,7 +108,7 @@ const CreateCommunityForm = ({ isEdit }: { isEdit?: boolean }) => {
 							control={control}
 							name='name'
 							render={({ field }) => (
-								<FormItem>
+								<FormItem className='w-32 md:w-100'>
 									<FormLabel>Name</FormLabel>
 									<FormControl>
 										<Input
