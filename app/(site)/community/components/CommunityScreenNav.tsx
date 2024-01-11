@@ -5,14 +5,14 @@ import React, { useState } from "react";
 const CommunityScreenNav = () => {
 	const [activeItem, setActiveItem] = useState(0);
 
-	const menuItems = ["Posts", "Material"];
+	const menuItems = ["Posts", "Pinned"];
 
 	const handleClick = (index: number) => {
 		setActiveItem(index);
 	};
 
 	return (
-		<nav className='bg-white'>
+		<nav className='py-2'>
 			<ul className='flex gap-4 font-medium text-xl border-b-2 tracking-tight'>
 				{menuItems.map((item, index) => (
 					<li
