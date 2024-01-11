@@ -1,13 +1,13 @@
 import { ICommunity, IPost } from "../../../../../interfaces/community";
 import { montserrat, poppins } from "../../../../components";
 
+import CommunityActions from "../CommunityActions";
 import CommunityScreenNav from "../CommunityScreenNav";
 import { FaPencilAlt } from "react-icons/fa";
 import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "../Post";
-import CommunityActions from "../CommunityActions";
 
 const CommunityScreen = ({
 	community,
@@ -59,7 +59,7 @@ const CommunityScreen = ({
 					))}
 				</div>
 			) : (
-				<div className='text-black text-center flex flex-col mt-24 gap-4 text-2xl'>
+				<div className='text-white text-center flex flex-col mt-24 gap-4 text-2xl'>
 					<span className='text-5xl'>:(</span>
 					<p>Looks like there are no post here...</p>
 				</div>
