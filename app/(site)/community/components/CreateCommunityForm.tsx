@@ -77,7 +77,7 @@ const CreateCommunityForm = ({
 	return (
 		<section>
 			<form
-				className={`flex flex-col mx-20 justify-center gap-6 ${montserrat.className} text-white`}
+				className={`flex flex-col mx-10 md:mx-20 justify-center gap-6 ${montserrat.className} text-white`}
 				onSubmit={handleSubmit(onCommunityCreated)}
 			>
 				<h1 className='text-2xl font-bold mt-4'>
