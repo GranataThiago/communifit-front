@@ -33,9 +33,9 @@ const InviteModal = ({Icon, community, IconAriaLabel}:IInviteModal) => {
 		{
 		  key: 'link',
 		  label: "Link is valid for one person only",
-		  className: "font-light text-neutral-500 mt-2",
+		  className: "font-light text-surface-light mt-2",
 		  input: {
-			variant: "outlined",
+			variant: "filled",
 			id: "link",
 			type: "text",
 			fieldName: "link",

@@ -1,7 +1,7 @@
 "use client";
 
 import { Control, UseFormRegister, useForm } from "react-hook-form";
-import { inter, montserrat } from "../../../../components/fonts";
+import {  montserrat } from "../../../../components/fonts";
 import { useContext, useState } from "react";
 
 import { AccountTypeStep } from "./AccountTypeStep";
@@ -106,6 +106,7 @@ export const Onboarding = (props: OnBoardingProps) => {
     };
 
     const response = await registerUser(SAFE_USER);
+    console.log(response)
     if (response.ok) {
       onNextStep();
       setTimeout(() => {
