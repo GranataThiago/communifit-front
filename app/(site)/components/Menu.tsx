@@ -19,10 +19,13 @@ export const Menu = () => {
 
   return (
 		<nav
-			className='w-full py-4 px-6 fixed bottom-0 right-0 bg-secondary-light z-50'
+			className='fixed bottom-0 left-0 z-50 w-full h-100 bg-secondary-light'
 			data-testid='nav'
 		>
-			<ul className='w-full flex justify-between text-xl' data-testid='ul'>
+			<ul
+				className='w-full flex justify-around h-12 text-xl items-center'
+				data-testid='ul'
+			>
 				<li
 					className={`hover:text-gray-700 hover:cursor-pointer ${
 						pathname === "/" ? "text-primary" : "text-surface-light"
@@ -34,7 +37,7 @@ export const Menu = () => {
 				</li>
 				<li
 					className={`hover:text-gray-700 hover:cursor-pointer ${
-						pathname === "/chat" ? "text-primary" : "text-surface-light"
+						pathname.includes("/chat") ? "text-primary" : "text-surface-light"
 					}`}
 				>
 					<Link href={"/chat"}>
@@ -43,7 +46,9 @@ export const Menu = () => {
 				</li>
 				<li
 					className={`hover:text-gray-700 hover:cursor-pointer ${
-						pathname === "/community" ? "text-primary" : "text-surface-light"
+						pathname.includes("/community")
+							? "text-primary"
+							: "text-surface-light"
 					}`}
 				>
 					<Link href={"/community"}>
@@ -52,7 +57,9 @@ export const Menu = () => {
 				</li>
 				<li
 					className={`hover:text-gray-700 hover:cursor-pointer ${
-						pathname === "/profile" ? "text-primary" : "text-surface-light"
+						pathname.includes("/profile")
+							? "text-primary"
+							: "text-surface-light"
 					}`}
 				>
 					<Link href={"/profile"}>
