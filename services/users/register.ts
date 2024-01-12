@@ -15,9 +15,16 @@ export const createUserAndGetToken = async ({
       `/users`,
       user,
     );
+
     if (apiResponse.data) response = apiResponse.data;
-  } catch (error) {
-    console.log(error);
+  } catch (err: any) {
+    const error = err.response.data;
+    return {
+      ok: false,
+      msg: error.msg,
+      status_code: error.status_code,
+      token: ''
+    }
   }
 
   return response;

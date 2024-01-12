@@ -13,6 +13,10 @@ import { RegisterFormComponent } from "./RegisterForm";
 import { UserContext } from "../../../../../context/UserContext";
 import { IRegisterUser, UserTypes } from "../../../../../interfaces/user";
 import { useRouter } from "next/navigation";
+import { errorCodes } from "../../../../../helpers/error-codes";
+import useLoader from "../../../../hooks/loader/useLoader";
+import Logo from "../../../../components/Company/Logo";
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
 export type RegisterForm = {
   username: string;
@@ -38,11 +42,14 @@ interface OnBoardingProps {
   currentStepMock?: number;
 }
 
+const STEPS = ['Select Type', 'Personal Info', 'Account Info']
+
 export const Onboarding = (props: OnBoardingProps) => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<number>(
     props.currentStepMock ?? 0,
   );
+  const {isLoading, setIsLoading} = useLoader();
   const { register: registerUser } = useContext(UserContext);
 
   const {
@@ -75,6 +82,11 @@ export const Onboarding = (props: OnBoardingProps) => {
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
+  const onPrevStep = () => {
+    if(currentStep === 0) return;
+    setCurrentStep((prevStep) => prevStep - 1);
+  }
+
   const displayCurrentStep = () => {
     const baseProps = {
       register,
@@ -94,6 +106,9 @@ export const Onboarding = (props: OnBoardingProps) => {
   };
 
   const onRegister = async (formData: RegisterForm) => {
+
+    setIsLoading(true);
+
     const {
       birthdate: { day, month, year },
     } = formData;
@@ -106,14 +121,15 @@ export const Onboarding = (props: OnBoardingProps) => {
     };
 
     const response = await registerUser(SAFE_USER);
-    console.log(response)
+    setIsLoading(false);
     if (response.ok) {
       onNextStep();
       setTimeout(() => {
         router.push("/");
-      }, 3000);
+      }, 3000); 
     } else {
-      alert("There was an error while registering your account");
+      const errorMessage = errorCodes[response.status_code] || errorCodes['default'];
+      alert(errorMessage);
     }
   };
 
@@ -122,20 +138,33 @@ export const Onboarding = (props: OnBoardingProps) => {
       className="w-full flex flex-col justify-center gap-4 flex-1 py-4 text-surface-light "
       onSubmit={handleSubmit(onRegister)}
     >
-      <h1
-        className={`text-4xl font-bold mb-10 text-center ${montserrat.className}`}
-      >
-        Communi
-        <span className={`${montserrat.className} text-primary`}>fit</span>.
-      </h1>
+      <div className="mx-auto">
+        <Logo></Logo>
+      </div>
+
+      <div className="flex flex-row justify-between w-full">
+        <Button className="w-16 p-0 h-8" type="button" variant={'text'} onClick={onPrevStep}>
+          <BsArrowLeftShort />
+        </Button>
+
+        <Button className="w-16 p-0 h-8" type="button" variant={'text'} onClick={onNextStep}>
+          <BsArrowRightShort />
+        </Button>
+      </div>
 
       {displayCurrentStep()}
+
       <Button
+        disabled={isLoading}
         variant="filled"
-        type={currentStep === 3 ? "submit" : "button"}
-        onClick={onNextStep}
+        type={currentStep === 2 ? "submit" : "button"}
+        onClick={currentStep === 2 ? undefined : onNextStep}
       >
-        Continue
+        {
+          currentStep === 2
+          ? 'Submit'
+          : 'Continue'
+        }
       </Button>
       {currentStep === 0 ? (
         <p className="text-center py-4">
