@@ -62,7 +62,7 @@ const InviteModal = ({Icon, community, IconAriaLabel}:IInviteModal) => {
 			...prevLabels[0],
 			input: {
 				...prevLabels[0].input,
-				value: response.link,
+				value: `${process.env.NEXT_PUBLIC_DOMAIN}join/${response.link}`,
 			},
 			},
 		]);
