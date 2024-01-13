@@ -1,15 +1,16 @@
 import { ICommunity } from "../../community";
 
-export interface CreateCommunity {
+export interface UpsertCommunity {
+	_id?: string;  //Needed for update.
 	name?: string;
 	displayName: string;
 	description: string;
 	adminId?: number;
 }
 
-export interface ICreateCommunityFetch {
+export interface IUpsertCommunityFetch {
   ok: boolean;
   community: ICommunity;
 }
 
-export type CreateCommunityResponse = null | ICreateCommunityFetch;
+export type UpsertCommunityResponse = null | IUpsertCommunityFetch;

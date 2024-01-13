@@ -1,4 +1,5 @@
 export interface ICommunity {
+  _id?: string; //only in some endpoints
   name: string;
   displayname: string;
   image: string;

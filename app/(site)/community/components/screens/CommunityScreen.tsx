@@ -1,12 +1,13 @@
+import { ICommunity, IPost } from "../../../../../interfaces/community";
 import { montserrat, poppins } from "../../../../components";
 
+import CommunityActions from "../CommunityActions";
+import CommunityScreenNav from "../CommunityScreenNav";
 import { FaPencilAlt } from "react-icons/fa";
-import { ICommunity } from "../../../../../interfaces/community";
 import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "../Post";
-import CommunityActions from "../CommunityActions";
 
 const CommunityScreen = ({
 	community,
@@ -17,15 +18,15 @@ const CommunityScreen = ({
 }) => {
 	const { displayname, description, posts, name } = community;
 	return (
-		<section className={`${montserrat.className} bg-secondary-dark p-6`}>
+		<section className={`${montserrat.className} bg-secondary-dark p-6 mb-10`}>
 			<header className='relative workout flex flex-col grid-cols-2 gap-8 bg-secondary-light rounded-xl p-6'>
 				<div className='flex flex-row gap-8 items-center justify-start'>
 					<Image
 						className='rounded-full border-4 border-white'
 						src='https://i.pravatar.cc/300'
 						alt='fortys'
-						width={128}
-						height={128}
+						width={100}
+						height={100}
 					/>
 					<div>
 						<h2
@@ -49,16 +50,20 @@ const CommunityScreen = ({
 				<CommunityActions {...community} />
 			</header>
 
-			<nav className='my-4 text-surface-light'>
-				<ul className='flex gap-4 font-medium text-lg'>
-					<li className='border-b border-primary'>Posts</li>
-					<li>Pinned</li>
-				</ul>
-			</nav>
+			<CommunityScreenNav />
 
-			<div className='flex flex-col gap-4'>
-				{posts?.map((post, index) => <Post key={index} {...post} />)}
-			</div>
+			{posts?.length > 0 ? (
+				<div className='flex flex-col gap-4'>
+					{posts.map((post: IPost, index: any) => (
+						<Post key={index} {...post} />
+					))}
+				</div>
+			) : (
+				<div className='text-white text-center flex flex-col mt-24 gap-4 text-2xl'>
+					<span className='text-5xl'>:(</span>
+					<p>Looks like there are no post here...</p>
+				</div>
+			)}
 		</section>
 	);
 };
