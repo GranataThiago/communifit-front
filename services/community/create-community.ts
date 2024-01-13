@@ -1,5 +1,5 @@
 import {
-  CreateCommunity,
+  UpsertCommunity,
   UpsertCommunityResponse,
 } from "../../interfaces/services/community/create-community";
 
@@ -8,7 +8,7 @@ import apiInstance from "../../app/api";
 
 interface IActionCommunity {
   token: string;
-  community: CreateCommunity;
+  community: UpsertCommunity;
 }
 
 
@@ -18,8 +18,9 @@ export const editCommunity = async ({
 	community,
 }: IActionCommunity): Promise<UpsertCommunityResponse> => {
 	let updateCommunityResponse: UpsertCommunityResponse = null;
+  console.log(community)
 	try {
-		const response = await apiInstance.put("/communities", community, {
+		const response = await apiInstance.put(`/communities/${community.name}`, community, {
 			headers: { token: token },
 		});
 		updateCommunityResponse = response.data;

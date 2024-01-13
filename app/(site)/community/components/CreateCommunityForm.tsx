@@ -1,6 +1,6 @@
 "use client";
 
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
 	FormControl,
 	FormField,
@@ -15,13 +15,13 @@ import {
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Button } from "../../../components/ui/button";
-import { CreateCommunity } from "../../../../interfaces/services/community/create-community";
 import { ICommunity } from "../../../../interfaces";
 import { Input } from "../../../components/ui/input";
 import { montserrat } from "../../../components/fonts";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
 import { useUserContext } from "../../../../context/UserContext";
+import { UpsertCommunity } from "../../../../interfaces/services/community/create-community";
 
 const CreateCommunityForm = ({
 	isEdit,
@@ -33,7 +33,7 @@ const CreateCommunityForm = ({
 	const [cookies] = useCookies(["token"]);
 	const { user } = useUserContext();
 	const { control, watch, setValue, formState, handleSubmit } =
-		useForm<CreateCommunity>({
+		useForm<UpsertCommunity>({
 			defaultValues: {
 				displayName: community?.displayname ?? "",
 				name: community?.name ?? "",
@@ -48,10 +48,10 @@ const CreateCommunityForm = ({
 		setValue("name", displayName);
 	}, [displayName, setValue]);
 
-	const onCommunityCreated = async (formData: CreateCommunity) => {
+	const onCommunityCreated = async (formData: UpsertCommunity) => {
 		const newCommunity = { ...formData, adminId: user?._id };
 		const communityData = isEdit
-			? await editCommunity({ token: cookies.token, community: newCommunity })
+			? await editCommunity({ token: cookies.token, community: {...newCommunity, _id: community!._id} })
 			: await createCommunity({
 					token: cookies.token,
 					community: newCommunity,

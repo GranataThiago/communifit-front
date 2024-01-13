@@ -1,6 +1,7 @@
 import { ICommunity } from "../../community";
 
-export interface CreateCommunity {
+export interface UpsertCommunity {
+	_id?: string;  //Needed for update.
 	name?: string;
 	displayName: string;
 	description: string;
