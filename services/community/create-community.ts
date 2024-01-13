@@ -1,49 +1,51 @@
 import {
   CreateCommunity,
-  CreateCommunityResponse,
+  UpsertCommunityResponse,
 } from "../../interfaces/services/community/create-community";
 
 import { GetInvitationLinkResponse } from "../../interfaces/services/community/community-page";
 import apiInstance from "../../app/api";
 
-interface ICreateCommunity {
+interface IActionCommunity {
   token: string;
-  newCommunity: CreateCommunity;
+  community: CreateCommunity;
 }
+
+
 
 export const editCommunity = async ({
 	token,
-	newCommunity,
-}: ICreateCommunity): Promise<CreateCommunityResponse> => {
-	let community: CreateCommunityResponse = null;
+	community,
+}: IActionCommunity): Promise<UpsertCommunityResponse> => {
+	let updateCommunityResponse: UpsertCommunityResponse = null;
 	try {
-		const response = await apiInstance.put("/communities", newCommunity, {
+		const response = await apiInstance.put("/communities", community, {
 			headers: { token: token },
 		});
-		community = response.data;
+		updateCommunityResponse = response.data;
 	} catch (err) {
 		console.log(err);
 	}
 
-	return community;
+	return updateCommunityResponse;
 };
 
 
 export const createCommunity = async ({
   token,
-  newCommunity,
-}: ICreateCommunity): Promise<CreateCommunityResponse> => {
-  let community: CreateCommunityResponse = null;
+  community,
+}: IActionCommunity): Promise<UpsertCommunityResponse> => {
+  let createCommunityResponse: UpsertCommunityResponse = null;
   try {
-    const response = await apiInstance.post("/communities", newCommunity, {
+    const response = await apiInstance.post("/communities", community, {
       headers: { token: token },
     });
-    community = response.data;
+    createCommunityResponse = response.data;
   } catch (err) {
     console.log(err);
   }
 
-  return community;
+  return createCommunityResponse;
 };
 
 interface IGetInvitationLink {

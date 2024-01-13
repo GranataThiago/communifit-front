@@ -7,9 +7,9 @@ export interface CreateCommunity {
 	adminId?: number;
 }
 
-export interface ICreateCommunityFetch {
+export interface IUpsertCommunityFetch {
   ok: boolean;
   community: ICommunity;
 }
 
-export type CreateCommunityResponse = null | ICreateCommunityFetch;
+export type UpsertCommunityResponse = null | IUpsertCommunityFetch;

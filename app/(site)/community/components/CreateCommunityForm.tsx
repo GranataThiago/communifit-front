@@ -51,10 +51,10 @@ const CreateCommunityForm = ({
 	const onCommunityCreated = async (formData: CreateCommunity) => {
 		const newCommunity = { ...formData, adminId: user?._id };
 		const communityData = isEdit
-			? await editCommunity({ token: cookies.token, newCommunity })
+			? await editCommunity({ token: cookies.token, community: newCommunity })
 			: await createCommunity({
 					token: cookies.token,
-					newCommunity,
+					community: newCommunity,
 				});
 		if (!communityData || !communityData.ok) {
 			renderToast(
