@@ -45,7 +45,7 @@ const CreateCommunityForm = ({
 
 	useEffect(() => {
 		if (!displayName || formState.touchedFields.displayName) return;
-		setValue("name", displayName);
+		setValue("displayName", displayName);
 	}, [displayName, setValue]);
 
 	const onCommunityCreated = async (formData: UpsertCommunity) => {

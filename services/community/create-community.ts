@@ -18,9 +18,8 @@ export const editCommunity = async ({
 	community,
 }: IActionCommunity): Promise<UpsertCommunityResponse> => {
 	let updateCommunityResponse: UpsertCommunityResponse = null;
-  console.log(community)
 	try {
-		const response = await apiInstance.put(`/communities/${community.name}`, community, {
+		const response = await apiInstance.put(`/communities/${community._id}`, community, {
 			headers: { token: token },
 		});
 		updateCommunityResponse = response.data;
