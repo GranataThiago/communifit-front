@@ -58,7 +58,7 @@ const CreateCommunityForm = ({
 				});
 		if (!communityData || !communityData.ok) {
 			renderToast(
-				"There has been an error while creating your community",
+				`There has been an error while ${isEdit?'updating':'creating'} your community`,
 				<AiFillCloseCircle />
 			);
 			return;
