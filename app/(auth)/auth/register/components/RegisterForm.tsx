@@ -3,18 +3,15 @@ import {
 	FormField,
 	FormItem,
 	FormLabel,
+	FormMessage,
 } from "../../../../components/ui/form";
 
-import { Controller } from "react-hook-form";
 import { Input } from "../../../../components/ui/input";
-import { Label } from "../../../../components/ui/label";
 import { RegisterFormStep } from "./Onboarding";
-import dynamic from "next/dynamic";
 import { montserrat } from "../../../../components/fonts";
+import { PASSWORD_REGEX } from "../../../../../utils";
 
-const SocialMediaForm = dynamic(
-	() => import("../../components/SocialMediaForm")
-);
+
 export const RegisterFormComponent = ({
 	register,
 	control,
@@ -35,6 +32,9 @@ export const RegisterFormComponent = ({
 						<FormControl>
 							<Input placeholder="Your full name" {...field} ref={null} variant='dark' type='text' />
 						</FormControl>
+						<FormMessage>
+							{ control.getFieldState('fullname').isDirty && control.getFieldState('fullname').error?.message }
+						</FormMessage>
 					</FormItem>
 				)}
 			/>
@@ -51,6 +51,9 @@ export const RegisterFormComponent = ({
 						<FormControl>
 							<Input placeholder="Your username" {...field} ref={null} variant='dark' type='text' />
 						</FormControl>
+						<FormMessage>
+							{ control.getFieldState('username').isDirty && control.getFieldState('username').error?.message }
+						</FormMessage>
 					</FormItem>
 				)}
 			/>
@@ -73,6 +76,9 @@ export const RegisterFormComponent = ({
 								type='email'
 							/>
 						</FormControl>
+						<FormMessage>
+							{ control.getFieldState('email').isDirty && control.getFieldState('email').error?.message }
+						</FormMessage>
 					</FormItem>
 				)}
 			/>
@@ -82,6 +88,7 @@ export const RegisterFormComponent = ({
 				name='password'
 				rules={{
 					required: "The password is required.",
+					pattern: { value: PASSWORD_REGEX, message: "Must be at least 8 characters with at least one uppercase letter, one lowercase letter, and two digits. Avoid spaces." }
 				}}
 				render={({ field }) => (
 					<FormItem>
@@ -94,6 +101,9 @@ export const RegisterFormComponent = ({
 								type='password'
 							/>
 						</FormControl>
+						<FormMessage>
+							{ control.getFieldState('password').isDirty && control.getFieldState('password').error?.message }
+						</FormMessage>
 					</FormItem>
 				)}
 			/>

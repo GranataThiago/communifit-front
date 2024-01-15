@@ -104,7 +104,7 @@ export const Onboarding = (props: OnBoardingProps) => {
         return <FinalStep />;
     }
   };
-
+  
   const onRegister = async (formData: RegisterForm) => {
 
     setIsLoading(true);
@@ -114,7 +114,6 @@ export const Onboarding = (props: OnBoardingProps) => {
     } = formData;
 
     const birthdate = new Date(year, month, day);
-
     const SAFE_USER: IRegisterUser = {
       ...formData,
       birthdate,
