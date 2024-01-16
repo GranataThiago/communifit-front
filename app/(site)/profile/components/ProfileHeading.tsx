@@ -1,7 +1,5 @@
 "use client";
 
-import { BiLogOut } from "react-icons/bi";
-import { Button } from "../../../components/ui/button";
 import React from "react";
 import { useUserContext } from "../../../../context/UserContext";
 import { ImageWithFallback, poppins } from "../../../components";

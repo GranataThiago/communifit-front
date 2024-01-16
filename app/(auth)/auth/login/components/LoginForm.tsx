@@ -13,8 +13,8 @@ import useErrorLoginMessageStore from "../../../../hooks/errorMessage/useErrorMe
 import { useForm } from "react-hook-form";
 import useLoader from "../../../../hooks/loader/useLoader";
 import { useRouter } from "next/navigation";
-import { useUserContext } from "../../../../../context/UserContext/UserContext";
 import { zodResolver } from "@hookform/resolvers/zod";
+import loginUser from "../../../../../services/auth/login";
 
 type LoginForm = {
 	email: string;
@@ -22,8 +22,6 @@ type LoginForm = {
 };
 
 export const LoginForm = () => {
-	const { login } = useUserContext();
-
 	const setIsLoading = useLoader((state) => state.setIsLoading);
 	const messageError = useErrorLoginMessageStore((state) => state.messageError);
 	const setMessageError = useErrorLoginMessageStore(
@@ -57,8 +55,8 @@ export const LoginForm = () => {
 		setIsLoading(true);
 		const { email, password } = formData;
 
-		const response: LoginUserResponse = await login(email, password);
-
+		const response: LoginUserResponse = await loginUser(email, password);
+		console.log(response)
 		if (!response) {
 			setMessageError(errorLoginMessage);
 			setIsLoading(false);

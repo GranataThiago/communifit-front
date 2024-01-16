@@ -18,7 +18,7 @@ interface IInviteModal {
 	IconAriaLabel: string;
 }
 
-const InviteModal = ({Icon, community, IconAriaLabel}:IInviteModal) => {
+const InviteModal = ({ Icon, community, IconAriaLabel }:IInviteModal) => {
 	const {name, displayname} = community;
 	const [clickOnSubmit, setClickOnSubmit] = useState(false);
 	const { token } = useUserContext();

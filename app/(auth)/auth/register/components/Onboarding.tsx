@@ -17,6 +17,7 @@ import { errorCodes } from "../../../../../helpers/error-codes";
 import useLoader from "../../../../hooks/loader/useLoader";
 import Logo from "../../../../components/Company/Logo";
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import registerUser from "../../../../../services/auth/register";
 
 export type RegisterForm = {
   username: string;
@@ -50,11 +51,10 @@ export const Onboarding = (props: OnBoardingProps) => {
     props.currentStepMock ?? 0,
   );
   const {isLoading, setIsLoading} = useLoader();
-  const { register: registerUser } = useContext(UserContext);
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields, touchedFields },
     register,
     control,
     getValues,
@@ -74,6 +74,8 @@ export const Onboarding = (props: OnBoardingProps) => {
       type: "member",
     },
   });
+
+  console.log(errors, dirtyFields, touchedFields)
 
   const onNextStep = () => {
     if (currentStep > 3) {
