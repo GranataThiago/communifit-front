@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import useInviteModal from "../../hooks/modals/useInviteModal";
-import { useUserContext } from "../../../context/UserContext";
 import { getInvitationLink } from "../../../services/community/create-community";
+import { useCookies } from "react-cookie";
 
 interface IInviteModal {
 	Icon: any;
@@ -19,9 +19,9 @@ interface IInviteModal {
 }
 
 const InviteModal = ({ Icon, community, IconAriaLabel }:IInviteModal) => {
+	const [cookies] = useCookies(["token"]);
 	const {name, displayname} = community;
 	const [clickOnSubmit, setClickOnSubmit] = useState(false);
-	const { token } = useUserContext();
   	const inviteModal = useInviteModal();
 	const form = useForm({
 		defaultValues: {
@@ -50,8 +50,8 @@ const InviteModal = ({ Icon, community, IconAriaLabel }:IInviteModal) => {
 	};
 
 	const onInviteModalOpen = async () => {
-		if (!token) return;
-		const response = await getInvitationLink({ token, communityName: name });
+		if (!cookies.token) return;
+		const response = await getInvitationLink({ token: cookies.token, communityName: name });
 	
 		if (!response || !response.ok) return;
 

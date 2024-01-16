@@ -1,13 +1,10 @@
 "use client";
 
 import React from "react";
-import { useUserContext } from "../../../../context/UserContext";
 import { ImageWithFallback, poppins } from "../../../components";
+import { IUser } from "../../../../interfaces/user";
 
-export const ProfileHeading = () => {
-  const { user } = useUserContext();
-
-
+export const ProfileHeading = ({ user }: {user: IUser}) => {
   return (
     <header className="flex justify-between" data-testid="header">
       <div>

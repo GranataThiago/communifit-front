@@ -68,7 +68,7 @@ export const PlanScreen = async ({ user, client }: { user: IUser, client: string
 
       <section className="p-6">
         <p className="font-bold text-3xl">Workout</p>
-        <Workout />
+        <Workout user={user}/>
       </section>
 
       <footer className="p-6 mb-8">

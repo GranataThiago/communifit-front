@@ -20,7 +20,6 @@ import { Input } from "../../../components/ui/input";
 import { montserrat } from "../../../components/fonts";
 import { renderToast } from "../../../providers/ToasterProvider";
 import { useCookies } from "react-cookie";
-import { useUserContext } from "../../../../context/UserContext";
 import { UpsertCommunity } from "../../../../interfaces/services/community/create-community";
 
 const CreateCommunityForm = ({
@@ -30,8 +29,8 @@ const CreateCommunityForm = ({
 	isEdit?: boolean;
 	community?: ICommunity;
 }) => {
-	const [cookies] = useCookies(["token"]);
-	const { user } = useUserContext();
+	const [cookies] = useCookies(["token", "user"]);
+	const user = cookies.user;
 	const { control, watch, setValue, formState, handleSubmit } =
 		useForm<UpsertCommunity>({
 			defaultValues: {

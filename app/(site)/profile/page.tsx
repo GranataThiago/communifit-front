@@ -2,15 +2,18 @@ import React from "react";
 import { ProfileHeading } from "./components/ProfileHeading";
 import { poppins } from "../../components";
 import Progress from "../../components/ui/progress";
-import { Button } from "../../components/ui/button";
 import LogoutButton from "./components/LogoutButton";
+import { getAuthenticatedUser } from "../../../helpers";
+import { cookies } from "next/headers";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+
+  const user = await getAuthenticatedUser(cookies().get('token')!.value);
 
 
   return (
     <div data-testid="content" className="bg-secondary-dark p-6 min-h-screen">
-      <ProfileHeading />
+      <ProfileHeading user={user}/>
 
       <section className="text-surface-light">
         <h2 className={`font-bold ${poppins.className} text-2xl mb-2`}>Achievements</h2>

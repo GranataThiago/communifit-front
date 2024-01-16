@@ -1,5 +1,6 @@
 import {  NextRequest, NextResponse } from "next/server";
 import { API_KEY, API_URL } from "./utils";
+import { getAuthenticatedUser } from "./helpers";
 // This function can be marked async if using await inside
 export async function middleware(request: NextRequest) {
   let cookie = request.cookies.get("token");
@@ -24,7 +25,10 @@ export async function middleware(request: NextRequest) {
 
   const data = await resp.json();
 
+  const SAFE_USER_DATA = await getAuthenticatedUser(data.token);
+
   const response = NextResponse.next();
+  response.cookies.set('user', JSON.stringify(SAFE_USER_DATA))
   response.cookies.set("token", data.token);
   return response;
 }
