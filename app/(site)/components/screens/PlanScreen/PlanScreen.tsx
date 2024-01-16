@@ -2,14 +2,14 @@ import React from "react";
 import { montserrat } from "../../../../components/fonts";
 import { WorkoutActions } from "../../workout/WorkoutActions";
 import Workout from "../../workout/Workout";
-import { IUser } from "../../../../../interfaces/user";
+import { IMinimumUserInfo } from "../../../../../interfaces/user";
 import MemberInfo from "../../../../components/members/MemberInfo";
 import { getMemberByUsername } from "../../../../../services/users/recoverInfo";
 import { redirect } from "next/navigation";
 import { getClientsByTrainer } from "../../../../../services/trainer/get-clients";
 import MemberCardsInfo from "../../../../components/members/MemberCardsInfo";
 
-export const PlanScreen = async ({ user, client }: { user: IUser, client: string }) => {
+export const PlanScreen = async ({ user, client }: { user: IMinimumUserInfo, client: string }) => {
   const foundTrainerClients = await getClientsByTrainer({userId: user?._id!});
   const foundUser = await getMemberByUsername({ username: client });
   const isClientOfTrainer = foundTrainerClients?.clients.filter((c) => c.username === client) || [];

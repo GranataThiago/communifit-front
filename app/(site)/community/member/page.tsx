@@ -1,7 +1,6 @@
 import { IMinimumUserInfo } from "../../../../interfaces/user";
 import React, { Suspense } from "react";
 import { cookies } from "next/headers";
-import { getAuthenticatedUser } from "../../../../helpers";
 import { redirect } from "next/navigation";
 import { Input } from "../../../components/ui/input";
 import Link from "next/link";
@@ -13,7 +12,7 @@ import ListCommunitiesSkeleton from "../../../components/skeletons/ListCommuniti
 const CommunityPageMember = async () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")!.value;
-  const user: IMinimumUserInfo = await getAuthenticatedUser(token);
+  const user: IMinimumUserInfo = JSON.parse(cookieStore.get('user')!.value);
   if (!user) return redirect("/");
   if (user.type !== "member") return redirect("/community");
 

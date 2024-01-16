@@ -1,13 +1,11 @@
 import { IMinimumUserInfo } from "../../../interfaces/user";
 import { cookies } from "next/headers";
-import { getAuthenticatedUser } from "../../../helpers";
 import { redirect } from "next/navigation";
 
 const CommunityPage = async () => {
 	const cookieStore = cookies();
-	const user: IMinimumUserInfo = await getAuthenticatedUser(
-		cookieStore.get("token")!.value
-	);
+
+  	const user: IMinimumUserInfo = JSON.parse(cookieStore.get('user')!.value);
 	if (!user) return redirect("/");
 	return user.type === "trainer"
 		? redirect("/community/trainer")

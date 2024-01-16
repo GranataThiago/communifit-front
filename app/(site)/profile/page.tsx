@@ -3,13 +3,13 @@ import { ProfileHeading } from "./components/ProfileHeading";
 import { poppins } from "../../components";
 import Progress from "../../components/ui/progress";
 import LogoutButton from "./components/LogoutButton";
-import { getAuthenticatedUser } from "../../../helpers";
 import { cookies } from "next/headers";
+import { IUser } from "../../../interfaces/user";
+import { getAuthenticatedUser } from "../../../helpers";
 
 export default async function ProfilePage() {
 
-  const user = await getAuthenticatedUser(cookies().get('token')!.value);
-
+  const user: IUser = await getAuthenticatedUser(cookies().get('token')!.value);
 
   return (
     <div data-testid="content" className="bg-secondary-dark p-6 min-h-screen">

@@ -7,9 +7,9 @@ import { montserrat } from "../../../components/fonts";
 import { usePlanContext } from "../../../../context/CreatePlanContext/PlanContext";
 import useWorkoutModal from "../../../hooks/modals/useWorkoutModal";
 import WorkoutModal from "../../../components/modals/WorkoutModal";
-import { IUser } from "../../../../interfaces/user";
+import { IMinimumUserInfo } from "../../../../interfaces/user";
 
-const Workout = ({ user }: { user: IUser }) => {
+const Workout = ({ user }: { user: IMinimumUserInfo }) => {
 
 	const [day, setDay] = useState("Monday");
 	const { workout, addExerciseToPlan } = usePlanContext();

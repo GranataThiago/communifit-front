@@ -8,7 +8,6 @@ import { ICommunity } from "../../../../interfaces";
 import { IMinimumUserInfo } from "../../../../interfaces/user";
 import React from "react";
 import { cookies } from "next/headers";
-import { getAuthenticatedUser } from "../../../../helpers";
 import { redirect } from "next/navigation";
 
 interface CommunityPageParams {
@@ -39,7 +38,7 @@ export default async function CommunityPage({ params }: CommunityPageProps) {
 	const { name } = params;
 	const cookieStore = cookies();
 	const token = cookieStore.get("token")!.value;
-	const user: IMinimumUserInfo = await getAuthenticatedUser(token);
+	const user: IMinimumUserInfo = JSON.parse(cookieStore.get('user')!.value);
 	const community: ICommunity | null = await getCommunity(name, token);
 	if (!community) {
 		redirect("/community");

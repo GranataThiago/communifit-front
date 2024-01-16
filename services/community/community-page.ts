@@ -22,6 +22,7 @@ export const getCommunities = async ({
 }): Promise<ICommunities[] | null> => {
 	let community: ICommunities[] | null = null;
 	try {
+		console.log(apiInstance.defaults.headers.common);
 		const response = await apiInstance.get<IGetAllCommunity>(
 			`/communities/list`,
 			{ headers: { token } }
