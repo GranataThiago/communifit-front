@@ -18,7 +18,6 @@ const getChats = async () => {
 			message: "I just got a new PR in Bench Press!",
 		},
 	];
-	await new Promise((resolve) => setTimeout(resolve, 1000));
 
 	return chats;
 };
