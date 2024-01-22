@@ -79,10 +79,10 @@ export default function UserProvider({
 		password: string
 	): Promise<LoginUserResponse> => {
 		try {
-			const data: LoginUserResponse = await loginUser({
+			const data: LoginUserResponse = await loginUser(
 				email,
 				password,
-			});
+			);
 
 			if (!data || !data.token) {
 				return {
