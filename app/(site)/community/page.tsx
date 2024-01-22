@@ -12,8 +12,8 @@ const CommunityPage = async () => {
 	return user.type === "trainer"
 		? redirect("/community/trainer")
 		: user.community?.name
-			? redirect("/community/member")
-			: redirect(`/community/${user.community?.name}`)
+			? redirect(`/community/${user.community?.name}`)
+			: redirect("/community/member")
 
 };
 
