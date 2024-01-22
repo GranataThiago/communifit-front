@@ -6,10 +6,15 @@ const CommunityPage = async () => {
 	const cookieStore = cookies();
 
   	const user: IMinimumUserInfo = JSON.parse(cookieStore.get('user')!.value);
+
 	if (!user) return redirect("/");
+
 	return user.type === "trainer"
 		? redirect("/community/trainer")
-		: redirect("/community/member");
+		: user.community?.name
+			? redirect("/community/member")
+			: redirect(`/community/${user.community?.name}`)
+
 };
 
 export default CommunityPage;
