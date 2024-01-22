@@ -75,8 +75,6 @@ export const Onboarding = (props: OnBoardingProps) => {
     },
   });
 
-  console.log(errors, dirtyFields, touchedFields)
-
   const onNextStep = () => {
     if (currentStep > 3) {
       router.push("/");
