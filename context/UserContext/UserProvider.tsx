@@ -6,7 +6,7 @@ import { UserContext, userReducer } from ".";
 import { createUserAndGetToken } from "../../services/users/register";
 import { CreateUserReturn, ICreateUserResponse, LoginUserResponse } from "../../interfaces";
 import { decryptUser } from "../../services/auth/decrypt";
-import { loginUser } from "../../services/auth/login";
+import loginUser from "../../services/auth/login";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import { IRegisterUser, IUser } from "../../interfaces/user";
